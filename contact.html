@@ -1,1060 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get in Touch | Premier Realty Sacramento</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --blue: #3A86FF;
-            --navy: #27548A;
-            --black: #000;
-            --body: #333;
-            --light: #f7f7f5;
-            --border: #e8e8e6;
-            --white: #fff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Onest', sans-serif;
-            color: var(--body);
-            background-color: var(--white);
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        h1 {
-            font-size: 56px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: 42px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            font-size: 32px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 60px;
-        }
-
-        @media (max-width: 900px) {
-            .container {
-                padding: 0 40px;
-            }
-            h1 {
-                font-size: 42px;
-            }
-            h2 {
-                font-size: 32px;
-            }
-            h3 {
-                font-size: 24px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 0 24px;
-            }
-            h1 {
-                font-size: 32px;
-            }
-            h2 {
-                font-size: 24px;
-            }
-            h3 {
-                font-size: 20px;
-            }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: var(--white);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            height: 80px;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-container {
-            max-width: 1280px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        @media (max-width: 900px) {
-            .nav-container {
-                padding: 0 40px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .nav-container {
-                padding: 0 24px;
-            }
-        }
-
-        .nav-left, .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .nav-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--navy);
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--body);
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--navy);
-        }
-
-        nav a.active {
-            color: var(--navy);
-            border-bottom: 2px solid var(--navy);
-            padding-bottom: 2px;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--white);
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 10px 0;
-            z-index: 1;
-            border: 1px solid var(--border);
-            top: 100%;
-            right: 0;
-        }
-
-        .dropdown-content a {
-            color: var(--body);
-            padding: 12px 20px;
-            text-decoration: none;
-            display: block;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
-
-        .dropdown-content a:hover {
-            background-color: var(--light);
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .nav-btn {
-            background-color: var(--navy);
-            color: var(--white);
-            padding: 12px 24px;
-            border: none;
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border-radius: 0;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-        }
-
-        .nav-btn:hover {
-            background-color: var(--blue);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--navy);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        @media (max-width: 900px) {
-            .nav-left, .nav-right {
-                display: none;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .nav-center {
-                position: static;
-                transform: none;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            nav.active .hamburger span:nth-child(1) {
-                transform: rotate(45deg) translate(8px, 8px);
-            }
-            nav.active .hamburger span:nth-child(2) {
-                opacity: 0;
-            }
-            nav.active .hamburger span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
-        }
-
-        .nav-mobile {
-            display: none;
-            position: absolute;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background-color: var(--white);
-            flex-direction: column;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-mobile.active {
-            display: flex;
-        }
-
-        .nav-mobile a {
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--light);
-            font-size: 14px;
-            text-decoration: none;
-            color: var(--body);
-        }
-
-        .nav-mobile a:hover {
-            background-color: var(--light);
-        }
-
-        .nav-mobile a.active {
-            background-color: var(--light);
-            color: var(--navy);
-            border-bottom: 2px solid var(--navy);
-        }
-
-        /* Hero Banner */
-        .hero {
-            margin-top: 80px;
-            padding: 100px 60px;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
-            color: var(--white);
-            text-align: center;
-        }
-
-        @media (max-width: 900px) {
-            .hero {
-                padding: 80px 40px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero {
-                padding: 60px 24px;
-            }
-        }
-
-        .hero h1 {
-            color: var(--white);
-            font-size: 56px;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            color: var(--white);
-            font-size: 20px;
-            font-weight: 300;
-            opacity: 0.95;
-        }
-
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            .hero p {
-                font-size: 16px;
-            }
-        }
-
-        /* Contact Section */
-        .contact-main {
-            padding: 100px 60px;
-        }
-
-        @media (max-width: 900px) {
-            .contact-main {
-                padding: 80px 40px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .contact-main {
-                padding: 60px 24px;
-            }
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 100px;
-        }
-
-        @media (max-width: 900px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-        }
-
-        /* Form Styles */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group label {
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--navy);
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            padding: 14px 16px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-family: 'Onest', sans-serif;
-            font-size: 16px;
-            color: var(--body);
-            background-color: var(--white);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 160px;
-        }
-
-        .form-group.required label:after {
-            content: " *";
-            color: var(--blue);
-        }
-
-        .submit-btn {
-            background-color: var(--navy);
-            color: var(--white);
-            padding: 14px 32px;
-            border: none;
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border-radius: 0;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-            align-self: flex-start;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--blue);
-        }
-
-        .form-message {
-            padding: 16px;
-            border-radius: 4px;
-            font-size: 14px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .form-message.success {
-            display: block;
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .form-message.error {
-            display: block;
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        /* Contact Info Cards */
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .info-card {
-            padding: 32px;
-            background-color: var(--light);
-            border-radius: 8px;
-            border-left: 4px solid var(--blue);
-        }
-
-        .info-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: var(--navy);
-        }
-
-        .info-card p {
-            font-size: 16px;
-            color: var(--body);
-            line-height: 1.8;
-        }
-
-        .info-card a {
-            color: var(--blue);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .info-card a:hover {
-            color: var(--navy);
-            text-decoration: underline;
-        }
-
-        /* Map Section */
-        .map-section {
-            background-color: var(--light);
-            padding: 80px 60px;
-            margin: 100px 0;
-        }
-
-        @media (max-width: 900px) {
-            .map-section {
-                padding: 60px 40px;
-                margin: 80px 0;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .map-section {
-                padding: 40px 24px;
-                margin: 60px 0;
-            }
-        }
-
-        .map-section h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--navy);
-        }
-
-        .map-container {
-            max-width: 800px;
-            margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: #d3d3d3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .map-container svg {
-            width: 80px;
-            height: 80px;
-            opacity: 0.5;
-        }
-
-        .map-container p {
-            font-size: 16px;
-            color: var(--body);
-            text-align: center;
-        }
-
-        .map-container a {
-            color: var(--blue);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .map-container a:hover {
-            color: var(--navy);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background-color: var(--light);
-            padding: 80px 60px;
-            text-align: center;
-        }
-
-        @media (max-width: 900px) {
-            .cta-section {
-                padding: 60px 40px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .cta-section {
-                padding: 40px 24px;
-            }
-        }
-
-        .cta-section h2 {
-            color: var(--navy);
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            background-color: var(--navy);
-            color: var(--white);
-            padding: 14px 32px;
-            border: none;
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border-radius: 0;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: var(--blue);
-        }
-
-        /* Footer */
-        footer {
-            background-color: #0a0a0a;
-            color: var(--white);
-            padding: 60px;
-        }
-
-        @media (max-width: 900px) {
-            footer {
-                padding: 40px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            footer {
-                padding: 30px 24px;
-            }
-        }
-
-        .footer-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        @media (max-width: 900px) {
-            .footer-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-        }
-
-        .footer-col h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: var(--white);
-        }
-
-        .footer-col a {
-            display: block;
-            color: #bbb;
-            text-decoration: none;
-            margin-bottom: 12px;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-col a:hover {
-            color: var(--blue);
-        }
-
-        .footer-col p {
-            color: #bbb;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: var(--navy);
-            color: var(--white);
-            text-align: center;
-            line-height: 40px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--blue);
-        }
-
-        .newsletter-form {
-            display: flex;
-            margin-top: 20px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid var(--border);
-            font-family: 'Onest', sans-serif;
-            background-color: transparent;
-            color: var(--white);
-            font-size: 14px;
-        }
-
-        .newsletter-form input::placeholder {
-            color: #777;
-        }
-
-        .newsletter-form button {
-            padding: 12px 24px;
-            background-color: var(--blue);
-            color: var(--white);
-            border: none;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 12px;
-            letter-spacing: 0.1em;
-            transition: background-color 0.3s ease;
-        }
-
-        .newsletter-form button:hover {
-            background-color: var(--navy);
-        }
-
-        .footer-bottom {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-            text-align: center;
-            color: #777;
-            font-size: 14px;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Premier Realty Sacramento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{--gold:#C8A96E;--gold-light:#E2C99A;--ink:#0B0B0B;--warm:#F5F0E8;--dim:#7A7468;--navy:#1A2B40;--blue:#4ABAEB;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+body{font-family:var(--sans);background:var(--ink);color:var(--warm);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;opacity:.022}
+nav{position:fixed;top:0;left:0;right:0;z-index:800;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,60px);background:rgba(11,11,11,.94);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(74,186,235,.12)}
+.nav-logo img{height:42px}
+.nav-center{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-center>li{position:relative}
+.nav-center>li>a,.nav-btn{font-size:12px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.75);background:none;border:none;font-family:var(--sans);padding:8px 14px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:color .3s;text-decoration:none}
+.nav-center>li>a:hover,.nav-btn:hover{color:var(--warm)}
+.caret{font-size:8px;opacity:.5;transition:transform .3s}
+.nav-center>li:hover .caret{transform:rotate(180deg)}
+.nav-drop{position:absolute;top:calc(100%+12px);left:50%;transform:translateX(-50%) translateY(-8px);background:rgba(15,15,15,.97);backdrop-filter:blur(20px);border:1px solid rgba(74,186,235,.15);min-width:220px;padding:8px 0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,transform .25s,visibility .25s}
+.nav-center>li:hover .nav-drop{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.nav-drop a{display:block;padding:11px 20px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,.65);transition:color .2s,background .2s;white-space:nowrap;text-decoration:none}
+.nav-drop a:hover{color:var(--blue);background:rgba(74,186,235,.05)}
+.nav-drop hr{border:none;border-top:1px solid rgba(245,240,232,.07);margin:6px 0}
+.nav-cta{background:var(--blue);color:var(--ink);padding:10px 22px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:background .3s;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{background:#5dc8f5}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.hamburger span{width:22px;height:1px;background:var(--warm);display:block;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.mob-menu{display:none;position:fixed;inset:72px 0 0;background:rgba(11,11,11,.98);z-index:799;overflow-y:auto;padding:32px 24px;flex-direction:column;gap:4px}
+.mob-menu.open{display:flex}
+.mob-link{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.75);padding:14px 0;border-bottom:1px solid rgba(245,240,232,.06);display:block;text-decoration:none}
+.mob-link:hover{color:var(--blue)}
+.mob-sub a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,.45);padding:10px 0 10px 16px;border-bottom:1px solid rgba(245,240,232,.03);display:block;text-decoration:none}
+.mob-sub a:hover{color:var(--blue)}
+.mob-cta{margin-top:24px;background:var(--blue);color:var(--ink);padding:16px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-align:center;border:none;font-family:var(--sans);width:100%;text-decoration:none;display:block}
+
+/* CONTACT HERO */
+.contact-hero{padding:clamp(120px,18vh,180px) clamp(20px,5vw,72px) clamp(60px,8vh,80px);max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,100px);align-items:start}
+.ch-eye{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.ch-eye::before{content:'';width:22px;height:1px;background:var(--gold)}
+.ch-h1{font-family:var(--serif);font-size:clamp(48px,6vw,88px);font-weight:300;line-height:1.0;color:#fff}
+.ch-h1 em{font-style:italic;color:var(--gold-light)}
+.ch-sub{margin-top:18px;font-size:15px;color:rgba(245,240,232,.5);font-weight:300;line-height:1.8;max-width:400px}
+.contact-info{display:flex;flex-direction:column;gap:20px;margin-top:36px}
+.ci-item{display:flex;align-items:center;gap:16px}
+.ci-icon{width:40px;height:40px;border:1px solid rgba(74,186,235,.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ci-text{font-size:14px;font-weight:300;color:rgba(245,240,232,.6)}
+.ci-text strong{display:block;font-weight:500;color:var(--warm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1px}
+
+/* MAIN FORM */
+.form-wrap{position:relative}
+.form-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--gold))}
+.form-inner{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:40px 36px;padding-top:44px}
+.form-title{font-family:var(--serif);font-size:26px;font-weight:300;color:#fff;margin-bottom:4px}
+.form-sub{font-size:12px;color:rgba(245,240,232,.35);margin-bottom:28px;letter-spacing:.04em}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f-field{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.f-field.full{grid-column:1/-1}
+.f-field label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.35)}
+.f-field input,.f-field select,.f-field textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--warm);padding:13px 15px;font-size:14px;font-weight:300;font-family:var(--sans);outline:none;transition:border-color .3s,background .3s}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{border-color:var(--blue);background:rgba(74,186,235,.05)}
+.f-field input::placeholder,.f-field textarea::placeholder{color:rgba(245,240,232,.2)}
+.f-field textarea{resize:vertical;min-height:120px}
+.f-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7468' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100%-14px) center;background-size:12px;padding-right:36px;background-color:rgba(255,255,255,.05)}
+.f-field select option{background:#0d1a2a}
+.pipeline-tag{font-size:10px;letter-spacing:.12em;color:var(--blue);padding:4px 0;display:none}
+.f-submit{width:100%;background:var(--blue);color:var(--ink);border:none;padding:16px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);transition:background .3s,transform .2s}
+.f-submit:hover{background:#5dc8f5;transform:translateY(-1px)}
+.f-note{font-size:10px;color:rgba(245,240,232,.25);text-align:center;margin-top:12px;letter-spacing:.05em}
+
+/* Success/OOS */
+.f-success,.f-oos{display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:40px 0;min-height:240px}
+.f-success.show,.f-oos.show{display:flex}
+.f-main.hide{display:none}
+.s-icon{font-size:48px}
+.s-h{font-family:var(--serif);font-size:26px;font-weight:300;color:#fff}
+.s-p{font-size:13px;color:rgba(245,240,232,.5);line-height:1.75;max-width:300px}
+
+/* FAQ */
+.faq{background:var(--navy);padding:clamp(80px,10vh,110px) clamp(20px,5vw,72px)}
+.faq-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:360px 1fr;gap:64px;align-items:start}
+.faq-items{display:flex;flex-direction:column;gap:2px}
+.faq-item{border-bottom:1px solid rgba(245,240,232,.08)}
+.faq-q{width:100%;text-align:left;padding:20px 0;background:none;border:none;color:var(--warm);font-size:15px;font-weight:400;cursor:pointer;font-family:var(--sans);display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .3s}
+.faq-q:hover{color:var(--blue)}
+.faq-arrow{font-size:12px;color:var(--blue);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{font-size:14px;font-weight:300;color:rgba(245,240,232,.5);line-height:1.8;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:18px}
+
+/* MAP / OFFICE -->
+.office{max-width:1240px;margin:0 auto;padding:clamp(80px,10vh,100px) clamp(20px,5vw,72px);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.office-map{background:linear-gradient(135deg,var(--navy) 0%,rgba(74,186,235,.08) 100%);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;border:1px solid rgba(74,186,235,.12);position:relative;overflow:hidden}
+.office-map::before{content:'📍';font-size:48px}
+.office-map-label{font-family:var(--serif);font-size:22px;font-weight:300;color:var(--warm);text-align:center}
+.office-map-sub{font-size:12px;color:var(--dim);text-align:center;letter-spacing:.08em}
+.office-map-btn{background:var(--blue);color:var(--ink);padding:11px 24px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);text-decoration:none;display:inline-block;margin-top:8px}
+.office-map-btn:hover{background:#5dc8f5}
+.office-info h3{font-family:var(--serif);font-size:clamp(32px,3.5vw,48px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:24px}
+.office-info h3 em{font-style:italic;color:var(--gold-light)}
+.office-detail{display:flex;flex-direction:column;gap:20px}
+.od-item{display:flex;align-items:flex-start;gap:14px;padding:18px 0;border-bottom:1px solid rgba(245,240,232,.06)}
+.od-item:last-child{border-bottom:none}
+.od-icon{width:38px;height:38px;border:1px solid rgba(74,186,235,.25);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;margin-top:2px}
+.od-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
+.od-value{font-size:15px;font-weight:300;color:rgba(245,240,232,.75);line-height:1.6}
+
+/* FOOTER */
+footer{background:rgba(0,0,0,.7);border-top:1px solid rgba(245,240,232,.06);padding:clamp(36px,5vh,60px) clamp(20px,5vw,72px)}
+.fi{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+.fi img{height:34px}
+.fc{font-size:11px;color:var(--dim);letter-spacing:.07em;text-align:center;line-height:1.7}
+.fl{display:flex;gap:18px;justify-content:flex-end}
+.fl a{font-size:10px;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;transition:color .3s;text-decoration:none}
+.fl a:hover{color:var(--blue)}
+
+.eye{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s ease}
+.reveal.vis{opacity:1;transform:none}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
+
+@media(max-width:960px){
+  .contact-hero,.office{grid-template-columns:1fr}
+  .faq-inner{grid-template-columns:1fr}
+  .nav-center,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .fi{grid-template-columns:1fr;text-align:center}
+  .fl{justify-content:center}
+}
+@media(max-width:600px){.f-row{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="nav-left">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link">About Us</a>
-                <a href="index.html#listings" class="nav-link">Listings</a>
-            </div>
-            <div class="nav-center">
-                <a href="index.html" class="nav-logo"><img src="img/premier-realty-logo.png" alt="Premier Realty" style="height: 48px; width: auto; display: block;"></a>
-            </div>
-            <div class="nav-right">
-                <div class="dropdown">
-                    <a href="#" class="nav-link">Services</a>
-                    <div class="dropdown-content">
-                        <a href="services.html">Our Services</a>
-                        <a href="services.html#buy">Buy a Home</a>
-                        <a href="services.html#sell">Sell Your Home</a>
-                        <a href="services.html#valuation">Home Valuation</a>
-                    </div>
-                </div>
-                <a href="index.html#faq" class="nav-link">FAQ</a>
-                <a href="index.html#contact" class="nav-btn">Get Started ↗</a>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Mobile Navigation -->
-    <div class="nav-mobile">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link">About Us</a>
-        <a href="index.html#listings" class="nav-link">Listings</a>
-        <a href="services.html" class="nav-link">Services</a>
-        <a href="index.html#faq" class="nav-link">FAQ</a>
-        <a href="contact.html" class="nav-link active" style="margin: 0 24px;">Contact</a>
+<!-- NAV -->
+<nav>
+  <a href="landing.html" class="nav-logo"><img src="img/premier-realty-logo.svg" alt="Premier Realty"></a>
+  <ul class="nav-center">
+    <li><a href="landing.html#about">About</a></li>
+    <li>
+      <button class="nav-btn">Services <span class="caret">▾</span></button>
+      <div class="nav-drop">
+        <a href="services.html#buy">Buy a Home</a><a href="services.html#value">Get Home Value</a>
+        <hr><a href="services.html#relocate">Relocating to Sacramento</a><a href="services.html#invest">Investment Property</a><a href="services.html#consult">Talk to an Agent</a>
+      </div>
+    </li>
+    <li><a href="landing.html#listings">Listings</a></li>
+    <li><a href="about.html">Our Story</a></li>
+    <li><a href="contact.html" style="color:var(--blue)">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Started</a>
+  <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-menu" id="mob">
+  <a class="mob-link" href="landing.html">Home</a>
+  <span class="mob-link" style="color:var(--dim);font-size:10px;border:none;padding-bottom:4px">Services</span>
+  <div class="mob-sub">
+    <a href="services.html#buy">Buy a Home</a>
+    <a href="services.html#value">Get Home Value</a><a href="services.html#relocate">Relocating</a>
+    <a href="services.html#invest">Investment Property</a><a href="services.html#consult">Talk to Agent</a>
+  </div>
+  <a class="mob-link" href="about.html">Our Story</a>
+  <a class="mob-link" href="contact.html">Contact</a>
+  <a class="mob-cta" href="contact.html">Get Started</a>
+</div>
+
+<!-- CONTACT HERO + FORM -->
+<div style="background:linear-gradient(180deg,rgba(26,43,64,.5) 0%,transparent 100%)">
+  <div class="contact-hero">
+    <!-- LEFT: INFO -->
+    <div>
+      <div class="ch-eye reveal">Let's Connect</div>
+      <h1 class="ch-h1 reveal rd1">Start the<br><em>Conversation</em></h1>
+      <p class="ch-sub reveal rd2">Every great real estate journey starts with a single conversation. Reach out — no pressure, no obligation, just honest expert guidance tailored to you.</p>
+      <div class="contact-info reveal rd3">
+        <div class="ci-item">
+          <div class="ci-icon">📞</div>
+          <div class="ci-text"><strong>Phone</strong>(916) 555-0192</div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">✉️</div>
+          <div class="ci-text"><strong>Email</strong>helen@premierrealtysac.com</div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">📍</div>
+          <div class="ci-text"><strong>Office</strong>1801 L Street, Suite 400<br>Sacramento, CA 95811</div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">🕐</div>
+          <div class="ci-text"><strong>Hours</strong>Mon–Sat 8:00am – 7:00pm<br>Sunday by appointment</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Hero Banner -->
-    <section class="hero">
-        <div class="container">
-            <h1>Get in Touch</h1>
-            <p>We'd love to hear from you</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-main">
-        <div class="container">
-            <div class="contact-grid scroll-reveal">
-                <!-- Contact Form -->
-                <div>
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-message" id="formMessage"></div>
-
-                        <div class="form-group required">
-                            <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" name="fullName" required>
-                        </div>
-
-                        <div class="form-group required">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <select id="subject" name="subject">
-                                <option value="">Select a subject</option>
-                                <option value="inquiry">General Inquiry</option>
-                                <option value="buy">Buy a Home</option>
-                                <option value="sell">Sell My Home</option>
-                                <option value="valuation">Home Valuation</option>
-                                <option value="investment">Investment Advisory</option>
-                                <option value="relocation">Relocation Services</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Tell us more about your real estate needs..."></textarea>
-                        </div>
-
-                        <button type="submit" class="submit-btn">Send Message →</button>
-                    </form>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="contact-info">
-                    <div class="info-card">
-                        <h3>Office Address</h3>
-                        <p>4030 Truxel Rd Suite D<br>Sacramento, CA 95834</p>
-                    </div>
-
-                    <div class="info-card">
-                        <h3>Phone</h3>
-                        <p><a href="tel:(916)256-7073">(916) 256-7073</a></p>
-                    </div>
-
-                    <div class="info-card">
-                        <h3>Email</h3>
-                        <p><a href="mailto:helenwongre@gmail.com">helenwongre@gmail.com</a></p>
-                    </div>
-
-                    <div class="info-card">
-                        <h3>Business Hours</h3>
-                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: By Appointment</p>
-                    </div>
-
-                    <div class="info-card">
-                        <h3>Languages Spoken</h3>
-                        <p>English<br>Español (Spanish)</p>
-                    </div>
-                </div>
+    <!-- RIGHT: FORM -->
+    <div class="form-wrap reveal rd2">
+      <div class="form-inner">
+        <div class="form-title">Send a Message</div>
+        <div class="form-sub">We respond to all inquiries within 24 hours</div>
+        <form class="f-main" id="cf" onsubmit="handleForm(event)">
+          <div class="f-row">
+            <div class="f-field"><label>First Name *</label><input type="text" id="cf-fn" placeholder="Jane" required></div>
+            <div class="f-field"><label>Last Name *</label><input type="text" id="cf-ln" placeholder="Smith" required></div>
+          </div>
+          <div class="f-field"><label>Email Address *</label><input type="email" id="cf-em" placeholder="jane@email.com" required></div>
+          <div class="f-field"><label>Phone Number</label><input type="tel" id="cf-ph" placeholder="(916) 555-0100"></div>
+          <div class="f-field">
+            <label>How Can We Help? *</label>
+            <select id="cf-svc" required onchange="setPipeline(this.value)">
+              <option value="">Select a service…</option>
+              <option value="buy">Buy a Home</option>
+              
+              <option value="value">Get My Home Value</option>
+              <option value="relocate">Relocating to Sacramento</option>
+              <option value="invest">Investment Property</option>
+              <option value="consult">Talk to an Agent</option>
+            </select>
+          </div>
+          <div class="pipeline-tag" id="ptag"></div>
+          <div class="f-field"><label>Neighborhood or Address</label><input type="text" id="cf-area" placeholder="East Sacramento, Land Park, Midtown…"></div>
+          <div class="f-row">
+            <div class="f-field"><label>Price Range</label>
+              <select id="cf-pr"><option value="">Select…</option><option>Under $500K</option><option>$500K–$800K</option><option>$800K–$1.2M</option><option>$1.2M–$2M</option><option>$2M+</option></select>
             </div>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <section class="map-section">
-        <div class="container">
-            <h2>Find Us</h2>
-            <div class="map-container">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <p>4030 Truxel Rd Suite D, Sacramento, CA 95834</p>
-                <a href="https://www.google.com/maps/search/4030+Truxel+Rd+Suite+D+Sacramento+CA+95834" target="_blank">View on Google Maps</a>
+            <div class="f-field"><label>Timeline</label>
+              <select id="cf-tl"><option value="">Select…</option><option>ASAP</option><option>1–3 months</option><option>3–6 months</option><option>6–12 months</option><option>Just exploring</option></select>
             </div>
-        </div>
-    </section>
+          </div>
+          <div class="f-field"><label>Message</label><textarea id="cf-msg" placeholder="Tell Helen about your goals…"></textarea></div>
+          <button type="submit" class="f-submit" id="f-btn">Send Message →</button>
+          <div class="f-note">🔒 Your information is private. We never share your details.</div>
+        </form>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Looking for Something Specific?</h2>
-            <p style="font-size: 18px; margin-bottom: 30px; color: var(--body);">Check out our services to learn more about how we can help you.</p>
-            <a href="services.html" class="btn">Explore Our Services</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <!-- Company Info -->
-            <div class="footer-col">
-                <div class="footer-logo-wrap" style="margin-bottom: 20px;"><img src="img/premier-realty-logo.png" alt="Premier Realty" style="height: 40px; width: auto; filter: brightness(0) invert(1);"></div>
-                <p><strong>Helen Wong</strong></p>
-                <p>4030 Truxel Rd Suite D<br>Sacramento, CA 95834</p>
-                <p>(916) 256-7073<br>helenwongre@gmail.com</p>
-                <div class="social-links">
-                    <a href="#">f</a>
-                    <a href="#">in</a>
-                    <a href="#">ig</a>
-                </div>
-            </div>
-
-            <!-- Page Links -->
-            <div class="footer-col">
-                <h4>Pages</h4>
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="services.html">Services</a>
-                <a href="contact.html">Contact</a>
-            </div>
-
-            <!-- Service Links -->
-            <div class="footer-col">
-                <h4>Services</h4>
-                <a href="services.html#buy">Buy a Home</a>
-                <a href="services.html#sell">Sell Your Home</a>
-                <a href="services.html#valuation">Home Valuation</a>
-                <a href="services.html#investment">Investment Advisory</a>
-                <a href="services.html#relocation">Relocation Services</a>
-                <a href="services.html#market">Market Analysis</a>
-            </div>
-
-            <!-- Newsletter -->
-            <div class="footer-col">
-                <h4>Newsletter</h4>
-                <p>Get the latest Sacramento real estate insights delivered to your inbox.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your email" required>
-                    <button type="submit">Sign Up</button>
-                </form>
-            </div>
+        <div class="f-success" id="f-success">
+          <div class="s-icon">✓</div>
+          <div class="s-h">Message Received!</div>
+          <p class="s-p" id="s-msg">Helen will personally reach out within 24 hours to discuss your goals.</p>
+          <button class="f-submit" style="width:auto;padding:12px 28px;margin-top:8px" onclick="resetForm()">Send Another</button>
         </div>
 
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <p>&copy; 2024 Premier Realty Sacramento. All rights reserved. | DRE #01359322</p>
+        <div class="f-oos" id="f-oos">
+          <div class="s-icon">📍</div>
+          <div class="s-h">Outside Our Core Area</div>
+          <p class="s-p">Premier Realty primarily serves greater Sacramento, but Helen may still be able to help. We'll review your request and follow up within 48 hours.</p>
+          <button class="f-submit" style="width:auto;padding:12px 28px;margin-top:8px" onclick="resetForm()">Go Back</button>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <script>
-        // Mobile Navigation Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const nav = document.querySelector('nav');
-        const navMobile = document.querySelector('.nav-mobile');
+<!-- OFFICE + MAP -->
+<div style="background:var(--navy)">
+  <div class="office">
+    <div class="office-map reveal">
+      <div style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;aspect-ratio:4/3;background:linear-gradient(135deg,rgba(26,43,64,.9),rgba(74,186,235,.06));border:1px solid rgba(74,186,235,.12)">
+        <div style="font-size:48px">📍</div>
+        <div class="office-map-label">Premier Realty Sacramento</div>
+        <div class="office-map-sub">1801 L Street, Suite 400<br>Sacramento, CA 95811</div>
+        <a class="office-map-btn" href="https://maps.google.com/?q=1801+L+Street+Sacramento+CA" target="_blank" rel="noopener">Get Directions ↗</a>
+      </div>
+    </div>
+    <div class="office-info reveal rd1">
+      <h3>Visit Our<br><em>Sacramento Office</em></h3>
+      <div class="office-detail">
+        <div class="od-item"><div class="od-icon">📍</div><div><div class="od-label">Address</div><div class="od-value">1801 L Street, Suite 400<br>Sacramento, CA 95811</div></div></div>
+        <div class="od-item"><div class="od-icon">🕐</div><div><div class="od-label">Office Hours</div><div class="od-value">Mon–Fri: 8:00am – 7:00pm<br>Saturday: 9:00am – 5:00pm<br>Sunday: By appointment only</div></div></div>
+        <div class="od-item"><div class="od-icon">🚗</div><div><div class="od-label">Parking</div><div class="od-value">Free parking available in the building garage. Enter from 18th Street.</div></div></div>
+        <div class="od-item"><div class="od-icon">📞</div><div><div class="od-label">Response Time</div><div class="od-value">We respond to all calls and messages within 24 hours. Urgent matters — call directly.</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        hamburger.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            navMobile.classList.toggle('active');
-        });
+<!-- FAQ -->
+<div class="faq">
+  <div class="faq-inner">
+    <div>
+      <div class="eye reveal">Common Questions</div>
+      <h2 class="reveal rd1" style="font-family:var(--serif);font-size:clamp(36px,4vw,52px);font-weight:300;color:#fff;line-height:1.1">Frequently<br><em style="font-style:italic;color:var(--gold-light)">Asked</em></h2>
+      <p class="reveal rd2" style="font-size:14px;font-weight:300;color:rgba(245,240,232,.45);line-height:1.8;margin-top:16px">Can't find your question here? Just reach out — Helen is always happy to chat.</p>
+    </div>
+    <div class="faq-items reveal rd2">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How much does it cost to work with Premier Realty? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">For buyers, our representation is typically free — the seller's agent commission covers our fees. For sellers, we work on a competitive commission structure discussed transparently upfront. There are no hidden fees, ever.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How quickly can I get started? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Immediately. Submit the contact form and Helen will personally reach out within 24 hours to schedule your free consultation. For urgent matters, call directly and we'll prioritize your situation.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you work with first-time home buyers? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Absolutely. First-time buyers are some of our most rewarding clients. Helen will walk you through every step of the process — from pre-approval and what to expect, to understanding your offer and what happens at closing.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What if my area is outside Sacramento? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Premier Realty's core coverage is the greater Sacramento area. If your property is outside our primary service area, submit your request anyway — Helen reviews every inquiry and may be able to assist or connect you with a trusted agent in your area.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How long does it take to buy or sell a home in Sacramento? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">For sellers, our homes typically receive offers within the first two weeks and close in 30–45 days. For buyers, the timeline depends on your criteria and the market — most of our clients close within 30–60 days of starting their search. We'll give you a realistic picture from day one.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can you help me even if I'm relocating from out of state? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Yes — this is one of our specialties. We offer virtual tours, video walkthroughs, and remote consultation so you can find and purchase your Sacramento home before you arrive. Many of our relocation clients never set foot in a house before closing.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        // Set active nav link
-        const currentPage = 'contact.html';
-        const navLinks = document.querySelectorAll('.nav-mobile a');
-        navLinks.forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
-                link.classList.add('active');
-            }
-        });
+<!-- FOOTER -->
+<footer>
+  <div class="fi">
+    <div><img src="img/premier-realty-logo.svg" alt="Premier Realty"></div>
+    <div class="fc">© 2025 Premier Realty Sacramento · Helen Wong, DRE #01359322<br>All rights reserved. Equal Housing Opportunity.</div>
+    <div class="fl"><a href="landing.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="#">Privacy</a></div>
+  </div>
+</footer>
 
-        // Scroll Reveal Animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+<script>
+document.getElementById('ham').addEventListener('click',function(){this.classList.toggle('open');document.getElementById('mob').classList.toggle('open')});
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+// Pipeline tags
+const pipes={buy:'→ Buyer Lead Pipeline',value:'→ Home Valuation Pipeline',relocate:'→ Relocation Pipeline',invest:'→ Investor Lead Pipeline',consult:'→ General Consultation Pipeline'};
+function setPipeline(v){const t=document.getElementById('ptag');if(v&&pipes[v]){t.textContent=pipes[v];t.style.display='block'}else t.style.display='none'}
 
-        document.querySelectorAll('.scroll-reveal').forEach(el => {
-            observer.observe(el);
-        });
+// Service area check
+const SA=['sacramento','natomas','elk grove','arden','east sacramento','land park','midtown','downtown','curtis park','oak park','tahoe park','carmichael','rancho cordova','west sacramento','north sacramento','south sac'];
+function inArea(a){if(!a)return true;return SA.some(z=>a.toLowerCase().includes(z))}
 
-        // Close mobile menu when a link is clicked
-        const mobileLinks = document.querySelectorAll('.nav-mobile a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('active');
-                navMobile.classList.remove('active');
-            });
-        });
+// Form submit
+const successMsgs={buy:'Helen will be in touch within 24 hours to schedule your buyer consultation.',sell:'Expect a call from Helen within 24 hours to discuss your home\'s market value.',value:'Your free home valuation report will be ready within 48 hours.',relocate:'Helen will personally reach out to guide your Sacramento relocation.',invest:'Our investment specialist will contact you within 24 hours.',consult:'Helen will personally call you within a few hours to chat.'};
 
-        // Form Handling
-        const contactForm = document.getElementById('contactForm');
-        const formMessage = document.getElementById('formMessage');
+function handleForm(e){
+  e.preventDefault();
+  const btn=document.getElementById('f-btn');
+  btn.textContent='Sending…';btn.disabled=true;
+  const svc=document.getElementById('cf-svc').value;
+  const area=document.getElementById('cf-area').value;
+  const oos=!inArea(area);
+  const payload={name:document.getElementById('cf-fn').value+' '+document.getElementById('cf-ln').value,email:document.getElementById('cf-em').value,phone:document.getElementById('cf-ph').value,service:svc,pipeline:pipes[svc]||'general',area,price:document.getElementById('cf-pr').value,timeline:document.getElementById('cf-tl').value,message:document.getElementById('cf-msg').value,inServiceArea:!oos,timestamp:new Date().toISOString()};
+  console.log('[Premier Realty] Lead submitted:',payload);
+  setTimeout(()=>{
+    document.querySelector('.f-main').classList.add('hide');
+    if(oos){document.getElementById('f-oos').classList.add('show')}
+    else{document.getElementById('s-msg').textContent=successMsgs[svc]||'Helen will be in touch within 24 hours.';document.getElementById('f-success').classList.add('show')}
+  },900);
+}
+function resetForm(){
+  document.querySelector('.f-main').classList.remove('hide');
+  document.getElementById('f-success').classList.remove('show');
+  document.getElementById('f-oos').classList.remove('show');
+  document.getElementById('cf').reset();
+  document.getElementById('ptag').style.display='none';
+  const btn=document.getElementById('f-btn');btn.textContent='Send Message →';btn.disabled=false;
+}
 
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+// FAQ
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  document.querySelectorAll('.faq-item.open').forEach(i=>{if(i!==item)i.classList.remove('open')});
+  item.classList.toggle('open');
+}
 
-                const fullName = document.getElementById('fullName').value.trim();
-                const email = document.getElementById('email').value.trim();
-
-                if (!fullName || !email) {
-                    formMessage.textContent = 'Please fill in all required fields.';
-                    formMessage.className = 'form-message error';
-                    return;
-                }
-
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    formMessage.textContent = 'Please enter a valid email address.';
-                    formMessage.className = 'form-message error';
-                    return;
-                }
-
-                formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
-                formMessage.className = 'form-message success';
-
-                setTimeout(() => {
-                    contactForm.reset();
-                    formMessage.className = 'form-message';
-                }, 3000);
-            });
-        }
-    </script>
+// Pre-select service from URL param
+const urlParams=new URLSearchParams(location.search);
+const svcParam=urlParams.get('service');
+if(svcParam){const sel=document.getElementById('cf-svc');if(sel){sel.value=svcParam;setPipeline(svcParam)}}
+</script>
 </body>
 </html>
