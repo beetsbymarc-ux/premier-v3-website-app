@@ -3,110 +3,1122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Helen Wong — Premier Realty Sacramento</title>
-    
-    <!-- Fonts -->
+    <title>About Helen Wong | Premier Realty Sacramento</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #3A86FF;
+            --navy: #27548A;
+            --black: #000;
+            --body: #333;
+            --light: #f7f7f5;
+            --border: #e8e8e6;
+            --white: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Onest', sans-serif;
+            color: var(--body);
+            background-color: var(--white);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 40px;
+            }
+            h1 {
+                font-size: 42px;
+            }
+            h2 {
+                font-size: 32px;
+            }
+            h3 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 24px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            h3 {
+                font-size: 20px;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 900px) {
+            .nav-container {
+                padding: 0 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                padding: 0 24px;
+            }
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--body);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--navy);
+        }
+
+        nav a.active {
+            color: var(--navy);
+            border-bottom: 2px solid var(--navy);
+            padding-bottom: 2px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            z-index: 1;
+            border: 1px solid var(--border);
+            top: 100%;
+            right: 0;
+        }
+
+        .dropdown-content a {
+            color: var(--body);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--light);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .nav-btn {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 0;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--blue);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--navy);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 900px) {
+            .nav-left, .nav-right {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .nav-center {
+                position: static;
+                transform: none;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            nav.active .hamburger span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+            nav.active .hamburger span:nth-child(2) {
+                opacity: 0;
+            }
+            nav.active .hamburger span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+        }
+
+        .nav-mobile {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: var(--white);
+            flex-direction: column;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-mobile.active {
+            display: flex;
+        }
+
+        .nav-mobile a {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--light);
+            font-size: 14px;
+            text-decoration: none;
+            color: var(--body);
+        }
+
+        .nav-mobile a:hover {
+            background-color: var(--light);
+        }
+
+        .nav-mobile a.active {
+            background-color: var(--light);
+            color: var(--navy);
+            border-bottom: 2px solid var(--navy);
+        }
+
+        /* Hero Banner */
+        .hero {
+            margin-top: 80px;
+            padding: 100px 60px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                padding: 80px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 60px 24px;
+            }
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+
+        /* About Section */
+        .about-main {
+            padding: 100px 60px;
+        }
+
+        @media (max-width: 900px) {
+            .about-main {
+                padding: 80px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .about-main {
+                padding: 60px 24px;
+            }
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-bottom: 100px;
+        }
+
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .about-left {
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 30px;
+        }
+
+        .about-left img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .dre-badge {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--light);
+            border: 2px solid var(--navy);
+            border-radius: 4px;
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 14px;
+        }
+
+        .about-right h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--navy);
+        }
+
+        .about-right p {
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 30px;
+            color: var(--body);
+        }
+
+        .statement-box {
+            padding: 30px;
+            background-color: var(--light);
+            border-left: 4px solid var(--blue);
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .statement-box strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .statement-box p {
+            font-size: 16px;
+            margin-bottom: 0;
+            color: var(--body);
+        }
+
+        .languages-tags {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .language-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: var(--navy);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-item {
+            font-size: 16px;
+            color: var(--body);
+        }
+
+        .contact-item strong {
+            color: var(--navy);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--light);
+            padding: 80px 60px;
+            margin: 100px 0;
+        }
+
+        @media (max-width: 900px) {
+            .stats-section {
+                padding: 60px 40px;
+                margin: 80px 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats-section {
+                padding: 40px 24px;
+                margin: 60px 0;
+            }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .stat-item h3 {
+            font-size: 42px;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 16px;
+            color: var(--body);
+            font-weight: 500;
+        }
+
+        /* Why Choose Section */
+        .why-section {
+            padding: 100px 60px;
+        }
+
+        @media (max-width: 900px) {
+            .why-section {
+                padding: 80px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .why-section {
+                padding: 60px 24px;
+            }
+        }
+
+        .why-section h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--navy);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .why-item {
+            padding: 30px;
+            background-color: var(--light);
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .why-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .why-item h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .why-item p {
+            font-size: 15px;
+            color: var(--body);
+            line-height: 1.7;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background-color: var(--light);
+            padding: 100px 60px;
+        }
+
+        @media (max-width: 900px) {
+            .gallery-section {
+                padding: 80px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-section {
+                padding: 60px 24px;
+            }
+        }
+
+        .gallery-section h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--navy);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--light);
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .cta-section {
+                padding: 60px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cta-section {
+                padding: 40px 24px;
+            }
+        }
+
+        .cta-section h2 {
+            color: var(--navy);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 14px 32px;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 0;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            color: var(--white);
+            padding: 60px;
+        }
+
+        @media (max-width: 900px) {
+            footer {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            footer {
+                padding: 30px 24px;
+            }
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-col a {
+            display: block;
+            color: #bbb;
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--blue);
+        }
+
+        .footer-col p {
+            color: #bbb;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--navy);
+            color: var(--white);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--blue);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            font-family: 'Onest', sans-serif;
+            background-color: transparent;
+            color: var(--white);
+            font-size: 14px;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #777;
+        }
+
+        .newsletter-form button {
+            padding: 12px 24px;
+            background-color: var(--blue);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--navy);
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
 </head>
 <body>
-
     <!-- Navigation -->
-    <nav class="scrolled"> <!-- Force scrolled appearance for static subpages -->
-        <div class="container nav-container">
-            <a href="index.html" class="nav-logo">Premier Realty</a>
-            
-            <div class="nav-right">
+    <nav>
+        <div class="nav-container">
+            <div class="nav-left">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link active">About</a>
-                
-                <div class="nav-dropdown">
-                    <span class="nav-link nav-dropdown-toggle">Services ↓</span>
-                    <div class="nav-dropdown-menu">
-                        <a href="services.html#buying" class="dropdown-item">Buy a Home</a>
-                        <a href="services.html#selling" class="dropdown-item">Sell My Home</a>
-                        <a href="services.html#valuation" class="dropdown-item">Get Home Value</a>
-                        <a href="services.html#relocating" class="dropdown-item">Relocating</a>
-                        <a href="services.html#investment" class="dropdown-item">Investment</a>
-                        <a href="services.html#consultation" class="dropdown-item">Talk to Agent</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="index.html#listings" class="nav-link">Listings</a>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="nav-logo">PREMIER REALTY</a>
+            </div>
+            <div class="nav-right">
+                <div class="dropdown">
+                    <a href="#" class="nav-link">Services</a>
+                    <div class="dropdown-content">
+                        <a href="services.html">Our Services</a>
+                        <a href="services.html#buy">Buy a Home</a>
+                        <a href="services.html#sell">Sell Your Home</a>
+                        <a href="services.html#valuation">Home Valuation</a>
                     </div>
                 </div>
-                
-                <a href="contact.html" class="btn-submit" style="padding: 0.8rem 1.5rem; margin: 0; font-size: 0.8rem;">Book Consultation</a>
+                <a href="index.html#faq" class="nav-link">FAQ</a>
+                <a href="index.html#contact" class="nav-btn">Get Started ↗</a>
             </div>
-
-            <button class="hamburger" id="hamburger">
+            <div class="hamburger">
                 <span></span>
                 <span></span>
-            </button>
+                <span></span>
+            </div>
         </div>
     </nav>
 
-    <!-- Editorial Header -->
-    <section>
-        <div class="container" style="text-align: center; padding-top: 4rem;">
-            <span class="eyebrow reveal-item">The Visionary Behind the Brand</span>
-            <h1 class="reveal-item">Unveiling the <italic>Art</italic> of Sacramento Real Estate.</h1>
+    <!-- Mobile Navigation -->
+    <div class="nav-mobile">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">About Us</a>
+        <a href="index.html#listings" class="nav-link">Listings</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="index.html#faq" class="nav-link">FAQ</a>
+        <a href="index.html#contact" class="nav-btn" style="margin: 16px 24px;">Get Started ↗</a>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="container">
+            <h1>About Helen Wong</h1>
         </div>
     </section>
 
-    <!-- Bio Section -->
-    <section class="reveal-section">
-        <div class="container" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center;">
-            <div class="reveal-item">
-                <img src="img/helen-wong.jpg" alt="Helen Wong" style="width: 100%; border-radius: var(--radius-md); box-shadow: 0 40px 100px rgba(0,0,0,0.1);">
-                <div style="margin-top: 2rem; font-family: var(--font-heading); font-size: 1.25rem;">
-                    Helen Wong <br>
-                    <span style="font-size: 0.9rem; color: var(--text-muted);">Founder & Principal Broker</span>
+    <!-- Main About Section -->
+    <section class="about-main">
+        <div class="container">
+            <div class="about-grid scroll-reveal">
+                <!-- Left Column -->
+                <div class="about-left">
+                    <div class="section-label">Meet Helen</div>
+                    <img src="img/helen-wong.jpg" alt="Helen Wong, Premier Realty Broker">
+                    <div class="dre-badge">DRE #01359322</div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="about-right">
+                    <h2>Your Trusted Sacramento Real Estate Partner</h2>
+                    <p>With over 20 years of experience in Sacramento real estate, Helen Wong has built her career on trust, transparency, and deep local expertise. Starting her real estate journey in 2002 and earning her Broker's license in 2004, Helen has guided hundreds of families through one of life's most important decisions.</p>
+                    <p>As the founder of Premier Realty, she brings a personal touch to every transaction — whether you're a first-time buyer, experienced investor, or looking to sell your Sacramento home. Helen is fluent in English and Spanish, allowing her to serve Sacramento's diverse community with clarity and care.</p>
+
+                    <div class="statement-box">
+                        <strong>Mission</strong>
+                        <p>To empower every client with personalized real estate guidance, transparent communication, and expert negotiation to achieve their unique goals.</p>
+                    </div>
+
+                    <div class="statement-box">
+                        <strong>Vision</strong>
+                        <p>To be Sacramento's most trusted real estate broker, known for exceptional service and deep community connection across all neighborhoods.</p>
+                    </div>
+
+                    <div class="languages-tags">
+                        <span class="language-tag">English</span>
+                        <span class="language-tag">Español (Spanish)</span>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-item"><strong>Phone:</strong> (916) 256-7073</div>
+                        <div class="contact-item"><strong>Email:</strong> helenwongre@gmail.com</div>
+                        <div class="contact-item"><strong>Address:</strong> 4030 Truxel Rd Suite D, Sacramento, CA 95834</div>
+                    </div>
                 </div>
             </div>
-            <div class="reveal-item">
-                <h2 style="margin-bottom: 2rem;">20 Years of <italic>Sacramento</italic> Mastery.</h2>
-                <p style="font-size: 1.125rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-                    Since 2002, Helen Wong has been more than just a real estate agent; she's been a navigator for Sacramento families. With a Broker's license earned in 2004, her career is built on a foundation of absolute transparency and deep-rooted local knowledge.
-                </p>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">
-                    Whether navigating the historic charm of Land Park or the modern growth of Natomas, Helen's approach remains consistent: Listen, Understand, and Deliver. As a bilingual expert (English/Spanish), she bridge-builds for Sacramento's diverse communities, ensuring no detail is lost in translation.
-                </p>
-                <div style="display: flex; gap: 4rem;">
-                    <div>
-                        <h4 style="font-size: 2rem; font-family: var(--font-heading);">250+</h4>
-                        <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Homes Closed</p>
-                    </div>
-                    <div>
-                        <h4 style="font-size: 2rem; font-family: var(--font-heading);">97%</h4>
-                        <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em;">Satisfaction</p>
-                    </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item scroll-reveal">
+                    <h3>250+</h3>
+                    <p>Homes Sold</p>
                 </div>
-                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--grey-border);">
-                    <p style="font-weight: 600;">DRE License #01359322</p>
+                <div class="stat-item scroll-reveal">
+                    <h3>20+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item scroll-reveal">
+                    <h3>97%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+                <div class="stat-item scroll-reveal">
+                    <h3>10+</h3>
+                    <p>Neighborhoods Served</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="why-section">
+        <div class="container">
+            <h2>Why Choose Helen Wong</h2>
+            <div class="why-grid">
+                <div class="why-item scroll-reveal">
+                    <h3>Deep Local Knowledge</h3>
+                    <p>Born and raised understanding of Sacramento neighborhoods, market trends, and community dynamics that only comes from decades of local experience.</p>
+                </div>
+                <div class="why-item scroll-reveal">
+                    <h3>Multilingual Service</h3>
+                    <p>Fluent in English and Spanish to serve Sacramento's diverse community with clarity, cultural understanding, and personalized care.</p>
+                </div>
+                <div class="why-item scroll-reveal">
+                    <h3>Full-Service Broker</h3>
+                    <p>From listing to closing, every detail is handled with professional expertise and attention. Complete transaction support with no surprises.</p>
+                </div>
+                <div class="why-item scroll-reveal">
+                    <h3>Client-First Approach</h3>
+                    <p>Your goals drive every decision. Helen listens carefully, communicates transparently, and advocates fiercely for your best interests at every step.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2>Community Connection</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item scroll-reveal">
+                    <img src="img/helen-wong.jpg" alt="Helen Wong">
+                </div>
+                <div class="gallery-item scroll-reveal">
+                    <img src="https://images.pexels.com/photos/7642093/pexels-photo-7642093.jpeg?auto=compress&cs=tinysrgb&w=900&h=700&fit=crop" alt="Sacramento Community">
+                </div>
+                <div class="gallery-item scroll-reveal">
+                    <img src="https://images.pexels.com/photos/7578937/pexels-photo-7578937.jpeg?auto=compress&cs=tinysrgb&w=900&h=700&fit=crop" alt="Sacramento Real Estate">
+                </div>
+                <div class="gallery-item scroll-reveal">
+                    <img src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=900&h=700&fit=crop" alt="Sacramento Neighborhoods">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Work Together?</h2>
+            <p style="font-size: 18px; margin-bottom: 30px; color: var(--body);">Let's discuss your real estate goals and create a path forward together.</p>
+            <a href="contact.html" class="btn">Contact Helen Today</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer style="padding: 6rem 0; border-top: 1px solid var(--grey-border);">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
-            <div>
-                <a href="index.html" class="nav-logo">Premier Realty</a>
-                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">DRE #01359322 · Sacramento, CA</p>
+    <footer>
+        <div class="footer-container">
+            <!-- Company Info -->
+            <div class="footer-col">
+                <h4>Premier Realty</h4>
+                <p><strong>Helen Wong</strong></p>
+                <p>4030 Truxel Rd Suite D<br>Sacramento, CA 95834</p>
+                <p>(916) 256-7073<br>helenwongre@gmail.com</p>
+                <div class="social-links">
+                    <a href="#">f</a>
+                    <a href="#">in</a>
+                    <a href="#">ig</a>
+                </div>
             </div>
-            <div style="display: flex; gap: 2rem;">
-                <a href="about.html" class="nav-link">About Us</a>
-                <a href="services.html" class="nav-link">Services</a>
-                <a href="contact.html" class="nav-link">Contact</a>
+
+            <!-- Page Links -->
+            <div class="footer-col">
+                <h4>Pages</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
             </div>
+
+            <!-- Service Links -->
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="services.html#buy">Buy a Home</a>
+                <a href="services.html#sell">Sell Your Home</a>
+                <a href="services.html#valuation">Home Valuation</a>
+                <a href="services.html#investment">Investment Advisory</a>
+                <a href="services.html#relocation">Relocation Services</a>
+                <a href="services.html#market">Market Analysis</a>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Get the latest Sacramento real estate insights delivered to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Premier Realty Sacramento. All rights reserved. | DRE #01359322</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="js/main.js"></script>
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        const navMobile = document.querySelector('.nav-mobile');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            navMobile.classList.toggle('active');
+        });
+
+        // Set active nav link
+        const currentPage = 'about.html';
+        const navLinks = document.querySelectorAll('.nav-mobile a');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = document.querySelectorAll('.nav-mobile a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                navMobile.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
