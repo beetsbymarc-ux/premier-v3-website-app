@@ -7,3 +7,6 @@
 
 # Build artifacts
 site-deploy.zip
+
+# Local Netlify folder
+.netlify

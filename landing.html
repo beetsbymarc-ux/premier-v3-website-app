@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premier Realty Sacramento | Helen Wong, Broker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  --gold:#C8A96E;
+  --gold-light:#E2C99A;
+  --ink:#0B0B0B;
+  --warm:#F5F0E8;
+  --mist:#E8E2D9;
+  --dim:#7A7468;
+  --navy:#1A2B40;
+  --white:#FFFFFF;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+
+body{
+  font-family:var(--sans);
+  background:var(--ink);
+  color:var(--warm);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── CURSOR ── */
+#cur-dot{position:fixed;width:5px;height:5px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s}
+#cur-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(200,169,110,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s,transform .12s}
+#cur-ring.hov{width:48px;height:48px;border-color:var(--gold)}
+@media(hover:none){#cur-dot,#cur-ring{display:none}body{cursor:auto}}
+
+/* ── NOISE TEXTURE ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size:200px 200px;opacity:.028;
+}
+
+/* ── LOADER ── */
+#loader{
+  position:fixed;inset:0;z-index:9000;background:var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;
+  transition:opacity .9s ease,visibility .9s;
+}
+#loader.gone{opacity:0;visibility:hidden;pointer-events:none}
+.ld-wordmark{font-family:var(--serif);font-size:clamp(18px,2.4vw,28px);font-weight:300;letter-spacing:.35em;text-transform:uppercase;color:var(--warm)}
+.ld-track{width:120px;height:1px;background:rgba(245,240,232,.1);position:relative;overflow:hidden}
+.ld-fill{position:absolute;inset:0 100% 0 0;background:linear-gradient(90deg,var(--gold),var(--gold-light));transition:right .04s linear}
+.ld-pct{font-size:10px;letter-spacing:.2em;color:var(--dim);font-weight:300}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:68px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(24px,4vw,64px);
+  transition:background .5s,box-shadow .5s;
+}
+nav.solid{background:rgba(11,11,11,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(200,169,110,.12)}
+
+.nav-logo img{height:38px;filter:brightness(0) invert(1)}
+.nav-links{display:flex;gap:clamp(20px,3vw,44px);list-style:none}
+.nav-links a{
+  font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(245,240,232,.7);transition:color .3s;position:relative;
+}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--warm)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  background:transparent;border:1px solid var(--gold);color:var(--gold);
+  padding:10px 24px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;transition:background .3s,color .3s;font-family:var(--sans);
+}
+.nav-cta:hover{background:var(--gold);color:var(--ink)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:1px;background:var(--warm);transition:all .3s}
+
+/* ── HERO ── */
+.hero{
+  position:relative;height:100svh;min-height:600px;
+  display:flex;align-items:flex-end;overflow:hidden;
+}
+.hero-video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  z-index:0;filter:brightness(.5) contrast(1.05);
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(11,11,11,.2) 0%,rgba(11,11,11,.0) 40%,rgba(11,11,11,.75) 100%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  width:100%;padding:0 clamp(24px,5vw,80px) clamp(60px,8vh,100px);
+  display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:40px;
+}
+.hero-eyebrow{
+  font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;font-weight:400;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold)}
+.hero-h1{
+  font-family:var(--serif);font-size:clamp(48px,7.5vw,108px);
+  font-weight:300;line-height:1.0;letter-spacing:-.01em;
+  color:var(--white);
+}
+.hero-h1 em{font-style:italic;color:var(--gold-light)}
+.hero-sub{
+  margin-top:28px;font-size:clamp(14px,1.3vw,17px);
+  color:rgba(245,240,232,.65);font-weight:300;line-height:1.65;
+  max-width:520px;
+}
+.hero-actions{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--gold);color:var(--ink);
+  padding:16px 36px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  border:none;cursor:pointer;font-family:var(--sans);transition:background .3s,transform .2s;
+}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-ghost{
+  background:transparent;color:var(--warm);
+  padding:16px 36px;font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid rgba(245,240,232,.3);cursor:pointer;font-family:var(--sans);
+  transition:border-color .3s,color .3s;
+}
+.btn-ghost:hover{border-color:var(--warm);color:var(--white)}
+
+.hero-stats{
+  display:flex;flex-direction:column;gap:28px;text-align:right;
+  padding-bottom:4px;
+}
+.hero-stat-num{font-family:var(--serif);font-size:clamp(32px,3.5vw,48px);font-weight:300;color:var(--white);line-height:1}
+.hero-stat-num span{font-size:.55em;color:var(--gold)}
+.hero-stat-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:4px}
+
+.hero-scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--dim);
+}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollpulse 2s ease-in-out infinite}
+@keyframes scrollpulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ── TICKER ── */
+.ticker{
+  background:var(--gold);color:var(--ink);
+  padding:14px 0;overflow:hidden;position:relative;z-index:2;
+}
+.ticker-inner{display:flex;animation:tick 22s linear infinite;white-space:nowrap}
+.ticker-inner span{
+  font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  padding:0 40px;
+}
+.ticker-inner span::after{content:'◆';margin-left:40px;font-size:7px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTION BASE ── */
+section{position:relative;z-index:2}
+.section-eyebrow{
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;font-weight:400;
+  display:flex;align-items:center;gap:10px;
+}
+.section-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+.section-h2{
+  font-family:var(--serif);font-size:clamp(36px,5vw,68px);
+  font-weight:300;line-height:1.1;color:var(--white);
+}
+.section-h2 em{font-style:italic;color:var(--gold-light)}
+
+/* ── ABOUT / SPLIT ── */
+.about{
+  padding:clamp(80px,12vh,140px) clamp(24px,5vw,80px);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,100px);
+  align-items:center;background:var(--ink);
+}
+.about-img-wrap{position:relative}
+.about-img{
+  width:100%;aspect-ratio:3/4;object-fit:cover;
+  filter:grayscale(20%) contrast(1.05);
+}
+.about-badge{
+  position:absolute;bottom:-28px;right:-28px;
+  width:130px;height:130px;background:var(--gold);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;
+}
+.about-badge-num{font-family:var(--serif);font-size:36px;font-weight:300;color:var(--ink);line-height:1}
+.about-badge-lbl{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(11,11,11,.7)}
+.about-text .section-h2{margin-bottom:28px}
+.about-body{color:rgba(245,240,232,.6);font-size:16px;font-weight:300;line-height:1.8;margin-bottom:32px}
+.about-awards{
+  display:flex;gap:24px;flex-wrap:wrap;
+  padding-top:32px;border-top:1px solid rgba(245,240,232,.08);
+}
+.award{
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dim);padding:8px 16px;border:1px solid rgba(245,240,232,.1);
+}
+
+/* ── SERVICES ── */
+.services{
+  padding:clamp(80px,12vh,140px) clamp(24px,5vw,80px);
+  background:var(--navy);
+}
+.services-head{max-width:600px;margin-bottom:64px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.service-card{
+  background:rgba(255,255,255,.03);padding:48px 36px;
+  border-top:1px solid rgba(200,169,110,.2);
+  transition:background .4s,border-color .4s;cursor:pointer;
+}
+.service-card:hover{background:rgba(200,169,110,.07);border-color:var(--gold)}
+.service-icon{
+  width:44px;height:44px;border:1px solid rgba(200,169,110,.35);
+  display:flex;align-items:center;justify-content:center;margin-bottom:28px;
+  font-size:18px;transition:background .4s,border-color .4s;
+}
+.service-card:hover .service-icon{background:var(--gold);border-color:var(--gold)}
+.service-title{font-family:var(--serif);font-size:26px;font-weight:300;color:var(--white);margin-bottom:16px}
+.service-desc{font-size:14px;font-weight:300;color:var(--dim);line-height:1.75}
+.service-link{
+  display:inline-flex;align-items:center;gap:8px;margin-top:24px;
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  transition:gap .3s;
+}
+.service-card:hover .service-link{gap:14px}
+
+/* ── LISTINGS TEASER ── */
+.listings{
+  padding:clamp(80px,12vh,140px) clamp(24px,5vw,80px);
+  background:var(--ink);
+}
+.listings-head{
+  display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;
+  flex-wrap:wrap;gap:24px;
+}
+.listings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.listing-card{
+  position:relative;overflow:hidden;cursor:pointer;
+  background:rgba(255,255,255,.03);
+}
+.listing-img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;
+  filter:brightness(.85) saturate(.9);
+  transition:transform .7s ease,filter .7s ease;
+}
+.listing-card:hover .listing-img{transform:scale(1.04);filter:brightness(.9) saturate(1)}
+.listing-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(11,11,11,.85) 0%,transparent 55%);
+  transition:opacity .4s;
+}
+.listing-info{
+  position:absolute;bottom:0;left:0;right:0;padding:28px;
+}
+.listing-price{
+  font-family:var(--serif);font-size:28px;font-weight:300;color:var(--white);line-height:1;
+}
+.listing-price span{font-size:.55em;color:var(--gold)}
+.listing-address{font-size:13px;color:rgba(245,240,232,.65);margin-top:6px;font-weight:300}
+.listing-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.listing-tag{
+  font-size:9px;letter-spacing:.15em;text-transform:uppercase;
+  padding:4px 10px;border:1px solid rgba(245,240,232,.2);color:rgba(245,240,232,.5);
+}
+.listing-tag.feat{border-color:var(--gold);color:var(--gold)}
+.listing-card-badge{
+  position:absolute;top:20px;left:20px;
+  background:var(--gold);color:var(--ink);
+  font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;font-weight:500;
+}
+
+/* ── PROCESS ── */
+.process{
+  padding:clamp(80px,12vh,140px) clamp(24px,5vw,80px);
+  background:linear-gradient(160deg,var(--navy) 0%,rgba(26,43,64,.4) 100%);
+}
+.process-head{text-align:center;max-width:560px;margin:0 auto 72px}
+.process-steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;position:relative;
+}
+.process-steps::before{
+  content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  z-index:0;
+}
+.step{text-align:center;padding:0 24px;position:relative;z-index:1}
+.step-num{
+  font-family:var(--serif);font-size:52px;font-weight:300;
+  color:rgba(200,169,110,.2);line-height:1;margin-bottom:20px;
+}
+.step-icon{
+  width:56px;height:56px;border:1px solid rgba(200,169,110,.3);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 20px;
+  font-size:22px;background:var(--navy);
+}
+.step-title{font-family:var(--serif);font-size:20px;font-weight:300;color:var(--white);margin-bottom:12px}
+.step-desc{font-size:13px;font-weight:300;color:var(--dim);line-height:1.7}
+
+/* ── TESTIMONIALS ── */
+.testimonials{
+  padding:clamp(80px,12vh,140px) clamp(24px,5vw,80px);
+  background:var(--ink);overflow:hidden;
+}
+.testimonials-head{text-align:center;max-width:560px;margin:0 auto 64px}
+.testi-track{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.testi-card{
+  background:rgba(255,255,255,.03);border:1px solid rgba(245,240,232,.06);
+  padding:40px;transition:border-color .4s;
+}
+.testi-card:hover{border-color:rgba(200,169,110,.25)}
+.testi-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:20px}
+.testi-quote{
+  font-family:var(--serif);font-size:18px;font-weight:300;font-style:italic;
+  color:rgba(245,240,232,.8);line-height:1.7;margin-bottom:28px;
+}
+.testi-quote::before{content:'\201C';font-size:48px;color:var(--gold);line-height:.7;float:left;margin-right:8px}
+.testi-author{display:flex;align-items:center;gap:14px}
+.testi-avatar{
+  width:44px;height:44px;border-radius:50%;object-fit:cover;
+  filter:grayscale(30%);border:1px solid rgba(200,169,110,.2);
+}
+.testi-name{font-size:13px;font-weight:500;color:var(--warm)}
+.testi-role{font-size:11px;color:var(--dim);margin-top:2px;letter-spacing:.05em}
+
+/* ── CTA BAND ── */
+.cta-band{
+  padding:clamp(80px,12vh,120px) clamp(24px,5vw,80px);
+  background:var(--gold);position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:32px;
+}
+.cta-band::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size:200px 200px;opacity:.06;
+}
+.cta-band .section-eyebrow::before{background:var(--ink)}
+.cta-band .section-eyebrow{color:rgba(11,11,11,.6);justify-content:center}
+.cta-band h2{
+  font-family:var(--serif);font-size:clamp(40px,6vw,80px);font-weight:300;
+  color:var(--ink);line-height:1.05;
+}
+.cta-band p{font-size:16px;font-weight:300;color:rgba(11,11,11,.6);max-width:480px;line-height:1.7}
+.cta-band .btn-dark{
+  background:var(--ink);color:var(--warm);
+  padding:18px 44px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  border:none;cursor:pointer;font-family:var(--sans);transition:background .3s,transform .2s;
+  position:relative;z-index:1;
+}
+.cta-band .btn-dark:hover{background:var(--navy);transform:translateY(-2px)}
+
+/* ── CONTACT ── */
+.contact{
+  padding:clamp(80px,12vh,140px) clamp(24px,5vw,80px);
+  background:var(--navy);display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,100px);
+  align-items:start;
+}
+.contact-info .section-h2{margin-bottom:24px}
+.contact-body{color:rgba(245,240,232,.55);font-size:15px;font-weight:300;line-height:1.8;margin-bottom:40px}
+.contact-details{display:flex;flex-direction:column;gap:20px}
+.contact-detail{display:flex;align-items:center;gap:16px}
+.contact-detail-icon{
+  width:40px;height:40px;border:1px solid rgba(200,169,110,.3);
+  display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;
+}
+.contact-detail-text{font-size:14px;font-weight:300;color:rgba(245,240,232,.65)}
+.contact-detail-text strong{display:block;font-weight:500;color:var(--warm);font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:2px}
+
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-field{display:flex;flex-direction:column;gap:8px}
+.form-field label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.form-field input,.form-field select,.form-field textarea{
+  background:rgba(255,255,255,.04);border:1px solid rgba(245,240,232,.1);
+  color:var(--warm);padding:14px 16px;font-size:14px;font-weight:300;font-family:var(--sans);
+  transition:border-color .3s;outline:none;
+}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold)}
+.form-field textarea{resize:vertical;min-height:120px}
+.form-field select option{background:var(--navy);color:var(--warm)}
+.form-submit{
+  background:var(--gold);color:var(--ink);border:none;
+  padding:16px 36px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;font-family:var(--sans);transition:background .3s,transform .2s;align-self:flex-start;
+}
+.form-submit:hover{background:var(--gold-light);transform:translateY(-1px)}
+
+/* ── FOOTER ── */
+footer{
+  background:rgba(0,0,0,.6);border-top:1px solid rgba(245,240,232,.06);
+  padding:clamp(40px,6vh,72px) clamp(24px,5vw,80px);
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:32px;
+}
+.footer-logo img{height:32px;filter:brightness(0) invert(1);opacity:.6}
+.footer-copy{font-size:11px;color:var(--dim);letter-spacing:.08em;text-align:center}
+.footer-links{display:flex;gap:24px;justify-content:flex-end}
+.footer-links a{font-size:11px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;transition:color .3s}
+.footer-links a:hover{color:var(--gold)}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}
+.reveal-d4{transition-delay:.4s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .hero-stats{display:none}
+  .services-grid,.testi-track{grid-template-columns:1fr}
+  .listings-grid{grid-template-columns:1fr 1fr}
+  .process-steps{grid-template-columns:1fr 1fr;gap:40px}
+  .process-steps::before{display:none}
+  .about,.contact{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr;text-align:center}
+  .footer-links{justify-content:center}
+  .footer-logo{display:flex;justify-content:center}
+}
+@media(max-width:640px){
+  nav{padding:0 20px}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .listings-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .about-badge{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="ld-wordmark">Premier Realty</div>
+  <div class="ld-track"><div class="ld-fill" id="ld-fill"></div></div>
+  <div class="ld-pct" id="ld-pct">0%</div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="img/premier-realty-logo.svg" alt="Premier Realty">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#listings">Listings</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Schedule Consultation</button>
+  <div class="hamburger" id="ham">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="">
+    <source src="img/hero-video.mp4" type="video/mp4">
+    <source src="img/drone-footage.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Sacramento's Premier Real Estate</div>
+      <h1 class="hero-h1">
+        Your Dream<br>Home <em>Awaits</em><br>in Sacramento
+      </h1>
+      <p class="hero-sub">Luxury real estate expertise serving Sacramento's most distinguished neighborhoods. Trusted guidance for buyers, sellers, and investors since 2008.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="document.getElementById('listings').scrollIntoView({behavior:'smooth'})">View Properties</button>
+        <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Talk to Helen</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">$2.4<span>B+</span></div>
+        <div class="hero-stat-lbl">Total Sales Volume</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">850<span>+</span></div>
+        <div class="hero-stat-lbl">Homes Sold</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">16<span>yrs</span></div>
+        <div class="hero-stat-lbl">Experience</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker-inner">
+    <span>Sacramento Luxury Real Estate</span>
+    <span>Helen Wong, Licensed Broker</span>
+    <span>East Sacramento · Midtown · Land Park</span>
+    <span>Elk Grove · Roseville · Folsom</span>
+    <span>Buyer & Seller Representation</span>
+    <span>Investment Properties</span>
+    <span>Sacramento Luxury Real Estate</span>
+    <span>Helen Wong, Licensed Broker</span>
+    <span>East Sacramento · Midtown · Land Park</span>
+    <span>Elk Grove · Roseville · Folsom</span>
+    <span>Buyer & Seller Representation</span>
+    <span>Investment Properties</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img-wrap reveal">
+    <img class="about-img" src="img/helen-wong.webp" alt="Helen Wong, Premier Realty Broker" onerror="this.src='img/helen-wong.jpg'">
+    <div class="about-badge">
+      <div class="about-badge-num">16</div>
+      <div class="about-badge-lbl">Years</div>
+      <div class="about-badge-lbl">in Real Estate</div>
+    </div>
+  </div>
+  <div class="about-text">
+    <div class="section-eyebrow reveal">Meet Your Broker</div>
+    <h2 class="section-h2 reveal reveal-d1">Helen Wong —<br><em>Your Trusted</em><br>Sacramento Expert</h2>
+    <p class="about-body reveal reveal-d2">
+      With over 16 years of experience navigating Sacramento's dynamic real estate market, Helen Wong brings an unparalleled depth of local knowledge, market insight, and unwavering commitment to her clients' success.
+    </p>
+    <p class="about-body reveal reveal-d2">
+      Whether you're purchasing your first home, upgrading to a luxury property, or building an investment portfolio, Helen's proven track record speaks for itself: over $2.4 billion in closed transactions and hundreds of satisfied families.
+    </p>
+    <button class="btn-primary reveal reveal-d3" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Work with Helen</button>
+    <div class="about-awards reveal reveal-d4">
+      <div class="award">Top 1% Nationally</div>
+      <div class="award">Five Star Agent</div>
+      <div class="award">CAR Member</div>
+      <div class="award">DRE Licensed</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-head">
+    <div class="section-eyebrow reveal">What We Offer</div>
+    <h2 class="section-h2 reveal reveal-d1">Full-Spectrum<br><em>Real Estate</em><br>Services</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🏡</div>
+      <div class="service-title">Buyer Representation</div>
+      <p class="service-desc">Expert guidance from your first search to closing day. We negotiate aggressively on your behalf to secure the best price and terms in any market condition.</p>
+      <div class="service-link">Learn more →</div>
+    </div>
+    <div class="service-card reveal reveal-d1">
+      <div class="service-icon">💰</div>
+      <div class="service-title">Seller Representation</div>
+      <p class="service-desc">Strategic pricing, luxury marketing, and skilled negotiation to maximize your sale price. We sell homes faster and for more than the Sacramento market average.</p>
+      <div class="service-link">Learn more →</div>
+    </div>
+    <div class="service-card reveal reveal-d2">
+      <div class="service-icon">📈</div>
+      <div class="service-title">Investment Properties</div>
+      <p class="service-desc">Identify high-yield opportunities in Sacramento's evolving neighborhoods. From single-family rentals to multi-unit developments and land acquisitions.</p>
+      <div class="service-link">Learn more →</div>
+    </div>
+  </div>
+</section>
+
+<!-- LISTINGS -->
+<section class="listings" id="listings">
+  <div class="listings-head">
+    <div>
+      <div class="section-eyebrow reveal">Featured Properties</div>
+      <h2 class="section-h2 reveal reveal-d1">Handpicked<br><em>Listings</em></h2>
+    </div>
+    <a href="services.html" class="btn-ghost reveal" style="white-space:nowrap">View All Listings →</a>
+  </div>
+  <div class="listings-grid">
+    <div class="listing-card reveal">
+      <div class="listing-card-badge">Featured</div>
+      <video class="listing-img" autoplay muted loop playsinline>
+        <source src="img/living-room.mp4" type="video/mp4">
+      </video>
+      <div class="listing-overlay"></div>
+      <div class="listing-info">
+        <div class="listing-price"><span>$</span>1,895,000</div>
+        <div class="listing-address">4212 H Street, East Sacramento</div>
+        <div class="listing-tags">
+          <div class="listing-tag feat">New Listing</div>
+          <div class="listing-tag">5 Bed</div>
+          <div class="listing-tag">4 Bath</div>
+          <div class="listing-tag">3,840 sqft</div>
+        </div>
+      </div>
+    </div>
+    <div class="listing-card reveal reveal-d1">
+      <div class="listing-card-badge">Just Sold</div>
+      <video class="listing-img" autoplay muted loop playsinline>
+        <source src="img/fireplace.mp4" type="video/mp4">
+      </video>
+      <div class="listing-overlay"></div>
+      <div class="listing-info">
+        <div class="listing-price"><span>$</span>1,250,000</div>
+        <div class="listing-address">1847 39th Street, Land Park</div>
+        <div class="listing-tags">
+          <div class="listing-tag feat">Sold</div>
+          <div class="listing-tag">4 Bed</div>
+          <div class="listing-tag">3 Bath</div>
+          <div class="listing-tag">2,960 sqft</div>
+        </div>
+      </div>
+    </div>
+    <div class="listing-card reveal reveal-d2">
+      <div class="listing-card-badge">Investment</div>
+      <video class="listing-img" autoplay muted loop playsinline>
+        <source src="img/lifestyle.mp4" type="video/mp4">
+      </video>
+      <div class="listing-overlay"></div>
+      <div class="listing-info">
+        <div class="listing-price"><span>$</span>875,000</div>
+        <div class="listing-address">Oak Creek Estates, Elk Grove</div>
+        <div class="listing-tags">
+          <div class="listing-tag feat">Hot Market</div>
+          <div class="listing-tag">3 Bed</div>
+          <div class="listing-tag">2 Bath</div>
+          <div class="listing-tag">2,100 sqft</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-head">
+    <div class="section-eyebrow reveal" style="justify-content:center">How It Works</div>
+    <h2 class="section-h2 reveal reveal-d1" style="text-align:center">From Search to<br><em>Signed Keys</em></h2>
+  </div>
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-icon">🗓️</div>
+      <div class="step-title">Consultation</div>
+      <p class="step-desc">We start with a deep-dive conversation about your goals, timeline, and ideal property. No pressure, just clarity.</p>
+    </div>
+    <div class="step reveal reveal-d1">
+      <div class="step-num">02</div>
+      <div class="step-icon">🔍</div>
+      <div class="step-title">Curated Search</div>
+      <p class="step-desc">Leveraging our MLS access and off-market network, we surface only the properties that truly match your criteria.</p>
+    </div>
+    <div class="step reveal reveal-d2">
+      <div class="step-num">03</div>
+      <div class="step-icon">🤝</div>
+      <div class="step-title">Offer & Negotiate</div>
+      <p class="step-desc">Expert negotiation strategies built from 16+ years of Sacramento market intelligence. We fight for every dollar.</p>
+    </div>
+    <div class="step reveal reveal-d3">
+      <div class="step-num">04</div>
+      <div class="step-icon">🗝️</div>
+      <div class="step-title">Close & Move In</div>
+      <p class="step-desc">Seamless closing coordination from inspections to escrow. We're with you through every step until keys in hand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-head">
+    <div class="section-eyebrow reveal" style="justify-content:center">Client Stories</div>
+    <h2 class="section-h2 reveal reveal-d1" style="text-align:center">Words From Our<br><em>Happy Clients</em></h2>
+  </div>
+  <div class="testi-track">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">Helen found us our dream home in East Sacramento in under three weeks. Her knowledge of the market is extraordinary — she knew about listings before they even hit Zillow.</p>
+      <div class="testi-author">
+        <img class="testi-avatar" src="img/helen-wong.webp" alt="" onerror="this.style.display='none'">
+        <div>
+          <div class="testi-name">Marcus & Jennifer T.</div>
+          <div class="testi-role">East Sacramento Buyers, 2024</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-d1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">We sold our Land Park home for $180K over asking. Helen's staging advice and marketing plan were second to none. We closed in 11 days. Absolutely exceptional service.</p>
+      <div class="testi-author">
+        <img class="testi-avatar" src="img/helen-wong.webp" alt="" onerror="this.style.display='none'">
+        <div>
+          <div class="testi-name">Robert & Claire M.</div>
+          <div class="testi-role">Land Park Sellers, 2024</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-d2">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">As a real estate investor, I've worked with dozens of agents. Helen is at a different level — her understanding of investment returns, rental comps, and deal structures is unparalleled.</p>
+      <div class="testi-author">
+        <img class="testi-avatar" src="img/helen-wong.webp" alt="" onerror="this.style.display='none'">
+        <div>
+          <div class="testi-name">David K.</div>
+          <div class="testi-role">Portfolio Investor, 2023</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="section-eyebrow">Ready to Begin?</div>
+  <h2>Let's Find Your<br>Perfect Home</h2>
+  <p>Whether you're buying, selling, or investing — Helen Wong delivers results. Schedule your complimentary consultation today.</p>
+  <button class="btn-dark" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Schedule a Free Consultation</button>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <div class="section-eyebrow reveal">Get in Touch</div>
+    <h2 class="section-h2 reveal reveal-d1">Start the<br><em>Conversation</em></h2>
+    <p class="contact-body reveal reveal-d2">Every great property journey starts with a single conversation. Reach out today — there's no obligation, just expert guidance tailored to your goals.</p>
+    <div class="contact-details reveal reveal-d3">
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📞</div>
+        <div class="contact-detail-text">
+          <strong>Phone</strong>
+          (916) 555-0192
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">✉️</div>
+        <div class="contact-detail-text">
+          <strong>Email</strong>
+          helen@premierrealtysac.com
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📍</div>
+        <div class="contact-detail-text">
+          <strong>Office</strong>
+          1801 L Street, Suite 400, Sacramento CA 95811
+        </div>
+      </div>
+    </div>
+  </div>
+  <form class="contact-form reveal reveal-d1" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-field">
+        <label>First Name</label>
+        <input type="text" placeholder="John" required>
+      </div>
+      <div class="form-field">
+        <label>Last Name</label>
+        <input type="text" placeholder="Smith" required>
+      </div>
+    </div>
+    <div class="form-field">
+      <label>Email Address</label>
+      <input type="email" placeholder="john@example.com" required>
+    </div>
+    <div class="form-field">
+      <label>Phone</label>
+      <input type="tel" placeholder="(916) 555-0100">
+    </div>
+    <div class="form-field">
+      <label>I'm Interested In</label>
+      <select>
+        <option>Buying a Home</option>
+        <option>Selling My Home</option>
+        <option>Investment Property</option>
+        <option>Land Acquisition</option>
+        <option>General Inquiry</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>Message</label>
+      <textarea placeholder="Tell me about your goals…"></textarea>
+    </div>
+    <button type="submit" class="form-submit">Send Message →</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="img/premier-realty-logo.svg" alt="Premier Realty">
+  </div>
+  <div class="footer-copy">
+    © 2025 Premier Realty Sacramento. Helen Wong, DRE #01234567.<br>All rights reserved. Equal Housing Opportunity.
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">DRE Disclosures</a>
+  </div>
+</footer>
+
+<script>
+// Loader
+(function(){
+  const fill = document.getElementById('ld-fill');
+  const pct  = document.getElementById('ld-pct');
+  const ldr  = document.getElementById('loader');
+  let p = 0;
+  const iv = setInterval(()=>{
+    p += Math.random()*18 + 4;
+    if(p > 100) p = 100;
+    fill.style.right = (100-p)+'%';
+    pct.textContent  = Math.round(p)+'%';
+    if(p >= 100){
+      clearInterval(iv);
+      setTimeout(()=>ldr.classList.add('gone'),320);
+    }
+  }, 80);
+})();
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('solid', window.scrollY > 60);
+},{ passive:true });
+
+// Custom cursor
+const dot  = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  dot.style.left=mx+'px'; dot.style.top=my+'px';
+});
+(function animCursor(){
+  rx+=(mx-rx)*0.1; ry+=(my-ry)*0.1;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animCursor);
+})();
+document.querySelectorAll('a,button,.service-card,.listing-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hov'));
+});
+
+// Scroll reveal
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Form submit
+function handleSubmit(e){
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ Message Sent!';
+  btn.style.background='#2D6A4F';
+  btn.style.color='#fff';
+  setTimeout(()=>{
+    btn.textContent='Send Message →';
+    btn.style.background='';
+    btn.style.color='';
+    e.target.reset();
+  },3500);
+}
+
+// Hamburger (mobile)
+document.getElementById('ham').addEventListener('click',()=>{
+  const links = document.querySelector('.nav-links');
+  if(links){
+    links.style.display = links.style.display==='flex' ? 'none' : 'flex';
+    links.style.flexDirection='column';
+    links.style.position='absolute';
+    links.style.top='68px';
+    links.style.left='0';
+    links.style.right='0';
+    links.style.background='rgba(11,11,11,.97)';
+    links.style.padding='24px 32px';
+    links.style.gap='20px';
+    links.style.zIndex='499';
+    links.style.borderBottom='1px solid rgba(200,169,110,.2)';
+  }
+});
+</script>
+</body>
+</html>

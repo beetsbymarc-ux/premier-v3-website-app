@@ -570,3 +570,292 @@ textarea{resize:vertical}
   .hero-h1{font-size:1.9rem}
   .cta-content h2{font-size:1.7rem}
 }
+
+/* ══════════════════════════════════════════════════
+   PREMIER REALTY — ENHANCEMENT PATCH
+   Mobile video fix · Seller strip · CTA cohesion
+   ══════════════════════════════════════════════════ */
+
+/* ── MOBILE VIDEO FIX ──────────────────────────────────────── */
+/* Fix Webflow hero background video stretching on mobile */
+.hero-video-block,
+.hero-section,
+[class*="w-background-video"] {
+  position: relative;
+  overflow: hidden;
+}
+.hero-video-block video,
+[class*="w-background-video"] video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+/* Property showcase video section */
+.property-video-section video,
+.video-section video,
+[class*="background-video"] video {
+  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+@media (max-width: 768px) {
+  .hero-section { min-height: 100svh; }
+  .hero-video-block video { object-position: 65% center !important; }
+  /* Prevent any embedded video from overflowing its container */
+  video { max-width: 100%; }
+}
+
+/* ── FLOOR PLAN BUTTON FIX ─────────────────────────────────── */
+/* Prevent oversized CTA text from breaking the card layout */
+.floor-button-wrapper { margin-top: 24px; }
+.floor-button-wrapper .primary-button-wrapper {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 24px !important;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, #C9A84C 0%, #E8C06A 100%) !important;
+  border: none !important;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+  text-decoration: none;
+}
+.floor-button-wrapper .primary-button-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(201,168,76,0.5);
+}
+.floor-button-wrapper .primary-button-text {
+  font-family: 'Outfit', 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: #0D0D12 !important;
+  white-space: normal !important;
+  line-height: 1.35 !important;
+}
+
+/* NAV CTA button (Book a Visit) — champagne gold accent */
+.header-button-wrap .secondary-button-wrapper,
+.mobile-button .primary-button-wrapper {
+  background: linear-gradient(135deg, #C9A84C 0%, #E8C06A 100%) !important;
+  border-radius: 8px !important;
+  padding: 10px 22px !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  box-shadow: 0 4px 12px rgba(201,168,76,0.3) !important;
+}
+.header-button-wrap .secondary-button-wrapper:hover,
+.mobile-button .primary-button-wrapper:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(201,168,76,0.45) !important;
+}
+.header-button-wrap .primary-button-text,
+.mobile-button .primary-button-text {
+  color: #0D0D12 !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+}
+
+/* ── WHY SELL WITH HELEN — Seller Strip ────────────────────── */
+.sell-strip {
+  background: #0D0D12;
+  padding: 96px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+.sell-strip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  pointer-events: none;
+}
+.sell-strip .container { position: relative; z-index: 1; }
+.sell-strip-head { text-align: center; margin-bottom: 60px; }
+.sell-strip-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.sell-strip-eyebrow::before,
+.sell-strip-eyebrow::after {
+  content: '';
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: #C9A84C;
+  opacity: 0.5;
+}
+.sell-strip-head h2 {
+  font-family: 'Merriweather', serif;
+  font-size: clamp(1.9rem, 3.5vw, 3rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.sell-strip-head h2 em {
+  font-style: italic;
+  color: #C9A84C;
+}
+.sell-strip-head p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.55);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.72;
+}
+.sell-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 52px;
+}
+.sell-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 36px 30px;
+  transition: background 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+  position: relative;
+  overflow: hidden;
+}
+.sell-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #C9A84C, #E8C06A);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+.sell-card:hover {
+  background: rgba(201,168,76,0.07);
+  transform: translateY(-6px);
+  border-color: rgba(201,168,76,0.25);
+}
+.sell-card:hover::after { opacity: 1; }
+.sell-card-ico {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  display: block;
+  line-height: 1;
+}
+.sell-card h3 {
+  font-family: 'Merriweather', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.sell-card p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.72;
+  margin-bottom: 20px;
+}
+.sell-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+}
+.sell-card ul li {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+.sell-card ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #C9A84C;
+  font-size: 11px;
+  top: 2px;
+}
+.sell-strip-cta { text-align: center; }
+.sell-strip-cta .btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #C9A84C 0%, #E8C06A 100%);
+  color: #0D0D12;
+  padding: 16px 40px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  text-decoration: none;
+}
+.sell-strip-cta .btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.6);
+}
+
+/* Stats row inside sell strip */
+.sell-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 64px;
+}
+.sell-stat {
+  background: rgba(255,255,255,0.03);
+  padding: 32px 24px;
+  text-align: center;
+}
+.sell-stat-n {
+  font-family: 'Merriweather', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #C9A84C;
+  display: block;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.sell-stat p {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── RESPONSIVE: Sell Strip ────────────────────────────────── */
+@media (max-width: 900px) {
+  .sell-cards { grid-template-columns: 1fr 1fr; }
+  .sell-stats { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .sell-cards { grid-template-columns: 1fr; }
+  .sell-stats { grid-template-columns: repeat(2, 1fr); }
+  .sell-strip { padding: 72px 0 60px; }
+}
+

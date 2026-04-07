@@ -649,3 +649,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Continuous reveal on scroll
 window.addEventListener('scroll', observeRevealElements, { passive: true });
+
+/* ── CTA HELPERS ──────────────────────────────────────────── */
+
+/**
+ * Pre-fill the hero form's service-type dropdown and smooth-scroll to it.
+ * Usage: prefillAndScrollToForm('sell') / ('buy') / ('value') etc.
+ */
+function prefillAndScrollToForm(serviceType) {
+  const sel = document.getElementById('serviceType');
+  if (sel && serviceType) {
+    sel.value = serviceType;
+    // Trigger the pipeline pill update
+    updatePipeline();
+  }
+
+  // Find the form card — works for both custom nav and Webflow page
+  const formCard = document.getElementById('captureForm') || document.querySelector('.form-card');
+  if (formCard) {
+    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h') || '72', 10);
+    const top = formCard.getBoundingClientRect().top + window.pageYOffset - navH - 24;
+    window.scrollTo({ top, behavior: 'smooth' });
+  } else {
+    // Fallback: scroll to top where hero form lives
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+/**
+ * Smooth scroll to an element by ID, accounting for fixed nav height.
+ */
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+  const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h') || '72', 10);
+  const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 16;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+/**
+ * Navigate to another HTML page, optionally with a hash.
+ */
+function goToPage(url) {
+  window.location.href = url;
+}
+
+// Expose globally for inline onclick usage
+window.prefillAndScrollToForm = prefillAndScrollToForm;
+window.scrollToSection = scrollToSection;
+window.goToPage = goToPage;
