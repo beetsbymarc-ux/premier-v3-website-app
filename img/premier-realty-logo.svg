@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 250">
+  <!-- Gray accent bar top-left -->
+  <rect x="82" y="12" width="36" height="14" rx="1.5" fill="#8A9BAA"/>
+
+  <!-- Dark charcoal left structure (L-shape pillar) -->
+  <path d="M82,26 L82,108 L170,108 L170,96 L118,66 L118,26 Z" fill="#2A3A4A"/>
+
+  <!-- Main sky-blue roof chevron -->
+  <path d="M82,32 L250,118 L418,32" fill="none" stroke="#4ABAEB" stroke-width="26" stroke-linejoin="miter" stroke-linecap="butt"/>
+
+  <!-- Right chimney vertical -->
+  <line x1="418" y1="32" x2="418" y2="2" stroke="#4ABAEB" stroke-width="26" stroke-linecap="butt"/>
+
+  <!-- PREMIER - gray, light weight -->
+  <text x="18" y="200" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="60" font-weight="400" letter-spacing="6" fill="#7B8B97">PREMIER</text>
+
+  <!-- REALTY - sky blue, bold -->
+  <text x="295" y="200" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="60" font-weight="700" letter-spacing="6" fill="#4ABAEB">REALTY</text>
+</svg>

@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helen Wong Premier Realty - Building Dreams on Land</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --concrete: #d4cfc8;
+      --concrete-dim: #9e9890;
+      --stone: #706050;
+      --charcoal: #1a1816;
+      --ink: #0e0d0c;
+      --warm-white: #f4f0ea;
+      --warm-white-dim: #c8c0b4;
+      --accent-blue: #1B4C8A;
+      --accent-blue-glow: rgba(27, 76, 138, 0.35);
+      --accent-blue-soft: rgba(27, 76, 138, 0.08);
+      --teal: #00B4C8;
+      --gold-warm: #c89848;
+      --heading: 'Playfair Display', 'Georgia', serif;
+      --body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --nav-h: 72px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--body);
+      background: var(--ink);
+      color: var(--warm-white);
+      overflow-x: hidden;
+    }
+
+    /* CURSOR */
+    #cursor-dot {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: var(--warm-white);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      mix-blend-mode: difference;
+      display: none;
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--warm-white);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9997;
+      display: none;
+      transition: width 0.15s ease, height 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    #cursor-ring.hover {
+      width: 56px;
+      height: 56px;
+      border-color: var(--teal);
+      box-shadow: 0 0 20px var(--accent-blue-glow);
+    }
+
+    @media (hover: hover) {
+      #cursor-dot { display: block; }
+      #cursor-ring { display: block; }
+    }
+
+    /* LOADER */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .loader-brand {
+      font-family: var(--heading);
+      font-size: 42px;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--warm-white);
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .loader-brand::before,
+    .loader-brand::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent-blue);
+    }
+
+    .loader-brand::before {
+      top: -20px;
+    }
+
+    .loader-brand::after {
+      bottom: -20px;
+    }
+
+    .loader-bar {
+      width: 140px;
+      height: 3px;
+      background: var(--charcoal);
+      border-radius: 2px;
+      margin: 30px 0;
+      overflow: hidden;
+    }
+
+    .loader-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--accent-blue));
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .loader-percent {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--concrete-dim);
+      text-transform: uppercase;
+    }
+
+    /* AMBIENT EFFECTS */
+    #film-grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.035;
+      mix-blend-mode: overlay;
+    }
+
+    #vignette {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 99;
+      background: radial-gradient(circle at center, transparent 50%, rgba(14, 13, 12, 0.45) 100%);
+    }
+
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 15;
+      pointer-events: none;
+    }
+
+    /* ANIMATION SECTION */
+    .animation-section {
+      position: relative;
+      height: 650vh;
+      width: 100%;
+    }
+
+    .canvas-container {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    #frame-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 0;
+    }
+
+    .canvas-overlay-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(14, 13, 12, 0.6) 0%, transparent 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .canvas-overlay-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 35%;
+      background: linear-gradient(180deg, transparent 0%, rgba(14, 13, 12, 0.7) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .tint-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--accent-blue-soft) 0%, rgba(212, 168, 75, 0.04) 100%);
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    /* SCROLL TEXT OVERLAYS */
+    .scroll-text {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0;
+      filter: blur(6px);
+      transition: opacity 0.4s ease, filter 0.4s ease;
+      transform: translateX(-20px);
+    }
+
+    .scroll-text.visible {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateX(0px);
+    }
+
+    .scroll-text-content {
+      position: absolute;
+      padding: 60px;
+      max-width: 600px;
+    }
+
+    /* SECTION 1: HERO */
+    #hero-section .scroll-text-content {
+      top: 80px;
+      left: 60px;
+    }
+
+    .hero-title {
+      font-family: var(--heading);
+      font-size: clamp(42px, 5.5vw, 76px);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-tagline {
+      font-size: 16px;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--concrete);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .stat-bar {
+      background: rgba(244, 240, 234, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(244, 240, 234, 0.06);
+      border-radius: 12px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--heading);
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--teal);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--concrete-dim);
+      text-transform: uppercase;
+    }
+
+    /* SECTION 2: VISION */
+    #vision-section .scroll-text-content {
+      top: 180px;
+      left: 80px;
+      max-width: 550px;
+    }
+
+    .vision-quote {
+      position: relative;
+      margin: 40px 0;
+    }
+
+    .quote-mark {
+      font-family: var(--heading);
+      font-size: 120px;
+      font-weight: 300;
+      color: var(--accent-blue);
+      line-height: 0.8;
+      opacity: 0.3;
+      margin-left: -20px;
+      margin-bottom: -30px;
+    }
+
+    .quote-text {
+      font-family: var(--heading);
+      font-size: 32px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--warm-white);
+    }
+
+    .quote-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--teal);
+      margin: 24px 0;
+    }
+
+    .quote-attribution {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--concrete-dim);
+      text-transform: uppercase;
+    }
+
+    /* SECTION 3: DETAILS */
+    #details-section .scroll-text-content {
+      top: 150px;
+      left: 80px;
+    }
+
+    .section-overline {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--heading);
+      font-size: 48px;
+      font-weight: 300;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .section-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--concrete);
+      margin-bottom: 30px;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .feature-item {
+      font-size: 14px;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-left: 8px;
+      border-left: 1px solid var(--accent-blue);
+      padding-top: 8px;
+    }
+
+    .feature-item::before {
+      content: '→';
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    /* SECTION 4: GRID */
+    #grid-section .scroll-text-content {
+      top: 150px;
+      left: 80px;
+      max-width: 100%;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 280px);
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .grid-card {
+      background: rgba(244, 240, 234, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(244, 240, 234, 0.06);
+      border-radius: 12px;
+      padding: 28px;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .grid-card:hover {
+      background: rgba(244, 240, 234, 0.06);
+      border-color: rgba(27, 76, 138, 0.4);
+    }
+
+    .grid-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+      opacity: 0.8;
+    }
+
+    .grid-title {
+      font-family: var(--heading);
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .grid-desc {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--concrete-dim);
+    }
+
+    /* SECTION 5: CONTEXT */
+    #context-section .scroll-text-content {
+      top: 150px;
+      left: 80px;
+    }
+
+    .context-list {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .context-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dotted var(--concrete-dim);
+    }
+
+    .context-label {
+      color: var(--concrete-dim);
+    }
+
+    .context-value {
+      font-weight: 500;
+      color: var(--warm-white);
+    }
+
+    /* SECTION 6: CTA */
+    #cta-section .scroll-text-content {
+      top: 40vh;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      max-width: 700px;
+      padding: 0;
+    }
+
+    .cta-title {
+      font-family: var(--heading);
+      font-size: clamp(36px, 4vw, 64px);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-emphasis {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .cta-subtitle {
+      font-size: 16px;
+      color: var(--concrete);
+      margin-bottom: 40px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-family: var(--body);
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--ink);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(27, 76, 138, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--teal);
+      border: 1px solid var(--teal);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 180, 200, 0.1);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .contact-card {
+      background: rgba(244, 240, 234, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(244, 240, 234, 0.06);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 40px;
+      display: inline-block;
+    }
+
+    .contact-name {
+      font-family: var(--heading);
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .contact-title {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .contact-info {
+      font-size: 13px;
+      color: var(--concrete-dim);
+      line-height: 1.6;
+    }
+
+    /* CHAPTER MARKERS */
+    .chapter-markers {
+      position: fixed;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      pointer-events: none;
+    }
+
+    @media (max-width: 1024px) {
+      .chapter-markers {
+        display: none;
+      }
+    }
+
+    .chapter-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--concrete-dim);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      pointer-events: auto;
+    }
+
+    .chapter-dot.active {
+      width: 16px;
+      height: 16px;
+      background: var(--teal);
+      box-shadow: 0 0 16px var(--accent-blue-glow);
+    }
+
+    /* GALLERY SECTION */
+    .gallery-section {
+      padding: 100px 60px;
+      background: var(--ink);
+      position: relative;
+      z-index: 20;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .gallery-title {
+      font-family: var(--heading);
+      font-size: clamp(36px, 4vw, 54px);
+      font-weight: 300;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .gallery-subtitle {
+      font-size: 15px;
+      color: var(--concrete);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      aspect-ratio: 16 / 10;
+      background: var(--charcoal);
+    }
+
+    .gallery-item.tall {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      will-change: transform;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.03);
+    }
+
+    /* FOOTER */
+    footer {
+      background: rgba(14, 13, 12, 0.8);
+      padding: 60px;
+      text-align: center;
+      border-top: 1px solid rgba(244, 240, 234, 0.1);
+      position: relative;
+      z-index: 20;
+    }
+
+    .footer-brand {
+      font-family: var(--heading);
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .footer-legal {
+      font-size: 12px;
+      color: var(--concrete-dim);
+      letter-spacing: 0.05em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .scroll-text-content {
+        padding: 40px !important;
+        max-width: 90% !important;
+      }
+
+      .hero-title {
+        font-size: clamp(32px, 8vw, 48px);
+      }
+
+      .stat-bar {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-title {
+        font-size: clamp(28px, 6vw, 42px);
+      }
+
+      .gallery-section {
+        padding: 60px 30px;
+      }
+
+      .gallery-grid {
+        gap: 16px;
+      }
+
+      footer {
+        padding: 40px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- FILM GRAIN -->
+  <svg id="film-grain" width="100%" height="100%" style="filter: url(#noise)">
+    <defs>
+      <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" seed="2" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.5" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- VIGNETTE -->
+  <div id="vignette"></div>
+
+  <!-- PARTICLES CANVAS -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-brand">Helen Wong</div>
+    <div class="loader-bar">
+      <div class="loader-bar-fill"></div>
+    </div>
+    <div class="loader-percent">0%</div>
+  </div>
+
+  <!-- CHAPTER MARKERS -->
+  <div class="chapter-markers">
+    <div class="chapter-dot active" data-section="0"></div>
+    <div class="chapter-dot" data-section="1"></div>
+    <div class="chapter-dot" data-section="2"></div>
+    <div class="chapter-dot" data-section="3"></div>
+    <div class="chapter-dot" data-section="4"></div>
+    <div class="chapter-dot" data-section="5"></div>
+  </div>
+
+  <!-- ANIMATION SECTION -->
+  <section class="animation-section">
+    <div class="canvas-container">
+      <canvas id="frame-canvas"></canvas>
+      <div class="canvas-overlay-left"></div>
+      <div class="canvas-overlay-bottom"></div>
+      <div class="tint-overlay"></div>
+
+      <!-- HERO -->
+      <div id="hero-section" class="scroll-text" data-show-at="0.065" data-hide-at="0.15">
+        <div class="scroll-text-content">
+          <div class="hero-title">Where Dreams Build</div>
+          <div class="hero-tagline">From bare land to finished home, witness the transformation of Sacramento's finest properties.</div>
+          <div class="stat-bar">
+            <div class="stat-item">
+              <div class="stat-number" data-target="20">0</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="800">0</div>
+              <div class="stat-label">Homes Sold</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="100">0</div>
+              <div class="stat-label">Client Satisfaction %</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="50">0</div>
+              <div class="stat-label">Expert Agents</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VISION -->
+      <div id="vision-section" class="scroll-text" data-show-at="0.21" data-hide-at="0.3">
+        <div class="scroll-text-content">
+          <div class="vision-quote">
+            <div class="quote-mark">"</div>
+            <div class="quote-text">We see what others miss — the potential in raw land, the future in every frame, the lifestyle in every home.</div>
+            <div class="quote-divider"></div>
+            <div class="quote-attribution">Helen Wong, Founder</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DETAILS -->
+      <div id="details-section" class="scroll-text" data-show-at="0.365" data-hide-at="0.46">
+        <div class="scroll-text-content">
+          <div class="section-overline">Who We Are</div>
+          <div class="section-title">Precision, Passion, Purpose</div>
+          <div class="section-body">With 20+ years of experience in Sacramento real estate, Helen Wong brings deep local knowledge, genuine care, and bilingual expertise to every transaction. Where others see transactions, we see transformed lives and new ching deals we're architects of lifestyles, dreams.</div>
+          <div class="feature-list">
+            <div class="feature-item">Local market expertise across all Sacramento neighborhoods</div>
+            <div class="feature-item">Bilingual service (English & Mandarin)</div>
+            <div class="feature-item">Strategic pricing & negotiation</div>
+            <div class="feature-item">Comprehensive market analysis</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRID -->
+      <div id="grid-section" class="scroll-text" data-show-at="0.525" data-hide-at="0.63">
+        <div class="scroll-text-content">
+          <div class="section-overline">What We Offer</div>
+          <div class="section-title">Services & Expertise</div>
+          <div class="feature-grid">
+            <div class="grid-card">
+              <div class="grid-icon">🏠</div>
+              <div class="grid-title">Residential Sales</div>
+              <div class="grid-desc">From first-time buyers to luxury estates, we guide you through every step.</div>
+            </div>
+            <div class="grid-card">
+              <div class="grid-icon">🔑</div>
+              <div class="grid-title">Investment Properties</div>
+              <div class="grid-desc">Build wealth through strategic Sacramento real estate investments.</div>
+            </div>
+            <div class="grid-card">
+              <div class="grid-icon">📍</div>
+              <div class="grid-title">Neighborhood Expertise</div>
+              <div class="grid-desc">Deep knowledge of Land Park, Pocket, Tahoe Park, and beyond.</div>
+            </div>
+            <div class="grid-card">
+              <div class="grid-icon">💬</div>
+              <div class="grid-title">Bilingual Support</div>
+              <div class="grid-desc">Complete support in English and Mandarin for seamless communication.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTEXT -->
+      <div id="context-section" class="scroll-text" data-show-at="0.685" data-hide-at="0.78">
+        <div class="scroll-text-content">
+          <div class="section-overline">Neighborhoods We Serve</div>
+          <div class="section-title">Sacramento's Premier Areas</div>
+          <div class="context-list">
+            <div class="context-item">
+              <span class="context-label">Land Park</span>
+              <span class="context-value">Luxury & Elegance</span>
+            </div>
+            <div class="context-item">
+              <span class="context-label">Pocket</span>
+              <span class="context-value">Modern Living</span>
+            </div>
+            <div class="context-item">
+              <span class="context-label">Tahoe Park</span>
+              <span class="context-value">Community & Character</span>
+            </div>
+            <div class="context-item">
+              <span class="context-label">Granite Bay</span>
+              <span class="context-value">Prestige & Privacy</span>
+            </div>
+            <div class="context-item">
+              <span class="context-label">Fair Oaks</span>
+              <span class="context-value">Natural Beauty</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div id="cta-section" class="scroll-text" data-show-at="0.93" data-hide-at="1.02">
+        <div class="scroll-text-content">
+          <div class="cta-title" style="font-size:clamp(48px,6vw,96px);font-weight:200;letter-spacing:0.08em;text-transform:uppercase;">Your Luxury<br><em style="font-style:italic;letter-spacing:0.04em;">Awaits</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section class="gallery-section">
+    <div class="gallery-header">
+      <h2 class="gallery-title">The Building Journey</h2>
+      <p class="gallery-subtitle">Watch the transformation from raw land to finished masterpiece. Each frame tells a story of precision and craftsmanship.</p>
+    </div>
+    <div class="gallery-grid" id="gallery"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">Helen Wong Premier Realty</div>
+    <div class="footer-legal">© 2026. All rights reserved. | Helping Sacramento Build Dreams</div>
+  </footer>
+
+  <script>
+    // ===== CONFIGURATION =====
+    const FRAME_COUNT = 122;
+    const LERP_FACTOR = 0.09;
+    const DWELL_WIDTH = 0.045;
+    const DWELL_PEAK = 3.5;
+    const REMAP_N = 2000;
+
+    // ===== STATE =====
+    let currentFrame = 0;
+    let targetFrame = 0;
+    let frames = [];
+    let remapLUT = [];
+    let canvas = null;
+    let ctx = null;
+    let isMobile = window.innerWidth < 768;
+    let frameDir = isMobile ? 'mobile' : 'desktop';
+    let framesLoaded = 0;
+
+    // ===== CURSOR SYSTEM =====
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.left = (mouseX - 3) + 'px';
+      cursorDot.style.top = (mouseY - 3) + 'px';
+    });
+
+    function animateCursor() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      cursorRing.style.left = (ringX - 18) + 'px';
+      cursorRing.style.top = (ringY - 18) + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.addEventListener('mouseenter', () => {
+      document.querySelectorAll('button, a, .chapter-dot').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+      });
+    });
+
+    // ===== PARTICLE SYSTEM =====
+    const particlesCanvas = document.getElementById('particles-canvas');
+    const particlesCtx = particlesCanvas.getContext('2d');
+    particlesCanvas.width = window.innerWidth;
+    particlesCanvas.height = window.innerHeight;
+
+    const particles = [];
+    for (let i = 0; i < 40; i++) {
+      particles.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        size: Math.random() * 1.5 + 0.3,
+        opacity: Math.random() * 0.3 + 0.05,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: (Math.random() - 0.5) * 0.2
+      });
+    }
+
+    function animateParticles() {
+      particlesCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = window.innerWidth;
+        if (p.x > window.innerWidth) p.x = 0;
+        if (p.y < 0) p.y = window.innerHeight;
+        if (p.y > window.innerHeight) p.y = 0;
+
+        particlesCtx.fillStyle = `rgba(244, 240, 234, ${p.opacity})`;
+        particlesCtx.beginPath();
+        particlesCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        particlesCtx.fill();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // ===== DWELL REMAP ENGINE =====
+    function buildRemapLUT() {
+      // Each entry: [center, peak] — last two are boosted so the big house lingers
+      const dwellCenters = [
+        [0.065, DWELL_PEAK],
+        [0.21,  DWELL_PEAK],
+        [0.365, DWELL_PEAK],
+        [0.525, DWELL_PEAK],
+        [0.685, DWELL_PEAK],
+        [0.89,  7.0],   // big house frame — much slower
+        [0.93,  8.5],   // "Your Luxury Awaits" moment — near stop
+      ];
+
+      const cumulative = [0];
+      for (let i = 0; i < REMAP_N; i++) {
+        const x = i / REMAP_N;
+        let weight = 1;
+        dwellCenters.forEach(([center, peak]) => {
+          const dx = (x - center) / DWELL_WIDTH;
+          weight += (peak - 1) * Math.exp(-0.5 * dx * dx);
+        });
+        cumulative.push(cumulative[i] + weight / REMAP_N);
+      }
+
+      const maxCum = cumulative[cumulative.length - 1];
+      const invLUT = [0];
+      let cumIdx = 0;
+      for (let i = 1; i <= REMAP_N; i++) {
+        const target = (i / REMAP_N) * maxCum;
+        while (cumIdx < cumulative.length - 1 && cumulative[cumIdx + 1] < target) cumIdx++;
+        invLUT.push(cumIdx / REMAP_N);
+      }
+      remapLUT = invLUT;
+    }
+
+    function remapProgress(p) {
+      const idx = Math.floor(p * REMAP_N);
+      return remapLUT[Math.min(idx, REMAP_N)];
+    }
+
+    // ===== FRAME LOADING =====
+    function loadFrames() {
+      return new Promise((resolve) => {
+        const critical = [0, 30, 61, 92, 121];
+        let loadedCritical = 0;
+
+        function createFramePromise(idx) {
+          return new Promise((resolveFrame) => {
+            const img = new Image();
+            img.onload = () => {
+              frames[idx] = img;
+              framesLoaded++;
+              updateLoader();
+              if (critical.includes(idx)) loadedCritical++;
+              if (loadedCritical === critical.length) showFirstFrame();
+              resolveFrame();
+            };
+            img.onerror = resolveFrame;
+            img.src = `frames/${frameDir}/frame-${String(idx + 1).padStart(3, '0')}.webp`;
+          });
+        }
+
+        // Load critical frames first
+        Promise.all(critical.map(createFramePromise)).then(() => {
+          // Then load rest in batches
+          const promises = [];
+          for (let i = 0; i < FRAME_COUNT; i++) {
+            if (!critical.includes(i)) {
+              promises.push(createFramePromise(i));
+            }
+          }
+          Promise.all(promises).then(() => {
+            hideLoader();
+            resolve();
+          });
+        });
+      });
+    }
+
+    function updateLoader() {
+      const percent = Math.floor((framesLoaded / FRAME_COUNT) * 100);
+      document.querySelector('.loader-bar-fill').style.width = percent + '%';
+      document.querySelector('.loader-percent').textContent = percent + '%';
+    }
+
+    function showFirstFrame() {
+      if (frames[0]) {
+        ctx.drawImage(frames[0], 0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    function hideLoader() {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      loader.style.filter = 'blur(8px)';
+      loader.style.transition = 'all 0.6s ease';
+      setTimeout(() => loader.style.display = 'none', 600);
+    }
+
+    // ===== ANIMATION LOOP =====
+    function getScrollProgress() {
+      const section = document.querySelector('.animation-section');
+      const rect = section.getBoundingClientRect();
+      const progress = -rect.top / (rect.height - window.innerHeight);
+      return Math.max(0, Math.min(1, progress));
+    }
+
+    function drawFrame(frameIdx) {
+      const idx = Math.max(0, Math.min(FRAME_COUNT - 1, Math.round(frameIdx)));
+      if (frames[idx]) {
+        ctx.drawImage(frames[idx], 0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    function updateScrollText() {
+      const progress = getScrollProgress();
+      document.querySelectorAll('.scroll-text').forEach(el => {
+        const showAt = parseFloat(el.dataset.showAt);
+        const hideAt = parseFloat(el.dataset.hideAt);
+        if (progress >= showAt && progress < hideAt) {
+          el.classList.add('visible');
+          // "Your Luxury Awaits" — fade to abyss near end
+          if (el.id === 'cta-section' && progress > 0.97) {
+            const fade = 1 - ((progress - 0.97) / 0.05);
+            el.style.opacity = Math.max(0, fade);
+          } else {
+            el.style.opacity = '';
+          }
+        } else {
+          el.classList.remove('visible');
+          el.style.opacity = '';
+        }
+      });
+    }
+
+    function updateChapterMarkers() {
+      const progress = getScrollProgress();
+      const sections = [0.065, 0.21, 0.365, 0.525, 0.685, 0.89];
+      document.querySelectorAll('.chapter-dot').forEach((dot, i) => {
+        const nextSection = sections[i + 1] || 1;
+        if (progress >= sections[i] && progress < nextSection) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function updateTintOverlay() {
+      const progress = getScrollProgress();
+      const tint = document.querySelector('.tint-overlay');
+      if (progress > 0.05 && progress < 0.95) {
+        tint.style.opacity = (0.04 + Math.sin(progress * Math.PI) * 0.02);
+      }
+    }
+
+    function animationFrame() {
+      const rawProgress = getScrollProgress();
+      const remapped = remapProgress(rawProgress);
+      targetFrame = remapped * (FRAME_COUNT - 1);
+      currentFrame += (targetFrame - currentFrame) * LERP_FACTOR;
+      drawFrame(currentFrame);
+      updateScrollText();
+      updateChapterMarkers();
+      updateTintOverlay();
+      requestAnimationFrame(animationFrame);
+    }
+
+    // ===== STAT COUNTER ANIMATION =====
+    function animateStats() {
+      document.querySelectorAll('.stat-number').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        let current = 0;
+        const increment = target / 60;
+        const interval = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            el.textContent = target;
+            clearInterval(interval);
+          } else {
+            el.textContent = Math.floor(current);
+          }
+        }, 16);
+      });
+    }
+
+    // ===== GALLERY GENERATION =====
+    function generateGallery() {
+      const gallery = document.getElementById('gallery');
+      const galleryIndices = [10, 35, 61, 92, 110, 121, 50];
+      galleryIndices.forEach((idx, i) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item' + (i === 4 || i === 5 ? ' tall' : '');
+        const img = document.createElement('img');
+        img.src = `frames/${frameDir}/frame-${String(idx + 1).padStart(3, '0')}.webp`;
+        img.alt = `Frame ${idx + 1}`;
+        item.appendChild(img);
+        gallery.appendChild(item);
+      });
+
+      // Parallax on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const scrollY = window.scrollY;
+            const elementTop = entry.target.getBoundingClientRect().top + scrollY;
+            const parallax = (scrollY - elementTop + window.innerHeight) * 0.3;
+            entry.target.querySelector('img').style.transform = `translateY(${parallax}px)`;
+          }
+        });
+      });
+
+      document.querySelectorAll('.gallery-item').forEach(item => observer.observe(item));
+    }
+
+    // ===== INIT =====
+    async function init() {
+      canvas = document.getElementById('frame-canvas');
+      ctx = canvas.getContext('2d', { alpha: false });
+
+      function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        if (frames[Math.round(currentFrame)]) {
+          drawFrame(currentFrame);
+        }
+      }
+
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      buildRemapLUT();
+      await loadFrames();
+      generateGallery();
+      animateStats();
+      animationFrame();
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+
+</body>
+</html>

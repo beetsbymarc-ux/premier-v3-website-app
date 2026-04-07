@@ -1,0 +1,42 @@
+{
+  "frameCount": 122,
+  "frameRate": 12,
+  "duration": "10.17s",
+  "desktop": {
+    "frames": 122,
+    "resolution": "1920x1080",
+    "totalSize": "32.24MB"
+  },
+  "mobile": {
+    "frames": 122,
+    "resolution": "960x540",
+    "totalSize": "12.47MB"
+  },
+  "scrollHeight": "650vh",
+  "contentSections": [
+    {
+      "name": "Hero",
+      "showAt": 0.065
+    },
+    {
+      "name": "Vision",
+      "showAt": 0.21
+    },
+    {
+      "name": "Details",
+      "showAt": 0.365
+    },
+    {
+      "name": "Grid",
+      "showAt": 0.525
+    },
+    {
+      "name": "Context",
+      "showAt": 0.685
+    },
+    {
+      "name": "CTA",
+      "showAt": 0.89
+    }
+  ]
+}

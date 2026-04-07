@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Large video files
+*.mp4
+
+# Build artifacts
+site-deploy.zip

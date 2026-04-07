@@ -1659,9 +1659,11 @@
   <!-- Hero Section with Video Background -->
   <section id="home" class="hero-animation">
     <div class="hero-sticky">
-      <video class="hero-video" autoplay muted loop playsinline poster="hero-frames/desktop/frame-0001.jpg">
+      <video class="hero-video" id="heroVideo1" autoplay muted playsinline poster="hero-frames/desktop/frame-0001.jpg" style="opacity:1;transition:opacity 1s ease;">
         <source src="img/drone-footage.mp4" type="video/mp4">
-        <source src="img/hero-bg.mp4" type="video/mp4">
+      </video>
+      <video class="hero-video" id="heroVideo2" muted playsinline style="opacity:0;transition:opacity 1s ease;">
+        <source src="img/fireplace.mp4" type="video/mp4">
       </video>
       <div class="hero-overlay"></div>
       <div class="hero-content">
@@ -2261,9 +2263,34 @@
   </div>
 
   <script>
-    // ===== HERO VIDEO BACKGROUND =====
-    // Video plays automatically via autoplay muted loop attributes
-    // Poster frame provides instant visual while video loads
+    // ===== HERO VIDEO SEQUENCE =====
+    // Plays drone footage, then fireplace — no zoom, no shake, clean crossfade
+    (function() {
+      const v1 = document.getElementById('heroVideo1');
+      const v2 = document.getElementById('heroVideo2');
+      const videos = [v1, v2];
+      let current = 0;
+
+      function switchTo(next) {
+        const curr = videos[current];
+        const nxt = videos[next];
+        nxt.currentTime = 0;
+        nxt.play();
+        nxt.style.opacity = '1';
+        curr.style.opacity = '0';
+        setTimeout(() => { curr.pause(); curr.currentTime = 0; }, 1000);
+        current = next;
+      }
+
+      v1.addEventListener('ended', function() {
+        switchTo(1);
+      });
+      v2.addEventListener('ended', function() {
+        switchTo(0);
+      });
+
+      v1.play();
+    })();
 
     // ===== NAVIGATION SCROLL EFFECT =====
     const nav = document.querySelector('nav');
