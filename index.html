@@ -3,166 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premier Realty — Cinematic Sacramento Real Estate</title>
+    <title>Premier Realty — Superior Real Estate Architecture</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Onest:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+    <div class="scroll-progress"></div>
+
     <!-- Navigation -->
     <nav>
         <div class="container nav-container">
-            <a href="index.html" class="nav-logo">Premier Realty</a>
-            
-            <div class="nav-right">
-                <a href="index.html" class="nav-link">Home</a>
+            <div class="nav-links-left">
                 <a href="about.html" class="nav-link">About</a>
-                
-                <div class="nav-dropdown">
-                    <span class="nav-link nav-dropdown-toggle">Services ↓</span>
-                    <div class="nav-dropdown-menu">
-                        <a href="services.html#buying" class="dropdown-item">Buy a Home</a>
-                        <a href="services.html#selling" class="dropdown-item">Sell My Home</a>
-                        <a href="services.html#valuation" class="dropdown-item">Get Home Value</a>
-                        <a href="services.html#relocating" class="dropdown-item">Relocating</a>
-                        <a href="services.html#investment" class="dropdown-item">Investment</a>
-                        <a href="services.html#consultation" class="dropdown-item">Talk to Agent</a>
-                    </div>
+                <div class="nav-dropdown" style="display:inline-block;">
+                    <span class="nav-link" style="cursor:pointer;">Services</span>
                 </div>
-                
-                <a href="contact.html" class="btn-submit" style="padding: 0.8rem 1.5rem; margin: 0; font-size: 0.8rem;">Book Consultation</a>
             </div>
-
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-            </button>
+            
+            <a href="index.html" class="logo-center">Premier Realty</a>
+            
+            <div class="nav-links-right">
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="tel:9162567073" class="nav-link">916.256.7073</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <span class="eyebrow reveal-item">Experience the Superior Standard</span>
-                <h1 class="reveal-item">Real Estate <italic>Engineered</italic> for Your Growth.</h1>
-                <p class="reveal-item" style="max-width: 500px; margin-top: 1.5rem; color: var(--text-muted);">
-                    From Sacramento's historic neighborhoods to high-growth investment corridors — we build the bridge between where you are and where you want to be.
-                </p>
-            </div>
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="img/hero-bg.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        
+        <div class="container hero-content">
+            <span class="eyebrow reveal-item">A Superior Standard of Real Estate</span>
+            <h1 class="reveal-item">Engineered <italic>for</italic><br>Your Growth.</h1>
+            <p class="reveal-item" style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.1em; opacity: 0.8;">
+                SACRAMENTO · NATOMAS · ELK GROVE · ROSEVILLE
+            </p>
+        </div>
 
-            <!-- Lead Capture Form -->
-            <div class="lead-form-container reveal-item">
-                <h3 class="form-title">Start Your Journey</h3>
-                <form id="cinema-lead-form" class="cinema-form">
-                    <div class="form-group">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" name="name" class="cinema-input" placeholder="Helen Wong" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" name="email" class="cinema-input" placeholder="agent@premier.com" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Phone Number</label>
-                        <input type="tel" name="phone" class="cinema-input" placeholder="(916) 000-0000" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Neighborhood or Property Address</label>
-                        <input type="text" name="address" class="cinema-input" placeholder="e.g. Land Park, Sacramento" required>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <div class="form-group">
-                            <label class="form-label">Price Range</label>
-                            <select name="price" class="cinema-select" required>
-                                <option value="$400k - $600k">$400k - $600k</option>
-                                <option value="$600k - $900k">$600k - $900k</option>
-                                <option value="$900k+">$900k+</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Timeline</label>
-                            <select name="timeline" class="cinema-select" required>
-                                <option value="ASAP">ASAP</option>
-                                <option value="1-3 Months">1-3 Months</option>
-                                <option value="Just Browsing">Browsing</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Service Type</label>
-                        <select name="serviceType" class="cinema-select" required>
-                            <option value="Buy a Home">Buy a Home</option>
-                            <option value="Sell My Home">Sell My Home</option>
-                            <option value="Get My Home Value">Get My Home Value</option>
-                            <option value="Relocating to Sacramento">Relocating to Sacramento</option>
-                            <option value="Investment Property">Investment Property</option>
-                            <option value="Talk to an Agent">Talk to an Agent</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn-submit">Initialize Request →</button>
-                </form>
-            </div>
+        <div class="floating-form-trigger reveal-item">
+            <button class="btn-luxury" style="width: auto; padding: 1.2rem 3rem;" onclick="document.getElementById('lead-stack').scrollIntoView({behavior: 'smooth'})">Initialize Consultation ↓</button>
         </div>
     </section>
 
-    <!-- Success Overlay -->
-    <div id="success-overlay" class="success-overlay">
-        <div class="success-card">
-            <div class="eyebrow" style="margin-bottom: 1rem;">Success</div>
-            <h3>Request Processed</h3>
-            <p id="success-message-text" style="color: var(--text-muted); margin: 1.5rem 0;"></p>
-            <button id="close-success" class="btn-submit" style="width: auto; padding: 1rem 2rem;">Return to Site</button>
-        </div>
-    </div>
+    <!-- Lead Capture Section (Stacked Architecture) -->
+    <section class="section-dark" id="lead-stack">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: start;">
+                <div class="reveal-item">
+                    <span class="eyebrow">Protocol 01 — Diagnose</span>
+                    <h2 style="font-size: 4.5rem; margin-bottom: 2rem;">Growth <italic>Begins</italic> With Data.</h2>
+                    <p style="color: var(--grey-text); font-size: 1.125rem; max-width: 450px;">
+                        Our infrastructure identifies service gaps, audit traffic corridors, and secures your position in the Sacramento market pack.
+                    </p>
+                    
+                    <div style="margin-top: 4rem; display: grid; gap: 2rem;">
+                        <div style="padding: 2rem; border-left: 1px solid var(--champagne);">
+                            <span class="eyebrow" style="margin-bottom: 0.5rem;">Volume</span>
+                            <div style="font-size: 2.5rem; font-family: var(--font-heading);">$250M+</div>
+                        </div>
+                        <div style="padding: 2rem; border-left: 1px solid var(--champagne);">
+                            <span class="eyebrow" style="margin-bottom: 0.5rem;">Domain</span>
+                            <div style="font-size: 2.5rem; font-family: var(--font-heading);">Sacramento</div>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Statistics Section -->
-    <section class="reveal-section">
-        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem; text-align: center;">
-            <div class="reveal-item">
-                <span class="eyebrow">Closed Volume</span>
-                <h2 style="font-size: 3.5rem;">$250M+</h2>
-                <p style="color: var(--text-muted)">In Sacramento Transactions</p>
-            </div>
-            <div class="reveal-item">
-                <span class="eyebrow">Experience</span>
-                <h2 style="font-size: 3.5rem;">20+</h2>
-                <p style="color: var(--text-muted)">Years Mastery</p>
-            </div>
-            <div class="reveal-item">
-                <span class="eyebrow">Satisfaction</span>
-                <h2 style="font-size: 3.5rem;">97%</h2>
-                <p style="color: var(--text-muted)">Retention Rate</p>
+                <div class="reveal-item">
+                    <div class="cinema-card">
+                        <div class="form-title">Lead Infrastructure Protocol</div>
+                        <form id="cinema-lead-form">
+                            <input type="text" name="name" class="cinema-input" placeholder="FULL NAME" required>
+                            <input type="email" name="email" class="cinema-input" placeholder="EMAIL ADDRESS" required>
+                            <input type="tel" name="phone" class="cinema-input" placeholder="PHONE NUMBER" required>
+                            <input type="text" name="address" class="cinema-input" placeholder="NEIGHBORHOOD OR ADDRESS" required>
+                            
+                            <select name="serviceType" class="cinema-select" required>
+                                <option value="" disabled selected>SELECT SERVICE PIPELINE</option>
+                                <option value="Buy a Home">Buy a Home</option>
+                                <option value="Sell My Home">Sell My Home</option>
+                                <option value="Get My Home Value">Get My Home Value</option>
+                                <option value="Relocating to Sacramento">Relocating to Sacramento</option>
+                                <option value="Investment Property">Investment Property</option>
+                                <option value="Talk to an Agent">Talk to an Agent</option>
+                            </select>
+
+                            <button type="submit" class="btn-luxury">Execute Request →</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer style="padding: 6rem 0; border-top: 1px solid var(--grey-border);">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
-            <div>
-                <a href="index.html" class="nav-logo">Premier Realty</a>
-                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">DRE #01359322 · Sacramento, CA</p>
+    <footer style="padding: 8rem 0; background: var(--obsidian); color: #fff; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container" style="text-align: center;">
+            <a href="index.html" class="logo-center" style="color:#fff; font-size: 3rem;">Premier Realty</a>
+            <div style="margin-top: 3rem; display: flex; justify-content: center; gap: 4rem;">
+                <a href="about.html" class="nav-link">Bio</a>
+                <a href="services.html" class="nav-link">Pipelines</a>
+                <a href="contact.html" class="nav-link">Terminal</a>
             </div>
-            <div style="display: flex; gap: 2rem;">
-                <a href="about.html" class="nav-link">About Us</a>
-                <a href="services.html" class="nav-link">Services</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-            </div>
+            <p style="margin-top: 4rem; font-family: var(--font-mono); font-size: 0.6rem; opacity: 0.4; letter-spacing: 0.2em;">
+                DRE #01359322 · © 2026 PREMIER REALTY INFRASTRUCTURE
+            </p>
         </div>
     </footer>
+
+    <!-- Success Overlay -->
+    <div id="success-overlay" class="success-overlay">
+        <div class="success-card">
+            <div class="eyebrow" style="margin-bottom: 1rem;">System Priority</div>
+            <h3 style="color: var(--obsidian);">Protocol Activated.</h3>
+            <p id="success-message-text" style="color: var(--grey-text); margin: 1.5rem 0;"></p>
+            <button id="close-success" class="btn-luxury" style="width: auto; padding: 1rem 3rem;">Return to Terminal</button>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
