@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get in Touch | Premier Realty Sacramento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #3A86FF;
+            --navy: #27548A;
+            --black: #000;
+            --body: #333;
+            --light: #f7f7f5;
+            --border: #e8e8e6;
+            --white: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Onest', sans-serif;
+            color: var(--body);
+            background-color: var(--white);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 40px;
+            }
+            h1 {
+                font-size: 42px;
+            }
+            h2 {
+                font-size: 32px;
+            }
+            h3 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 24px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            h3 {
+                font-size: 20px;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 900px) {
+            .nav-container {
+                padding: 0 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                padding: 0 24px;
+            }
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--body);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--navy);
+        }
+
+        nav a.active {
+            color: var(--navy);
+            border-bottom: 2px solid var(--navy);
+            padding-bottom: 2px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            z-index: 1;
+            border: 1px solid var(--border);
+            top: 100%;
+            right: 0;
+        }
+
+        .dropdown-content a {
+            color: var(--body);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--light);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .nav-btn {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 0;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--blue);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--navy);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 900px) {
+            .nav-left, .nav-right {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .nav-center {
+                position: static;
+                transform: none;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            nav.active .hamburger span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+            nav.active .hamburger span:nth-child(2) {
+                opacity: 0;
+            }
+            nav.active .hamburger span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+        }
+
+        .nav-mobile {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: var(--white);
+            flex-direction: column;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-mobile.active {
+            display: flex;
+        }
+
+        .nav-mobile a {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--light);
+            font-size: 14px;
+            text-decoration: none;
+            color: var(--body);
+        }
+
+        .nav-mobile a:hover {
+            background-color: var(--light);
+        }
+
+        .nav-mobile a.active {
+            background-color: var(--light);
+            color: var(--navy);
+            border-bottom: 2px solid var(--navy);
+        }
+
+        /* Hero Banner */
+        .hero {
+            margin-top: 80px;
+            padding: 100px 60px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                padding: 80px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 60px 24px;
+            }
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: var(--white);
+            font-size: 20px;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+        }
+
+        /* Contact Section */
+        .contact-main {
+            padding: 100px 60px;
+        }
+
+        @media (max-width: 900px) {
+            .contact-main {
+                padding: 80px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .contact-main {
+                padding: 60px 24px;
+            }
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 100px;
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* Form Styles */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--navy);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'Onest', sans-serif;
+            font-size: 16px;
+            color: var(--body);
+            background-color: var(--white);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 160px;
+        }
+
+        .form-group.required label:after {
+            content: " *";
+            color: var(--blue);
+        }
+
+        .submit-btn {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 14px 32px;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 0;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--blue);
+        }
+
+        .form-message {
+            padding: 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .form-message.success {
+            display: block;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            display: block;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Contact Info Cards */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-card {
+            padding: 32px;
+            background-color: var(--light);
+            border-radius: 8px;
+            border-left: 4px solid var(--blue);
+        }
+
+        .info-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+
+        .info-card p {
+            font-size: 16px;
+            color: var(--body);
+            line-height: 1.8;
+        }
+
+        .info-card a {
+            color: var(--blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-card a:hover {
+            color: var(--navy);
+            text-decoration: underline;
+        }
+
+        /* Map Section */
+        .map-section {
+            background-color: var(--light);
+            padding: 80px 60px;
+            margin: 100px 0;
+        }
+
+        @media (max-width: 900px) {
+            .map-section {
+                padding: 60px 40px;
+                margin: 80px 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .map-section {
+                padding: 40px 24px;
+                margin: 60px 0;
+            }
+        }
+
+        .map-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--navy);
+        }
+
+        .map-container {
+            max-width: 800px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #d3d3d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .map-container svg {
+            width: 80px;
+            height: 80px;
+            opacity: 0.5;
+        }
+
+        .map-container p {
+            font-size: 16px;
+            color: var(--body);
+            text-align: center;
+        }
+
+        .map-container a {
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .map-container a:hover {
+            color: var(--navy);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--light);
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .cta-section {
+                padding: 60px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cta-section {
+                padding: 40px 24px;
+            }
+        }
+
+        .cta-section h2 {
+            color: var(--navy);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 14px 32px;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 0;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            color: var(--white);
+            padding: 60px;
+        }
+
+        @media (max-width: 900px) {
+            footer {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            footer {
+                padding: 30px 24px;
+            }
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-col a {
+            display: block;
+            color: #bbb;
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--blue);
+        }
+
+        .footer-col p {
+            color: #bbb;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--navy);
+            color: var(--white);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--blue);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            font-family: 'Onest', sans-serif;
+            background-color: transparent;
+            color: var(--white);
+            font-size: 14px;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #777;
+        }
+
+        .newsletter-form button {
+            padding: 12px 24px;
+            background-color: var(--blue);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--navy);
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="index.html#listings" class="nav-link">Listings</a>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="nav-logo">PREMIER REALTY</a>
+            </div>
+            <div class="nav-right">
+                <div class="dropdown">
+                    <a href="#" class="nav-link">Services</a>
+                    <div class="dropdown-content">
+                        <a href="services.html">Our Services</a>
+                        <a href="services.html#buy">Buy a Home</a>
+                        <a href="services.html#sell">Sell Your Home</a>
+                        <a href="services.html#valuation">Home Valuation</a>
+                    </div>
+                </div>
+                <a href="index.html#faq" class="nav-link">FAQ</a>
+                <a href="index.html#contact" class="nav-btn">Get Started ↗</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="nav-mobile">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="index.html#listings" class="nav-link">Listings</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="index.html#faq" class="nav-link">FAQ</a>
+        <a href="contact.html" class="nav-link active" style="margin: 0 24px;">Contact</a>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="container">
+            <h1>Get in Touch</h1>
+            <p>We'd love to hear from you</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-main">
+        <div class="container">
+            <div class="contact-grid scroll-reveal">
+                <!-- Contact Form -->
+                <div>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-message" id="formMessage"></div>
+
+                        <div class="form-group required">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+
+                        <div class="form-group required">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject">
+                                <option value="">Select a subject</option>
+                                <option value="inquiry">General Inquiry</option>
+                                <option value="buy">Buy a Home</option>
+                                <option value="sell">Sell My Home</option>
+                                <option value="valuation">Home Valuation</option>
+                                <option value="investment">Investment Advisory</option>
+                                <option value="relocation">Relocation Services</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us more about your real estate needs..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message →</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3>Office Address</h3>
+                        <p>4030 Truxel Rd Suite D<br>Sacramento, CA 95834</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Phone</h3>
+                        <p><a href="tel:(916)256-7073">(916) 256-7073</a></p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Email</h3>
+                        <p><a href="mailto:helenwongre@gmail.com">helenwongre@gmail.com</a></p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Business Hours</h3>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: By Appointment</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Languages Spoken</h3>
+                        <p>English<br>Español (Spanish)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2>Find Us</h2>
+            <div class="map-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <p>4030 Truxel Rd Suite D, Sacramento, CA 95834</p>
+                <a href="https://www.google.com/maps/search/4030+Truxel+Rd+Suite+D+Sacramento+CA+95834" target="_blank">View on Google Maps</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Looking for Something Specific?</h2>
+            <p style="font-size: 18px; margin-bottom: 30px; color: var(--body);">Check out our services to learn more about how we can help you.</p>
+            <a href="services.html" class="btn">Explore Our Services</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- Company Info -->
+            <div class="footer-col">
+                <h4>Premier Realty</h4>
+                <p><strong>Helen Wong</strong></p>
+                <p>4030 Truxel Rd Suite D<br>Sacramento, CA 95834</p>
+                <p>(916) 256-7073<br>helenwongre@gmail.com</p>
+                <div class="social-links">
+                    <a href="#">f</a>
+                    <a href="#">in</a>
+                    <a href="#">ig</a>
+                </div>
+            </div>
+
+            <!-- Page Links -->
+            <div class="footer-col">
+                <h4>Pages</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <!-- Service Links -->
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="services.html#buy">Buy a Home</a>
+                <a href="services.html#sell">Sell Your Home</a>
+                <a href="services.html#valuation">Home Valuation</a>
+                <a href="services.html#investment">Investment Advisory</a>
+                <a href="services.html#relocation">Relocation Services</a>
+                <a href="services.html#market">Market Analysis</a>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Get the latest Sacramento real estate insights delivered to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Premier Realty Sacramento. All rights reserved. | DRE #01359322</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        const navMobile = document.querySelector('.nav-mobile');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            navMobile.classList.toggle('active');
+        });
+
+        // Set active nav link
+        const currentPage = 'contact.html';
+        const navLinks = document.querySelectorAll('.nav-mobile a');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = document.querySelectorAll('.nav-mobile a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                navMobile.classList.remove('active');
+            });
+        });
+
+        // Form Handling
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const fullName = document.getElementById('fullName').value.trim();
+                const email = document.getElementById('email').value.trim();
+
+                if (!fullName || !email) {
+                    formMessage.textContent = 'Please fill in all required fields.';
+                    formMessage.className = 'form-message error';
+                    return;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    formMessage.textContent = 'Please enter a valid email address.';
+                    formMessage.className = 'form-message error';
+                    return;
+                }
+
+                formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+                formMessage.className = 'form-message success';
+
+                setTimeout(() => {
+                    contactForm.reset();
+                    formMessage.className = 'form-message';
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>

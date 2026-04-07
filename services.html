@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Premier Realty Sacramento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #3A86FF;
+            --navy: #27548A;
+            --black: #000;
+            --body: #333;
+            --light: #f7f7f5;
+            --border: #e8e8e6;
+            --white: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Onest', sans-serif;
+            color: var(--body);
+            background-color: var(--white);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 40px;
+            }
+            h1 {
+                font-size: 42px;
+            }
+            h2 {
+                font-size: 32px;
+            }
+            h3 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 24px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            h3 {
+                font-size: 20px;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 900px) {
+            .nav-container {
+                padding: 0 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                padding: 0 24px;
+            }
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--body);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--navy);
+        }
+
+        nav a.active {
+            color: var(--navy);
+            border-bottom: 2px solid var(--navy);
+            padding-bottom: 2px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            z-index: 1;
+            border: 1px solid var(--border);
+            top: 100%;
+            right: 0;
+        }
+
+        .dropdown-content a {
+            color: var(--body);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--light);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .nav-btn {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 0;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--blue);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--navy);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 900px) {
+            .nav-left, .nav-right {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .nav-center {
+                position: static;
+                transform: none;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            nav.active .hamburger span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+            nav.active .hamburger span:nth-child(2) {
+                opacity: 0;
+            }
+            nav.active .hamburger span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+        }
+
+        .nav-mobile {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: var(--white);
+            flex-direction: column;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-mobile.active {
+            display: flex;
+        }
+
+        .nav-mobile a {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--light);
+            font-size: 14px;
+            text-decoration: none;
+            color: var(--body);
+        }
+
+        .nav-mobile a:hover {
+            background-color: var(--light);
+        }
+
+        .nav-mobile a.active {
+            background-color: var(--light);
+            color: var(--navy);
+            border-bottom: 2px solid var(--navy);
+        }
+
+        /* Hero Banner */
+        .hero {
+            margin-top: 80px;
+            padding: 100px 60px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                padding: 80px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 60px 24px;
+            }
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: var(--white);
+            font-size: 20px;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+        }
+
+        /* Service Sections */
+        .services-grid {
+            padding: 100px 60px;
+        }
+
+        @media (max-width: 900px) {
+            .services-grid {
+                padding: 80px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .services-grid {
+                padding: 60px 24px;
+            }
+        }
+
+        .service-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .service-item:nth-child(1) { animation-delay: 0.1s; }
+        .service-item:nth-child(2) { animation-delay: 0.2s; }
+        .service-item:nth-child(3) { animation-delay: 0.3s; }
+        .service-item:nth-child(4) { animation-delay: 0.1s; }
+        .service-item:nth-child(5) { animation-delay: 0.2s; }
+        .service-item:nth-child(6) { animation-delay: 0.3s; }
+
+        .service-item.reverse {
+            direction: rtl;
+        }
+
+        .service-item.reverse > * {
+            direction: ltr;
+        }
+
+        @media (max-width: 900px) {
+            .service-item {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin-bottom: 60px;
+            }
+            .service-item.reverse {
+                direction: ltr;
+            }
+        }
+
+        .service-content h3 {
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .service-content p {
+            color: var(--body);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+            color: var(--body);
+        }
+
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .service-icon {
+            width: 100%;
+            aspect-ratio: 1;
+            background-color: var(--light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .btn {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 14px 32px;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 0;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--blue);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--light);
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .cta-section {
+                padding: 60px 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cta-section {
+                padding: 40px 24px;
+            }
+        }
+
+        .cta-section h2 {
+            color: var(--navy);
+            margin-bottom: 30px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            color: var(--white);
+            padding: 60px;
+        }
+
+        @media (max-width: 900px) {
+            footer {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            footer {
+                padding: 30px 24px;
+            }
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-col a {
+            display: block;
+            color: #bbb;
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--blue);
+        }
+
+        .footer-col p {
+            color: #bbb;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--navy);
+            color: var(--white);
+            text-align: center;
+            line-height: 40px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--blue);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            font-family: 'Onest', sans-serif;
+            background-color: transparent;
+            color: var(--white);
+            font-size: 14px;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #777;
+        }
+
+        .newsletter-form button {
+            padding: 12px 24px;
+            background-color: var(--blue);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--navy);
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="index.html#listings" class="nav-link">Listings</a>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="nav-logo">PREMIER REALTY</a>
+            </div>
+            <div class="nav-right">
+                <div class="dropdown">
+                    <a href="#" class="nav-link">Services</a>
+                    <div class="dropdown-content">
+                        <a href="services.html">Our Services</a>
+                        <a href="services.html#buy">Buy a Home</a>
+                        <a href="services.html#sell">Sell Your Home</a>
+                        <a href="services.html#valuation">Home Valuation</a>
+                    </div>
+                </div>
+                <a href="index.html#faq" class="nav-link">FAQ</a>
+                <a href="index.html#contact" class="nav-btn">Get Started ↗</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="nav-mobile">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="index.html#listings" class="nav-link">Listings</a>
+        <a href="services.html" class="nav-link active">Services</a>
+        <a href="index.html#faq" class="nav-link">FAQ</a>
+        <a href="index.html#contact" class="nav-btn" style="margin: 16px 24px;">Get Started ↗</a>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive real estate solutions across Greater Sacramento</p>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services-grid">
+        <div class="container">
+            <!-- Service 1: Buy a Home -->
+            <div class="service-item scroll-reveal">
+                <div class="service-content">
+                    <h3 id="buy">Buy a Home</h3>
+                    <p>Finding your perfect Sacramento home is more than just viewing properties. With deep neighborhood knowledge and exclusive access to pre-market listings, we guide you through every step of the buying process. Our expert negotiation skills ensure you get the best possible deal on your dream home.</p>
+                    <ul class="service-features">
+                        <li>Exclusive pre-market listings access</li>
+                        <li>Expert neighborhood guidance</li>
+                        <li>Skilled negotiation representation</li>
+                        <li>Complete transaction coordination</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn">Get Started</a>
+                </div>
+                <div class="service-icon">🏡</div>
+            </div>
+
+            <!-- Service 2: Sell Your Home -->
+            <div class="service-item reverse scroll-reveal">
+                <div class="service-icon">📈</div>
+                <div class="service-content">
+                    <h3 id="sell">Sell Your Home</h3>
+                    <p>Selling your home deserves a strategic approach. From strategic pricing based on current market data to professional staging consultation and targeted marketing campaigns, we ensure maximum exposure for your property. Our open house coordination and buyer management bring qualified offers to your door.</p>
+                    <ul class="service-features">
+                        <li>Strategic pricing analysis</li>
+                        <li>Professional staging consultation</li>
+                        <li>Targeted digital marketing</li>
+                        <li>Open house coordination</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Service 3: Home Valuation -->
+            <div class="service-item scroll-reveal">
+                <div class="service-content">
+                    <h3 id="valuation">Home Valuation</h3>
+                    <p>Knowledge is power when it comes to real estate. Our free comprehensive market analysis provides you with the true value of your home. We analyze comparable sales data, evaluate current market trends, and assess your property's condition to deliver accurate valuations you can trust.</p>
+                    <ul class="service-features">
+                        <li>Comprehensive market analysis</li>
+                        <li>Comparable sales data review</li>
+                        <li>Current trend analysis</li>
+                        <li>Property condition assessment</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn">Get Started</a>
+                </div>
+                <div class="service-icon">💰</div>
+            </div>
+
+            <!-- Service 4: Investment Advisory -->
+            <div class="service-item reverse scroll-reveal">
+                <div class="service-icon">📊</div>
+                <div class="service-content">
+                    <h3 id="investment">Investment Advisory</h3>
+                    <p>Sacramento's real estate market presents excellent investment opportunities. Our investment advisory service provides detailed analysis of investment properties including cap rate calculations, rental market data, and growth area identification. We help you develop a comprehensive portfolio strategy for long-term success.</p>
+                    <ul class="service-features">
+                        <li>Cap rate calculations and analysis</li>
+                        <li>Rental market data research</li>
+                        <li>Growth area identification</li>
+                        <li>Portfolio strategy development</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Service 5: Relocation Services -->
+            <div class="service-item scroll-reveal">
+                <div class="service-content">
+                    <h3 id="relocation">Relocation Services</h3>
+                    <p>Moving to Sacramento is a big decision. We make the transition smooth with neighborhood tours tailored to your lifestyle, comprehensive school district guidance, community orientation, and even temporary housing assistance if needed. Let us help you settle into your new Sacramento home with confidence.</p>
+                    <ul class="service-features">
+                        <li>Personalized neighborhood tours</li>
+                        <li>School district guidance</li>
+                        <li>Community orientation</li>
+                        <li>Temporary housing assistance</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn">Get Started</a>
+                </div>
+                <div class="service-icon">🚚</div>
+            </div>
+
+            <!-- Service 6: Market Analysis -->
+            <div class="service-item reverse scroll-reveal">
+                <div class="service-icon">📈</div>
+                <div class="service-content">
+                    <h3 id="market">Market Analysis</h3>
+                    <p>Stay informed with data-driven Sacramento real estate insights. We publish quarterly market reports tracking price trends, analyze inventory movements, and provide you with the information you need to make informed real estate decisions. Knowledge of market conditions gives you a competitive advantage.</p>
+                    <ul class="service-features">
+                        <li>Quarterly market reports</li>
+                        <li>Price trend analysis</li>
+                        <li>Inventory monitoring</li>
+                        <li>Market insights and forecasting</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p style="font-size: 18px; margin-bottom: 30px; color: var(--body);">Let's discuss how we can help you achieve your real estate goals.</p>
+            <a href="index.html#contact" class="btn">Contact Us Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- Company Info -->
+            <div class="footer-col">
+                <h4>Premier Realty</h4>
+                <p><strong>Helen Wong</strong></p>
+                <p>4030 Truxel Rd Suite D<br>Sacramento, CA 95834</p>
+                <p>(916) 256-7073<br>helenwongre@gmail.com</p>
+                <div class="social-links">
+                    <a href="#">f</a>
+                    <a href="#">in</a>
+                    <a href="#">ig</a>
+                </div>
+            </div>
+
+            <!-- Page Links -->
+            <div class="footer-col">
+                <h4>Pages</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <!-- Service Links -->
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="services.html#buy">Buy a Home</a>
+                <a href="services.html#sell">Sell Your Home</a>
+                <a href="services.html#valuation">Home Valuation</a>
+                <a href="services.html#investment">Investment Advisory</a>
+                <a href="services.html#relocation">Relocation Services</a>
+                <a href="services.html#market">Market Analysis</a>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Get the latest Sacramento real estate insights delivered to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Premier Realty Sacramento. All rights reserved. | DRE #01359322</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        const navMobile = document.querySelector('.nav-mobile');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            navMobile.classList.toggle('active');
+        });
+
+        // Set active nav link
+        const currentPage = 'services.html';
+        const navLinks = document.querySelectorAll('.nav-mobile a');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = document.querySelectorAll('.nav-mobile a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                navMobile.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
