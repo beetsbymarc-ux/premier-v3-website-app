@@ -777,6 +777,340 @@
         padding: 40px 30px;
       }
     }
+
+    /* ================================================
+       MOBILE VIDEO HERO — instant loading, no frames
+       ================================================ */
+
+    /* Hide desktop canvas on mobile */
+    @media (max-width: 767px) {
+      .animation-section { display: none !important; }
+      .chapter-markers  { display: none !important; }
+      #particles-canvas { display: none !important; }
+    }
+
+    /* ---- Mobile Hero Shell ---- */
+    .mobile-hero {
+      display: none;
+      position: relative;
+      width: 100%;
+      height: 100svh;
+      min-height: 600px;
+      overflow: hidden;
+      background: var(--ink);
+    }
+    @media (max-width: 767px) {
+      .mobile-hero { display: block; }
+    }
+
+    /* ---- Video layer ---- */
+    .mobile-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .mobile-video-el {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.7s ease;
+    }
+    .mobile-video-el.hidden { opacity: 0; pointer-events: none; }
+
+    /* ---- Cinematic gradient overlay ---- */
+    .mobile-hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to bottom,
+        rgba(14,13,12,0.28) 0%,
+        rgba(14,13,12,0.04) 38%,
+        rgba(14,13,12,0.55) 72%,
+        rgba(14,13,12,0.88) 100%
+      );
+    }
+
+    /* ---- Video indicator dots (top-right) ---- */
+    .mobile-video-dots {
+      position: absolute;
+      top: 28px;
+      right: 24px;
+      z-index: 4;
+      display: flex;
+      gap: 7px;
+      opacity: 0;
+      animation: mobileFadeIn 0.6s 1.2s ease forwards;
+    }
+    .mobile-video-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(244,240,234,0.28);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .mobile-video-dot.active {
+      background: var(--teal);
+      transform: scale(1.45);
+    }
+
+    /* ---- Hero text content ---- */
+    .mobile-hero-content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 28px 130px;
+    }
+    .mobile-hero-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: mobileSlideUp 0.65s 0.25s cubic-bezier(0.23,1,0.32,1) forwards;
+    }
+    .mobile-hero-title {
+      font-family: var(--heading);
+      font-size: clamp(44px, 13vw, 64px);
+      font-weight: 300;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: var(--warm-white);
+      margin-bottom: 16px;
+      opacity: 0;
+      transform: translateY(22px);
+      animation: mobileSlideUp 0.75s 0.4s cubic-bezier(0.23,1,0.32,1) forwards;
+    }
+    .mobile-hero-title em { font-style: italic; color: var(--teal); }
+    .mobile-hero-sub {
+      font-size: 14px;
+      color: var(--concrete);
+      line-height: 1.55;
+      max-width: 290px;
+      margin-bottom: 26px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: mobileSlideUp 0.75s 0.55s cubic-bezier(0.23,1,0.32,1) forwards;
+    }
+    .mobile-hero-cta {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 14px 30px;
+      background: var(--teal);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: mobileSlideUp 0.75s 0.7s cubic-bezier(0.23,1,0.32,1) forwards;
+    }
+
+    /* ---- Bottom stat bar ---- */
+    .mobile-stat-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 18px 20px 40px;
+      background: linear-gradient(to top, rgba(14,13,12,0.92) 60%, transparent);
+      opacity: 0;
+      animation: mobileFadeIn 0.7s 0.95s ease forwards;
+    }
+    .mobile-stat-item {
+      text-align: center;
+      flex: 1;
+      border-right: 1px solid rgba(244,240,234,0.1);
+    }
+    .mobile-stat-item:last-child { border-right: none; }
+    .mobile-stat-num {
+      display: block;
+      font-family: var(--heading);
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--warm-white);
+      letter-spacing: 0.02em;
+    }
+    .mobile-stat-lbl {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--concrete-dim);
+      margin-top: 4px;
+    }
+
+    /* ---- Mobile scroll-reveal sections ---- */
+    .mobile-sections {
+      display: none;
+      background: var(--ink);
+      position: relative;
+      z-index: 20;
+    }
+    @media (max-width: 767px) {
+      .mobile-sections { display: block; }
+    }
+
+    .mobile-section {
+      padding: 68px 28px;
+      border-bottom: 1px solid rgba(244,240,234,0.06);
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .mobile-section.in-view { opacity: 1; transform: translateY(0); }
+
+    .mobile-section-overline {
+      font-size: 9px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+    .mobile-section-title {
+      font-family: var(--heading);
+      font-size: clamp(28px, 8vw, 38px);
+      font-weight: 300;
+      line-height: 1.12;
+      margin-bottom: 18px;
+      letter-spacing: -0.015em;
+    }
+    .mobile-section-body {
+      font-size: 14px;
+      color: var(--concrete);
+      line-height: 1.72;
+      margin-bottom: 24px;
+    }
+    .mobile-feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 20px;
+    }
+    .mobile-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--warm-white-dim);
+      line-height: 1.55;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(244,240,234,0.06);
+    }
+    .mobile-feature-item::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--teal);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+    .mobile-service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .mobile-service-card {
+      background: rgba(244,240,234,0.03);
+      border: 1px solid rgba(244,240,234,0.07);
+      border-radius: 10px;
+      padding: 18px 14px;
+      backdrop-filter: blur(20px);
+    }
+    .mobile-service-icon { font-size: 22px; margin-bottom: 9px; }
+    .mobile-service-title { font-size: 12px; font-weight: 500; color: var(--warm-white); margin-bottom: 5px; }
+    .mobile-service-desc { font-size: 11px; color: var(--concrete-dim); line-height: 1.5; }
+
+    .mobile-neighborhood-list { display: flex; flex-direction: column; margin-top: 22px; }
+    .mobile-hood-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(244,240,234,0.07);
+    }
+    .mobile-hood-name { font-family: var(--heading); font-size: 20px; font-weight: 300; }
+    .mobile-hood-tag { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); }
+
+    /* ---- Mobile CTA ---- */
+    .mobile-cta-section {
+      display: none;
+      padding: 80px 28px 100px;
+      text-align: center;
+      background: var(--ink);
+      position: relative;
+      z-index: 20;
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    @media (max-width: 767px) { .mobile-cta-section { display: block; } }
+    .mobile-cta-section.in-view { opacity: 1; transform: translateY(0); }
+
+    .mobile-cta-title {
+      font-family: var(--heading);
+      font-size: clamp(36px, 11vw, 52px);
+      font-weight: 200;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      line-height: 1.1;
+    }
+    .mobile-cta-title em { display: block; font-style: italic; color: var(--teal); }
+    .mobile-cta-sub { font-size: 14px; color: var(--concrete); margin-bottom: 36px; line-height: 1.65; }
+    .mobile-cta-buttons { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+    .mobile-btn-primary {
+      display: block; width: 100%; max-width: 280px;
+      padding: 16px 28px;
+      background: var(--teal); color: #fff;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      text-decoration: none; text-align: center; border-radius: 3px;
+    }
+    .mobile-btn-secondary {
+      display: block; width: 100%; max-width: 280px;
+      padding: 15px 28px;
+      background: transparent;
+      border: 1px solid rgba(244,240,234,0.22);
+      color: var(--warm-white);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      text-decoration: none; text-align: center; border-radius: 3px;
+    }
+    .mobile-agent-card {
+      margin-top: 44px;
+      padding: 26px 22px;
+      background: rgba(244,240,234,0.03);
+      border: 1px solid rgba(244,240,234,0.07);
+      border-radius: 12px;
+      backdrop-filter: blur(20px);
+    }
+    .mobile-agent-name { font-family: var(--heading); font-size: 20px; font-weight: 300; margin-bottom: 5px; }
+    .mobile-agent-title { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+    .mobile-agent-contact { font-size: 13px; color: var(--concrete); line-height: 1.85; }
+
+    /* ---- Shared mobile keyframes ---- */
+    @keyframes mobileSlideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes mobileFadeIn {
+      to { opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -818,6 +1152,136 @@
     <div class="chapter-dot" data-section="3"></div>
     <div class="chapter-dot" data-section="4"></div>
     <div class="chapter-dot" data-section="5"></div>
+  </div>
+
+  <!-- ================================================
+       MOBILE HERO — two looping portrait videos
+       Visible only on screens ≤ 767 px
+       ================================================ -->
+  <section id="mobile-hero" class="mobile-hero">
+    <!-- Video layer -->
+    <div class="mobile-video-wrap">
+      <video id="mvid-1" class="mobile-video-el" autoplay muted playsinline preload="auto">
+        <source src="hero-mobile-1.mp4" type="video/mp4">
+      </video>
+      <video id="mvid-2" class="mobile-video-el hidden" muted playsinline preload="auto">
+        <source src="hero-mobile-2.mp4" type="video/mp4">
+      </video>
+    </div>
+    <!-- Gradient overlay -->
+    <div class="mobile-hero-overlay"></div>
+    <!-- Top-right indicator dots -->
+    <div class="mobile-video-dots">
+      <div class="mobile-video-dot active" id="mvdot-1"></div>
+      <div class="mobile-video-dot" id="mvdot-2"></div>
+    </div>
+    <!-- Text content -->
+    <div class="mobile-hero-content">
+      <div class="mobile-hero-eyebrow">Premier Realty · Sacramento</div>
+      <h1 class="mobile-hero-title">Where Dreams<br><em>Build</em></h1>
+      <p class="mobile-hero-sub">Expert real estate in Sacramento's finest neighborhoods. 20+ years of trusted service.</p>
+      <a href="#mobile-cta" class="mobile-hero-cta">Connect With Helen</a>
+    </div>
+    <!-- Stats bar anchored to bottom -->
+    <div class="mobile-stat-bar">
+      <div class="mobile-stat-item">
+        <span class="mobile-stat-num">20+</span>
+        <span class="mobile-stat-lbl">Years</span>
+      </div>
+      <div class="mobile-stat-item">
+        <span class="mobile-stat-num">800+</span>
+        <span class="mobile-stat-lbl">Homes Sold</span>
+      </div>
+      <div class="mobile-stat-item">
+        <span class="mobile-stat-num">#1</span>
+        <span class="mobile-stat-lbl">Sacramento</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       MOBILE SCROLL SECTIONS — appear below video hero
+       Visible only on screens ≤ 767 px
+       ================================================ -->
+  <div class="mobile-sections">
+
+    <!-- Vision -->
+    <div class="mobile-section">
+      <div style="font-family:var(--heading);font-size:52px;color:var(--teal);line-height:1;margin-bottom:10px;">"</div>
+      <p style="font-family:var(--heading);font-size:clamp(20px,5.5vw,26px);font-weight:300;font-style:italic;line-height:1.55;margin-bottom:20px;color:var(--warm-white);">We see what others miss — the potential in raw land, the future in every frame, the lifestyle in every home.</p>
+      <div style="width:36px;height:1px;background:var(--teal);margin-bottom:12px;"></div>
+      <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--concrete-dim);">Helen Wong · Founder</div>
+    </div>
+
+    <!-- Who We Are -->
+    <div class="mobile-section">
+      <div class="mobile-section-overline">Who We Are</div>
+      <h2 class="mobile-section-title">Precision,<br>Passion, Purpose</h2>
+      <p class="mobile-section-body">With 20+ years of experience in Sacramento real estate, Helen Wong brings deep local knowledge, genuine care, and bilingual expertise to every transaction.</p>
+      <div class="mobile-feature-list">
+        <div class="mobile-feature-item">Local market expertise across all Sacramento neighborhoods</div>
+        <div class="mobile-feature-item">Bilingual service — English &amp; Mandarin</div>
+        <div class="mobile-feature-item">Strategic pricing &amp; negotiation</div>
+        <div class="mobile-feature-item">Comprehensive market analysis</div>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div class="mobile-section">
+      <div class="mobile-section-overline">What We Offer</div>
+      <h2 class="mobile-section-title">Services &amp;<br>Expertise</h2>
+      <div class="mobile-service-grid">
+        <div class="mobile-service-card">
+          <div class="mobile-service-icon">🏠</div>
+          <div class="mobile-service-title">Residential Sales</div>
+          <div class="mobile-service-desc">First-time buyers to luxury estates.</div>
+        </div>
+        <div class="mobile-service-card">
+          <div class="mobile-service-icon">🔑</div>
+          <div class="mobile-service-title">Investment</div>
+          <div class="mobile-service-desc">Strategic Sacramento investments.</div>
+        </div>
+        <div class="mobile-service-card">
+          <div class="mobile-service-icon">📍</div>
+          <div class="mobile-service-title">Local Expert</div>
+          <div class="mobile-service-desc">Deep neighborhood knowledge.</div>
+        </div>
+        <div class="mobile-service-card">
+          <div class="mobile-service-icon">💬</div>
+          <div class="mobile-service-title">Bilingual</div>
+          <div class="mobile-service-desc">English and Mandarin support.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Neighborhoods -->
+    <div class="mobile-section">
+      <div class="mobile-section-overline">Areas We Serve</div>
+      <h2 class="mobile-section-title">Sacramento's<br>Premier Areas</h2>
+      <div class="mobile-neighborhood-list">
+        <div class="mobile-hood-item"><span class="mobile-hood-name">Land Park</span><span class="mobile-hood-tag">Luxury &amp; Elegance</span></div>
+        <div class="mobile-hood-item"><span class="mobile-hood-name">Pocket</span><span class="mobile-hood-tag">Modern Living</span></div>
+        <div class="mobile-hood-item"><span class="mobile-hood-name">Tahoe Park</span><span class="mobile-hood-tag">Community</span></div>
+        <div class="mobile-hood-item"><span class="mobile-hood-name">Natomas</span><span class="mobile-hood-tag">New Development</span></div>
+        <div class="mobile-hood-item"><span class="mobile-hood-name">Granite Bay</span><span class="mobile-hood-tag">Prestige &amp; Privacy</span></div>
+      </div>
+    </div>
+
+  </div><!-- /.mobile-sections -->
+
+  <!-- MOBILE CTA -->
+  <div id="mobile-cta" class="mobile-cta-section">
+    <div class="mobile-cta-title">Your Luxury<br><em>Awaits</em></div>
+    <p class="mobile-cta-sub">Ready to find your dream home in Sacramento? Let's make it happen together.</p>
+    <div class="mobile-cta-buttons">
+      <a href="tel:9162567073" class="mobile-btn-primary">Call (916) 256-7073</a>
+      <a href="mailto:helenwong@premierrealty.com" class="mobile-btn-secondary">Send a Message</a>
+    </div>
+    <div class="mobile-agent-card">
+      <div class="mobile-agent-name">Helen Wong</div>
+      <div class="mobile-agent-title">Realtor · DRE #01359322</div>
+      <div class="mobile-agent-contact">(916) 256-7073<br>Premier Realty Sacramento<br>Serving Sacramento &amp; Greater Area</div>
+    </div>
   </div>
 
   <!-- ANIMATION SECTION -->
@@ -1265,8 +1729,84 @@
       document.querySelectorAll('.gallery-item').forEach(item => observer.observe(item));
     }
 
+    // ===== MOBILE VIDEO MODE =====
+    function initMobileVideo() {
+      // Instantly dismiss loader — no frames needed
+      const loader = document.getElementById('loader');
+      loader.style.transition = 'opacity 0.35s ease, filter 0.35s ease';
+      loader.style.opacity = '0';
+      loader.style.filter = 'blur(6px)';
+      setTimeout(() => { loader.style.display = 'none'; }, 360);
+
+      const v1   = document.getElementById('mvid-1');
+      const v2   = document.getElementById('mvid-2');
+      const dot1 = document.getElementById('mvdot-1');
+      const dot2 = document.getElementById('mvdot-2');
+
+      // Pre-buffer second video silently
+      v2.load();
+
+      function activateV1() {
+        v2.pause();
+        v2.classList.add('hidden');
+        v1.style.opacity = '1';
+        v1.currentTime = 0;
+        v1.play().catch(() => {});
+        dot1.classList.add('active');
+        dot2.classList.remove('active');
+      }
+
+      function activateV2() {
+        v1.style.opacity = '0';
+        // slight delay so opacity transition looks smooth
+        setTimeout(() => {
+          v2.classList.remove('hidden');
+          v2.style.opacity = '1';
+          v2.currentTime = 0;
+          v2.play().catch(() => {});
+        }, 50);
+        dot2.classList.add('active');
+        dot1.classList.remove('active');
+      }
+
+      v1.addEventListener('ended', activateV2);
+      v2.addEventListener('ended', activateV1);
+
+      // Autoplay first video (browser may block without user interaction, fallback to loop)
+      v1.play().catch(() => {
+        // If autoplay blocked, add loop attribute as fallback
+        v1.setAttribute('loop', '');
+      });
+
+      // Scroll-reveal for mobile content sections
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.mobile-section, .mobile-cta-section').forEach(el => {
+        revealObs.observe(el);
+      });
+
+      // Smooth scroll for CTA anchor button
+      document.querySelector('.mobile-hero-cta').addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('mobile-cta');
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
     // ===== INIT =====
     async function init() {
+      if (isMobile) {
+        initMobileVideo();
+        return; // Skip all frame loading on mobile — instant experience
+      }
+
+      // ---- Desktop path ----
       canvas = document.getElementById('frame-canvas');
       ctx = canvas.getContext('2d', { alpha: false });
 

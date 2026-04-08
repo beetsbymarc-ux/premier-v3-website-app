@@ -2,8 +2,10 @@
 .DS_Store
 **/.DS_Store
 
-# Large video files
+# Large video files (allow mobile hero videos in animated-site)
 *.mp4
+!animated-site/hero-mobile-1.mp4
+!animated-site/hero-mobile-2.mp4
 
 # Build artifacts
 site-deploy.zip

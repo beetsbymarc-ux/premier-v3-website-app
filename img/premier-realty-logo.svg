@@ -1,36 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 230" role="img" aria-label="Premier Realty">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 230">
+  <!-- Chimney accent bar — gray, sits above left roof edge -->
+  <rect x="76" y="6" width="28" height="10" rx="1" fill="#8C8C8C"/>
 
-  <!-- Gray chimney cap -->
-  <rect x="72" y="4" width="34" height="14" fill="#8A8A8A"/>
+  <!-- Left house column / door surround (dark box) -->
+  <rect x="76" y="16" width="46" height="92" rx="0" fill="#1C1C1C"/>
+  <!-- Door opening cutout -->
+  <rect x="92" y="48" width="30" height="60" rx="0" fill="#000000"/>
 
-  <!-- Left column with transparent door opening (evenodd cutout) -->
-  <path fill-rule="evenodd" fill="#1A1A1A"
-    d="M72,18 L126,18 L126,118 L72,118 Z
-       M94,50 L126,50 L126,118 L94,118 Z"/>
+  <!-- Main roof chevron: thick blue V from left pillar top → peak → right -->
+  <polyline points="76,16 240,108 404,16"
+    fill="none" stroke="#4ABAEB" stroke-width="24"
+    stroke-linejoin="miter" stroke-linecap="square"/>
 
-  <!-- Blue roof chevron -->
-  <polyline
-    points="72,18  260,118  448,18"
-    fill="none"
-    stroke="#4ABAEB"
-    stroke-width="26"
-    stroke-linejoin="miter"
-    stroke-linecap="square"/>
+  <!-- Right chimney: vertical stub above right end of roof -->
+  <line x1="404" y1="16" x2="404" y2="0"
+    stroke="#4ABAEB" stroke-width="24" stroke-linecap="square"/>
 
-  <!-- Right chimney vertical stub -->
-  <line x1="448" y1="18" x2="448" y2="0"
-    stroke="#4ABAEB" stroke-width="26" stroke-linecap="square"/>
+  <!-- PREMIER: gray, normal weight -->
+  <text x="8" y="192"
+    font-family="Arial,Helvetica,sans-serif"
+    font-size="56" font-weight="400" letter-spacing="4"
+    fill="#888888">PREMIER</text>
 
-  <!-- PREMIER — gray -->
-  <text x="4" y="198"
-    font-family="Arial,'Helvetica Neue',Helvetica,sans-serif"
-    font-size="57" font-weight="400" letter-spacing="1"
-    fill="#878787">PREMIER</text>
-
-  <!-- REALTY — blue bold -->
-  <text x="274" y="198"
-    font-family="Arial,'Helvetica Neue',Helvetica,sans-serif"
-    font-size="57" font-weight="700" letter-spacing="1"
+  <!-- REALTY: blue, bold -->
+  <text x="284" y="192"
+    font-family="Arial,Helvetica,sans-serif"
+    font-size="56" font-weight="700" letter-spacing="4"
     fill="#4ABAEB">REALTY</text>
-
 </svg>
