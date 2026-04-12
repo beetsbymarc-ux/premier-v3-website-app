@@ -368,6 +368,18 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 .footer-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s}
 .footer-links a:hover{color:var(--warm)}
 
+/* ── BRIDGE PARALLAX ── */
+.bridge{position:relative;height:70vh;min-height:480px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.bridge-video{position:absolute;inset:0;width:100%;height:130%;object-fit:cover;z-index:0;filter:brightness(.28) saturate(.7);will-change:transform}
+.bridge-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,11,11,.7) 0%,rgba(11,11,11,.1) 40%,rgba(11,11,11,.7) 100%)}
+.bridge-content{position:relative;z-index:2;text-align:center;max-width:900px;padding:0 clamp(20px,5vw,72px)}
+.bridge-eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:14px}
+.bridge-eyebrow::before,.bridge-eyebrow::after{content:'';flex:1;max-width:48px;height:1px;background:var(--gold);opacity:.6}
+.bridge-h{font-family:var(--serif);font-size:clamp(38px,6vw,80px);font-weight:300;line-height:1.05;color:var(--white);letter-spacing:-.01em}
+.bridge-h em{font-style:italic;color:var(--gold-light)}
+.bridge-sub{margin:18px auto 0;font-size:15px;color:rgba(245,240,232,.5);font-weight:300;line-height:1.75;max-width:480px}
+.bridge-line{width:60px;height:1px;background:var(--gold);margin:28px auto 0;opacity:.45}
+
 /* ── SERVING SACRAMENTO ── */
 .serving{padding:clamp(80px,12vh,130px) 0;background:var(--navy)}
 .serving-head{text-align:center;max-width:560px;margin:0 auto 56px}
@@ -492,21 +504,22 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="hero">
-  <!-- Desktop hero video -->
-  <video class="hero-video" autoplay muted loop playsinline>
+  <!-- Crossfading desktop hero videos -->
+  <video id="hv1" class="hero-video" autoplay muted playsinline style="z-index:0;transition:opacity 1.2s ease;opacity:1">
     <source src="img/hero-bg-new.mp4" type="video/mp4">
-    <source src="img/hero-video.mp4" type="video/mp4">
   </video>
-  <!-- Mobile hero video -->
+  <video id="hv2" class="hero-video" muted playsinline style="z-index:0;transition:opacity 1.2s ease;opacity:0">
+    <source src="img/living-room.mp4" type="video/mp4">
+  </video>
+  <!-- Mobile -->
   <video class="hero-video-mobile" autoplay muted loop playsinline>
     <source src="img/hero-mobile.mp4" type="video/mp4">
-    <source src="img/hero-bg-new.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-eyebrow">Sacramento's Premier Real Estate</div>
-      <h1 class="hero-h1">Find Your<br>Perfect Home<br><em>in Sacramento</em></h1>
+      <h1 class="hero-h1">Find Your<br>Dream Home<br><em>in Sacramento</em></h1>
       <p class="hero-sub">Luxury real estate expertise across Sacramento's most coveted neighborhoods. Trusted by 850+ families since 2008.</p>
       <div class="hero-badges">
         <div class="hero-badge hl">Top 1% Nationally</div>
@@ -651,7 +664,7 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 <section class="about" id="about">
   <div class="container">
     <div class="about-img-wrap reveal">
-      <img class="about-img" src="img/helen-wong.webp" alt="Helen Wong, Premier Realty Broker" onerror="this.src='https://picsum.photos/seed/helen/600/800'">
+      <img class="about-img" src="img/helen-wong-pro.jpeg" alt="Helen Wong, Premier Realty Broker" onerror="this.src='img/helen-wong.webp'">
       <div class="about-badge">
         <div class="about-badge-num">16</div>
         <div class="about-badge-lbl">Years of</div>
@@ -784,6 +797,20 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
     </div>
   </div>
 </section>
+
+<!-- ═══ BRIDGE PARALLAX ═══ -->
+<div class="bridge" id="bridge">
+  <video class="bridge-video" id="bridge-vid" autoplay muted loop playsinline>
+    <source src="img/drone-footage.mp4" type="video/mp4">
+  </video>
+  <div class="bridge-overlay"></div>
+  <div class="bridge-content">
+    <div class="bridge-eyebrow reveal">Premier Realty Sacramento</div>
+    <h2 class="bridge-h reveal rd1">Sacramento's Most<br><em>Trusted Agent</em></h2>
+    <p class="bridge-sub reveal rd2">Helen Wong has guided over 850 Sacramento families through life's most important transactions — with honesty, expertise, and results that speak for themselves.</p>
+    <div class="bridge-line reveal rd3"></div>
+  </div>
+</div>
 
 <!-- ═══ SERVING SACRAMENTO ═══ -->
 <section class="serving" id="neighborhoods">
@@ -1099,6 +1126,39 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 </footer>
 
 <script>
+// ── HERO VIDEO CROSSFADE ──
+(function(){
+  var v1=document.getElementById('hv1'),v2=document.getElementById('hv2');
+  if(!v1||!v2)return;
+  var active=0;
+  function crossfade(){
+    var curr=[v1,v2][active],next=[v1,v2][1-active];
+    next.currentTime=0;next.play();
+    next.style.opacity='1';curr.style.opacity='0';
+    setTimeout(function(){curr.pause();curr.currentTime=0;},1300);
+    active=1-active;
+  }
+  v1.play();
+  v1.addEventListener('ended',crossfade);
+  v2.addEventListener('ended',crossfade);
+  // Fallback: if video ends detection fails, switch every 8s
+  setInterval(function(){if(v1.paused&&v2.paused)v1.play();},8000);
+})();
+
+// ── BRIDGE PARALLAX ──
+(function(){
+  var vid=document.getElementById('bridge-vid');
+  if(!vid)return;
+  function onScroll(){
+    var rect=vid.closest('.bridge').getBoundingClientRect();
+    var progress=(window.innerHeight/2-rect.top)/window.innerHeight;
+    var shift=progress*32;
+    vid.style.transform='translateY('+shift+'px) scale(1.12)';
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+
 // ── LOADER ──
 (function(){
   const fill=document.getElementById('ld-fill'),pct=document.getElementById('ld-pct'),ldr=document.getElementById('loader');
