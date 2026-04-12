@@ -2,6 +2,11 @@
   publish = "."
   command = "echo 'No build needed'"
 
+[[redirects]]
+  from = "/"
+  to = "/landing.html"
+  status = 200
+
 [[headers]]
   for = "/animated-site/frames/*"
   [headers.values]

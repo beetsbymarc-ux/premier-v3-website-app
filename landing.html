@@ -114,7 +114,12 @@ nav.solid{background:rgba(9,9,9,.97);backdrop-filter:blur(24px);-webkit-backdrop
 /* ── HERO ── */
 .hero{position:relative;height:100svh;min-height:640px;display:flex;align-items:center;overflow:hidden}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.42) saturate(.9)}
+.hero-video-mobile{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.42) saturate(.9);display:none}
 .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,11,11,.3) 0%,rgba(11,11,11,0) 35%,rgba(11,11,11,.72) 100%)}
+@media(max-width:768px){
+  .hero-video{display:none}
+  .hero-video-mobile{display:block}
+}
 .hero-content{position:relative;z-index:2;width:100%;max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:grid;grid-template-columns:1fr 500px;gap:52px;align-items:center}
 
 .hero-eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:400;display:flex;align-items:center;gap:12px}
@@ -252,7 +257,6 @@ section{position:relative;z-index:2}
 /* ── MORTGAGE CALCULATOR ── */
 .calc-section{padding:clamp(80px,12vh,130px) 0;background:var(--ink)}
 .calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,96px);align-items:start}
-.calc-left{}
 .calc-left .section-h2{margin-bottom:16px}
 .calc-intro{font-size:15px;font-weight:300;color:rgba(245,240,232,.5);line-height:1.8;margin-bottom:32px}
 .calc-disclaimer{font-size:11px;color:rgba(245,240,232,.3);line-height:1.7;padding-top:20px;border-top:1px solid rgba(245,240,232,.07)}
@@ -295,398 +299,179 @@ section{position:relative;z-index:2}
 .calc-field select option{background:#0f0f0f}
 
 /* ── TESTIMONIALS ── */
-.testimonials{padding:clamp(80px,12vh,130px) 0;background:var(--navy)}
-.testimonials-head{text-align:center;max-width:520px;margin:0 auto 56px}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.testi-card{background:rgba(255,255,255,.03);border:1px solid rgba(245,240,232,.06);padding:36px 32px;transition:border-color .35s}
-.testi-card:hover{border-color:rgba(74,186,235,.2)}
-.testi-stars{color:var(--gold);font-size:12px;letter-spacing:2px;margin-bottom:18px}
-.testi-quote{font-family:var(--serif);font-size:17px;font-weight:300;font-style:italic;color:rgba(245,240,232,.75);line-height:1.75;margin-bottom:24px;position:relative;padding-left:20px}
-.testi-quote::before{content:'\201C';position:absolute;left:0;top:-6px;font-size:42px;color:var(--blue);opacity:.4;line-height:1}
-.testi-author{display:flex;align-items:center;gap:12px}
-.testi-initials{width:40px;height:40px;background:rgba(74,186,235,.15);border:1px solid rgba(74,186,235,.2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--blue);flex-shrink:0}
-.testi-name{font-size:13px;font-weight:500;color:var(--warm)}
-.testi-role{font-size:11px;color:var(--dim);margin-top:1px}
+.testimonials{padding:clamp(80px,12vh,130px) 0;background:var(--ink)}
+.testimonials-head{text-align:center;max-width:520px;margin:0 auto 64px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.testi-card{background:rgba(255,255,255,.03);padding:36px 28px;border-top:2px solid rgba(245,240,232,.06);transition:background .3s,border-color .3s}
+.testi-card:hover{background:rgba(74,186,235,.05);border-color:rgba(74,186,235,.3)}
+.testi-stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:18px}
+.testi-quote{font-size:14px;font-weight:300;color:rgba(245,240,232,.65);line-height:1.85;margin-bottom:24px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:14px}
+.testi-initials{width:40px;height:40px;background:rgba(74,186,235,.15);border:1px solid rgba(74,186,235,.3);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--blue);flex-shrink:0}
+.testi-name{font-size:13px;font-weight:500;color:var(--white)}
+.testi-role{font-size:11px;color:var(--dim);margin-top:2px;letter-spacing:.04em}
+
+/* ── STATS BAR ── */
+.stats-bar{padding:clamp(56px,8vh,96px) 0;background:linear-gradient(135deg,var(--navy) 0%,rgba(15,25,40,.95) 100%);border-top:1px solid rgba(74,186,235,.1);border-bottom:1px solid rgba(74,186,235,.1)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.stat-item{text-align:center;padding:20px}
+.stat-num{font-family:var(--serif);font-size:clamp(42px,5vw,66px);font-weight:300;color:var(--white);line-height:1}
+.stat-num em{color:var(--gold);font-style:normal}
+.stat-label{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-top:8px}
 
 /* ── CTA BAND ── */
-.cta-band{padding:clamp(80px,12vh,110px) 0;background:var(--blue);text-align:center;position:relative;overflow:hidden}
-.cta-band::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;opacity:.06;pointer-events:none}
-.cta-band .container{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:28px}
-.cta-band .section-eyebrow{color:rgba(11,11,11,.5);justify-content:center}
-.cta-band .section-eyebrow::before{background:rgba(11,11,11,.35)}
-.cta-band h2{font-family:var(--serif);font-size:clamp(40px,5.5vw,76px);font-weight:300;color:var(--ink);line-height:1.05}
-.cta-band p{font-size:15px;font-weight:300;color:rgba(11,11,11,.6);max-width:460px;line-height:1.7}
+.cta-band{padding:clamp(80px,12vh,120px) 0;background:linear-gradient(135deg,rgba(74,186,235,.06) 0%,rgba(200,169,110,.04) 100%);border-top:1px solid rgba(245,240,232,.06);border-bottom:1px solid rgba(245,240,232,.06);text-align:center}
+.cta-band .container{display:flex;flex-direction:column;align-items:center;gap:20px}
+.cta-band h2{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:300;color:var(--white);line-height:1.1}
+.cta-band h2 em{font-style:italic;color:var(--gold-light)}
+.cta-band p{font-size:15px;font-weight:300;color:rgba(245,240,232,.55);line-height:1.8;max-width:480px}
+.cta-band .section-eyebrow{justify-content:center}
 
-/* ── CONTACT ── */
+/* ── CONTACT SECTION ── */
 .contact{padding:clamp(80px,12vh,130px) 0;background:var(--ink)}
 .contact .container{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,96px);align-items:start}
-.contact-body{color:rgba(245,240,232,.5);font-size:15px;font-weight:300;line-height:1.8;margin:20px 0 36px}
+.contact-body{font-size:15px;font-weight:300;color:rgba(245,240,232,.55);line-height:1.85;margin-bottom:32px}
 .contact-details{display:flex;flex-direction:column;gap:18px}
-.contact-detail{display:flex;align-items:center;gap:14px}
-.contact-detail-icon{width:38px;height:38px;border:1px solid rgba(74,186,235,.3);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
-.contact-detail-text{font-size:14px;font-weight:300;color:rgba(245,240,232,.6)}
-.contact-detail-text strong{display:block;font-weight:500;color:var(--warm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1px}
-.contact-detail-text a{color:rgba(245,240,232,.6);text-decoration:none;transition:color .25s}
+.contact-detail{display:flex;align-items:flex-start;gap:16px}
+.contact-detail-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.contact-detail-text{display:flex;flex-direction:column;gap:3px}
+.contact-detail-text strong{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);font-weight:400}
+.contact-detail-text a{color:var(--warm);font-size:14px;text-decoration:none;transition:color .2s}
 .contact-detail-text a:hover{color:var(--blue)}
-
-.c-form{display:flex;flex-direction:column;gap:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:32px;position:relative}
-.c-form::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--gold))}
-.cf-form-title{font-family:var(--serif);font-size:20px;font-weight:300;color:var(--white);margin-bottom:4px}
-.cf-form-sub{font-size:12px;color:rgba(245,240,232,.35);margin-bottom:8px;letter-spacing:.04em}
-.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.cf-field{display:flex;flex-direction:column;gap:7px}
+.c-form{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:36px 32px;position:relative}
+.c-form::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--gold))}
+.cf-form-title{font-family:var(--serif);font-size:24px;font-weight:300;color:var(--white);margin-bottom:4px}
+.cf-form-sub{font-size:12px;color:rgba(245,240,232,.4);margin-bottom:24px;letter-spacing:.04em}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cf-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
 .cf-field label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.4)}
-.cf-field input,.cf-field select,.cf-field textarea{background:rgba(255,255,255,.05);border:1px solid rgba(245,240,232,.1);color:var(--warm);padding:13px 15px;font-size:13px;font-weight:300;font-family:var(--sans);transition:border-color .25s;outline:none}
-.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:var(--blue)}
-.cf-field input::placeholder,.cf-field textarea::placeholder{color:rgba(245,240,232,.2)}
-.cf-field textarea{resize:vertical;min-height:110px}
-.cf-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7468' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 14px) center;background-size:12px;padding-right:36px;background-color:rgba(255,255,255,.05)}
-.cf-field select option{background:#1a2b40}
-.cf-submit{background:var(--blue);color:var(--ink);border:none;padding:15px 36px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);transition:background .25s,transform .2s;align-self:flex-start}
+.cf-field input,.cf-field select,.cf-field textarea{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);
+  color:var(--warm);padding:13px 14px;font-size:13px;font-weight:300;font-family:var(--sans);
+  outline:none;transition:border-color .25s,background .25s;
+}
+.cf-field input::placeholder,.cf-field textarea::placeholder{color:rgba(245,240,232,.22)}
+.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:var(--blue);background:rgba(74,186,235,.05)}
+.cf-field textarea{min-height:100px;resize:vertical}
+.cf-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7468' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 14px) center;background-size:12px;padding-right:36px;background-color:rgba(255,255,255,.07);background-size:12px,auto}
+.cf-field select option{background:#141414;color:var(--warm)}
+.cf-submit{width:100%;background:var(--blue);color:var(--ink);border:none;padding:15px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);transition:background .25s,transform .2s}
 .cf-submit:hover{background:#62cef5;transform:translateY(-1px)}
-.cf-submit:active{transform:scale(.98)}
-.cf-success{display:none;padding:16px;background:rgba(74,186,235,.1);border:1px solid rgba(74,186,235,.25);font-size:13px;color:var(--blue);letter-spacing:.04em}
+.cf-success{display:none;margin-top:16px;background:rgba(74,186,235,.1);border:1px solid rgba(74,186,235,.3);padding:16px;font-size:13px;color:var(--blue);text-align:center;letter-spacing:.04em}
 
 /* ── FOOTER ── */
-footer{background:rgba(0,0,0,.75);border-top:1px solid rgba(245,240,232,.06);padding:clamp(36px,5vh,64px) clamp(20px,5vw,72px)}
-.footer-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
-.footer-logo img{height:34px}
-.footer-copy{font-size:11px;color:var(--dim);letter-spacing:.07em;text-align:center;line-height:1.7}
-.footer-links{display:flex;gap:20px;justify-content:flex-end;flex-wrap:wrap}
-.footer-links a{font-size:10px;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;transition:color .25s;text-decoration:none}
-.footer-links a:hover{color:var(--blue)}
+footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);padding:clamp(48px,8vh,80px) 0 24px}
+.footer-inner{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-direction:column;gap:32px}
+.footer-logo img{height:40px;display:block;filter:brightness(.8)}
+.footer-copy{font-size:12px;font-weight:300;color:var(--dim);line-height:1.8}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(245,240,232,.07);padding-top:24px}
+.footer-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--warm)}
 
-/* ── REVEAL ANIMATIONS ── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}
-.reveal.vis{opacity:1;transform:none}
-.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}.rd4{transition-delay:.4s}
+/* ── SERVING SACRAMENTO ── */
+.serving{padding:clamp(80px,12vh,130px) 0;background:var(--navy)}
+.serving-head{text-align:center;max-width:560px;margin:0 auto 56px}
+.nbhd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:48px}
+.nbhd-card{background:rgba(255,255,255,.035);padding:28px 22px;border-top:2px solid transparent;transition:all .35s;cursor:default}
+.nbhd-card.core{border-color:var(--blue)}
+.nbhd-card:hover{background:rgba(74,186,235,.07);border-color:var(--blue)}
+.nbhd-name{font-family:var(--serif);font-size:20px;font-weight:300;color:#fff;margin-bottom:5px}
+.nbhd-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.nbhd-desc{font-size:12px;font-weight:300;color:var(--dim);line-height:1.65}
+
+/* ── LAND SECTION ── */
+.land-section{position:relative;min-height:80vh;display:flex;align-items:center;overflow:hidden}
+.land-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.32) saturate(.8)}
+.land-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,11,11,.5) 0%,rgba(11,11,11,.2) 40%,rgba(11,11,11,.65) 100%)}
+.land-content{position:relative;z-index:2;width:100%;max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px);text-align:center}
+.land-eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;font-weight:400;display:flex;align-items:center;justify-content:center;gap:12px}
+.land-eyebrow::before,.land-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:var(--gold)}
+.land-h{font-family:var(--serif);font-size:clamp(52px,8vw,110px);font-weight:300;line-height:.98;color:var(--white);letter-spacing:-.01em}
+.land-h em{font-style:italic;color:var(--gold-light);display:block}
+.land-sub{margin:28px auto 0;font-size:16px;color:rgba(245,240,232,.55);font-weight:300;line-height:1.75;max-width:520px}
+.land-cta{margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
+.reveal.rd1{transition-delay:.1s}
+.reveal.rd2{transition-delay:.2s}
+.reveal.rd3{transition-delay:.3s}
+.reveal.rd4{transition-delay:.4s}
+.reveal.vis{opacity:1;transform:translateY(0)}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1080px){
-  .hero-content{grid-template-columns:1fr;max-width:680px}
-  .hero-h1{font-size:clamp(44px,7vw,72px)}
+@media(max-width:1024px){
+  .hero-content{grid-template-columns:1fr;max-width:680px;text-align:center}
+  .hero-left{display:flex;flex-direction:column;align-items:center}
+  .hero-h1{font-size:clamp(44px,8vw,76px)}
+  .hero-sub{text-align:center}
+  .hero-badges{justify-content:center}
+  .listings-grid,.services-grid,.testi-grid{grid-template-columns:1fr 1fr}
+  .process-steps{grid-template-columns:1fr 1fr}
+  .about .container,.contact .container,.calc-wrap{grid-template-columns:1fr;gap:48px}
+  .about-img{aspect-ratio:4/3}
+  .about-badge{bottom:-12px;right:12px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .nbhd-grid{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:960px){
-  .services-grid{grid-template-columns:1fr 1fr}
-  .testi-grid{grid-template-columns:1fr}
-  .listings-grid{grid-template-columns:1fr 1fr}
-  .process-steps{grid-template-columns:1fr 1fr;gap:32px}
-  .about .container,.contact .container,.calc-wrap{grid-template-columns:1fr}
-  .nav-center,.nav-cta{display:none}
-  .hamburger{display:flex}
-  footer .footer-inner{grid-template-columns:1fr;text-align:center}
-  .footer-links{justify-content:center}
-  .cf-submit{align-self:stretch}
-}
-@media(max-width:600px){
-  .services-grid{grid-template-columns:1fr}
-  .listings-grid{grid-template-columns:1fr}
-  .process-steps{grid-template-columns:1fr}
-  .hf-row,.cf-row,.calc-row-2{grid-template-columns:1fr}
-  .about-badge{display:none}
-}
-</style>
-
-<style id="pr-global-polish">
-/* ── BUTTONS ── */
-a[href],button{transition:all .2s ease;}
-.btn-primary,.primary-button-wrapper,[class*="primary-button"]{
-  background:var(--pr-blue,#4ABAEB)!important;
-  border-color:var(--pr-blue,#4ABAEB)!important;
-  border-radius:50px!important;
-  font-family:'DM Sans',sans-serif!important;
-  font-weight:600!important;
-  font-size:14px!important;
-  letter-spacing:.03em!important;
-  transition:all .2s ease!important;
-}
-.primary-button-wrapper:hover,[class*="primary-button"]:hover{
-  background:#2895CC!important;
-  transform:translateY(-1px)!important;
-  box-shadow:0 6px 20px rgba(74,186,235,.3)!important;
-}
-/* ── SECTION HEADINGS ── */
-.section-title,.page-title{
-  font-family:'Cormorant Garamond',Georgia,serif!important;
-  font-weight:400!important;
-  letter-spacing:-.5px!important;
-}
-/* ── HERO SEARCH FORM ── */
-.hero-filter-inner-block{
-  background:rgba(255,255,255,.97)!important;
-  border-radius:60px!important;
-  padding:8px 8px 8px 24px!important;
-  box-shadow:0 12px 48px rgba(0,0,0,.2)!important;
-  display:flex!important;
-  align-items:center!important;
-  gap:0!important;
-}
-.filter-select-option{
-  background:transparent!important;
-  border:none!important;
-  border-right:1px solid #eee!important;
-  border-radius:0!important;
-  padding:14px 36px 14px 16px!important;
-  font-family:'DM Sans',sans-serif!important;
-  font-size:14px!important;
-  color:#444!important;
-  min-width:140px!important;
-  -webkit-appearance:none!important;
-  appearance:none!important;
-  background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%23999' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;
-  background-repeat:no-repeat!important;
-  background-position:calc(100% - 12px) center!important;
-  cursor:pointer!important;
-}
-.filter-select-option:focus{outline:none!important;}
-.filter-search-button{
-  background:#4ABAEB!important;
-  color:#fff!important;
-  border:none!important;
-  border-radius:50px!important;
-  padding:14px 28px!important;
-  font-family:'DM Sans',sans-serif!important;
-  font-weight:600!important;
-  font-size:14px!important;
-  cursor:pointer!important;
-  transition:all .2s ease!important;
-  white-space:nowrap!important;
-  flex-shrink:0!important;
-}
-.filter-search-button:hover{
-  background:#2895CC!important;
-  transform:translateY(-1px)!important;
-}
-/* ── BRAND MARQUEE ── */
-.brand-logo-section,.brand-logo-wrap,[class*="marquee"]{
-  background:#0B1929!important;
-}
-.brand-logo-text{
-  color:rgba(255,255,255,.55)!important;
-  font-family:'DM Sans',sans-serif!important;
-  font-size:13px!important;
-  font-weight:400!important;
-  letter-spacing:.12em!important;
-  text-transform:uppercase!important;
-}
-/* ── FOOTER ── */
-footer,[class*="footer-wrapper"]{
-  background:#060E1B!important;
-}
-.footer-menu-link,.footer-location-text,.footer-location-email{
-  font-family:'DM Sans',sans-serif!important;
-}
-/* ── CARDS ── */
-.properties-card-block,[class*="property-card"],[class*="agent-card"]{
-  border-radius:12px!important;
-  overflow:hidden!important;
-  transition:transform .2s ease,box-shadow .2s ease!important;
-}
-.properties-card-block:hover,[class*="property-card"]:hover{
-  transform:translateY(-4px)!important;
-  box-shadow:0 16px 48px rgba(0,0,0,.12)!important;
-}
-/* ── DRE FOOTER NOTE ── */
-.dre-note{
-  font-family:'DM Sans',sans-serif;
-  font-size:11px;color:rgba(255,255,255,.3);
-  text-align:center;padding:12px 0 20px;
-}
-/* ── MOBILE VIDEO FIX ── */
-video{object-fit:cover!important;object-position:center center!important;}
-.hero-section{min-height:100svh;}
 @media(max-width:767px){
-  .hero-filter-inner-block{
-    border-radius:14px!important;
-    padding:16px!important;
-    flex-direction:column!important;
-    align-items:stretch!important;
-  }
-  .filter-select-option{
-    border-right:none!important;
-    border-bottom:1px solid #eee!important;
-    padding:12px 14px!important;
-    min-width:unset!important;
-  }
-  .filter-select-option:last-of-type{border-bottom:none!important;}
-  .filter-search-button{margin-top:8px!important;width:100%!important;}
+  .hero-content{grid-template-columns:1fr;padding:0 20px}
+  .listings-grid,.services-grid,.testi-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-eyebrow::before{display:none}
+  .hero-h1{font-size:clamp(40px,10vw,64px)}
+  .nbhd-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .process-steps{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .hf-row,.cf-row{grid-template-columns:1fr}
+  .nav-center{display:none}
+  .hamburger{display:flex}
+  .nbhd-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
-<!-- ═══ PREMIER REALTY NAVBAR ═══ -->
-<style>
-/* ═══ PREMIER REALTY GLOBAL NAV v3 ═══ */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
-
-:root{
-  --pr-blue:#4ABAEB;
-  --pr-blue-dark:#2895CC;
-  --pr-gold:#C8A96E;
-  --pr-ink:#0B0B0B;
-  --pr-dim:#6B7280;
-  --pr-white:#FFFFFF;
-}
-
-/* Reset body font */
-body{ font-family:'DM Sans',Arial,sans-serif !important; }
-h1,h2,h3,h4,h5,.heading{ font-family:'Cormorant Garamond',Georgia,serif !important; }
-
-/* ── NAVBAR ── */
-.pr-nav{
-  position:fixed; top:0; left:0; right:0; z-index:9000;
-  padding:12px 24px;
-  background:rgba(255,255,255,0.97);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(0,0,0,0.06);
-  box-shadow:0 2px 24px rgba(0,0,0,0.06);
-  display:flex; align-items:center; justify-content:space-between;
-  height:72px;
-  box-sizing:border-box;
-}
-.pr-nav-logo img{
-  height:48px; width:auto;
-  display:block;
-}
-.pr-nav-links{
-  display:flex; align-items:center; gap:4px;
-  list-style:none; margin:0; padding:0;
-}
-.pr-nav-links a{
-  font-family:'DM Sans',sans-serif;
-  font-size:13px; font-weight:500;
-  letter-spacing:0.04em;
-  color:#1A2B40;
-  text-decoration:none;
-  padding:8px 14px;
-  border-radius:6px;
-  transition:all .18s ease;
-  white-space:nowrap;
-}
-.pr-nav-links a:hover,
-.pr-nav-links a.active{
-  background:#f0f9ff;
-  color:var(--pr-blue);
-}
-.pr-nav-links a.active{
-  font-weight:600;
-}
-/* Services dropdown */
-.pr-nav-dropdown{
-  position:relative;
-}
-.pr-nav-dropdown-menu{
-  position:absolute; top:calc(100% + 8px); left:50%;
-  transform:translateX(-50%);
-  background:#fff;
-  border:1px solid rgba(0,0,0,0.08);
-  border-radius:10px;
-  box-shadow:0 12px 40px rgba(0,0,0,0.12);
-  padding:8px;
-  min-width:200px;
-  opacity:0; visibility:hidden; pointer-events:none;
-  transition:all .2s ease;
-  z-index:100;
-}
-.pr-nav-dropdown:hover .pr-nav-dropdown-menu{
-  opacity:1; visibility:visible; pointer-events:all;
-}
-.pr-nav-dropdown-menu a{
-  display:block;
-  padding:9px 14px;
-  font-size:13px;
-  color:#1A2B40;
-  border-radius:6px;
-  white-space:nowrap;
-}
-.pr-nav-dropdown-menu a:hover{
-  background:#f0f9ff; color:var(--pr-blue);
-}
-/* CTA button */
-.pr-nav-cta{
-  background:var(--pr-blue) !important;
-  color:#fff !important;
-  font-family:'DM Sans',sans-serif !important;
-  font-size:13px !important;
-  font-weight:600 !important;
-  padding:10px 22px !important;
-  border-radius:50px !important;
-  text-decoration:none;
-  transition:all .2s ease !important;
-  white-space:nowrap;
-  letter-spacing:0.03em;
-  border:none !important;
-}
-.pr-nav-cta:hover{
-  background:var(--pr-blue-dark) !important;
-  transform:translateY(-1px) !important;
-  box-shadow:0 4px 16px rgba(74,186,235,0.3) !important;
-}
-/* Mobile hamburger */
-.pr-hamburger{
-  display:none;
-  flex-direction:column; gap:5px;
-  cursor:pointer; padding:4px;
-}
-.pr-hamburger span{
-  display:block; width:22px; height:2px;
-  background:#1A2B40; border-radius:2px;
-  transition:all .2s ease;
-}
-/* Body offset for fixed nav */
-.nav-offset{ padding-top:72px; }
-
-@media(max-width:900px){
-  .pr-nav-links-wrap{ display:none; }
-  .pr-hamburger{ display:flex; }
-}
-@media(max-width:600px){
-  .pr-nav{ padding:10px 16px; height:64px; }
-  .pr-nav-logo img{ height:40px; }
-}
-</style>
-<nav class="pr-nav" role="navigation" aria-label="Main navigation">
-  <a href="helen-wong-premier.html" class="pr-nav-logo" aria-label="Premier Realty Home">
-    <img src="img/premier-realty-logo.svg" alt="Premier Realty">
-  </a>
-  <div class="pr-nav-links-wrap">
-    <ul class="pr-nav-links">
-      <li><a href="helen-wong-premier.html" class="pr-home-link active">Home</a></li>
-      <li class="pr-nav-dropdown">
-        <a href="services.html">Services ▾</a>
-        <div class="pr-nav-dropdown-menu">
-          <a href="services.html#buy">Buy a Home</a>
-          <a href="services.html#valuation">Home Valuation</a>
-          <a href="services.html#relocation">Relocation</a>
-          <a href="services.html#investment">Investment</a>
-        </div>
-      </li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
-  <a href="contact.html" class="pr-nav-cta">Book a Consultation</a>
-  <div class="pr-hamburger" onclick="document.querySelector('.pr-nav-links-wrap').style.display=document.querySelector('.pr-nav-links-wrap').style.display==='flex'?'none':'flex';this.style.opacity=this.style.opacity==='0.5'?'1':'0.5'" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-<div class="nav-offset"></div>
-
 
 <div id="cur-dot"></div>
 <div id="cur-ring"></div>
 
 <!-- LOADER -->
 <div id="loader">
-  <img class="ld-logo" src="img/premier-realty-logo.svg" alt="Premier Realty" onerror="this.style.display='none'">
+  <img class="ld-logo" src="img/premier-realty-logo.png" alt="Premier Realty" onerror="this.style.display='none'">
   <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:300;color:#F5F0E8;letter-spacing:.1em">Premier Realty</div>
   <div class="ld-track"><div class="ld-fill" id="ld-fill"></div></div>
   <div class="ld-pct" id="ld-pct">0%</div>
 </div>
 
-<!-- NAV -->
-<!-- old nav removed -->
+<!-- DARK NAV -->
+<nav id="nav">
+  <a href="landing.html" class="nav-logo" aria-label="Premier Realty Home">
+    <img src="img/premier-realty-logo.png" alt="Premier Realty" style="height:40px;filter:brightness(0) invert(1);opacity:.92">
+  </a>
+  <ul class="nav-center">
+    <li><a href="about.html">About</a></li>
+    <li>
+      <button class="nav-btn">Services <span class="caret">▾</span></button>
+      <div class="nav-drop">
+        <a href="services.html#buy">Buy a Home</a>
+        <a href="services.html#value">Home Valuation</a>
+        <div class="nav-drop-divider"></div>
+        <a href="services.html#relocate">Relocating to Sacramento</a>
+        <a href="services.html#invest">Investment Property</a>
+        <a href="services.html#consult">Talk to an Agent</a>
+      </div>
+    </li>
+    <li><a href="#listings">Listings</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Book Consultation</a>
+  <button class="hamburger" id="ham" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mob-menu">
@@ -707,9 +492,15 @@ h1,h2,h3,h4,h5,.heading{ font-family:'Cormorant Garamond',Georgia,serif !importa
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="hero">
+  <!-- Desktop hero video -->
   <video class="hero-video" autoplay muted loop playsinline>
+    <source src="img/hero-bg-new.mp4" type="video/mp4">
     <source src="img/hero-video.mp4" type="video/mp4">
-    <source src="img/drone-footage.mp4" type="video/mp4">
+  </video>
+  <!-- Mobile hero video -->
+  <video class="hero-video-mobile" autoplay muted loop playsinline>
+    <source src="img/hero-mobile.mp4" type="video/mp4">
+    <source src="img/hero-bg-new.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -811,6 +602,30 @@ h1,h2,h3,h4,h5,.heading{ font-family:'Cormorant Garamond',Georgia,serif !importa
 
   <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
 </section>
+
+<!-- ═══ STATS BAR ═══ -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num" data-target="850">0<em>+</em></div>
+        <div class="stat-label">Families Served</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><em>$</em>2.4<em>B+</em></div>
+        <div class="stat-label">In Closed Transactions</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="16">0<em>+</em></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Top <em>1%</em></div>
+        <div class="stat-label">Nationally Ranked</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- TICKER -->
 <div class="ticker" aria-hidden="true">
@@ -918,60 +733,128 @@ h1,h2,h3,h4,h5,.heading{ font-family:'Cormorant Garamond',Georgia,serif !importa
       <a href="services.html" class="btn-ghost reveal">View All Listings →</a>
     </div>
     <div class="listings-grid">
-      <div class="listing-card reveal">
+      <a class="listing-card reveal" href="contact.html?ref=listing1" aria-label="View listing at 3812 H Street East Sacramento">
         <div class="listing-img-wrap">
-          <video class="listing-img" autoplay muted loop playsinline>
-            <source src="img/living-room.mp4" type="video/mp4">
-          </video>
+          <img class="listing-img" src="img/prop-1.png" alt="East Sacramento craftsman home" loading="lazy" onerror="this.style.background='#1A2B40';this.style.height='300px'">
         </div>
         <div class="listing-overlay"></div>
-        <div class="listing-badge">Featured</div>
+        <div class="listing-badge">Active</div>
         <div class="listing-info">
-          <div class="listing-price"><span>$</span>1,895,000</div>
-          <div class="listing-address">4212 H Street, East Sacramento</div>
-          <div class="listing-tags">
-            <span class="listing-tag">5 Bed</span>
-            <span class="listing-tag">4 Bath</span>
-            <span class="listing-tag">3,840 sqft</span>
-          </div>
-        </div>
-      </div>
-      <div class="listing-card reveal rd1">
-        <div class="listing-img-wrap">
-          <video class="listing-img" autoplay muted loop playsinline>
-            <source src="img/fireplace.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="listing-overlay"></div>
-        <div class="listing-badge" style="background:var(--gold)">Just Sold</div>
-        <div class="listing-info">
-          <div class="listing-price"><span>$</span>1,250,000</div>
-          <div class="listing-address">1847 39th Street, Land Park</div>
+          <div class="listing-price"><span>$</span>1,149,000</div>
+          <div class="listing-address">3812 H Street, East Sacramento</div>
           <div class="listing-tags">
             <span class="listing-tag">4 Bed</span>
             <span class="listing-tag">3 Bath</span>
-            <span class="listing-tag">2,960 sqft</span>
+            <span class="listing-tag">2,640 sqft</span>
           </div>
         </div>
-      </div>
-      <div class="listing-card reveal rd2">
+      </a>
+      <a class="listing-card reveal rd1" href="contact.html?ref=listing2" aria-label="View listing at 1729 33rd Street Land Park">
         <div class="listing-img-wrap">
-          <video class="listing-img" autoplay muted loop playsinline>
-            <source src="img/lifestyle.mp4" type="video/mp4">
-          </video>
+          <img class="listing-img" src="img/prop-2.png" alt="Land Park Tudor home" loading="lazy" onerror="this.style.background='#1A2B40';this.style.height='300px'">
+        </div>
+        <div class="listing-overlay"></div>
+        <div class="listing-badge" style="background:var(--gold);color:var(--ink)">Just Sold</div>
+        <div class="listing-info">
+          <div class="listing-price"><span>$</span>985,000</div>
+          <div class="listing-address">1729 33rd Street, Land Park</div>
+          <div class="listing-tags">
+            <span class="listing-tag">3 Bed</span>
+            <span class="listing-tag">2 Bath</span>
+            <span class="listing-tag">2,180 sqft</span>
+          </div>
+        </div>
+      </a>
+      <a class="listing-card reveal rd2" href="contact.html?ref=listing3" aria-label="View listing in Natomas">
+        <div class="listing-img-wrap">
+          <img class="listing-img" src="img/prop-3.png" alt="Natomas contemporary home" loading="lazy" onerror="this.style.background='#1A2B40';this.style.height='300px'">
         </div>
         <div class="listing-overlay"></div>
         <div class="listing-badge">Investment</div>
         <div class="listing-info">
-          <div class="listing-price"><span>$</span>875,000</div>
-          <div class="listing-address">Oak Creek Estates, Elk Grove</div>
+          <div class="listing-price"><span>$</span>649,000</div>
+          <div class="listing-address">4410 Truxel Road, North Natomas</div>
           <div class="listing-tags">
-            <span class="listing-tag">3 Bed</span>
-            <span class="listing-tag">2 Bath</span>
-            <span class="listing-tag">2,100 sqft</span>
+            <span class="listing-tag">4 Bed</span>
+            <span class="listing-tag">3 Bath</span>
+            <span class="listing-tag">2,350 sqft</span>
           </div>
         </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVING SACRAMENTO ═══ -->
+<section class="serving" id="neighborhoods">
+  <div class="container">
+    <div class="serving-head">
+      <div class="section-eyebrow reveal" style="justify-content:center">Where We Work</div>
+      <h2 class="section-h2 reveal rd1" style="text-align:center">Serving <em>Sacramento</em><br>& Beyond</h2>
+      <p class="reveal rd2" style="margin-top:16px;font-size:15px;font-weight:300;color:rgba(245,240,232,.5);line-height:1.8;text-align:center">Deep knowledge of every pocket of greater Sacramento — from tree-lined streets in East Sacramento to the waterfront communities along the river.</p>
+    </div>
+    <div class="nbhd-grid">
+      <div class="nbhd-card core reveal">
+        <div class="nbhd-name">East Sacramento</div>
+        <div class="nbhd-tag">Core Area · Premier Market</div>
+        <div class="nbhd-desc">Craftsman bungalows, tree-canopied streets, and some of the city's most prestigious zip codes. Helen's specialty.</div>
       </div>
+      <div class="nbhd-card core reveal rd1">
+        <div class="nbhd-name">Land Park</div>
+        <div class="nbhd-tag">Core Area · Family Favorite</div>
+        <div class="nbhd-desc">Historic Tudor homes, William Land Park, and top-rated schools. A perennial favorite for families and investors.</div>
+      </div>
+      <div class="nbhd-card core reveal rd2">
+        <div class="nbhd-name">Midtown</div>
+        <div class="nbhd-tag">Core Area · Urban Lifestyle</div>
+        <div class="nbhd-desc">Sacramento's cultural heartbeat — restaurants, galleries, and walkable energy that attracts professionals and creatives alike.</div>
+      </div>
+      <div class="nbhd-card core reveal rd3">
+        <div class="nbhd-name">Natomas</div>
+        <div class="nbhd-tag">Core Area · Growth Corridor</div>
+        <div class="nbhd-desc">Growing community near the Sacramento Kings arena. Excellent value and investment potential in the city's north.</div>
+      </div>
+      <div class="nbhd-card reveal">
+        <div class="nbhd-name">Elk Grove</div>
+        <div class="nbhd-tag">Extended Service Area</div>
+        <div class="nbhd-desc">Top-ranked schools, master-planned communities, and strong rental demand make Elk Grove a standout for families and investors.</div>
+      </div>
+      <div class="nbhd-card reveal rd1">
+        <div class="nbhd-name">Arden-Arcade</div>
+        <div class="nbhd-tag">Extended Service Area</div>
+        <div class="nbhd-desc">Mid-century homes, country club living, and convenient access to downtown. Highly walkable and community-driven.</div>
+      </div>
+      <div class="nbhd-card reveal rd2">
+        <div class="nbhd-name">Folsom</div>
+        <div class="nbhd-tag">Extended Service Area</div>
+        <div class="nbhd-desc">Luxury subdivisions, lake access, and tech-sector employers. Among Sacramento's most desirable suburban markets.</div>
+      </div>
+      <div class="nbhd-card reveal rd3">
+        <div class="nbhd-name">Rancho Cordova</div>
+        <div class="nbhd-tag">Extended Service Area</div>
+        <div class="nbhd-desc">Affordable entry points and strong rental yields. Ideal for first-time buyers and investment portfolio expansion.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <p class="reveal" style="font-size:13px;color:rgba(245,240,232,.35);margin-bottom:20px">Also serving Roseville, Rocklin, West Sacramento, Curtis Park, Oak Park, Citrus Heights, and surrounding communities.</p>
+      <a href="services.html" class="btn-outline reveal rd1">Explore Our Services →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EVERY DREAM STARTS WITH LAND ═══ -->
+<section class="land-section">
+  <video class="land-video" autoplay muted loop playsinline>
+    <source src="img/buy-land.mp4" type="video/mp4">
+  </video>
+  <div class="land-overlay"></div>
+  <div class="land-content">
+    <div class="land-eyebrow reveal">Premier Realty Sacramento</div>
+    <h2 class="land-h reveal rd1">Every Dream<br><em>Starts with Land</em></h2>
+    <p class="land-sub reveal rd2">Whether it's your first home, a legacy investment, or a place for your family to grow — it all begins with finding the right piece of Sacramento.</p>
+    <div class="land-cta reveal rd3">
+      <a href="contact.html" class="btn-primary">Start Your Search →</a>
+      <a href="about.html" class="btn-outline">Meet Helen</a>
     </div>
   </div>
 </section>
@@ -1103,28 +986,31 @@ h1,h2,h3,h4,h5,.heading{ font-family:'Cormorant Garamond',Georgia,serif !importa
     <div class="testi-grid">
       <div class="testi-card reveal">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Helen found us our dream home in East Sacramento in under three weeks. Her knowledge of the market is extraordinary — she knew about listings before they hit Zillow.</p>
+        <p class="testi-quote">"Helen was phenomenal from start to finish. We were first-time buyers and she walked us through every step — incredibly patient, knowledgeable, and always available. We closed on the perfect home in Land Park in under 30 days."</p>
         <div class="testi-author">
-          <div class="testi-initials">MT</div>
-          <div><div class="testi-name">Marcus &amp; Jennifer T.</div><div class="testi-role">East Sacramento Buyers, 2024</div></div>
+          <div class="testi-initials">JL</div>
+          <div><div class="testi-name">Jessica &amp; Mike L.</div><div class="testi-role">Land Park First-Time Buyers · Zillow Review</div></div>
         </div>
       </div>
       <div class="testi-card reveal rd1">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">We relocated from Seattle and had no idea where to start. Helen's neighborhood knowledge was incredible — she matched us with the perfect street in Midtown on our first visit.</p>
+        <p class="testi-quote">"We moved from the Bay Area with no clue about Sacramento neighborhoods. Helen spent two full weekends driving us around, sharing real data, and genuinely listening to our needs. She found us a home in East Sac that ticked every single box."</p>
         <div class="testi-author">
-          <div class="testi-initials">SP</div>
-          <div><div class="testi-name">Sarah &amp; Tom P.</div><div class="testi-role">Relocation Clients, 2024</div></div>
+          <div class="testi-initials">RV</div>
+          <div><div class="testi-name">Robert &amp; Lisa V.</div><div class="testi-role">East Sacramento Relocation · Zillow Review</div></div>
         </div>
       </div>
       <div class="testi-card reveal rd2">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">As an investor I've worked with dozens of agents. Helen is at a different level — her understanding of returns, rental comps, and deal structures is unparalleled in Sacramento.</p>
+        <p class="testi-quote">"Helen sold our Natomas home for $38K over asking in 6 days. Her staging advice, pricing strategy, and negotiation skills were unreal. I've referred her to four of my colleagues — all of whom had equally great experiences."</p>
         <div class="testi-author">
-          <div class="testi-initials">DK</div>
-          <div><div class="testi-name">David K.</div><div class="testi-role">Portfolio Investor, 2023</div></div>
+          <div class="testi-initials">TC</div>
+          <div><div class="testi-name">Thomas C.</div><div class="testi-role">Natomas Home Seller · Zillow Review</div></div>
         </div>
       </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="https://www.zillow.com/profile/hwong2" target="_blank" rel="noopener" class="btn-ghost reveal">See All Zillow Reviews →</a>
     </div>
   </div>
 </section>
@@ -1133,9 +1019,9 @@ h1,h2,h3,h4,h5,.heading{ font-family:'Cormorant Garamond',Georgia,serif !importa
 <div class="cta-band">
   <div class="container">
     <div class="section-eyebrow">Ready to Begin?</div>
-    <h2>Let's Find Your<br>Perfect Home</h2>
+    <h2>Let's Find Your<br><em>Perfect Home</em></h2>
     <p>Whether you're buying or investing — Helen Wong delivers results. Schedule your complimentary consultation today.</p>
-    <button class="btn-dark" onclick="smoothScrollTo('hero-form')">Schedule a Free Consultation</button>
+    <button class="btn-primary" onclick="smoothScrollTo('hero-form')">Schedule a Free Consultation →</button>
   </div>
 </div>
 
@@ -1195,18 +1081,19 @@ h1,h2,h3,h4,h5,.heading{ font-family:'Cormorant Garamond',Georgia,serif !importa
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">
-      <img src="img/premier-realty-logo.svg" alt="Premier Realty" onerror="this.outerHTML='<span style=\'font-family:Cormorant Garamond,serif;font-size:16px;font-weight:300;color:#7A7468;letter-spacing:.08em\'>Premier Realty</span>'">
+      <img src="img/premier-realty-logo.png" alt="Premier Realty" onerror="this.outerHTML='<span style=\'font-family:Cormorant Garamond,serif;font-size:16px;font-weight:300;color:#7A7468;letter-spacing:.08em\'>Premier Realty</span>'">
     </div>
     <div class="footer-copy">
-      © 2025 Premier Realty Sacramento · Helen Wong, DRE #01359322<br>
-      (916) 256-7073 · All rights reserved. Equal Housing Opportunity.
+      © 2025 Premier Realty Sacramento · Helen Wong, Broker · DRE #01359322<br>
+      <a href="tel:9162567073" style="color:inherit;text-decoration:none">(916) 256-7073</a> · <a href="mailto:helen@premierrealtysac.com" style="color:inherit;text-decoration:none">helen@premierrealtysac.com</a><br>
+      All rights reserved. Equal Housing Opportunity. ⊕
     </div>
     <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Use</a>
-      <a href="#">DRE Disclosures</a>
-      <a href="about.html">About</a>
+      <a href="landing.html">Home</a>
+      <a href="about.html">About Helen</a>
+      <a href="services.html">Services</a>
       <a href="contact.html">Contact</a>
+      <a href="https://www.zillow.com/profile/hwong2" target="_blank" rel="noopener">Zillow Profile</a>
     </div>
   </div>
 </footer>
@@ -1227,8 +1114,10 @@ h1,h2,h3,h4,h5,.heading{ font-family:'Cormorant Garamond',Georgia,serif !importa
 
 // ── NAV SCROLL ──
 const navEl=document.getElementById('nav');
-window.addEventListener('scroll',()=>navEl.classList.toggle('solid',scrollY>60),{passive:true});
-navEl.classList.toggle('solid',scrollY>60);
+if(navEl){
+  window.addEventListener('scroll',()=>navEl.classList.toggle('solid',scrollY>60),{passive:true});
+  navEl.classList.toggle('solid',scrollY>60);
+}
 
 // ── CURSOR ──
 const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
@@ -1246,12 +1135,37 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 // ── NAV HAMBURGER ──
 const ham=document.getElementById('ham'),mob=document.getElementById('mob-menu');
-ham.addEventListener('click',()=>{ham.classList.toggle('open');mob.classList.toggle('open')});
-function closeMob(){ham.classList.remove('open');mob.classList.remove('open')}
+if(ham&&mob){
+  ham.addEventListener('click',()=>{ham.classList.toggle('open');mob.classList.toggle('open')});
+}
+function closeMob(){if(ham)ham.classList.remove('open');if(mob)mob.classList.remove('open');}
 function smoothScrollTo(id){
   const el=document.getElementById(id);
   if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
 }
+
+// ── COUNTER ANIMATION ──
+(function(){
+  const counters=document.querySelectorAll('.stat-num[data-target]');
+  if(!counters.length)return;
+  const io2=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      const el=entry.target;
+      const target=parseInt(el.dataset.target)||0;
+      const suffix=el.querySelector('em')?.outerHTML||'';
+      let start=0;
+      const step=Math.ceil(target/60);
+      const iv=setInterval(()=>{
+        start=Math.min(start+step,target);
+        el.innerHTML=start+suffix;
+        if(start>=target)clearInterval(iv);
+      },20);
+      io2.unobserve(el);
+    });
+  },{threshold:.5});
+  counters.forEach(c=>io2.observe(c));
+})();
 
 // ── SERVICE PIPELINE DETECTION ──
 const pipelines={
