@@ -16,12 +16,12 @@ const PIPELINES = {
 };
 
 const PIPELINE_MESSAGES = {
-  buy:      'Your inquiry has been added to our Buyer Lead Pipeline. Helen's team will reach out within 24 hours to discuss your home search.',
-  sell:     'Your inquiry has been added to our Seller Consultation Pipeline. Helen will schedule a market analysis and listing consultation shortly.',
-  value:    'Your Home Valuation request has been received. Expect a detailed market report from Helen within 48 hours.',
-  relocate: 'Welcome to Sacramento! Your Relocation inquiry is with Helen's team. We'll reach out to schedule a neighborhood tour.',
-  invest:   'Your investor profile has been received. Helen's team will be in touch with curated opportunities matching your criteria.',
-  consult:  'Your consultation request is confirmed. Helen's team will reach out to schedule a time that works for you.',
+  buy:      "Your inquiry has been added to our Buyer Lead Pipeline. Helen's team will reach out within 24 hours to discuss your home search.",
+  sell:     "Your inquiry has been added to our Seller Consultation Pipeline. Helen will schedule a market analysis and listing consultation shortly.",
+  value:    "Your Home Valuation request has been received. Expect a detailed market report from Helen within 48 hours.",
+  relocate: "Welcome to Sacramento! Your Relocation inquiry is with Helen's team. We'll reach out to schedule a neighborhood tour.",
+  invest:   "Your investor profile has been received. Helen's team will be in touch with curated opportunities matching your criteria.",
+  consult:  "Your consultation request is confirmed. Helen's team will reach out to schedule a time that works for you.",
 };
 
 /* ── CORE SERVICE AREA ────────────────────────────────────── */
@@ -434,7 +434,7 @@ function routeLeadToPipeline(data) {
 /* ── SUCCESS STATE ────────────────────────────────────────── */
 function showSuccessState(data) {
   const pipeline = PIPELINES[data.serviceType];
-  const msg = PIPELINE_MESSAGES[data.serviceType] || 'Helen's team will be in touch shortly.';
+  const msg = PIPELINE_MESSAGES[data.serviceType] || "Helen's team will be in touch shortly.";
   const { tag: neighborhoodTag } = detectServiceArea(data.neighborhood);
 
   const el_msg    = document.getElementById('succMsg');
@@ -552,7 +552,7 @@ function subscribeNL() {
 
   // Success
   input.value     = '';
-  msg.textContent = '✓ You're subscribed! Watch your inbox for Sacramento market updates.';
+  msg.textContent = "✓ You're subscribed! Watch your inbox for Sacramento market updates.";
   msg.className   = 'nl-msg success';
 
   setTimeout(() => { msg.textContent = ''; msg.className = 'nl-msg'; }, 6000);
@@ -635,6 +635,12 @@ document.addEventListener('DOMContentLoaded', () => {
   observeRevealElements();
   initNeighborhoodCheck();
   initPhoneFormat();
+
+  // Mobile navigation
+  const burger = document.getElementById('burger');
+  if (burger) {
+    burger.addEventListener('click', toggleNav);
+  }
 
   // Set initial form state
   setFormState('form');
