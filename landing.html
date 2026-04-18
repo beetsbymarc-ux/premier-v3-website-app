@@ -458,7 +458,7 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
-  .hero-content{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:800px}
+  .hero-content{grid-template-columns:1fr;max-width:680px;text-align:center}
   .hero-left{display:flex;flex-direction:column;align-items:center}
   .hero-h1{font-size:clamp(44px,8vw,76px)}
   .hero-sub{text-align:center}
@@ -472,7 +472,7 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
   .nbhd-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:767px){
-  .hero-content{padding:0 24px}
+  .hero-content{grid-template-columns:1fr;padding:0 20px}
   .listings-grid,.services-grid,.testi-grid{grid-template-columns:1fr}
   .process-steps{grid-template-columns:1fr 1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
@@ -506,7 +506,7 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 <!-- DARK NAV -->
 <nav id="nav">
   <a href="landing.html" class="nav-logo" aria-label="Premier Realty Home">
-    <img src="img/premier-realty-logo.svg" alt="Premier Realty" style="height:44px;filter:brightness(0) invert(1);opacity:0.95">
+    <img src="img/premier-realty-logo.png" alt="Premier Realty" style="height:40px;opacity:.92">
   </a>
   <ul class="nav-center">
     <li><a href="about.html">About</a></li>
@@ -568,15 +568,16 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
       <p class="hero-sub">Luxury real estate expertise across Sacramento's most coveted neighborhoods. Trusted by 850+ families since 2008.</p>
       
       <!-- Sleek Centered Search Bar -->
-      <div class="hero-search-wrap">
+      <div class="hero-search-wrap" id="hero-form">
         <input type="text" class="hero-search-input" placeholder="Search neighborhoods (East Sac, Land Park, Midtown…)" aria-label="Search neighborhoods">
-        <button class="hero-search-btn">Search Listings</button>
+        <button class="hero-search-btn" onclick="smoothScrollTo('listings')">Search</button>
       </div>
 
-      <div class="hero-badges" style="margin-top:24px">
+      <div class="hero-badges">
         <div class="hero-badge hl">Top 1% Nationally</div>
         <div class="hero-badge">$2.4B+ in Sales</div>
         <div class="hero-badge">16 Yrs Experience</div>
+        <div class="hero-badge">DRE #01359322</div>
       </div>
     </div>
   </div>
