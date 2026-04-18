@@ -120,26 +120,71 @@ nav.solid{background:rgba(9,9,9,.97);backdrop-filter:blur(24px);-webkit-backdrop
   .hero-video{display:none}
   .hero-video-mobile{display:block}
 }
-.hero-content{position:relative;z-index:2;width:100%;max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:grid;grid-template-columns:1fr 500px;gap:52px;align-items:center}
+.hero-content{
+  position:relative;z-index:2;width:100%;max-width:1100px;margin:0 auto;
+  padding:0 clamp(20px,5vw,72px);display:flex;flex-direction:column;
+  align-items:center;text-align:center;gap:32px;
+}
 
+.hero-left{display:flex;flex-direction:column;align-items:center}
 .hero-eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:400;display:flex;align-items:center;gap:12px}
-.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
 .hero-h1{font-family:var(--serif);font-size:clamp(48px,6.5vw,92px);font-weight:300;line-height:1.0;letter-spacing:-.01em;color:var(--white)}
 .hero-h1 em{font-style:italic;color:var(--gold-light)}
-.hero-sub{margin-top:20px;font-size:15px;color:rgba(245,240,232,.6);font-weight:300;line-height:1.75;max-width:460px}
-.hero-badges{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-sub{margin-top:20px;font-size:15px;color:rgba(245,240,232,.6);font-weight:300;line-height:1.75;max-width:640px}
+.hero-badges{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 .hero-badge{font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 14px;border:1px solid rgba(245,240,232,.15);color:rgba(245,240,232,.45)}
 .hero-badge.hl{border-color:rgba(74,186,235,.45);color:var(--blue)}
 
-/* ── HERO FORM ── */
-.hero-form-wrap{
-  background:rgba(15,15,15,.82);backdrop-filter:blur(28px);
-  border:1px solid rgba(255,255,255,.1);
-  padding:32px 28px;position:relative;
+/* ── HERO SEARCH ── */
+.hero-search-wrap {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(15,15,15,.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.1);
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  position: relative;
 }
-.hero-form-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--gold))}
-.form-title{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--white);margin-bottom:4px}
-.form-sub{font-size:12px;color:rgba(245,240,232,.4);margin-bottom:22px;letter-spacing:.04em}
+
+.hero-search-wrap::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px; right: -1px; bottom: -1px;
+  border: 1px solid rgba(74,186,235,.2);
+  pointer-events: none;
+}
+
+.hero-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-family: var(--sans);
+  outline: none;
+}
+
+.hero-search-btn {
+  background: var(--blue);
+  color: var(--ink);
+  border: none;
+  padding: 0 28px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+
+.hero-search-btn:hover {
+  background: #62cef5;
+  transform: translateY(-1px);
+}
 .hf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .hf-field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
 .hf-field.full{grid-column:1/-1}
@@ -413,7 +458,7 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
-  .hero-content{grid-template-columns:1fr;max-width:680px;text-align:center}
+  .hero-content{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:800px}
   .hero-left{display:flex;flex-direction:column;align-items:center}
   .hero-h1{font-size:clamp(44px,8vw,76px)}
   .hero-sub{text-align:center}
@@ -427,7 +472,7 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
   .nbhd-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:767px){
-  .hero-content{grid-template-columns:1fr;padding:0 20px}
+  .hero-content{padding:0 24px}
   .listings-grid,.services-grid,.testi-grid{grid-template-columns:1fr}
   .process-steps{grid-template-columns:1fr 1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
@@ -452,7 +497,7 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 
 <!-- LOADER -->
 <div id="loader">
-  <img class="ld-logo" src="img/premier-realty-logo.svg" alt="Premier Realty" onerror="this.style.display='none'">
+  <img class="ld-logo" src="img/premier-realty-logo.png" alt="Premier Realty" onerror="this.style.display='none'">
   <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:300;color:#F5F0E8;letter-spacing:.1em">Premier Realty</div>
   <div class="ld-track"><div class="ld-fill" id="ld-fill"></div></div>
   <div class="ld-pct" id="ld-pct">0%</div>
@@ -461,7 +506,7 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 <!-- DARK NAV -->
 <nav id="nav">
   <a href="landing.html" class="nav-logo" aria-label="Premier Realty Home">
-    <img src="img/premier-realty-logo.svg" alt="Premier Realty" style="height:40px;opacity:.92">
+    <img src="img/premier-realty-logo.svg" alt="Premier Realty" style="height:44px;filter:brightness(0) invert(1);opacity:0.95">
   </a>
   <ul class="nav-center">
     <li><a href="about.html">About</a></li>
@@ -521,94 +566,17 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
       <div class="hero-eyebrow">Sacramento's Premier Real Estate</div>
       <h1 class="hero-h1">Find Your<br>Dream Home<br><em>in Sacramento</em></h1>
       <p class="hero-sub">Luxury real estate expertise across Sacramento's most coveted neighborhoods. Trusted by 850+ families since 2008.</p>
-      <div class="hero-badges">
+      
+      <!-- Sleek Centered Search Bar -->
+      <div class="hero-search-wrap">
+        <input type="text" class="hero-search-input" placeholder="Search neighborhoods (East Sac, Land Park, Midtown…)" aria-label="Search neighborhoods">
+        <button class="hero-search-btn">Search Listings</button>
+      </div>
+
+      <div class="hero-badges" style="margin-top:24px">
         <div class="hero-badge hl">Top 1% Nationally</div>
         <div class="hero-badge">$2.4B+ in Sales</div>
         <div class="hero-badge">16 Yrs Experience</div>
-        <div class="hero-badge">DRE #01359322</div>
-      </div>
-    </div>
-
-    <!-- Hero lead capture form -->
-    <div class="hero-form-wrap" id="hero-form">
-      <div class="form-title">Start Your Journey</div>
-      <div class="form-sub">Free consultation — no obligation, no pressure</div>
-
-      <form class="form-main" id="hf" onsubmit="handleHeroForm(event)" novalidate>
-        <div class="hf-row">
-          <div class="hf-field" id="hf-name-field">
-            <label for="hf-name">Full Name *</label>
-            <input type="text" id="hf-name" placeholder="Jane Smith" autocomplete="name">
-            <span class="hf-error-msg">Please enter your name</span>
-          </div>
-          <div class="hf-field" id="hf-phone-field">
-            <label for="hf-phone">Phone *</label>
-            <input type="tel" id="hf-phone" placeholder="(916) 555-0100" autocomplete="tel">
-            <span class="hf-error-msg">Please enter your phone</span>
-          </div>
-        </div>
-        <div class="hf-field" id="hf-email-field">
-          <label for="hf-email">Email Address *</label>
-          <input type="email" id="hf-email" placeholder="jane@email.com" autocomplete="email">
-          <span class="hf-error-msg">Please enter a valid email</span>
-        </div>
-        <div class="hf-field">
-          <label for="hf-area">Neighborhood or Property Address</label>
-          <input type="text" id="hf-area" placeholder="East Sacramento, Land Park, Midtown…">
-        </div>
-        <div class="hf-row">
-          <div class="hf-field">
-            <label for="hf-price">Price Range</label>
-            <select id="hf-price">
-              <option value="">Select range…</option>
-              <option>Under $500K</option>
-              <option>$500K – $800K</option>
-              <option>$800K – $1.2M</option>
-              <option>$1.2M – $2M</option>
-              <option>$2M+</option>
-            </select>
-          </div>
-          <div class="hf-field">
-            <label for="hf-timeline">Timeline</label>
-            <select id="hf-timeline">
-              <option value="">Select…</option>
-              <option>ASAP</option>
-              <option>1–3 months</option>
-              <option>3–6 months</option>
-              <option>6–12 months</option>
-              <option>Just exploring</option>
-            </select>
-          </div>
-        </div>
-        <div class="hf-field" id="hf-service-field">
-          <label for="hf-service">How Can We Help? *</label>
-          <select id="hf-service" onchange="detectPipeline(this.value)">
-            <option value="">Select a service…</option>
-            <option value="buy">Buy a Home</option>
-            <option value="value">Get My Home Value</option>
-            <option value="relocate">Relocating to Sacramento</option>
-            <option value="invest">Investment Property</option>
-            <option value="consult">Talk to an Agent</option>
-          </select>
-          <span class="hf-error-msg">Please select a service</span>
-        </div>
-        <div class="hf-pipeline-tag" id="hf-pipeline-tag"></div>
-        <button type="submit" class="hf-submit" id="hf-submit-btn">Submit Request →</button>
-        <div class="hf-note">🔒 Your info is private. We never share your details.</div>
-      </form>
-
-      <div class="form-success" id="form-success">
-        <div class="success-icon">✓</div>
-        <div class="success-h">Request Received</div>
-        <p class="success-p" id="success-msg">Helen will reach out within 24 hours to discuss your needs.</p>
-        <button class="hf-submit" style="width:auto;padding:12px 28px;margin-top:8px" onclick="resetHeroForm()">Submit Another</button>
-      </div>
-
-      <div class="form-oos" id="form-oos">
-        <div class="success-icon">📍</div>
-        <div class="success-h">Outside Our Core Area</div>
-        <p class="success-p">Premier Realty primarily serves greater Sacramento — but Helen may still be able to help. We'll review your request and follow up within 48 hours.</p>
-        <button class="hf-submit" style="width:auto;padding:12px 28px;margin-top:8px" onclick="resetHeroForm()">Go Back</button>
       </div>
     </div>
   </div>
