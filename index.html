@@ -1974,7 +1974,20 @@ function smoothScrollTo(id){
 
   function tick(t){
     if(!playing){rafId=null;return;}
-    if(t-lastT>=1000/FPS){
+    
+    var currentFPS = FPS;
+    var remain = TOTAL - 1 - idx;
+    
+    if (remain <= 24 && remain > 0) {
+      // Smoothly slow down over the last 24 frames
+      var factor = remain / 24; 
+      currentFPS = 8 + 16 * factor; 
+    } else if (remain === 0) {
+      // Hold the last frame for 2.5 seconds so it doesn't repeat so fast
+      currentFPS = 0.4;
+    }
+
+    if(t-lastT>=1000/currentFPS){
       // only advance if next frame is loaded, else hold
       var next=(idx+1)%TOTAL;
       if(loaded[next]){idx=next;draw();}
