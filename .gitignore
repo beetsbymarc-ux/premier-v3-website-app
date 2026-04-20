@@ -13,3 +13,6 @@ site-deploy.zip
 
 # Local Netlify folder
 .netlify
+
+# Legacy low-res mobile aerial frames (superseded by upscaled 1280x720 set)
+sac-aerial/frames/mobile_old/

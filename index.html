@@ -62,7 +62,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 nav{position:fixed;top:0;left:0;right:0;z-index:800;height:86px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3.5vw,56px);transition:background .4s,box-shadow .4s;gap:16px}
 nav.solid{background:rgba(255,255,255,.98);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 1px 0 var(--border)}
 .nav-logo{text-decoration:none;flex-shrink:0;display:flex;align-items:center}
-.nav-logo img{height:80px;display:block}
+.nav-logo img{height:72px;display:block}
 .nav-center{display:flex;align-items:center;gap:0;list-style:none;flex:1;justify-content:center}
 .nav-center>li{position:relative}
 .nav-center>li::after{content:'';position:absolute;bottom:-14px;left:0;right:0;height:14px}
@@ -229,8 +229,8 @@ section{position:relative;z-index:2}
 /* ── ABOUT ── */
 .about{padding:clamp(80px,12vh,130px) 0;background:var(--bg)}
 .about .container{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,96px);align-items:center}
-.about-img-wrap{position:relative}
-.about-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.about-img-wrap{position:relative;max-width:440px;width:100%;margin-left:auto;margin-right:auto}
+.about-img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:center 20%;display:block}
 .about-badge{position:absolute;bottom:-24px;right:-24px;width:118px;height:118px;background:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
 .about-badge-num{font-family:var(--serif);font-size:34px;font-weight:300;color:#fff;line-height:1}
 .about-badge-lbl{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.7)}
@@ -709,7 +709,8 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
   .listings-grid,.services-grid,.testi-grid{grid-template-columns:1fr 1fr}
   .process-steps{grid-template-columns:1fr 1fr}
   .about .container,.contact .container,.calc-wrap{grid-template-columns:1fr;gap:48px}
-  .about-img{aspect-ratio:4/3}
+  .about-img{aspect-ratio:3/4}
+  .about-img-wrap{max-width:360px}
   .about-badge{bottom:-12px;right:12px}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   .nbhd-grid{grid-template-columns:repeat(3,1fr)}
@@ -758,7 +759,7 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
 <!-- NAV -->
 <nav id="nav">
   <a href="index.html" class="nav-logo" aria-label="Premier Realty Home">
-    <img src="img/premier-realty-logo.png" alt="Premier Realty" style="height:40px;opacity:.95">
+    <img src="img/premier-realty-logo.png" alt="Premier Realty">
   </a>
   <ul class="nav-center">
     <li><a href="about.html">About</a></li>
@@ -812,7 +813,6 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
   <div class="hero-content">
     <div class="hero-eyebrow">Sacramento's Premier Real Estate</div>
     <h1 class="hero-h1">Find Your<br><span class="word-swap" aria-live="polite" id="word-swap"><span class="w-item on">Dream Home</span><span class="w-item">Next Home</span><span class="w-item">Forever Home</span></span></h1>
-    <p class="hero-sub">Luxury real estate expertise across Sacramento's most coveted neighborhoods. Trusted by 850+ families since 2008.</p>
 
     <form class="hero-search" id="hero-search" onsubmit="handleHeroSearch(event)">
       <input type="text" id="hero-search-input" placeholder="Search neighborhoods (East Sac, Land Park, Midtown…)" autocomplete="off" aria-label="Search">
@@ -1825,14 +1825,15 @@ function smoothScrollTo(id){
   var ctx=canvas.getContext('2d',{alpha:false});
   var isMobile=window.matchMedia('(max-width:768px)').matches;
   var dir=isMobile?'mobile':'desktop';
-  var TOTAL=121, FPS=24;
+  var TOTAL=121, FPS=12;
   var frames=new Array(TOTAL);
   var loaded=new Array(TOTAL).fill(false);
   var first=0, last=-1; // track contiguous loaded range
   var idx=0, playing=false, lastT=0, rafId=null;
 
   function pad(n){return String(n).padStart(4,'0');}
-  function frameUrl(i){return 'sac-aerial/frames/'+dir+'/frame-'+pad(i+1)+'.webp';}
+  // Reversed playback: idx 0 -> last frame (wide), idx TOTAL-1 -> first frame (close) => zoom IN
+  function frameUrl(i){return 'sac-aerial/frames/'+dir+'/frame-'+pad(TOTAL-i)+'.webp';}
 
   function resize(){
     var dpr=Math.min(window.devicePixelRatio||1,2);
@@ -1860,14 +1861,16 @@ function smoothScrollTo(id){
     
     var currentFPS = FPS;
     var remain = TOTAL - 1 - idx;
-    
-    if (remain <= 24 && remain > 0) {
-      // Smoothly slow down over the last 24 frames
-      var factor = remain / 24; 
-      currentFPS = 8 + 16 * factor; 
+
+    // Ease-out: the closer we get to the end of the zoom-in, the slower the playback
+    if (remain <= 48 && remain > 0) {
+      // Smoothly decelerate over the final 48 frames — cubic ease-out feel
+      var factor = remain / 48;           // 1 → 0 as we approach the last frame
+      var eased = factor * factor;         // quadratic ease — slower finish
+      currentFPS = 2.5 + (FPS - 2.5) * eased; // glide from FPS down to ~2.5 fps
     } else if (remain === 0) {
-      // Hold the last frame for 2.5 seconds so it doesn't repeat so fast
-      currentFPS = 0.4;
+      // Hold the final (most zoomed-in) frame long enough to feel cinematic
+      currentFPS = 0.25;
     }
 
     if(t-lastT>=1000/currentFPS){
