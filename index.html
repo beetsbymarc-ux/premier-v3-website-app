@@ -251,56 +251,37 @@ section{position:relative;z-index:2}
 .btn-outline-white{display:inline-block;background:transparent;color:rgba(255,255,255,.8);padding:14px 36px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,255,255,.25);cursor:pointer;font-family:var(--sans);transition:border-color .25s,color .25s,transform .2s;text-decoration:none}
 .btn-outline-white:hover{border-color:rgba(255,255,255,.7);color:#fff;transform:translateY(-1px)}
 
-/* ── SERVICES (Premium Flip Redesign) ── */
-.services{padding:clamp(110px,15vh,168px) 0;background:var(--bg-alt);position:relative;overflow:hidden}
-.services-bg{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.5}
-.services-bg svg{position:absolute;width:100%;height:100%;opacity:.4}
+/* ── SERVICES (Minimal Realistic Redesign) ── */
+.services{padding:clamp(110px,15vh,168px) 0;background:#FAFCFE;position:relative;overflow:hidden}
+.services-bg{display:none} /* Hide old glow */
 .services .container{position:relative;z-index:1}
-.services-head{max-width:680px;margin:0 auto 80px;text-align:center}
-.services-head .section-eyebrow{justify-content:center}
-.services-head .section-h2{text-align:center;font-size:clamp(44px,5.6vw,76px);line-height:1.04;font-weight:300;letter-spacing:-.018em;margin-top:14px}
-.services-head .section-h2 em{font-style:italic;color:var(--accent);font-weight:300;display:inline}
-.services-head-accent{width:40px;height:1px;background:var(--accent);margin:28px auto 0;opacity:.5}
+
+.services-head{display:grid;grid-template-columns:1fr 1.2fr;align-items:center;margin:0 auto 80px;gap:40px;max-width:1160px}
+.services-head-text{text-align:left}
+.services-head-text .section-eyebrow{justify-content:flex-start}
+.services-head-text .section-h2{text-align:left;font-size:clamp(44px,5.6vw,76px);line-height:1.04;font-weight:300;letter-spacing:-.018em;margin-top:14px;color:var(--text)}
+.services-head-text .section-h2 em{font-style:italic;color:var(--accent);font-weight:300;display:inline}
+.services-head-accent{width:40px;height:1px;background:var(--accent);margin:28px 0 0;opacity:.5}
+
+.services-head-illus{position:relative;width:100%;aspect-ratio:3/2}
+.services-head-illus img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;mask-image:radial-gradient(ellipse at center, black 40%, transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center, black 40%, transparent 75%);}
+
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.6vw,22px);max-width:1260px;margin:0 auto;position:relative}
 
-/* Card — acts as the 3D flip container */
-.service-card{position:relative;display:block;text-decoration:none;color:inherit;min-height:330px;cursor:pointer;perspective:1600px;background:transparent;border-radius:4px;isolation:isolate}
-.service-card-inner{position:relative;width:100%;height:100%;min-height:inherit;transition:transform .85s cubic-bezier(.22,.61,.36,1);transform-style:preserve-3d;will-change:transform}
-@media(hover:hover){ .service-card:hover .service-card-inner{transform:rotateY(180deg)} }
-.service-card.flipped .service-card-inner{transform:rotateY(180deg)}
+/* Flat Minimal Service Card */
+.service-card{position:relative;background:#FFFFFF;border:1px solid rgba(0,0,0,0.06);border-radius:8px;padding:36px;padding-bottom:46px;text-decoration:none;display:flex;flex-direction:column;min-height:340px;transition:box-shadow .3s ease, border-color .3s ease;overflow:hidden}
+.service-card:hover{box-shadow:0 12px 30px rgba(0,0,0,0.04);border-color:rgba(92,184,230,.35)}
 
-/* Faces (shared) */
-.service-face{position:absolute;inset:0;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.service-icon{width:46px;height:46px;border-radius:50%;background:#F0F7FA;display:flex;align-items:center;justify-content:center;margin-bottom:28px;z-index:2;position:relative}
+.service-icon svg{width:20px;height:20px;stroke:var(--accent);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
-/* Front face */
-.service-face.front{padding:44px 38px 36px;background:var(--bg);border:1px solid rgba(10,30,60,.055);transition:box-shadow .45s ease,border-color .35s ease}
-.service-face.front::before{content:'';position:absolute;top:0;left:38px;right:38px;height:1px;background:linear-gradient(90deg,transparent 0%,var(--accent) 50%,transparent 100%);opacity:0;transition:opacity .4s ease,left .45s cubic-bezier(.22,.61,.36,1),right .45s cubic-bezier(.22,.61,.36,1)}
-.service-card:hover .service-face.front{box-shadow:0 20px 48px rgba(10,30,60,.08),0 2px 8px rgba(10,30,60,.03);border-color:rgba(92,184,230,.26)}
-.service-card:hover .service-face.front::before{opacity:.75;left:16px;right:16px}
-.service-num{position:absolute;top:30px;right:36px;font-family:var(--serif);font-size:22px;font-weight:300;color:var(--accent);letter-spacing:.05em;opacity:.55;line-height:1;z-index:1}
-.service-icon{width:54px;height:54px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;margin-bottom:38px;flex-shrink:0;transition:background .35s ease,box-shadow .45s ease}
-.service-icon svg{width:22px;height:22px;stroke:var(--accent);stroke-width:1.3;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.service-title{font-family:var(--serif);font-size:clamp(24px,1.8vw,28px);font-weight:400;color:var(--text);margin-bottom:14px;line-height:1.18;letter-spacing:-.012em}
-.service-title-rule{width:24px;height:1px;background:var(--accent);opacity:.35;margin-bottom:16px;transition:width .45s cubic-bezier(.22,.61,.36,1),opacity .35s ease}
-.service-card:hover .service-title-rule{width:44px;opacity:.85}
-.service-desc{font-size:14px;font-weight:300;color:var(--text-secondary);line-height:1.75;max-width:32ch;flex:1}
-.service-link{display:inline-flex;align-items:center;gap:8px;margin-top:30px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:500;line-height:1}
-.service-link-arrow{display:inline-block;transition:transform .38s cubic-bezier(.22,.61,.36,1);will-change:transform}
+.service-title{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--text);margin-bottom:12px;line-height:1.2;z-index:2;position:relative}
+.service-desc{font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.7;max-width:28ch;flex:1;z-index:2;position:relative}
+.service-link{display:inline-flex;align-items:center;gap:6px;margin-top:24px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;z-index:2;position:relative}
 
-/* Back face — full-bleed image reveal with single-line caption */
-.service-face.back{transform:rotateY(180deg);padding:0;background:#0B1520;color:#fff;border:1px solid rgba(255,255,255,.08);overflow:hidden}
-.service-back-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.06);transition:transform 1.2s cubic-bezier(.22,.61,.36,1);filter:saturate(1.04) contrast(1.02)}
-.service-card.flipped .service-back-img,
-.service-card:hover .service-back-img{transform:scale(1)}
-.service-back-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,18,28,.28) 0%,rgba(8,18,28,.02) 32%,rgba(8,18,28,.30) 58%,rgba(8,18,28,.82) 100%);pointer-events:none;z-index:1}
-.service-back-num{position:absolute;top:26px;right:30px;font-family:var(--serif);font-style:italic;font-size:22px;font-weight:300;color:#fff;opacity:.92;letter-spacing:.05em;line-height:1;z-index:2;text-shadow:0 1px 10px rgba(0,0,0,.45)}
-.service-back-foot{position:absolute;left:30px;right:30px;bottom:26px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:18px}
-.service-back-textwrap{flex:1 1 auto;min-width:0}
-.service-back-rule{display:block;width:26px;height:1px;background:rgba(255,255,255,.7);margin-bottom:12px;box-shadow:0 0 8px rgba(255,255,255,.35)}
-.service-back-caption{font-family:var(--serif);font-size:clamp(18px,1.45vw,22px);font-weight:400;line-height:1.18;letter-spacing:-.006em;color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.service-back-cta{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto;font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:#fff;padding:10px 14px;border:1px solid rgba(255,255,255,.55);border-radius:2px;transition:background .3s ease,border-color .3s ease,transform .3s ease;background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);white-space:nowrap}
-.service-card:hover .service-back-cta,
-.service-card.flipped .service-back-cta{background:rgba(255,255,255,.22);border-color:#fff}
+/* Realistic Photo Integration */
+.service-photo{position:absolute;bottom:-10px;right:-10px;width:190px;height:190px;object-fit:cover;mask-image:radial-gradient(ellipse at bottom right, black 30%, transparent 75%);-webkit-mask-image:radial-gradient(ellipse at bottom right, black 30%, transparent 75%);z-index:1;transition:transform .5s cubic-bezier(0.22, 1, 0.36, 1);opacity:0.95}
+.service-card:hover .service-photo{transform:scale(1.05)}
 
 /* Mobile connecting line (hidden by default, shown at ≤600px) */
 .services-mobile-line{display:none}
@@ -1004,182 +985,75 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
   </div>
   <div class="container">
     <div class="services-head">
-      <div class="section-eyebrow reveal" style="justify-content:center">What We Offer</div>
-      <h2 class="section-h2 reveal rd1">Expert Guidance at Every <em>Stage</em></h2>
-      <div class="services-head-accent reveal rd2"></div>
+      <div class="services-head-text">
+        <div class="section-eyebrow reveal" style="justify-content:flex-start">What We Offer</div>
+        <h2 class="section-h2 reveal rd1">Expert Guidance at Every <em>Stage</em></h2>
+        <div class="services-head-accent reveal rd2"></div>
+      </div>
+      <div class="services-head-illus reveal rd3">
+        <img src="img/watercolor-house.jpg" alt="Premier Realty Expert Guidance" loading="lazy">
+      </div>
     </div>
     <div class="services-grid" id="services-grid">
 
-      <div class="services-mobile-line" id="services-mobile-line" aria-hidden="true">
-        <div class="sml-fill"></div>
-        <span class="sml-node" data-i="0"></span>
-        <span class="sml-node" data-i="1"></span>
-        <span class="sml-node" data-i="2"></span>
-        <span class="sml-node" data-i="3"></span>
-        <span class="sml-node" data-i="4"></span>
-        <span class="sml-node" data-i="5"></span>
-      </div>
-
       <a class="service-card reveal" href="services.html#buy">
-        <div class="service-card-inner">
-          <div class="service-face front">
-            <div class="service-num">01</div>
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5h-4.25v-6.75h-6.5V21.5H4.5A1.5 1.5 0 0 1 3 20z"/></svg>
-            </div>
-            <div class="service-title">Buy a Home</div>
-            <div class="service-title-rule"></div>
-            <p class="service-desc">From first search to closing — handled with precision and local insight.</p>
-            <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
-          </div>
-          <div class="service-face back">
-            <img class="service-back-img" src="img/services/svc-buy.jpg" alt="Buy a Home in Sacramento" loading="lazy" decoding="async">
-            <div class="service-back-scrim"></div>
-            <div class="service-back-num">01</div>
-            <div class="service-back-foot">
-              <div class="service-back-textwrap">
-                <span class="service-back-rule"></span>
-                <div class="service-back-caption">Find the home that feels right.</div>
-              </div>
-              <span class="service-back-cta">Start →</span>
-            </div>
-          </div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5h-4.25v-6.75h-6.5V21.5H4.5A1.5 1.5 0 0 1 3 20z"/></svg>
         </div>
+        <div class="service-title">Buy a Home</div>
+        <p class="service-desc">From first search to closing — handled with precision and local insight.</p>
+        <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
+        <img class="service-photo" src="img/services/svc-buy.jpg" alt="Buy a Home in Sacramento" loading="lazy">
       </a>
 
       <a class="service-card reveal rd1" href="services.html#sell">
-        <div class="service-card-inner">
-          <div class="service-face front">
-            <div class="service-num">02</div>
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M3 3h3.2l2.1 12.3a1.5 1.5 0 0 0 1.48 1.25h8.4a1.5 1.5 0 0 0 1.48-1.2L21 7.5H7.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="18.5" cy="20.5" r="1.2"/></svg>
-            </div>
-            <div class="service-title">Sell My Home</div>
-            <div class="service-title-rule"></div>
-            <p class="service-desc">Strategic pricing and staging — engineered for above-asking results.</p>
-            <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
-          </div>
-          <div class="service-face back">
-            <img class="service-back-img" src="img/services/svc-sell.jpg" alt="Sell your Sacramento home" loading="lazy" decoding="async">
-            <div class="service-back-scrim"></div>
-            <div class="service-back-num">02</div>
-            <div class="service-back-foot">
-              <div class="service-back-textwrap">
-                <span class="service-back-rule"></span>
-                <div class="service-back-caption">Priced, staged, and sold for more.</div>
-              </div>
-              <span class="service-back-cta">Strategy →</span>
-            </div>
-          </div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 3h3.2l2.1 12.3a1.5 1.5 0 0 0 1.48 1.25h8.4a1.5 1.5 0 0 0 1.48-1.2L21 7.5H7.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="18.5" cy="20.5" r="1.2"/></svg>
         </div>
+        <div class="service-title">Sell My Home</div>
+        <p class="service-desc">Strategic pricing and staging — engineered for above-asking results.</p>
+        <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
+        <img class="service-photo" src="img/services/svc-sell.jpg" alt="Sell your Sacramento home" loading="lazy">
       </a>
 
       <a class="service-card reveal rd2" href="services.html#value">
-        <div class="service-card-inner">
-          <div class="service-face front">
-            <div class="service-num">03</div>
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M4 20V14"/><path d="M12 20V4"/><path d="M20 20v-9"/></svg>
-            </div>
-            <div class="service-title">Home Valuation</div>
-            <div class="service-title-rule"></div>
-            <p class="service-desc">A real market read — grounded in comps, not an algorithmic guess.</p>
-            <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
-          </div>
-          <div class="service-face back">
-            <img class="service-back-img" src="img/services/svc-value.jpg" alt="Sacramento home valuation" loading="lazy" decoding="async">
-            <div class="service-back-scrim"></div>
-            <div class="service-back-num">03</div>
-            <div class="service-back-foot">
-              <div class="service-back-textwrap">
-                <span class="service-back-rule"></span>
-                <div class="service-back-caption">Know what your home is truly worth.</div>
-              </div>
-              <span class="service-back-cta">Value →</span>
-            </div>
-          </div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 20V14"/><path d="M12 20V4"/><path d="M20 20v-9"/></svg>
         </div>
+        <div class="service-title">Home Valuation</div>
+        <p class="service-desc">A real market read — grounded in comps, not an algorithmic guess.</p>
+        <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
+        <img class="service-photo" src="img/services/svc-value.jpg" alt="Sacramento home valuation" loading="lazy">
       </a>
 
       <a class="service-card reveal rd1" href="services.html#relocate">
-        <div class="service-card-inner">
-          <div class="service-face front">
-            <div class="service-num">04</div>
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-            </div>
-            <div class="service-title">Relocating to Sacramento</div>
-            <div class="service-title-rule"></div>
-            <p class="service-desc">Land softly in your new Sacramento neighborhood — concierge from day one.</p>
-            <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
-          </div>
-          <div class="service-face back">
-            <img class="service-back-img" src="img/services/svc-relocate.jpg" alt="Relocating to Sacramento" loading="lazy" decoding="async">
-            <div class="service-back-scrim"></div>
-            <div class="service-back-num">04</div>
-            <div class="service-back-foot">
-              <div class="service-back-textwrap">
-                <span class="service-back-rule"></span>
-                <div class="service-back-caption">Land softly in your new city.</div>
-              </div>
-              <span class="service-back-cta">Plan →</span>
-            </div>
-          </div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
         </div>
+        <div class="service-title">Relocating to Sacramento</div>
+        <p class="service-desc">Land softly in your new Sacramento neighborhood — concierge from day one.</p>
+        <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
+        <img class="service-photo" src="img/services/svc-relocate.jpg" alt="Relocating to Sacramento" loading="lazy">
       </a>
 
       <a class="service-card reveal rd2" href="services.html#invest">
-        <div class="service-card-inner">
-          <div class="service-face front">
-            <div class="service-num">05</div>
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M3 17 9.5 10.5 13 14l7.5-8"/><path d="M15 6h5.5v5.5"/></svg>
-            </div>
-            <div class="service-title">Investment Property</div>
-            <div class="service-title-rule"></div>
-            <p class="service-desc">Income opportunities sourced and vetted across greater Sacramento.</p>
-            <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
-          </div>
-          <div class="service-face back">
-            <img class="service-back-img" src="img/services/svc-invest.jpg" alt="Sacramento investment property" loading="lazy" decoding="async">
-            <div class="service-back-scrim"></div>
-            <div class="service-back-num">05</div>
-            <div class="service-back-foot">
-              <div class="service-back-textwrap">
-                <span class="service-back-rule"></span>
-                <div class="service-back-caption">Build real wealth through real estate.</div>
-              </div>
-              <span class="service-back-cta">Explore →</span>
-            </div>
-          </div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 17 9.5 10.5 13 14l7.5-8"/><path d="M15 6h5.5v5.5"/></svg>
         </div>
+        <div class="service-title">Investment Property</div>
+        <p class="service-desc">Income opportunities sourced and vetted across greater Sacramento.</p>
+        <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
+        <img class="service-photo" src="img/services/svc-invest.jpg" alt="Sacramento investment property" loading="lazy">
       </a>
 
       <a class="service-card reveal rd3" href="services.html#consult">
-        <div class="service-card-inner">
-          <div class="service-face front">
-            <div class="service-num">06</div>
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24"><path d="M4 20v-1.5A4.5 4.5 0 0 1 8.5 14h4A4.5 4.5 0 0 1 17 18.5V20"/><circle cx="10.5" cy="8" r="3.5"/><path d="M18 14.2a3.8 3.8 0 0 0 0-7.4"/></svg>
-            </div>
-            <div class="service-title">Talk to an Agent</div>
-            <div class="service-title-rule"></div>
-            <p class="service-desc">Start with a zero-pressure conversation. Clear next steps — always.</p>
-            <div class="service-link">Schedule <span class="service-link-arrow">→</span></div>
-          </div>
-          <div class="service-face back">
-            <img class="service-back-img" src="img/services/svc-consult.jpg" alt="Talk to a Premier Realty agent" loading="lazy" decoding="async">
-            <div class="service-back-scrim"></div>
-            <div class="service-back-num">06</div>
-            <div class="service-back-foot">
-              <div class="service-back-textwrap">
-                <span class="service-back-rule"></span>
-                <div class="service-back-caption">A 15-minute call. Zero pressure.</div>
-              </div>
-              <span class="service-back-cta">Book →</span>
-            </div>
-          </div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 20v-1.5A4.5 4.5 0 0 1 8.5 14h4A4.5 4.5 0 0 1 17 18.5V20"/><circle cx="10.5" cy="8" r="3.5"/><path d="M18 14.2a3.8 3.8 0 0 0 0-7.4"/></svg>
         </div>
+        <div class="service-title">Talk to an Agent</div>
+        <p class="service-desc">Start with a zero-pressure conversation. Clear next steps — always.</p>
+        <div class="service-link">Schedule <span class="service-link-arrow">→</span></div>
+        <img class="service-photo" src="img/services/svc-consult.jpg" alt="Talk to a Premier Realty agent" loading="lazy">
       </a>
 
     </div>
