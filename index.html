@@ -1862,15 +1862,15 @@ function smoothScrollTo(id){
     var currentFPS = FPS;
     var remain = TOTAL - 1 - idx;
 
-    // Ease-out: the closer we get to the end of the zoom-in, the slower the playback
-    if (remain <= 48 && remain > 0) {
-      // Smoothly decelerate over the final 48 frames — cubic ease-out feel
-      var factor = remain / 48;           // 1 → 0 as we approach the last frame
-      var eased = factor * factor;         // quadratic ease — slower finish
-      currentFPS = 2.5 + (FPS - 2.5) * eased; // glide from FPS down to ~2.5 fps
+    // Gentle ease-out toward the final zoomed-in frame
+    if (remain <= 24 && remain > 0) {
+      // Decelerate lightly over the final 24 frames
+      var factor = remain / 24;            // 1 → 0 as we approach the last frame
+      var eased = 0.35 + 0.65 * factor;    // stays closer to FPS — subtle slowdown
+      currentFPS = FPS * eased;            // glides from FPS down to ~0.35×FPS
     } else if (remain === 0) {
-      // Hold the final (most zoomed-in) frame long enough to feel cinematic
-      currentFPS = 0.25;
+      // Brief hold on the final frame before the loop restarts
+      currentFPS = 0.6;
     }
 
     if(t-lastT>=1000/currentFPS){
