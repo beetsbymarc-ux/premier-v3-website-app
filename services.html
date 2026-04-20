@@ -67,6 +67,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:800;height:86px;display:flex;ali
 .svc-bg-navy{background:var(--navy)}
 .svc-vis{position:relative}
 .svc-media{width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.82) saturate(.9);display:block}
+/* Buy section: crossfading video slideshow */
+.svc-slideshow{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden}
+.svc-slideshow .svc-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.82) saturate(.95);opacity:0;transition:opacity 1.4s cubic-bezier(.4,0,.2,1);will-change:opacity}
+.svc-slideshow .svc-slide.on{opacity:1}
 .svc-ph{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,rgba(26,43,64,.9),rgba(74,186,235,.1));display:flex;align-items:center;justify-content:center;font-size:80px}
 .svc-chip{position:absolute;top:18px;left:18px;background:var(--blue);color:var(--ink);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;font-weight:600}
 .svc-stat{position:absolute;bottom:-18px;right:-18px;background:rgba(11,11,11,.92);border:1px solid rgba(74,186,235,.25);padding:14px 20px;backdrop-filter:blur(12px)}
@@ -211,7 +215,10 @@ footer{background:rgba(0,0,0,.75);border-top:1px solid rgba(245,240,232,.06);pad
 <div id="buy" style="background:var(--ink)">
 <div class="svc">
   <div class="svc-vis reveal">
-    <video class="svc-media" autoplay muted loop playsinline><source src="img/lifestyle.mp4" type="video/mp4"></video>
+    <div class="svc-slideshow" id="svc-buy-slideshow" aria-hidden="true">
+      <video class="svc-slide on" data-slide="0" autoplay muted loop playsinline preload="auto"><source src="img/services/svc-buy-home.mp4" type="video/mp4"></video>
+      <video class="svc-slide" data-slide="1" muted loop playsinline preload="auto"><source src="img/services/svc-buy-skyline.mp4" type="video/mp4"></video>
+    </div>
     <div class="svc-chip">Buyer Representation</div>
     <div class="svc-stat"><div class="svc-stat-n">850+</div><div class="svc-stat-l">Homes Closed</div></div>
   </div>
@@ -395,6 +402,27 @@ function closeMob(){document.getElementById('ham').classList.remove('open');docu
 const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 if(location.hash)setTimeout(()=>document.querySelector(location.hash)?.scrollIntoView({behavior:'smooth'}),400);
+
+// Buy-a-Home video slideshow crossfade (luxury home ↔ Sacramento skyline)
+(function(){
+  var show = document.getElementById('svc-buy-slideshow');
+  if(!show) return;
+  var slides = show.querySelectorAll('.svc-slide');
+  if(slides.length < 2) return;
+  var idx = 0;
+  // Try to play each video (browsers may block without user interaction — muted autoplay should pass)
+  slides.forEach(function(v){ var p = v.play && v.play(); if(p && p.catch) p.catch(function(){}); });
+  function next(){
+    var nextIdx = (idx + 1) % slides.length;
+    slides[idx].classList.remove('on');
+    slides[nextIdx].classList.add('on');
+    // restart the incoming slide so it's not midway through
+    try{ slides[nextIdx].currentTime = 0; slides[nextIdx].play(); }catch(e){}
+    idx = nextIdx;
+  }
+  // Each slide dwells ~7s before crossfading to the next (1.4s transition)
+  setInterval(next, 7000);
+})();
 
 // Highlight active qnav item on scroll
 const sections=['buy','value','relocate','invest','consult'];
