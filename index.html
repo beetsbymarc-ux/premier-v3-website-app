@@ -16,59 +16,68 @@
 html{scroll-behavior:smooth}
 
 :root{
-  --gold:#C8A96E;
-  --gold-light:#E2C99A;
-  --ink:#0B0B0B;
-  --warm:#F5F0E8;
-  --dim:#7A7468;
-  --navy:#1A2B40;
-  --blue:#4ABAEB;
-  --white:#FFFFFF;
+  --accent:#5CB8E6;
+  --accent-hover:#3FA3D5;
+  --accent-light:#E8F4FB;
+  --accent-soft:#87D4EE;
+  --bg:#FFFFFF;
+  --bg-alt:#F7F8FA;
+  --bg-dark:#0A0A0A;
+  --text:#111827;
+  --text-secondary:#6B7280;
+  --text-light:#9CA3AF;
+  --border:#E5E7EB;
+  --border-dark:rgba(255,255,255,.12);
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'DM Sans',system-ui,sans-serif;
+  /* legacy aliases kept for hero/dark sections */
+  --gold:#5CB8E6;
+  --gold-light:#87D4EE;
+  --ink:#FFFFFF;
+  --warm:#111827;
+  --dim:#6B7280;
+  --navy:#F7F8FA;
+  --blue:#5CB8E6;
+  --white:#FFFFFF;
 }
 
-body{font-family:var(--sans);background:var(--ink);color:var(--warm);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* ── CURSOR ── */
-#cur-dot{position:fixed;width:5px;height:5px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
-#cur-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(200,169,110,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
-#cur-ring.hov{width:48px;height:48px;border-color:var(--gold)}
+#cur-dot{position:fixed;width:5px;height:5px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#cur-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(92,184,230,.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+#cur-ring.hov{width:48px;height:48px;border-color:var(--accent)}
 @media(hover:none){#cur-dot,#cur-ring{display:none}body{cursor:auto}}
 
-/* ── NOISE TEXTURE ── */
-body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;opacity:.022}
-
 /* ── LOADER ── */
-#loader{position:fixed;inset:0;z-index:9000;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .9s ease,visibility .9s}
+#loader{position:fixed;inset:0;z-index:9000;background:#0A0A0A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .9s ease,visibility .9s}
 #loader.gone{opacity:0;visibility:hidden;pointer-events:none}
 .ld-logo{height:52px;margin-bottom:8px}
-.ld-track{width:110px;height:1px;background:rgba(245,240,232,.1);position:relative;overflow:hidden}
-.ld-fill{position:absolute;inset:0 100% 0 0;background:linear-gradient(90deg,var(--blue),var(--gold));transition:right .04s linear}
-.ld-pct{font-size:10px;letter-spacing:.22em;color:var(--dim);font-weight:300}
+.ld-track{width:110px;height:1px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
+.ld-fill{position:absolute;inset:0 100% 0 0;background:linear-gradient(90deg,var(--accent),#87D4EE);transition:right .04s linear}
+.ld-pct{font-size:10px;letter-spacing:.22em;color:rgba(255,255,255,.4);font-weight:300}
+.ld-brand{font-family:var(--serif);font-size:22px;font-weight:300;color:#F5F0E8;letter-spacing:.1em}
 
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:800;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3.5vw,56px);transition:background .4s,box-shadow .4s;gap:16px}
-nav.solid{background:rgba(9,9,9,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(74,186,235,.1)}
+nav.solid{background:rgba(255,255,255,.98);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 1px 0 var(--border)}
 .nav-logo{text-decoration:none;flex-shrink:0;display:flex;align-items:center}
 .nav-logo img{height:38px;display:block}
-
 .nav-center{display:flex;align-items:center;gap:0;list-style:none;flex:1;justify-content:center}
 .nav-center>li{position:relative}
-/* Bridge hover gap so dropdown stays open */
 .nav-center>li::after{content:'';position:absolute;bottom:-14px;left:0;right:0;height:14px}
 .nav-center>li>a,.nav-center>li>button.nav-btn{
   font-size:11px;font-weight:400;letter-spacing:.09em;text-transform:uppercase;
-  color:rgba(245,240,232,.65);background:none;border:none;font-family:var(--sans);
+  color:rgba(255,255,255,.75);background:none;border:none;font-family:var(--sans);
   padding:6px 12px;cursor:pointer;display:flex;align-items:center;gap:4px;
-  transition:color .25s;position:relative;text-decoration:none;white-space:nowrap;
-  height:68px;
+  transition:color .25s;position:relative;text-decoration:none;white-space:nowrap;height:68px;
 }
-.nav-center>li>a:hover,.nav-center>li>button.nav-btn:hover{color:var(--white)}
-/* Gold underline on hover */
+nav.solid .nav-center>li>a,nav.solid .nav-center>li>button.nav-btn{color:rgba(17,24,39,.65)}
+.nav-center>li>a:hover,.nav-center>li>button.nav-btn:hover{color:#fff}
+nav.solid .nav-center>li>a:hover,nav.solid .nav-center>li>button.nav-btn:hover{color:var(--text)}
 .nav-center>li>a::after,.nav-center>li>button.nav-btn::after{
   content:'';position:absolute;bottom:14px;left:12px;right:12px;height:1px;
-  background:var(--gold);transform:scaleX(0);transition:transform .25s;transform-origin:center;
+  background:var(--accent);transform:scaleX(0);transition:transform .25s;transform-origin:center;
 }
 .nav-center>li>a:hover::after,.nav-center>li>button.nav-btn:hover::after{transform:scaleX(1)}
 .caret{font-size:7px;opacity:.45;transition:transform .25s;margin-top:1px}
@@ -77,376 +86,608 @@ nav.solid{background:rgba(9,9,9,.97);backdrop-filter:blur(24px);-webkit-backdrop
 /* Dropdown */
 .nav-drop{
   position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-6px);
-  background:rgba(10,10,10,.99);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
-  border:1px solid rgba(255,255,255,.08);border-top:1px solid rgba(74,186,235,.2);
+  background:rgba(255,255,255,.99);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  border:1px solid var(--border);border-top:2px solid var(--accent);
   min-width:220px;padding:6px 0;opacity:0;visibility:hidden;pointer-events:none;
   transition:opacity .2s,transform .2s,visibility .2s;
-  box-shadow:0 16px 48px rgba(0,0,0,.5);
+  box-shadow:0 16px 48px rgba(0,0,0,.08);
 }
 .nav-center>li:hover .nav-drop{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
-.nav-drop a{display:flex;align-items:center;gap:8px;padding:10px 18px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:rgba(245,240,232,.6);transition:color .18s,background .18s;white-space:nowrap;text-decoration:none}
-.nav-drop a::before{content:'';width:4px;height:4px;background:var(--blue);border-radius:50%;opacity:0;transition:opacity .18s;flex-shrink:0}
-.nav-drop a:hover{color:var(--white);background:rgba(255,255,255,.04)}
+.nav-drop a{display:flex;align-items:center;gap:8px;padding:10px 18px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-secondary);transition:color .18s,background .18s;white-space:nowrap;text-decoration:none}
+.nav-drop a::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:50%;opacity:0;transition:opacity .18s;flex-shrink:0}
+.nav-drop a:hover{color:var(--text);background:rgba(92,184,230,.04)}
 .nav-drop a:hover::before{opacity:1}
-.nav-drop-divider{height:1px;background:rgba(255,255,255,.06);margin:4px 0}
+.nav-drop-divider{height:1px;background:var(--border);margin:4px 0}
 
 /* CTA button */
-.nav-cta{background:var(--blue);color:var(--ink);padding:9px 20px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:background .2s,transform .2s;white-space:nowrap;text-decoration:none;display:inline-block;flex-shrink:0;line-height:1}
-.nav-cta:hover{background:#62cef5;transform:translateY(-1px)}
-.nav-cta:active{transform:scale(.98)}
+.nav-cta{background:var(--accent);color:#fff;padding:9px 20px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:background .2s,transform .2s;white-space:nowrap;text-decoration:none;display:inline-block;flex-shrink:0;line-height:1}
+.nav-cta:hover{background:var(--accent-hover);transform:translateY(-1px)}
 
 /* Mobile nav */
 .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:8px;background:none;border:none;flex-shrink:0}
-.hamburger span{width:20px;height:1.5px;background:rgba(245,240,232,.8);display:block;transition:all .25s;transform-origin:center}
+.hamburger span{width:20px;height:1.5px;background:rgba(255,255,255,.8);display:block;transition:all .25s;transform-origin:center}
+nav.solid .hamburger span{background:rgba(17,24,39,.7)}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
-.mobile-menu{display:none;position:fixed;inset:68px 0 0;background:rgba(9,9,9,.99);z-index:799;overflow-y:auto;padding:28px 20px;flex-direction:column;gap:2px}
+.mobile-menu{display:none;position:fixed;inset:68px 0 0;background:rgba(255,255,255,.99);backdrop-filter:blur(20px);z-index:799;overflow-y:auto;padding:28px 20px;flex-direction:column;gap:2px;border-top:1px solid var(--border)}
 .mobile-menu.open{display:flex}
-.mob-link{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.7);padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06);display:block;text-decoration:none;cursor:pointer;background:none;border-left:none;border-right:none;border-top:none;font-family:var(--sans);width:100%;text-align:left;transition:color .2s}
-.mob-link:hover{color:var(--blue)}
+.mob-link{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);padding:13px 0;border-bottom:1px solid var(--border);display:block;text-decoration:none;cursor:pointer;background:none;border-left:none;border-right:none;border-top:none;font-family:var(--sans);width:100%;text-align:left;transition:color .2s}
+.mob-link:hover{color:var(--accent)}
 .mob-sub{padding-left:14px}
-.mob-sub a{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:rgba(245,240,232,.4);padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04);display:block;text-decoration:none;transition:color .2s}
-.mob-sub a:hover{color:var(--blue)}
-.mob-cta{margin-top:20px;background:var(--blue);color:var(--ink);padding:14px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-align:center;cursor:pointer;border:none;font-family:var(--sans);width:100%;transition:background .2s;line-height:1}
-.mob-cta:hover{background:#62cef5}
+.mob-sub a{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-light);padding:9px 0;border-bottom:1px solid var(--border);display:block;text-decoration:none;transition:color .2s}
+.mob-sub a:hover{color:var(--accent)}
+.mob-cta{margin-top:20px;background:var(--accent);color:#fff;padding:14px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-align:center;cursor:pointer;border:none;font-family:var(--sans);width:100%;transition:background .2s;line-height:1}
+.mob-cta:hover{background:var(--accent-hover)}
 
 /* ── HERO ── */
-.hero{position:relative;height:100svh;min-height:640px;display:flex;align-items:center;overflow:hidden}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.42) saturate(.9)}
-.hero-video-mobile{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.42) saturate(.9);display:none}
-.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,11,11,.3) 0%,rgba(11,11,11,0) 35%,rgba(11,11,11,.72) 100%)}
-@media(max-width:768px){
-  .hero-video{display:none}
-  .hero-video-mobile{display:block}
+.hero{position:relative;height:100svh;min-height:680px;display:flex;align-items:center;overflow:hidden;background:#0a1420}
+.hero-scenes{position:absolute;inset:0;z-index:0}
+.hero-scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease;filter:saturate(1.04) contrast(1.02);transform:scale(1.06);animation:kenburns 12s ease-in-out infinite alternate;will-change:transform,opacity}
+.hero-scene.active{opacity:1}
+@keyframes kenburns{
+  0%  {transform:scale(1.06) translate(0,0)}
+  100%{transform:scale(1.12) translate(-1.2%,-1%)}
 }
+.hero-vignette{position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.18) 28%, rgba(0,0,0,.22) 64%, rgba(0,0,0,.55) 100%),
+  radial-gradient(ellipse at 50% 55%, transparent 48%, rgba(0,0,0,.28) 100%)}
+.hero-flash{position:absolute;inset:0;z-index:3;pointer-events:none;background:#fff;opacity:0;transition:opacity .2s ease-out}
+.hero-flash.on{opacity:.55;transition:opacity .08s ease-in}
 .hero-content{
-  position:relative;z-index:2;width:100%;max-width:1100px;margin:0 auto;
-  padding:0 clamp(20px,5vw,72px);display:flex;flex-direction:column;
-  align-items:center;text-align:center;gap:32px;
+  position:relative;z-index:2;width:100%;max-width:960px;margin:0 auto;
+  padding:0 clamp(20px,5vw,56px);display:flex;flex-direction:column;
+  align-items:center;text-align:center;gap:28px;
+}
+.hero-eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:400;display:flex;align-items:center;gap:12px;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:32px;height:1px;background:rgba(255,255,255,.5)}
+.hero-h1{font-family:var(--serif);font-size:clamp(56px,9vw,120px);font-weight:400;line-height:1.02;letter-spacing:-.015em;color:#fff;text-align:center;text-shadow:0 2px 22px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.3)}
+.hero-h1 em{font-style:italic;color:#87D4EE}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.92);font-weight:300;line-height:1.8;max-width:560px;text-align:center;text-shadow:0 1px 10px rgba(0,0,0,.55)}
+.hero-badges{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hero-badge{font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:10px 22px;border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.92);border-radius:2px;background:rgba(10,20,32,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);text-shadow:0 1px 6px rgba(0,0,0,.4)}
+.hero-badge.hl{border-color:rgba(135,212,238,.7);color:#87D4EE;background:rgba(10,20,32,.55)}
+
+/* ── ROTATING WORD SWAP (GOLD, SYNCED TO SCENES) ── */
+.word-swap{display:inline-grid;grid-template-columns:1fr;vertical-align:baseline;color:#E6C98A;line-height:1.02;font-style:italic;
+  text-shadow:
+    0 0 18px rgba(230,201,138,.55),
+    0 0 40px rgba(230,201,138,.32),
+    0 0 72px rgba(230,201,138,.18),
+    0 2px 6px rgba(0,0,0,.45)}
+.word-swap>.w-item{grid-row:1;grid-column:1;opacity:0;white-space:nowrap;transform:translateY(16px);filter:blur(4px);transition:opacity .9s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.4,0,.2,1), filter .9s cubic-bezier(.4,0,.2,1)}
+.word-swap>.w-item.on{opacity:1;transform:translateY(0);filter:blur(0);animation:goldpulse 3.6s ease-in-out infinite}
+@keyframes goldpulse{
+  0%,100%{text-shadow:
+    0 0 18px rgba(230,201,138,.55),
+    0 0 40px rgba(230,201,138,.32),
+    0 0 72px rgba(230,201,138,.18),
+    0 2px 6px rgba(0,0,0,.45)}
+  50%  {text-shadow:
+    0 0 26px rgba(230,201,138,.8),
+    0 0 62px rgba(230,201,138,.5),
+    0 0 110px rgba(230,201,138,.25),
+    0 2px 6px rgba(0,0,0,.45)}
 }
 
-.hero-left{display:flex;flex-direction:column;align-items:center}
-.hero-eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:400;display:flex;align-items:center;gap:12px}
-.hero-h1{font-family:var(--serif);font-size:clamp(48px,6.5vw,92px);font-weight:300;line-height:1.0;letter-spacing:-.01em;color:var(--white)}
-.hero-h1 em{font-style:italic;color:var(--gold-light)}
-.hero-sub{margin-top:20px;font-size:15px;color:rgba(245,240,232,.6);font-weight:300;line-height:1.75;max-width:640px}
-.hero-badges{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.hero-badge{font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 14px;border:1px solid rgba(245,240,232,.15);color:rgba(245,240,232,.45)}
-.hero-badge.hl{border-color:rgba(74,186,235,.45);color:var(--blue)}
-
-/* ── HERO SEARCH ── */
-.hero-search-wrap {
-  width: 100%;
-  max-width: 600px;
-  background: rgba(15,15,15,.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,.1);
-  padding: 8px;
-  display: flex;
-  gap: 8px;
-  position: relative;
+/* ── HERO SEARCH BAR ── */
+.hero-search{
+  width:100%;max-width:780px;display:flex;align-items:stretch;
+  background:rgba(18,22,30,.78);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.08);
+  padding:8px;gap:0;
+  transition:border-color .3s,background .3s;
+}
+.hero-search:focus-within{border-color:rgba(92,184,230,.55);background:rgba(22,28,40,.85)}
+.hero-search input{
+  flex:1;background:transparent;border:none;outline:none;
+  color:#fff;font-family:var(--sans);font-size:14px;font-weight:300;
+  padding:18px 20px;letter-spacing:.01em;
+}
+.hero-search input::placeholder{color:rgba(255,255,255,.5);font-weight:300}
+.hero-search-btn{
+  background:#5CB8E6;color:#0a0a0a;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  padding:0 44px;min-width:148px;transition:background .25s,transform .2s;
+}
+.hero-search-btn:hover{background:#87D4EE;transform:translateY(-1px)}
+@media(max-width:640px){
+  .hero-search{padding:6px;flex-direction:row}
+  .hero-search input{font-size:13px;padding:14px 14px}
+  .hero-search-btn{padding:0 20px;min-width:100px;font-size:11px;letter-spacing:.12em}
 }
 
-.hero-search-wrap::before {
-  content: '';
-  position: absolute;
-  top: -1px; left: -1px; right: -1px; bottom: -1px;
-  border: 1px solid rgba(74,186,235,.2);
-  pointer-events: none;
-}
-
-.hero-search-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: #fff;
-  padding: 14px 20px;
-  font-size: 14px;
-  font-family: var(--sans);
-  outline: none;
-}
-
-.hero-search-btn {
-  background: var(--blue);
-  color: var(--ink);
-  border: none;
-  padding: 0 28px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform .2s, background .2s;
-}
-
-.hero-search-btn:hover {
-  background: #62cef5;
-  transform: translateY(-1px);
-}
-.hf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.hf-field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
-.hf-field.full{grid-column:1/-1}
-.hf-field label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.4)}
-.hf-field input,.hf-field select{
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);
-  color:var(--warm);padding:13px 14px;font-size:13px;font-weight:300;font-family:var(--sans);
-  outline:none;transition:border-color .25s,background .25s;border-radius:0;
-}
-.hf-field input::placeholder{color:rgba(245,240,232,.22)}
-.hf-field input:focus,.hf-field select:focus{border-color:var(--blue);background:rgba(74,186,235,.05)}
-.hf-field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7468' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 14px) center;padding-right:36px}
-.hf-field select option{background:#141414;color:var(--warm)}
-.hf-submit{width:100%;background:var(--blue);color:var(--ink);border:none;padding:15px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);transition:background .25s,transform .2s;margin-top:4px}
-.hf-submit:hover{background:#62cef5;transform:translateY(-1px)}
-.hf-submit:active{transform:scale(.98)}
-.hf-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
-.hf-note{font-size:10px;color:rgba(245,240,232,.25);text-align:center;margin-top:12px;letter-spacing:.05em}
-.hf-pipeline-tag{font-size:10px;letter-spacing:.12em;color:var(--blue);padding:4px 0;display:none;margin-bottom:4px}
-.hf-field input.error,.hf-field select.error{border-color:rgba(235,74,74,.6)}
-.hf-error-msg{font-size:10px;color:rgba(235,100,100,.8);letter-spacing:.05em;display:none}
-.hf-field.has-error .hf-error-msg{display:block}
-
-.form-success,.form-oos{display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px 0;min-height:220px}
-.form-success.show,.form-oos.show{display:flex}
-.form-main.hide{display:none}
-.success-icon{font-size:44px}
-.success-h{font-family:var(--serif);font-size:24px;font-weight:300;color:var(--white)}
-.success-p{font-size:13px;color:rgba(245,240,232,.55);line-height:1.7;max-width:280px}
-
-.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--dim)}
-.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollpulse 2s ease-in-out infinite}
+.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:scrollpulse 2s ease-in-out infinite}
 @keyframes scrollpulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
 
 /* ── TICKER ── */
-.ticker{background:var(--blue);color:var(--ink);padding:13px 0;overflow:hidden;position:relative;z-index:2}
-.ticker-inner{display:flex;animation:tick 26s linear infinite;white-space:nowrap}
-.ticker-inner span{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:0 36px}
-.ticker-inner span::after{content:'◆';margin-left:36px;font-size:7px}
+.ticker{background:var(--accent);color:#fff;padding:13px 0;overflow:hidden;position:relative;z-index:2}
+.ticker-inner{display:flex;animation:tick 28s linear infinite;white-space:nowrap}
+.ticker-inner span{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:0 36px}
+.ticker-inner span::after{content:'◆';margin-left:36px;font-size:6px;opacity:.6}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── SECTIONS ── */
+/* ── MOBILE: HELEN WONG INTRO + STATS (replaces ticker on mobile) ── */
+.hero-intro-mobile{display:none}
+@media(max-width:767px){
+  .ticker{display:none}
+  .hero-intro-mobile{display:block;background:linear-gradient(180deg,#0a1420 0%,#0e1a2b 100%);padding:36px 20px 30px;position:relative;z-index:2;border-bottom:1px solid rgba(135,212,238,.14)}
+  .him-name-wrap{text-align:center;margin-bottom:24px}
+  .him-eye{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#87D4EE;margin-bottom:8px;font-weight:500}
+  .him-name{font-family:var(--serif);font-size:38px;font-weight:300;color:#fff;letter-spacing:-.01em;line-height:1.05}
+  .him-name em{font-style:italic;color:#E6C98A}
+  .him-sub{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:10px}
+  .him-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(135,212,238,.12);border:1px solid rgba(135,212,238,.16);border-radius:2px;overflow:hidden}
+  .him-stat{background:rgba(10,20,32,.88);padding:20px 14px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:104px}
+  .him-stat-num{font-family:var(--serif);font-size:30px;font-weight:300;color:#fff;line-height:1;letter-spacing:-.01em}
+  .him-stat-num em{font-style:normal;color:#E6C98A;font-size:.7em;margin-left:1px}
+  .him-stat-lbl{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-top:8px;line-height:1.35;max-width:140px}
+}
+
+/* ── SECTIONS (LIGHT THEME) ── */
 section{position:relative;z-index:2}
-.section-eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:400;display:flex;align-items:center;gap:10px}
-.section-eyebrow::before{content:'';width:22px;height:1px;background:var(--gold)}
-.section-h2{font-family:var(--serif);font-size:clamp(36px,4.5vw,62px);font-weight:300;line-height:1.1;color:var(--white)}
-.section-h2 em{font-style:italic;color:var(--gold-light)}
+.section-eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500;display:flex;align-items:center;gap:10px}
+.section-eyebrow::before{content:'';width:22px;height:1px;background:var(--accent)}
+.section-h2{font-family:var(--serif);font-size:clamp(36px,4.5vw,60px);font-weight:300;line-height:1.08;color:var(--text)}
+.section-h2 em{font-style:italic;color:var(--accent)}
 .container{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}
 
 /* ── ABOUT ── */
-.about{padding:clamp(80px,12vh,130px) 0;background:var(--ink)}
+.about{padding:clamp(80px,12vh,130px) 0;background:var(--bg)}
 .about .container{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,96px);align-items:center}
 .about-img-wrap{position:relative}
-.about-img{width:100%;aspect-ratio:3/4;object-fit:cover;filter:grayscale(15%) contrast(1.05);display:block}
-.about-badge{position:absolute;bottom:-24px;right:-24px;width:118px;height:118px;background:var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
-.about-badge-num{font-family:var(--serif);font-size:34px;font-weight:300;color:var(--ink);line-height:1}
-.about-badge-lbl{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(11,11,11,.65)}
+.about-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.about-badge{position:absolute;bottom:-24px;right:-24px;width:118px;height:118px;background:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.about-badge-num{font-family:var(--serif);font-size:34px;font-weight:300;color:#fff;line-height:1}
+.about-badge-lbl{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.7)}
 .about-text .section-h2{margin-bottom:24px}
-.about-body{color:rgba(245,240,232,.55);font-size:15px;font-weight:300;line-height:1.85;margin-bottom:20px}
-.about-awards{display:flex;gap:10px;flex-wrap:wrap;padding-top:28px;border-top:1px solid rgba(245,240,232,.08);margin-top:28px}
-.award{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);padding:7px 14px;border:1px solid rgba(245,240,232,.1)}
-.btn-primary{display:inline-block;background:var(--blue);color:var(--ink);padding:14px 36px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:background .25s,transform .2s;text-decoration:none}
-.btn-primary:hover{background:#62cef5;transform:translateY(-1px)}
-.btn-primary:active{transform:scale(.98)}
-.btn-outline{display:inline-block;background:transparent;color:var(--warm);padding:14px 36px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(245,240,232,.25);cursor:pointer;font-family:var(--sans);transition:border-color .25s,color .25s,transform .2s;text-decoration:none}
-.btn-outline:hover{border-color:var(--white);color:var(--white);transform:translateY(-1px)}
-.btn-dark{display:inline-block;background:var(--ink);color:var(--warm);padding:17px 44px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:background .25s,transform .2s;text-decoration:none}
-.btn-dark:hover{background:#1c2e45;transform:translateY(-2px)}
-.btn-dark:active{transform:scale(.98)}
+.about-body{color:var(--text-secondary);font-size:15px;font-weight:300;line-height:1.85;margin-bottom:20px}
+.about-awards{display:flex;gap:10px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--border);margin-top:28px}
+.award{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);padding:7px 14px;border:1px solid var(--border)}
+.btn-primary{display:inline-block;background:var(--accent);color:#fff;padding:14px 36px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:background .25s,transform .2s;text-decoration:none}
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.btn-outline{display:inline-block;background:transparent;color:var(--text);padding:14px 36px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--border);cursor:pointer;font-family:var(--sans);transition:border-color .25s,color .25s,transform .2s;text-decoration:none}
+.btn-outline:hover{border-color:var(--text);color:var(--text);transform:translateY(-1px)}
+.btn-outline-white{display:inline-block;background:transparent;color:rgba(255,255,255,.8);padding:14px 36px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,255,255,.25);cursor:pointer;font-family:var(--sans);transition:border-color .25s,color .25s,transform .2s;text-decoration:none}
+.btn-outline-white:hover{border-color:rgba(255,255,255,.7);color:#fff;transform:translateY(-1px)}
 
-/* ── SERVICES ── */
-.services{padding:clamp(80px,12vh,130px) 0;background:var(--navy)}
-.services-head{max-width:560px;margin-bottom:56px}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.service-card{background:rgba(255,255,255,.03);padding:44px 32px;border-top:2px solid transparent;transition:background .35s,border-color .35s;cursor:pointer;text-decoration:none;display:block;position:relative;overflow:hidden}
-.service-card::after{content:'';position:absolute;inset:0;background:var(--blue);opacity:0;transition:opacity .35s}
-.service-card:hover{background:rgba(74,186,235,.07);border-color:var(--blue)}
-.service-card:hover::after{opacity:0}
-.service-icon{width:42px;height:42px;border:1px solid rgba(74,186,235,.3);display:flex;align-items:center;justify-content:center;margin-bottom:24px;font-size:18px;transition:background .35s,border-color .35s;flex-shrink:0}
-.service-card:hover .service-icon{background:rgba(74,186,235,.15);border-color:var(--blue)}
-.service-title{font-family:var(--serif);font-size:24px;font-weight:300;color:var(--white);margin-bottom:14px}
-.service-desc{font-size:13px;font-weight:300;color:var(--dim);line-height:1.8}
-.service-link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);transition:gap .25s}
-.service-card:hover .service-link{gap:14px}
+/* ── SERVICES (Premium Flip Redesign) ── */
+.services{padding:clamp(110px,15vh,168px) 0;background:var(--bg-alt);position:relative;overflow:hidden}
+.services-bg{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.5}
+.services-bg svg{position:absolute;width:100%;height:100%;opacity:.4}
+.services .container{position:relative;z-index:1}
+.services-head{max-width:680px;margin:0 auto 80px;text-align:center}
+.services-head .section-eyebrow{justify-content:center}
+.services-head .section-h2{text-align:center;font-size:clamp(44px,5.6vw,76px);line-height:1.04;font-weight:300;letter-spacing:-.018em;margin-top:14px}
+.services-head .section-h2 em{font-style:italic;color:var(--accent);font-weight:300;display:inline}
+.services-head-accent{width:40px;height:1px;background:var(--accent);margin:28px auto 0;opacity:.5}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.6vw,22px);max-width:1260px;margin:0 auto;position:relative}
+
+/* Card — acts as the 3D flip container */
+.service-card{position:relative;display:block;text-decoration:none;color:inherit;min-height:330px;cursor:pointer;perspective:1600px;background:transparent;border-radius:4px;isolation:isolate}
+.service-card-inner{position:relative;width:100%;height:100%;min-height:inherit;transition:transform .85s cubic-bezier(.22,.61,.36,1);transform-style:preserve-3d;will-change:transform}
+@media(hover:hover){ .service-card:hover .service-card-inner{transform:rotateY(180deg)} }
+.service-card.flipped .service-card-inner{transform:rotateY(180deg)}
+
+/* Faces (shared) */
+.service-face{position:absolute;inset:0;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+
+/* Front face */
+.service-face.front{padding:44px 38px 36px;background:var(--bg);border:1px solid rgba(10,30,60,.055);transition:box-shadow .45s ease,border-color .35s ease}
+.service-face.front::before{content:'';position:absolute;top:0;left:38px;right:38px;height:1px;background:linear-gradient(90deg,transparent 0%,var(--accent) 50%,transparent 100%);opacity:0;transition:opacity .4s ease,left .45s cubic-bezier(.22,.61,.36,1),right .45s cubic-bezier(.22,.61,.36,1)}
+.service-card:hover .service-face.front{box-shadow:0 20px 48px rgba(10,30,60,.08),0 2px 8px rgba(10,30,60,.03);border-color:rgba(92,184,230,.26)}
+.service-card:hover .service-face.front::before{opacity:.75;left:16px;right:16px}
+.service-num{position:absolute;top:30px;right:36px;font-family:var(--serif);font-size:22px;font-weight:300;color:var(--accent);letter-spacing:.05em;opacity:.55;line-height:1;z-index:1}
+.service-icon{width:54px;height:54px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;margin-bottom:38px;flex-shrink:0;transition:background .35s ease,box-shadow .45s ease}
+.service-icon svg{width:22px;height:22px;stroke:var(--accent);stroke-width:1.3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.service-title{font-family:var(--serif);font-size:clamp(24px,1.8vw,28px);font-weight:400;color:var(--text);margin-bottom:14px;line-height:1.18;letter-spacing:-.012em}
+.service-title-rule{width:24px;height:1px;background:var(--accent);opacity:.35;margin-bottom:16px;transition:width .45s cubic-bezier(.22,.61,.36,1),opacity .35s ease}
+.service-card:hover .service-title-rule{width:44px;opacity:.85}
+.service-desc{font-size:14px;font-weight:300;color:var(--text-secondary);line-height:1.75;max-width:32ch;flex:1}
+.service-link{display:inline-flex;align-items:center;gap:8px;margin-top:30px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:500;line-height:1}
+.service-link-arrow{display:inline-block;transition:transform .38s cubic-bezier(.22,.61,.36,1);will-change:transform}
+
+/* Back face — full-bleed image reveal with single-line caption */
+.service-face.back{transform:rotateY(180deg);padding:0;background:#0B1520;color:#fff;border:1px solid rgba(255,255,255,.08);overflow:hidden}
+.service-back-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.06);transition:transform 1.2s cubic-bezier(.22,.61,.36,1);filter:saturate(1.04) contrast(1.02)}
+.service-card.flipped .service-back-img,
+.service-card:hover .service-back-img{transform:scale(1)}
+.service-back-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,18,28,.28) 0%,rgba(8,18,28,.02) 32%,rgba(8,18,28,.30) 58%,rgba(8,18,28,.82) 100%);pointer-events:none;z-index:1}
+.service-back-num{position:absolute;top:26px;right:30px;font-family:var(--serif);font-style:italic;font-size:22px;font-weight:300;color:#fff;opacity:.92;letter-spacing:.05em;line-height:1;z-index:2;text-shadow:0 1px 10px rgba(0,0,0,.45)}
+.service-back-foot{position:absolute;left:30px;right:30px;bottom:26px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:18px}
+.service-back-textwrap{flex:1 1 auto;min-width:0}
+.service-back-rule{display:block;width:26px;height:1px;background:rgba(255,255,255,.7);margin-bottom:12px;box-shadow:0 0 8px rgba(255,255,255,.35)}
+.service-back-caption{font-family:var(--serif);font-size:clamp(18px,1.45vw,22px);font-weight:400;line-height:1.18;letter-spacing:-.006em;color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.service-back-cta{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto;font-size:10px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:#fff;padding:10px 14px;border:1px solid rgba(255,255,255,.55);border-radius:2px;transition:background .3s ease,border-color .3s ease,transform .3s ease;background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);white-space:nowrap}
+.service-card:hover .service-back-cta,
+.service-card.flipped .service-back-cta{background:rgba(255,255,255,.22);border-color:#fff}
+
+/* Mobile connecting line (hidden by default, shown at ≤600px) */
+.services-mobile-line{display:none}
+
+@media(max-width:960px){
+  .services-grid{grid-template-columns:1fr 1fr;gap:16px}
+  .service-card{min-height:290px}
+  .service-face.front{padding:36px 30px 30px}
+  .service-face.back{padding:0}
+  .service-back-foot{left:26px;right:26px;bottom:22px}
+  .service-icon{margin-bottom:30px}
+  .services-head{margin-bottom:60px}
+}
+@media(max-width:600px){
+  .services{padding:72px 0 90px}
+  .services-grid{grid-template-columns:1fr;gap:26px;padding-left:32px}
+  .service-card{min-height:310px}
+  .service-face.front{padding:32px 28px 28px}
+  .service-face.back{padding:0}
+  .service-num,.service-back-num{top:24px;right:28px;font-size:20px}
+  .service-icon{width:48px;height:48px;margin-bottom:26px}
+  .service-title{font-size:22px}
+  .service-desc{font-size:13.5px}
+  .service-back-caption{font-size:18px;white-space:normal;line-height:1.22}
+  .service-back-foot{left:24px;right:24px;bottom:22px;gap:12px}
+  .service-back-cta{padding:9px 12px;font-size:9.5px;letter-spacing:.22em}
+  .services-head{margin-bottom:44px}
+  .services-head .section-h2{font-size:clamp(36px,8.5vw,48px)}
+  .services-mobile-line{display:block;position:absolute;top:0;bottom:0;left:10px;width:2px;background:rgba(92,184,230,.14);border-radius:2px;z-index:2;pointer-events:none}
+  .services-mobile-line .sml-fill{position:absolute;top:0;left:-1px;width:4px;height:0;background:linear-gradient(180deg,#5CB8E6 0%,#3FA0D0 100%);border-radius:2px;box-shadow:0 0 10px rgba(92,184,230,.55);transition:height .9s cubic-bezier(.65,0,.35,1)}
+  .services-mobile-line .sml-node{position:absolute;left:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:#fff;border:2px solid #C6DFF0;transition:background .5s ease,border-color .5s ease,box-shadow .5s ease,transform .5s ease;z-index:3}
+  .services-mobile-line .sml-node.on{background:#5CB8E6;border-color:#5CB8E6;box-shadow:0 0 0 4px rgba(92,184,230,.22),0 0 12px rgba(92,184,230,.55);transform:translate(-50%,-50%) scale(1.08)}
+}
+
 
 /* ── LISTINGS ── */
-.listings{padding:clamp(80px,12vh,130px) 0;background:var(--ink)}
+.listings{padding:clamp(80px,12vh,130px) 0;background:var(--bg)}
 .listings-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px}
-.btn-ghost{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);border:1px solid rgba(74,186,235,.3);padding:11px 24px;white-space:nowrap;transition:background .25s,border-color .25s;cursor:pointer;background:none;font-family:var(--sans);text-decoration:none;display:inline-block}
-.btn-ghost:hover{background:rgba(74,186,235,.08);border-color:var(--blue)}
+
+/* ── ZILLOW EMBED CARD ── */
+.zillow-embed{background:linear-gradient(180deg,#F7FBFD 0%,#FFFFFF 100%);border:1px solid var(--border);border-radius:6px;overflow:hidden;box-shadow:0 8px 32px rgba(15,30,60,.06)}
+.zillow-embed-head{display:flex;justify-content:space-between;align-items:center;padding:22px 30px;background:#fff;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:18px}
+.zillow-logo-wrap{display:flex;align-items:center;gap:14px}
+.zillow-logo{width:120px;height:36px}
+.zillow-badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);border-left:1px solid var(--border);padding-left:14px}
+.zillow-meta{display:flex;gap:28px}
+.zillow-meta-item{display:flex;flex-direction:column;align-items:flex-start}
+.zillow-meta-item strong{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--text);line-height:1}
+.zillow-meta-item span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-top:4px}
+.zillow-preview{padding:42px 30px 20px;position:relative;overflow:hidden}
+.zillow-preview-inner{position:relative;z-index:2;max-width:760px;margin:0 auto;text-align:center}
+.zillow-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:600}
+.zillow-preview h3{font-family:var(--serif);font-size:clamp(26px,3vw,40px);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:14px}
+.zillow-preview p{font-size:14px;font-weight:300;color:var(--text-secondary);line-height:1.75;max-width:520px;margin:0 auto 24px}
+.zillow-cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.zillow-shimmer{position:absolute;inset:0;z-index:1;background:radial-gradient(600px circle at 50% -20%,rgba(92,184,230,.18),transparent 60%),radial-gradient(400px circle at 100% 120%,rgba(135,212,238,.15),transparent 55%);pointer-events:none}
+.zillow-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.zillow-tile{background:#fff;padding:24px 28px;display:flex;align-items:center;gap:16px;text-decoration:none;transition:background .3s ease,transform .3s ease}
+.zillow-tile:hover{background:var(--accent-light)}
+.zillow-tile-badge{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:var(--accent);padding:4px 10px;border-radius:2px;flex-shrink:0}
+.zillow-tile-badge.alt{background:var(--text)}
+.zillow-tile-badge.alt2{background:#E6C98A;color:var(--text)}
+.zillow-tile-h{font-family:var(--serif);font-size:16px;font-weight:400;color:var(--text);flex:1}
+.zillow-tile-arrow{color:var(--accent);font-size:18px;transition:transform .3s ease}
+.zillow-tile:hover .zillow-tile-arrow{transform:translateX(4px)}
+.zillow-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border)}
+.zillow-gallery a{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:#f3f7fa;text-decoration:none}
+.zillow-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1),filter .5s ease;filter:saturate(1.02)}
+.zillow-gallery a:hover img{transform:scale(1.05);filter:saturate(1.1) brightness(.96)}
+.zillow-gallery .zg-mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,32,0) 0%,rgba(10,20,32,0) 45%,rgba(10,20,32,.78) 100%);pointer-events:none;z-index:1}
+.zillow-gallery .zg-info{position:absolute;left:0;right:0;bottom:0;padding:16px 18px;z-index:2;color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.zillow-gallery .zg-status{font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:4px 9px;border-radius:2px;background:var(--accent);color:#fff;align-self:flex-start;position:absolute;top:14px;left:14px;z-index:3;font-weight:600}
+.zillow-gallery .zg-status.sold{background:var(--text)}
+.zillow-gallery .zg-status.pending{background:#E6C98A;color:var(--text)}
+.zillow-gallery .zg-price{font-family:var(--serif);font-size:22px;font-weight:400;line-height:1}
+.zillow-gallery .zg-loc{font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.82);margin-top:4px;font-weight:300}
+.zillow-gallery .zg-arrow{font-size:18px;color:#fff;opacity:.85;transition:transform .3s ease}
+.zillow-gallery a:hover .zg-arrow{transform:translate(3px,-3px);opacity:1}
+.zillow-disclaimer{padding:14px 30px;background:#F7FBFD;border-top:1px solid var(--border);text-align:center;font-size:11px;color:var(--text-light);letter-spacing:.04em}
+@media(max-width:720px){
+  .zillow-embed-head{flex-direction:column;align-items:flex-start;padding:18px 22px}
+  .zillow-meta{gap:18px}
+  .zillow-tiles{grid-template-columns:1fr}
+  .zillow-gallery{grid-template-columns:repeat(2,1fr)}
+}
+.btn-ghost{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(92,184,230,.3);padding:11px 24px;white-space:nowrap;transition:background .25s,border-color .25s;cursor:pointer;background:none;font-family:var(--sans);text-decoration:none;display:inline-block}
+.btn-ghost:hover{background:var(--accent-light);border-color:var(--accent)}
 .listings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .listing-card{position:relative;overflow:hidden;cursor:pointer;display:block;text-decoration:none}
 .listing-img-wrap{overflow:hidden}
-.listing-img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.8) saturate(.9);transition:transform .7s ease,filter .7s ease;display:block}
-.listing-card:hover .listing-img{transform:scale(1.05);filter:brightness(.9) saturate(1)}
-.listing-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.9) 0%,transparent 52%)}
-.listing-badge{position:absolute;top:16px;left:16px;background:var(--blue);color:var(--ink);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:5px 11px;font-weight:600}
+.listing-img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .7s ease;display:block;background:var(--bg-alt)}
+.listing-card:hover .listing-img{transform:scale(1.05)}
+.listing-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.1) 55%,transparent 100%)}
+.listing-badge{position:absolute;top:16px;left:16px;background:var(--accent);color:#fff;font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:5px 11px;font-weight:600}
 .listing-info{position:absolute;bottom:0;left:0;right:0;padding:24px}
-.listing-price{font-family:var(--serif);font-size:26px;font-weight:300;color:var(--white);line-height:1}
-.listing-price span{font-size:.52em;color:var(--gold)}
-.listing-address{font-size:12px;color:rgba(245,240,232,.6);margin-top:5px;font-weight:300}
+.listing-price{font-family:var(--serif);font-size:26px;font-weight:300;color:#fff;line-height:1}
+.listing-price span{font-size:.52em;color:#87D4EE}
+.listing-address{font-size:12px;color:rgba(255,255,255,.65);margin-top:5px;font-weight:300}
 .listing-tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-.listing-tag{font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border:1px solid rgba(245,240,232,.18);color:rgba(245,240,232,.45)}
+.listing-tag{font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.5)}
 
-/* ── PROCESS ── */
-.process{padding:clamp(80px,12vh,130px) 0;background:linear-gradient(160deg,var(--navy) 0%,rgba(26,43,64,.5) 100%)}
-.process-head{text-align:center;max-width:520px;margin:0 auto 64px}
-.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
-.step{text-align:center;padding:32px 24px}
-.step-num{font-family:var(--serif);font-size:48px;font-weight:300;color:rgba(74,186,235,.15);line-height:1;margin-bottom:16px}
-.step-icon{width:52px;height:52px;border:1px solid rgba(74,186,235,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:20px}
-.step-title{font-family:var(--serif);font-size:20px;font-weight:300;color:var(--white);margin-bottom:10px}
-.step-desc{font-size:13px;font-weight:300;color:var(--dim);line-height:1.75}
+/* ── PROCESS — "From Search to Signed Keys" (Refined / Editorial) ── */
+.process{padding:clamp(110px,15vh,180px) 0 clamp(96px,13vh,150px);background:#FAFCFE;position:relative;overflow:hidden}
+.process::before{content:'';position:absolute;inset:0;background:radial-gradient(1100px 620px at 88% 8%, rgba(92,184,230,.055) 0%, rgba(92,184,230,0) 60%),radial-gradient(900px 540px at 8% 92%, rgba(92,184,230,.04) 0%, rgba(92,184,230,0) 60%);pointer-events:none}
+.process .container{position:relative;z-index:1}
 
-/* ── MORTGAGE CALCULATOR ── */
-.calc-section{padding:clamp(80px,12vh,130px) 0;background:var(--ink)}
-.calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,96px);align-items:start}
-.calc-left .section-h2{margin-bottom:16px}
-.calc-intro{font-size:15px;font-weight:300;color:rgba(245,240,232,.5);line-height:1.8;margin-bottom:32px}
-.calc-disclaimer{font-size:11px;color:rgba(245,240,232,.3);line-height:1.7;padding-top:20px;border-top:1px solid rgba(245,240,232,.07)}
-.calc-right{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);padding:36px 32px;position:relative}
-.calc-right::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--blue))}
-.calc-title{font-family:var(--serif);font-size:20px;font-weight:300;color:var(--white);margin-bottom:24px}
-.calc-fields{display:flex;flex-direction:column;gap:16px}
-.calc-field{display:flex;flex-direction:column;gap:6px}
-.calc-field label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.4)}
-.calc-input-wrap{position:relative;display:flex;align-items:center}
-.calc-prefix{position:absolute;left:14px;font-size:13px;color:rgba(245,240,232,.35);pointer-events:none;font-weight:300}
-.calc-suffix{position:absolute;right:14px;font-size:13px;color:rgba(245,240,232,.35);pointer-events:none;font-weight:300}
-.calc-field input,.calc-field select{
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  color:var(--warm);padding:13px 14px;font-size:14px;font-weight:300;font-family:var(--sans);
-  outline:none;transition:border-color .25s;width:100%;
+.process-head-row{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(40px,5vw,72px);align-items:center;margin-bottom:clamp(72px,9.5vh,116px)}
+.process-head{text-align:left;max-width:580px}
+.process-head .section-eyebrow{justify-content:flex-start}
+.process-head .section-h2{text-align:left;font-size:clamp(46px,5.3vw,82px);line-height:1.04;font-weight:300;letter-spacing:-.02em;margin-top:16px;color:var(--text)}
+.process-head .section-h2 em{font-style:italic;color:var(--accent);font-weight:300}
+.process-head-rule{width:54px;height:1px;background:var(--accent);opacity:.55;margin:28px 0 22px}
+.process-head-sub{font-size:15.5px;font-weight:300;color:var(--text-secondary);line-height:1.7;max-width:440px;letter-spacing:.002em}
+
+.process-illus{position:relative;width:100%;max-width:440px;margin-left:auto;justify-self:end;aspect-ratio:5/4}
+.process-illus .pil-backdrop{position:absolute;inset:0;background:radial-gradient(62% 55% at 52% 50%, rgba(92,184,230,.09) 0%, rgba(92,184,230,0) 72%);pointer-events:none;border-radius:50%}
+.process-illus svg{position:relative;width:100%;height:100%;display:block}
+
+/* Wavy connecting line — refined, thinner, subtler */
+.process-wrap{position:relative;isolation:isolate;padding-top:12px}
+.process-wave{position:absolute;left:0;right:0;top:72px;height:78px;pointer-events:none;z-index:1;display:none}
+.process-wave svg{width:100%;height:100%;overflow:visible;display:block}
+.process-wave .pw-track{stroke:#C5DDEC;stroke-width:1;fill:none;stroke-linecap:round;opacity:.7}
+.process-wave .pw-progress{stroke:var(--accent);stroke-width:1.2;fill:none;stroke-linecap:round;stroke-dasharray:var(--pw-len,2400);stroke-dashoffset:var(--pw-len,2400);transition:stroke-dashoffset 2.6s cubic-bezier(.65,0,.35,1);filter:drop-shadow(0 0 4px rgba(92,184,230,.45))}
+.process-wave.run .pw-progress{stroke-dashoffset:0}
+.process-wave .pw-node{fill:#FFFFFF;stroke:#C5DDEC;stroke-width:1.2;transition:fill .55s ease,stroke .55s ease,filter .55s ease}
+.process-wave .pw-node.on{fill:var(--accent);stroke:var(--accent);filter:drop-shadow(0 0 5px rgba(92,184,230,.6))}
+.process-wave .pw-tail{stroke:#C5DDEC;stroke-width:.9;fill:none;stroke-linecap:round;stroke-dasharray:1.5 5;opacity:.5}
+@media(min-width:901px){ .process-wave{display:block} }
+
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,24px);position:relative;z-index:2}
+.step{text-align:center;padding:0 clamp(10px,1.4vw,24px);position:relative;transition:transform .55s ease}
+.step-num{font-family:var(--serif);font-style:italic;font-size:clamp(46px,4vw,58px);font-weight:300;color:var(--accent);line-height:1;margin-bottom:clamp(62px,7vh,84px);opacity:.26;letter-spacing:.02em;transition:opacity .7s ease;position:relative;z-index:3}
+.step.lit .step-num{opacity:.92}
+
+.step-icon{width:72px;height:72px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;margin:0 auto 32px;border-radius:50%;position:relative;z-index:4;box-shadow:0 1px 0 rgba(10,30,60,.02),0 10px 26px rgba(92,184,230,.10),0 0 0 1px rgba(198,223,240,.55);transition:transform .55s cubic-bezier(.22,.61,.36,1),box-shadow .55s ease,background .55s ease}
+.step.lit .step-icon{box-shadow:0 14px 30px rgba(92,184,230,.2),0 0 0 1px rgba(92,184,230,.42),0 0 0 8px rgba(92,184,230,.05);transform:translateY(-3px)}
+.step:hover .step-icon{transform:translateY(-4px);box-shadow:0 16px 34px rgba(92,184,230,.22),0 0 0 1px rgba(92,184,230,.45),0 0 0 8px rgba(92,184,230,.06)}
+.step-icon svg{width:26px;height:26px;stroke:var(--accent);stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .5s ease,transform .5s cubic-bezier(.22,.61,.36,1)}
+.step:hover .step-icon svg{transform:scale(1.06)}
+.step.lit .step-icon svg{transform:scale(1.03)}
+
+.step-title{font-family:var(--serif);font-size:clamp(22px,1.75vw,26px);font-weight:400;color:var(--text);margin-bottom:14px;line-height:1.2;letter-spacing:-.01em}
+.step-desc{font-size:13.5px;font-weight:300;color:var(--text-secondary);line-height:1.72;max-width:24ch;margin:0 auto}
+.step-rule{width:18px;height:1px;background:var(--accent);margin:26px auto 0;opacity:.32;transition:width .55s cubic-bezier(.22,.61,.36,1),opacity .55s ease}
+.step.lit .step-rule{width:38px;opacity:.75}
+
+/* Bottom signature tagline with house-key glyph */
+.process-sig{display:flex;align-items:center;justify-content:center;gap:clamp(16px,2.2vw,30px);margin-top:clamp(84px,10.5vh,124px);padding:0 20px}
+.process-sig-line{flex:0 0 auto;width:clamp(60px,12vw,160px);height:1px;background:linear-gradient(90deg,transparent,#C6DFF0 60%,#C6DFF0)}
+.process-sig-line.right{background:linear-gradient(90deg,#C6DFF0,#C6DFF0 40%,transparent)}
+.process-sig-glyph{flex:0 0 auto;width:36px;height:36px;display:flex;align-items:center;justify-content:center}
+.process-sig-glyph svg{width:30px;height:30px;stroke:var(--accent);stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.process-sig-text{font-size:10.5px;letter-spacing:.36em;text-transform:uppercase;color:var(--text-light);font-weight:500;white-space:nowrap}
+
+@media(max-width:960px){
+  .process-head-row{grid-template-columns:1fr;gap:36px;margin-bottom:56px;text-align:center}
+  .process-head{max-width:none;text-align:center;margin:0 auto}
+  .process-head .section-eyebrow{justify-content:center}
+  .process-head .section-h2{text-align:center}
+  .process-head-rule{margin-left:auto;margin-right:auto}
+  .process-head-sub{margin-left:auto;margin-right:auto}
+  .process-illus{max-width:340px;margin:0 auto;justify-self:center;aspect-ratio:5/3.5}
+  .process-sig-text{font-size:10px;letter-spacing:.28em;white-space:normal;text-align:center}
 }
-.calc-field input.has-prefix{padding-left:26px}
-.calc-field input.has-suffix{padding-right:30px}
-.calc-field input:focus,.calc-field select:focus{border-color:var(--blue)}
-.calc-field input::placeholder{color:rgba(245,240,232,.2)}
-.calc-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.calc-range{margin-top:6px}
-.calc-range input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:linear-gradient(90deg,var(--blue) var(--pct,50%),rgba(245,240,232,.12) var(--pct,50%));outline:none;cursor:pointer}
-.calc-range input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;background:var(--blue);border-radius:50%;cursor:pointer;border:2px solid var(--ink)}
-.calc-range input[type=range]::-moz-range-thumb{width:16px;height:16px;background:var(--blue);border-radius:50%;cursor:pointer;border:2px solid var(--ink)}
-.calc-range-vals{display:flex;justify-content:space-between;font-size:10px;color:rgba(245,240,232,.3);margin-top:5px;letter-spacing:.05em}
+@media(max-width:700px){
+  .process{padding:88px 0 96px}
+  .process-steps{grid-template-columns:1fr;gap:clamp(44px,7vh,64px)}
+  .step{padding:0;max-width:340px;margin:0 auto}
+  .step-num{margin-bottom:22px;font-size:44px}
+  .step-icon{width:62px;height:62px;margin-bottom:22px}
+  .step-title{font-size:22px}
+  .step-rule{margin-top:20px}
+  .process-sig{gap:14px;flex-wrap:wrap;margin-top:72px}
+  .process-sig-line{display:none}
+}
 
-.calc-result{margin-top:24px;background:rgba(74,186,235,.07);border:1px solid rgba(74,186,235,.2);padding:24px;text-align:center}
-.calc-result-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
-.calc-result-payment{font-family:var(--serif);font-size:clamp(36px,4vw,52px);font-weight:300;color:var(--white);line-height:1}
-.calc-result-sub{font-size:11px;color:rgba(245,240,232,.4);margin-top:6px;letter-spacing:.08em}
-.calc-breakdown{margin-top:16px;display:flex;flex-direction:column;gap:8px}
-.calc-breakdown-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(245,240,232,.06)}
+/* ── MORTGAGE CALCULATOR (reference-inspired) ── */
+.calc-section{padding:clamp(72px,11vh,130px) 0;background:var(--bg)}
+.calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px);align-items:start}
+
+/* Left column */
+.calc-left{padding-top:8px}
+.calc-left .section-eyebrow{margin-bottom:22px}
+.calc-left .section-h2{margin-bottom:22px;font-size:clamp(44px,5.4vw,72px);line-height:1.02;font-weight:300;letter-spacing:-.015em}
+.calc-left .section-h2 em{font-style:italic;color:var(--accent);display:block;font-weight:300}
+.calc-intro{font-size:15px;font-weight:300;color:var(--text-secondary);line-height:1.8;margin-bottom:32px;max-width:460px}
+.calc-left .btn-primary{display:block;width:100%;max-width:400px;text-align:center;padding:18px 28px;font-size:11px;letter-spacing:.24em;font-weight:500}
+.calc-disclaimer{font-size:11.5px;color:var(--text-light);line-height:1.7;padding-top:22px;margin-top:26px;border-top:1px solid var(--border);max-width:460px}
+.calc-illustration{margin-top:32px;max-width:520px;position:relative}
+.calc-illus-svg{width:100%;height:auto;display:block;filter:drop-shadow(0 4px 18px rgba(10,30,60,.06))}
+
+/* Decorative illustration (desktop only) */
+.calc-illo{position:relative;margin-top:34px;max-width:420px;aspect-ratio:5/3;pointer-events:none;user-select:none}
+.calc-illo svg{width:100%;height:100%;display:block;overflow:visible}
+.calc-illo-dash{stroke:var(--accent);stroke-width:1.5;stroke-dasharray:3 4;fill:none;opacity:.55;stroke-dashoffset:0;animation:illo-dash 18s linear infinite}
+@keyframes illo-dash{to{stroke-dashoffset:-140}}
+
+/* Right column: Payment Estimate card */
+.calc-right{background:#FFFFFF;border:1px solid var(--border);padding:clamp(28px,3vw,40px) clamp(24px,2.5vw,36px);position:relative;box-shadow:0 2px 30px rgba(10,30,60,.05);border-radius:2px}
+.calc-right::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent) 0%,#87D4EE 80%, rgba(135,212,238,0) 100%)}
+.calc-title{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--text);margin-bottom:28px;letter-spacing:-.005em}
+.calc-fields{display:flex;flex-direction:column;gap:22px}
+.calc-field{display:flex;flex-direction:column;gap:8px}
+.calc-field label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-light);font-weight:500}
+.calc-input-wrap{position:relative;display:flex;align-items:center}
+.calc-prefix{position:absolute;left:16px;font-size:14px;color:var(--text-secondary);pointer-events:none;font-weight:400}
+.calc-suffix{position:absolute;right:16px;font-size:14px;color:var(--text-secondary);pointer-events:none;font-weight:400}
+.calc-field input,.calc-field select{
+  background:#F5F7FA;border:1px solid transparent;border-radius:2px;
+  color:var(--text);padding:16px 16px;font-size:15px;font-weight:400;font-family:var(--sans);
+  outline:none;transition:border-color .25s, background .25s, box-shadow .25s;width:100%;
+  -moz-appearance:textfield;
+}
+.calc-field input::-webkit-outer-spin-button,
+.calc-field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.calc-field input.has-prefix{padding-left:30px}
+.calc-field input.has-suffix{padding-right:34px}
+.calc-field input:focus,.calc-field select:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(92,184,230,.14)}
+.calc-field input::placeholder{color:var(--text-light)}
+.calc-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.calc-range{margin-top:10px}
+.calc-range input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--accent) var(--pct,50%),#E4EAF1 var(--pct,50%));outline:none;cursor:pointer}
+.calc-range input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;background:var(--accent);border-radius:50%;cursor:pointer;border:3px solid #fff;box-shadow:0 2px 6px rgba(92,184,230,.45), 0 0 0 1px rgba(92,184,230,.25);transition:transform .15s ease}
+.calc-range input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.12)}
+.calc-range input[type=range]::-moz-range-thumb{width:20px;height:20px;background:var(--accent);border-radius:50%;cursor:pointer;border:3px solid #fff;box-shadow:0 2px 6px rgba(92,184,230,.45)}
+.calc-range-vals{display:flex;justify-content:space-between;font-size:10px;color:var(--text-light);margin-top:8px;letter-spacing:.08em;font-weight:500}
+.calc-result{margin-top:26px;background:linear-gradient(180deg,#E8F4FB 0%, #DCEDF8 100%);border:1px solid rgba(92,184,230,.2);padding:26px 24px 20px;text-align:center;border-radius:2px;position:relative}
+.calc-result-label{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-weight:600}
+.calc-result-payment{font-family:var(--serif);font-size:clamp(42px,4.6vw,58px);font-weight:400;color:var(--text);line-height:1;letter-spacing:-.01em}
+.calc-result-sub{font-size:11px;color:var(--text-secondary);margin-top:8px;letter-spacing:.04em;font-weight:400}
+.calc-breakdown{margin-top:18px;display:flex;flex-direction:column;gap:0;padding-top:14px;border-top:1px solid rgba(92,184,230,.22)}
+.calc-breakdown-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(92,184,230,.15)}
 .calc-breakdown-item:last-child{border-bottom:none}
-.cbi-label{font-size:12px;color:rgba(245,240,232,.5)}
-.cbi-val{font-size:13px;font-weight:500;color:var(--warm)}
-.calc-cta{display:block;text-align:center;margin-top:20px}
-.calc-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7468' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 14px) center;background-size:12px;padding-right:36px;background-color:rgba(255,255,255,.06)}
-.calc-field select option{background:#0f0f0f}
+.cbi-label{font-size:12.5px;color:var(--text-secondary);font-weight:400}
+.cbi-val{font-size:13.5px;font-weight:600;color:var(--text);font-family:var(--sans)}
+.calc-cta{display:flex;align-items:center;justify-content:center;width:100%;margin-top:22px;padding:18px 24px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:500;background:var(--accent);color:#fff;border:none;text-decoration:none;border-radius:2px;transition:background .25s ease, transform .25s ease, box-shadow .25s ease;box-shadow:0 2px 14px rgba(92,184,230,.25)}
+.calc-cta:hover{background:#4AA6D4;transform:translateY(-1px);box-shadow:0 6px 22px rgba(92,184,230,.35)}
+.calc-field select{appearance:none;-webkit-appearance:none;-moz-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 16px) center;background-size:12px;padding-right:40px;background-color:#F5F7FA;cursor:pointer}
+.calc-field select:focus{background-color:#fff}
+
+/* Responsive ≤900px : stack, tighter padding */
+@media(max-width:900px){
+  .calc-section{padding:64px 0 72px}
+  .calc-wrap{grid-template-columns:1fr !important;gap:40px}
+  .calc-left{padding-top:0}
+  .calc-left .section-h2{font-size:clamp(38px,8vw,54px)}
+  .calc-left .btn-primary{max-width:none}
+  .calc-intro,.calc-disclaimer{max-width:none}
+  .calc-illustration{max-width:none;margin-top:24px}
+  .calc-illo{display:none}
+  .calc-right{padding:26px 20px 24px}
+  .calc-title{font-size:20px;margin-bottom:22px}
+  .calc-fields{gap:18px}
+  .calc-field input,.calc-field select{padding:14px 14px;font-size:16px} /* 16px prevents iOS zoom */
+  .calc-field input.has-prefix{padding-left:28px}
+  .calc-field input.has-suffix{padding-right:32px}
+  .calc-result{padding:22px 18px 16px;margin-top:22px}
+  .calc-result-payment{font-size:44px}
+  .cbi-label{font-size:12px}
+  .cbi-val{font-size:13px}
+  .calc-cta{padding:16px 18px;font-size:10.5px;letter-spacing:.22em;margin-top:20px}
+}
+@media(max-width:480px){
+  .calc-row-2{grid-template-columns:1fr 1fr;gap:12px}
+  .calc-right{padding:22px 16px 20px}
+  .calc-result-payment{font-size:40px}
+}
 
 /* ── TESTIMONIALS ── */
-.testimonials{padding:clamp(80px,12vh,130px) 0;background:var(--ink)}
+.testimonials{padding:clamp(80px,12vh,130px) 0;background:var(--bg-alt)}
 .testimonials-head{text-align:center;max-width:520px;margin:0 auto 64px}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.testi-card{background:rgba(255,255,255,.03);padding:36px 28px;border-top:2px solid rgba(245,240,232,.06);transition:background .3s,border-color .3s}
-.testi-card:hover{background:rgba(74,186,235,.05);border-color:rgba(74,186,235,.3)}
-.testi-stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:18px}
-.testi-quote{font-size:14px;font-weight:300;color:rgba(245,240,232,.65);line-height:1.85;margin-bottom:24px;font-style:italic}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.testi-card{background:var(--bg);padding:36px 28px;border-top:2px solid transparent;transition:background .3s,border-color .3s,box-shadow .3s}
+.testi-card:hover{background:#fff;border-color:var(--accent);box-shadow:0 8px 24px rgba(92,184,230,.06)}
+.testi-stars{color:#F59E0B;font-size:14px;letter-spacing:2px;margin-bottom:18px}
+.testi-quote{font-size:14px;font-weight:300;color:var(--text-secondary);line-height:1.85;margin-bottom:24px;font-style:italic}
 .testi-author{display:flex;align-items:center;gap:14px}
-.testi-initials{width:40px;height:40px;background:rgba(74,186,235,.15);border:1px solid rgba(74,186,235,.3);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--blue);flex-shrink:0}
-.testi-name{font-size:13px;font-weight:500;color:var(--white)}
-.testi-role{font-size:11px;color:var(--dim);margin-top:2px;letter-spacing:.04em}
+.testi-initials{width:40px;height:40px;background:var(--accent-light);border:1px solid rgba(92,184,230,.2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--accent);flex-shrink:0}
+.testi-name{font-size:13px;font-weight:500;color:var(--text)}
+.testi-role{font-size:11px;color:var(--text-light);margin-top:2px;letter-spacing:.04em}
 
 /* ── STATS BAR ── */
-.stats-bar{padding:clamp(56px,8vh,96px) 0;background:linear-gradient(135deg,var(--navy) 0%,rgba(15,25,40,.95) 100%);border-top:1px solid rgba(74,186,235,.1);border-bottom:1px solid rgba(74,186,235,.1)}
+.stats-bar{padding:clamp(56px,8vh,96px) 0;background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
 .stat-item{text-align:center;padding:20px}
-.stat-num{font-family:var(--serif);font-size:clamp(42px,5vw,66px);font-weight:300;color:var(--white);line-height:1}
-.stat-num em{color:var(--gold);font-style:normal}
-.stat-label{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-top:8px}
+.stat-num{font-family:var(--serif);font-size:clamp(42px,5vw,66px);font-weight:300;color:var(--text);line-height:1}
+.stat-num em{color:var(--accent);font-style:normal}
+.stat-label{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-light);margin-top:8px}
 
 /* ── CTA BAND ── */
-.cta-band{padding:clamp(80px,12vh,120px) 0;background:linear-gradient(135deg,rgba(74,186,235,.06) 0%,rgba(200,169,110,.04) 100%);border-top:1px solid rgba(245,240,232,.06);border-bottom:1px solid rgba(245,240,232,.06);text-align:center}
-.cta-band .container{display:flex;flex-direction:column;align-items:center;gap:20px}
-.cta-band h2{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:300;color:var(--white);line-height:1.1}
-.cta-band h2 em{font-style:italic;color:var(--gold-light)}
-.cta-band p{font-size:15px;font-weight:300;color:rgba(245,240,232,.55);line-height:1.8;max-width:480px}
-.cta-band .section-eyebrow{justify-content:center}
+.cta-band{padding:clamp(80px,12vh,120px) 0 calc(clamp(80px,12vh,120px) + 110px);background:var(--accent);text-align:center;position:relative;overflow:hidden}
+.cta-band .container{display:flex;flex-direction:column;align-items:center;gap:20px;position:relative;z-index:2}
+.cta-band h2{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:300;color:#fff;line-height:1.1}
+.cta-band h2 em{font-style:italic;color:#E6C98A}
+.cta-band p{font-size:15px;font-weight:300;color:rgba(255,255,255,.82);line-height:1.8;max-width:480px}
+.cta-band .section-eyebrow{justify-content:center;color:rgba(255,255,255,.75)}
+.cta-band .section-eyebrow::before{background:rgba(255,255,255,.5)}
+.cta-wave{position:absolute;left:0;right:0;bottom:-2px;width:100%;height:160px;z-index:1;pointer-events:none;line-height:0}
+.cta-wave svg{width:100%;height:100%;display:block;transform:scaleY(-1)}
+.btn-white{display:inline-block;background:#fff;color:var(--accent);padding:14px 36px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:background .25s,transform .2s;text-decoration:none}
+.btn-white:hover{background:#EFF6FF;transform:translateY(-1px)}
 
-/* ── CONTACT SECTION ── */
-.contact{padding:clamp(80px,12vh,130px) 0;background:var(--ink)}
+/* ── CONTACT ── */
+.contact{padding:clamp(80px,12vh,130px) 0;background:var(--bg)}
 .contact .container{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,96px);align-items:start}
-.contact-body{font-size:15px;font-weight:300;color:rgba(245,240,232,.55);line-height:1.85;margin-bottom:32px}
+.contact-body{font-size:15px;font-weight:300;color:var(--text-secondary);line-height:1.85;margin-bottom:32px}
 .contact-details{display:flex;flex-direction:column;gap:18px}
 .contact-detail{display:flex;align-items:flex-start;gap:16px}
-.contact-detail-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.contact-detail-icon{width:40px;height:40px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-detail-icon svg{width:18px;height:18px;stroke:var(--accent);stroke-width:1.5;fill:none}
 .contact-detail-text{display:flex;flex-direction:column;gap:3px}
-.contact-detail-text strong{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);font-weight:400}
-.contact-detail-text a{color:var(--warm);font-size:14px;text-decoration:none;transition:color .2s}
-.contact-detail-text a:hover{color:var(--blue)}
-.c-form{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:36px 32px;position:relative}
-.c-form::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--gold))}
-.cf-form-title{font-family:var(--serif);font-size:24px;font-weight:300;color:var(--white);margin-bottom:4px}
-.cf-form-sub{font-size:12px;color:rgba(245,240,232,.4);margin-bottom:24px;letter-spacing:.04em}
+.contact-detail-text strong{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light);font-weight:400}
+.contact-detail-text a{color:var(--text);font-size:14px;text-decoration:none;transition:color .2s}
+.contact-detail-text a:hover{color:var(--accent)}
+.contact-detail-text span{color:var(--text-secondary);font-size:14px}
+.c-form{background:#fff;border:1px solid var(--border);padding:36px 32px;position:relative;box-shadow:0 2px 24px rgba(0,0,0,.04)}
+.c-form::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),#87D4EE)}
+.cf-form-title{font-family:var(--serif);font-size:24px;font-weight:300;color:var(--text);margin-bottom:4px}
+.cf-form-sub{font-size:12px;color:var(--text-light);margin-bottom:24px;letter-spacing:.04em}
 .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .cf-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.cf-field label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.4)}
+.cf-field label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-light)}
 .cf-field input,.cf-field select,.cf-field textarea{
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);
-  color:var(--warm);padding:13px 14px;font-size:13px;font-weight:300;font-family:var(--sans);
+  background:var(--bg-alt);border:1px solid var(--border);
+  color:var(--text);padding:13px 14px;font-size:13px;font-weight:300;font-family:var(--sans);
   outline:none;transition:border-color .25s,background .25s;
 }
-.cf-field input::placeholder,.cf-field textarea::placeholder{color:rgba(245,240,232,.22)}
-.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:var(--blue);background:rgba(74,186,235,.05)}
+.cf-field input::placeholder,.cf-field textarea::placeholder{color:var(--text-light)}
+.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:var(--accent);background:#fff}
 .cf-field textarea{min-height:100px;resize:vertical}
-.cf-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7468' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 14px) center;background-size:12px;padding-right:36px;background-color:rgba(255,255,255,.07);background-size:12px,auto}
-.cf-field select option{background:#141414;color:var(--warm)}
-.cf-submit{width:100%;background:var(--blue);color:var(--ink);border:none;padding:15px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);transition:background .25s,transform .2s}
-.cf-submit:hover{background:#62cef5;transform:translateY(-1px)}
-.cf-success{display:none;margin-top:16px;background:rgba(74,186,235,.1);border:1px solid rgba(74,186,235,.3);padding:16px;font-size:13px;color:var(--blue);text-align:center;letter-spacing:.04em}
+.cf-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 14px) center;background-size:12px;padding-right:36px;background-color:var(--bg-alt)}
+.cf-submit{width:100%;background:var(--accent);color:#fff;border:none;padding:15px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;font-family:var(--sans);transition:background .25s,transform .2s}
+.cf-submit:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.cf-success{display:none;margin-top:16px;background:var(--accent-light);border:1px solid rgba(92,184,230,.2);padding:16px;font-size:13px;color:var(--accent);text-align:center;letter-spacing:.04em}
 
 /* ── FOOTER ── */
-footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);padding:clamp(48px,8vh,80px) 0 24px}
+footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp(48px,8vh,80px) 0 24px}
 .footer-inner{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-direction:column;gap:32px}
-.footer-logo img{height:40px;display:block;filter:brightness(.8)}
-.footer-copy{font-size:12px;font-weight:300;color:var(--dim);line-height:1.8}
-.footer-links{display:flex;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(245,240,232,.07);padding-top:24px}
-.footer-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s}
-.footer-links a:hover{color:var(--warm)}
+.footer-logo img{height:40px;display:block}
+.footer-copy{font-size:12px;font-weight:300;color:var(--text-light);line-height:1.8}
+.footer-copy a{color:var(--text-secondary);text-decoration:none;transition:color .2s}
+.footer-copy a:hover{color:var(--accent)}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:24px}
+.footer-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--accent)}
 
-/* ── BRIDGE PARALLAX ── */
-.bridge{position:relative;height:70vh;min-height:480px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.bridge-video{position:absolute;inset:0;width:100%;height:130%;object-fit:cover;z-index:0;filter:brightness(.28) saturate(.7);will-change:transform}
-.bridge-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,11,11,.7) 0%,rgba(11,11,11,.1) 40%,rgba(11,11,11,.7) 100%)}
-.bridge-content{position:relative;z-index:2;text-align:center;max-width:900px;padding:0 clamp(20px,5vw,72px)}
-.bridge-eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:14px}
-.bridge-eyebrow::before,.bridge-eyebrow::after{content:'';flex:1;max-width:48px;height:1px;background:var(--gold);opacity:.6}
-.bridge-h{font-family:var(--serif);font-size:clamp(38px,6vw,80px);font-weight:300;line-height:1.05;color:var(--white);letter-spacing:-.01em}
-.bridge-h em{font-style:italic;color:var(--gold-light)}
-.bridge-sub{margin:18px auto 0;font-size:15px;color:rgba(245,240,232,.5);font-weight:300;line-height:1.75;max-width:480px}
-.bridge-line{width:60px;height:1px;background:var(--gold);margin:28px auto 0;opacity:.45}
-
-/* ── SERVING SACRAMENTO ── */
-.serving{padding:clamp(80px,12vh,130px) 0;background:var(--navy)}
-.serving-head{text-align:center;max-width:560px;margin:0 auto 56px}
-.nbhd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:48px}
-.nbhd-card{background:rgba(255,255,255,.035);padding:28px 22px;border-top:2px solid transparent;transition:all .35s;cursor:default}
-.nbhd-card.core{border-color:var(--blue)}
-.nbhd-card:hover{background:rgba(74,186,235,.07);border-color:var(--blue)}
+/* ── SERVING SACRAMENTO (AERIAL FRAME ANIMATION BG) ── */
+.serving{position:relative;padding:clamp(80px,12vh,130px) 0;overflow:hidden;background:#0a0a0a;--glow-x:50%;--glow-y:50%;transition:box-shadow .6s ease}
+.serving-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.88) saturate(1) contrast(1.02);transition:opacity .6s ease,filter .6s ease}
+.serving-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;filter:brightness(.88) saturate(1) contrast(1.02);opacity:0;transition:opacity .8s ease,filter .6s ease}
+.serving-canvas.ready{opacity:1}
+.serving-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,.22) 0%,rgba(0,0,0,.05) 42%,rgba(0,0,0,.28) 100%);transition:background .6s ease}
+.serving-glow{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .55s ease;background:radial-gradient(520px circle at var(--glow-x) var(--glow-y), rgba(92,184,230,.42), rgba(135,212,238,.18) 28%, rgba(92,184,230,.05) 55%, transparent 72%);mix-blend-mode:screen}
+/* top-only subtle glow ring — no left/right edges */
+.serving-glow-ring{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .55s ease;background:linear-gradient(180deg, rgba(135,212,238,.22) 0%, rgba(135,212,238,.05) 14%, transparent 28%)}
+.serving:hover .serving-glow,.serving:hover .serving-glow-ring{opacity:1}
+.serving:hover .serving-poster,.serving:hover .serving-canvas{filter:brightness(.92) saturate(1.05) contrast(1.04)}
+.serving:hover{box-shadow:none}
+.serving:hover .serving-overlay{background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.02) 42%,rgba(0,0,0,.2) 100%)}
+.serving-head{text-align:center;max-width:620px;margin:0 auto 56px}
+.nbhd-wrap{position:relative;margin-top:48px}
+.nbhd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.nbhd-card{background:rgba(10,12,18,.55);padding:28px 22px;border-top:2px solid transparent;transition:all .3s;backdrop-filter:blur(12px)}
+.nbhd-card.core{border-color:#87D4EE}
+.nbhd-card:hover{background:rgba(18,24,38,.78);border-color:#87D4EE;box-shadow:0 4px 24px rgba(135,212,238,.12)}
 .nbhd-name{font-family:var(--serif);font-size:20px;font-weight:300;color:#fff;margin-bottom:5px}
-.nbhd-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
-.nbhd-desc{font-size:12px;font-weight:300;color:var(--dim);line-height:1.65}
+.nbhd-tag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#87D4EE;margin-bottom:10px}
+.nbhd-desc{font-size:12px;font-weight:300;color:rgba(255,255,255,.65);line-height:1.65}
 
-/* ── LAND SECTION ── */
-.land-section{position:relative;min-height:80vh;display:flex;align-items:center;overflow:hidden}
-.land-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.32) saturate(.8)}
-.land-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,11,11,.5) 0%,rgba(11,11,11,.2) 40%,rgba(11,11,11,.65) 100%)}
+/* ── LAND SECTION (full-viewport with darker overlay) ── */
+.land-section{position:relative;min-height:100vh;padding:clamp(80px,14vh,140px) 0;display:flex;align-items:center;overflow:hidden;background:#05080c}
+.land-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:saturate(1.02) contrast(1.02) brightness(.9)}
+.land-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.45) 45%,rgba(0,0,0,.68) 100%)}
+.land-overlay::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.6) 100%)}
 .land-content{position:relative;z-index:2;width:100%;max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px);text-align:center}
-.land-eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;font-weight:400;display:flex;align-items:center;justify-content:center;gap:12px}
-.land-eyebrow::before,.land-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:var(--gold)}
-.land-h{font-family:var(--serif);font-size:clamp(52px,8vw,110px);font-weight:300;line-height:.98;color:var(--white);letter-spacing:-.01em}
-.land-h em{font-style:italic;color:var(--gold-light);display:block}
-.land-sub{margin:28px auto 0;font-size:16px;color:rgba(245,240,232,.55);font-weight:300;line-height:1.75;max-width:520px}
-.land-cta{margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.land-eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:18px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:12px;text-shadow:0 1px 12px rgba(0,0,0,.65)}
+.land-eyebrow::before,.land-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:rgba(255,255,255,.45)}
+.land-h{font-family:var(--serif);font-size:clamp(40px,6.2vw,82px);font-weight:400;line-height:1;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 30px rgba(0,0,0,.55),0 1px 2px rgba(0,0,0,.4)}
+.land-h em{font-style:italic;color:#E6C98A;display:block;text-shadow:0 2px 30px rgba(0,0,0,.55),0 1px 2px rgba(0,0,0,.4)}
+.land-sub{margin:20px auto 0;font-size:15px;color:rgba(255,255,255,.92);font-weight:300;line-height:1.7;max-width:520px;text-shadow:0 1px 14px rgba(0,0,0,.7)}
+.land-cta{margin-top:28px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+@media(max-width:767px){
+  .land-section{min-height:100vh;padding:80px 0}
+}
 
 /* ── SCROLL REVEAL ── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
@@ -458,35 +699,38 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 
 /* ── RESPONSIVE ── */
 @media(max-width:1024px){
-  .hero-content{grid-template-columns:1fr;max-width:680px;text-align:center}
-  .hero-left{display:flex;flex-direction:column;align-items:center}
-  .hero-h1{font-size:clamp(44px,8vw,76px)}
-  .hero-sub{text-align:center}
-  .hero-badges{justify-content:center}
   .listings-grid,.services-grid,.testi-grid{grid-template-columns:1fr 1fr}
   .process-steps{grid-template-columns:1fr 1fr}
   .about .container,.contact .container,.calc-wrap{grid-template-columns:1fr;gap:48px}
   .about-img{aspect-ratio:4/3}
   .about-badge{bottom:-12px;right:12px}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .nbhd-grid{grid-template-columns:repeat(2,1fr)}
+  .nbhd-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:767px){
-  .hero-content{grid-template-columns:1fr;padding:0 20px}
   .listings-grid,.services-grid,.testi-grid{grid-template-columns:1fr}
   .process-steps{grid-template-columns:1fr 1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .hero-eyebrow::before{display:none}
   .hero-h1{font-size:clamp(40px,10vw,64px)}
-  .nbhd-grid{grid-template-columns:repeat(2,1fr)}
+  .hf-row{grid-template-columns:1fr}
+  .hero-form-wrap{padding:24px 20px}
+  /* ─ MOBILE NEIGHBORHOODS: AUTO-SCROLL 2×3 HORIZONTAL CAROUSEL ─ */
+  .nbhd-wrap{overflow:hidden;position:relative;margin-left:-20px;margin-right:-20px;padding:0 20px;mask-image:linear-gradient(90deg,transparent 0%,#000 6%,#000 94%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 6%,#000 94%,transparent 100%)}
+  .nbhd-grid{display:grid !important;grid-auto-flow:column;grid-template-columns:none !important;grid-template-rows:repeat(2,1fr);grid-auto-columns:calc((100vw - 80px)/3);gap:10px;width:max-content;background:transparent;border:none;backdrop-filter:none;animation:nbhd-marquee 42s linear infinite;padding:4px}
+  .nbhd-wrap:active .nbhd-grid,.nbhd-wrap:hover .nbhd-grid{animation-play-state:paused}
+  .nbhd-card{padding:16px 14px;border:1px solid rgba(255,255,255,.1);border-top-width:2px;background:rgba(10,12,18,.72);min-width:0}
+  .nbhd-card.core{border-top-color:#87D4EE}
+  .nbhd-name{font-size:15px;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .nbhd-tag{font-size:8px;margin-bottom:6px;letter-spacing:.14em}
+  .nbhd-desc{font-size:11px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  @keyframes nbhd-marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 }
 @media(max-width:480px){
   .process-steps{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .hf-row,.cf-row{grid-template-columns:1fr}
+  .cf-row,.hf-row{grid-template-columns:1fr}
   .nav-center{display:none}
   .hamburger{display:flex}
-  .nbhd-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -498,15 +742,15 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 <!-- LOADER -->
 <div id="loader">
   <img class="ld-logo" src="img/premier-realty-logo.png" alt="Premier Realty" onerror="this.style.display='none'">
-  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:300;color:#F5F0E8;letter-spacing:.1em">Premier Realty</div>
+  <div class="ld-brand">Premier Realty</div>
   <div class="ld-track"><div class="ld-fill" id="ld-fill"></div></div>
   <div class="ld-pct" id="ld-pct">0%</div>
 </div>
 
-<!-- DARK NAV -->
+<!-- NAV -->
 <nav id="nav">
-  <a href="landing.html" class="nav-logo" aria-label="Premier Realty Home">
-    <img src="img/premier-realty-logo.png" alt="Premier Realty" style="height:40px;opacity:.92">
+  <a href="index.html" class="nav-logo" aria-label="Premier Realty Home">
+    <img src="img/premier-realty-logo.png" alt="Premier Realty" style="height:40px;opacity:.95">
   </a>
   <ul class="nav-center">
     <li><a href="about.html">About</a></li>
@@ -514,6 +758,7 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
       <button class="nav-btn">Services <span class="caret">▾</span></button>
       <div class="nav-drop">
         <a href="services.html#buy">Buy a Home</a>
+        <a href="services.html#sell">Sell My Home</a>
         <a href="services.html#value">Home Valuation</a>
         <div class="nav-drop-divider"></div>
         <a href="services.html#relocate">Relocating to Sacramento</a>
@@ -532,84 +777,52 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mob-menu">
-  <button class="mob-link" onclick="smoothScrollTo('about');closeMob()">About</button>
-  <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);padding:12px 0 4px;display:block">Services</span>
+  <a class="mob-link" href="about.html">About</a>
+  <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);padding:12px 0 4px;display:block">Services</span>
   <div class="mob-sub">
     <a href="services.html#buy">Buy a Home</a>
+    <a href="services.html#sell">Sell My Home</a>
     <a href="services.html#value">Get Home Value</a>
     <a href="services.html#relocate">Relocating to Sacramento</a>
     <a href="services.html#invest">Investment Property</a>
     <a href="services.html#consult">Talk to an Agent</a>
   </div>
   <button class="mob-link" onclick="smoothScrollTo('listings');closeMob()">Listings</button>
-  <a class="mob-link" href="about.html">Our Story</a>
   <a class="mob-link" href="contact.html">Contact</a>
-  <button class="mob-cta" onclick="smoothScrollTo('hero-form');closeMob()">Get Started →</button>
+  <button class="mob-cta" onclick="smoothScrollTo('contact');closeMob()">Get Started →</button>
 </div>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="hero">
-  <!-- Crossfading desktop hero videos -->
-  <video id="hv1" class="hero-video" autoplay muted playsinline style="z-index:0;transition:opacity 1.2s ease;opacity:1">
-    <source src="img/hf_20260407_075911_2bea4438-e9f9-4f09-b414-f8eb2e496584.mp4" type="video/mp4">
-  </video>
-  <video id="hv2" class="hero-video" muted playsinline style="z-index:0;transition:opacity 1.2s ease;opacity:0">
-    <source src="img/hf_20260407_092704_ed58126d-6d9f-443e-a55c-d02049970c37.mp4" type="video/mp4">
-  </video>
-  <!-- Mobile -->
-  <video class="hero-video-mobile" autoplay muted loop playsinline>
-    <source src="img/hf_20260407_075911_2bea4438-e9f9-4f09-b414-f8eb2e496584.mp4" type="video/mp4">
-  </video>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Sacramento's Premier Real Estate</div>
-      <h1 class="hero-h1">Find Your<br>Dream Home<br><em>in Sacramento</em></h1>
-      <p class="hero-sub">Luxury real estate expertise across Sacramento's most coveted neighborhoods. Trusted by 850+ families since 2008.</p>
-      
-      <!-- Sleek Centered Search Bar -->
-      <div class="hero-search-wrap" id="hero-form">
-        <input type="text" class="hero-search-input" placeholder="Search neighborhoods (East Sac, Land Park, Midtown…)" aria-label="Search neighborhoods">
-        <button class="hero-search-btn" onclick="smoothScrollTo('listings')">Search</button>
-      </div>
+  <div class="hero-scenes" aria-hidden="true">
+    <img id="hs1" class="hero-scene active" src="img/scenes/scene-living.jpg"    alt="" fetchpriority="high" decoding="async">
+    <img id="hs2" class="hero-scene"        src="img/scenes/scene-fireplace.jpg" alt="" loading="eager"     decoding="async">
+    <img id="hs3" class="hero-scene"        src="img/scenes/scene-aerial.jpg"    alt="" loading="eager"     decoding="async">
+  </div>
+  <div class="hero-vignette"></div>
+  <div class="hero-flash" id="hero-flash"></div>
 
-      <div class="hero-badges">
-        <div class="hero-badge hl">Top 1% Nationally</div>
-        <div class="hero-badge">$2.4B+ in Sales</div>
-        <div class="hero-badge">16 Yrs Experience</div>
-        <div class="hero-badge">DRE #01359322</div>
-      </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Sacramento's Premier Real Estate</div>
+    <h1 class="hero-h1">Find Your<br><span class="word-swap" aria-live="polite" id="word-swap"><span class="w-item on">Dream Home</span><span class="w-item">Next Home</span><span class="w-item">Forever Home</span></span></h1>
+    <p class="hero-sub">Luxury real estate expertise across Sacramento's most coveted neighborhoods. Trusted by 850+ families since 2008.</p>
+
+    <form class="hero-search" id="hero-search" onsubmit="handleHeroSearch(event)">
+      <input type="text" id="hero-search-input" placeholder="Search neighborhoods (East Sac, Land Park, Midtown…)" autocomplete="off" aria-label="Search">
+      <button type="submit" class="hero-search-btn">Search</button>
+    </form>
+
+    <div class="hero-badges">
+      <div class="hero-badge">24 Yrs Experience</div>
+      <div class="hero-badge hl">Hablo Español</div>
+      <div class="hero-badge">DRE #01359322</div>
     </div>
   </div>
 
   <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
 </section>
 
-<!-- ═══ STATS BAR ═══ -->
-<div class="stats-bar">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-num" data-target="850">0<em>+</em></div>
-        <div class="stat-label">Families Served</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num"><em>$</em>2.4<em>B+</em></div>
-        <div class="stat-label">In Closed Transactions</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" data-target="16">0<em>+</em></div>
-        <div class="stat-label">Years Experience</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">Top <em>1%</em></div>
-        <div class="stat-label">Nationally Ranked</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TICKER -->
+<!-- TICKER (desktop/tablet only) -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-inner">
     <span>Sacramento Luxury Real Estate</span>
@@ -629,6 +842,33 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
   </div>
 </div>
 
+<!-- MOBILE-ONLY: HELEN WONG INTRO + STATS (replaces ticker) -->
+<section class="hero-intro-mobile" aria-label="Helen Wong stats">
+  <div class="him-name-wrap">
+    <div class="him-eye">Sacramento's Premier Broker</div>
+    <h2 class="him-name">Helen <em>Wong</em></h2>
+    <div class="him-sub">Licensed Broker · DRE #01359322</div>
+  </div>
+  <div class="him-stats">
+    <div class="him-stat">
+      <div class="him-stat-num">323<em>+</em></div>
+      <div class="him-stat-lbl">Families Served</div>
+    </div>
+    <div class="him-stat">
+      <div class="him-stat-num">$178M<em>+</em></div>
+      <div class="him-stat-lbl">In Closed Transactions</div>
+    </div>
+    <div class="him-stat">
+      <div class="him-stat-num">24<em>+</em></div>
+      <div class="him-stat-lbl">Years Experience</div>
+    </div>
+    <div class="him-stat">
+      <div class="him-stat-num">Top 1%</div>
+      <div class="him-stat-lbl">Sacramento Masters Club</div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ ABOUT ═══ -->
 <section class="about" id="about">
   <div class="container">
@@ -640,11 +880,11 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
         <div class="about-badge-lbl">Excellence</div>
       </div>
     </div>
-    <div>
+    <div class="about-text">
       <div class="section-eyebrow reveal">Meet Your Broker</div>
       <h2 class="section-h2 reveal rd1">Helen Wong —<br><em>Your Trusted</em><br>Sacramento Expert</h2>
       <p class="about-body reveal rd2">With over 16 years navigating Sacramento's dynamic market, Helen Wong brings unparalleled local knowledge, market insight, and an unwavering commitment to her clients' long-term success.</p>
-      <p class="about-body reveal rd2">Whether buying your first home, upgrading to luxury, or building an investment portfolio — Helen's track record speaks for itself: $2.4B+ in closed transactions and hundreds of satisfied Sacramento families.</p>
+      <p class="about-body reveal rd2">Whether buying your first home, upgrading to luxury, or building an investment portfolio — Helen's track record speaks for itself: $178M+ in closed transactions and hundreds of satisfied Sacramento families.</p>
       <a href="about.html" class="btn-primary reveal rd3">Our Story →</a>
       <div class="about-awards reveal rd4">
         <div class="award">Top 1% Nationally</div>
@@ -656,192 +896,431 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
   </div>
 </section>
 
-<!-- ═══ SERVICES ═══ -->
-<section class="services" id="services">
+<!-- ═══ STATS BAR ═══ -->
+<div class="stats-bar">
   <div class="container">
-    <div class="services-head">
-      <div class="section-eyebrow reveal">What We Offer</div>
-      <h2 class="section-h2 reveal rd1">Expert Guidance<br>at Every<br><em>Stage</em></h2>
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="323">0<em>+</em></div>
+        <div class="stat-label">Families Served</div>
+      </div>
+      <div class="stat-item reveal rd1">
+        <div class="stat-num"><em>$</em>178<em>M+</em></div>
+        <div class="stat-label">In Closed Transactions</div>
+      </div>
+      <div class="stat-item reveal rd2">
+        <div class="stat-num" data-target="24">0<em>+</em></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item reveal rd3">
+        <div class="stat-num">Top <em>1%</em></div>
+        <div class="stat-label">Sacramento Masters Club</div>
+      </div>
     </div>
-    <div class="services-grid">
-      <a class="service-card reveal" href="services.html#buy">
-        <div class="service-icon">🏡</div>
-        <div class="service-title">Buy a Home</div>
-        <p class="service-desc">Expert guidance from your first search to closing day. We negotiate aggressively to secure the best price in any market condition.</p>
-        <div class="service-link">Explore →</div>
-      </a>
-      <a class="service-card reveal rd1" href="services.html#value">
-        <div class="service-icon">📊</div>
-        <div class="service-title">Home Valuation</div>
-        <p class="service-desc">Get a free, detailed market analysis of your home's current value — backed by real Sacramento data, not algorithm estimates.</p>
-        <div class="service-link">Explore →</div>
-      </a>
-      <a class="service-card reveal rd2" href="services.html#invest">
-        <div class="service-icon">📈</div>
-        <div class="service-title">Investment Property</div>
-        <p class="service-desc">Identify high-yield opportunities. From single-family rentals to multi-unit and land acquisitions in Sacramento's evolving market.</p>
-        <div class="service-link">Explore →</div>
-      </a>
-      <a class="service-card reveal rd1" href="services.html#relocate">
-        <div class="service-icon">🗺️</div>
-        <div class="service-title">Relocating to Sacramento</div>
-        <p class="service-desc">Moving to Sacramento? We'll help you understand the neighborhoods, schools, and commutes — and find the perfect home for your lifestyle.</p>
-        <div class="service-link">Explore →</div>
-      </a>
-      <a class="service-card reveal rd2" href="services.html#consult">
-        <div class="service-icon">🤝</div>
-        <div class="service-title">Talk to an Agent</div>
-        <p class="service-desc">Not sure where to start? Schedule a free, no-pressure consultation. We'll answer your questions and map a plan tailored to your goals.</p>
-        <div class="service-link">Explore →</div>
-      </a>
-      <a class="service-card reveal rd3" href="contact.html">
-        <div class="service-icon">🏛️</div>
-        <div class="service-title">Mortgage Calculator</div>
-        <p class="service-desc">Estimate your monthly payments, explore different loan scenarios, and get pre-qualified with our trusted lending partners in minutes.</p>
-        <div class="service-link">Calculate →</div>
-      </a>
+  </div>
+</div>
+
+<!-- ═══ SERVING SACRAMENTO (AERIAL FRAME ANIMATION BG) ═══ -->
+<section class="serving" id="neighborhoods">
+  <img class="serving-poster" id="serving-poster" src="sac-aerial/frames/desktop/frame-0001.webp" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
+  <canvas class="serving-canvas" id="serving-canvas" aria-hidden="true"></canvas>
+  <div class="serving-overlay"></div>
+  <div class="serving-glow" aria-hidden="true"></div>
+  <div class="serving-glow-ring" aria-hidden="true"></div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="serving-head">
+      <div class="section-eyebrow reveal" style="justify-content:center;color:rgba(255,255,255,.55)">Service Area</div>
+      <h2 class="section-h2 reveal rd1" style="text-align:center;color:#fff">Greater <em style="color:#87D4EE">Sacramento</em></h2>
+      <p class="reveal rd2" style="margin-top:16px;font-size:15px;font-weight:300;color:rgba(255,255,255,.7);line-height:1.8;text-align:center;max-width:640px;margin-left:auto;margin-right:auto">Helen specializes across the Greater Sacramento area — from her home base in Natomas to the established neighborhoods, suburban corridors, and waterfront communities that make up the region she knows best.</p>
+    </div>
+
+    <div class="nbhd-wrap reveal rd2">
+      <div class="nbhd-grid" id="nbhd-grid">
+        <div class="nbhd-card core">
+          <div class="nbhd-name">Natomas</div>
+          <p class="nbhd-desc">Helen's home turf. Master-planned communities, waterfront living, and quick access to downtown.</p>
+        </div>
+        <div class="nbhd-card core">
+          <div class="nbhd-name">North Highlands</div>
+          <p class="nbhd-desc">Established neighborhoods with strong rental demand and excellent investment value.</p>
+        </div>
+        <div class="nbhd-card core">
+          <div class="nbhd-name">Rancho Cordova</div>
+          <p class="nbhd-desc">Tech-adjacent growth corridor with modern developments and rising home values.</p>
+        </div>
+        <div class="nbhd-card core">
+          <div class="nbhd-name">Rio Linda</div>
+          <p class="nbhd-desc">Semi-rural charm minutes from the city — larger lots, quiet streets, great entry prices.</p>
+        </div>
+        <div class="nbhd-card core">
+          <div class="nbhd-name">Elk Grove</div>
+          <p class="nbhd-desc">Growing suburb with excellent schools, new-build opportunities, and family-first neighborhoods.</p>
+        </div>
+        <div class="nbhd-card core">
+          <div class="nbhd-name">Arden-Arcade</div>
+          <p class="nbhd-desc">Family-friendly neighborhoods with top-rated schools and classic mid-century appeal.</p>
+        </div>
+        <div class="nbhd-card core">
+          <div class="nbhd-name">Citrus Heights</div>
+          <p class="nbhd-desc">Value-driven market with strong community, easy freeway access, and steady demand.</p>
+        </div>
+        <div class="nbhd-card core">
+          <div class="nbhd-name">East Sacramento</div>
+          <p class="nbhd-desc">Historic charm meets modern luxury — tree-lined streets, architectural character, and walkable parks.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px">
+      <a href="services.html" class="btn-outline-white reveal rd1">Explore Our Services →</a>
     </div>
   </div>
 </section>
 
-<!-- ═══ LISTINGS ═══ -->
+<!-- ═══ SERVICES ═══ -->
+<section class="services" id="services">
+  <div class="services-bg" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="svcGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#5CB8E6" stop-opacity="0.12"/>
+          <stop offset="70%" stop-color="#5CB8E6" stop-opacity="0.03"/>
+          <stop offset="100%" stop-color="#5CB8E6" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="180" cy="760" r="320" fill="url(#svcGlow)"/>
+      <circle cx="1420" cy="160" r="280" fill="url(#svcGlow)"/>
+      <path d="M 1280 720 L 1340 660 L 1400 720 L 1400 790 L 1280 790 Z" fill="none" stroke="#5CB8E6" stroke-width="1" opacity="0.12"/>
+      <path d="M 1300 720 L 1300 790 M 1380 720 L 1380 790" stroke="#5CB8E6" stroke-width="1" opacity="0.1"/>
+      <path d="M 120 180 L 160 140 L 200 180 L 200 240 L 120 240 Z" fill="none" stroke="#5CB8E6" stroke-width="1" opacity="0.1"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="services-head">
+      <div class="section-eyebrow reveal" style="justify-content:center">What We Offer</div>
+      <h2 class="section-h2 reveal rd1">Expert Guidance at Every <em>Stage</em></h2>
+      <div class="services-head-accent reveal rd2"></div>
+    </div>
+    <div class="services-grid" id="services-grid">
+
+      <div class="services-mobile-line" id="services-mobile-line" aria-hidden="true">
+        <div class="sml-fill"></div>
+        <span class="sml-node" data-i="0"></span>
+        <span class="sml-node" data-i="1"></span>
+        <span class="sml-node" data-i="2"></span>
+        <span class="sml-node" data-i="3"></span>
+        <span class="sml-node" data-i="4"></span>
+        <span class="sml-node" data-i="5"></span>
+      </div>
+
+      <a class="service-card reveal" href="services.html#buy">
+        <div class="service-card-inner">
+          <div class="service-face front">
+            <div class="service-num">01</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5h-4.25v-6.75h-6.5V21.5H4.5A1.5 1.5 0 0 1 3 20z"/></svg>
+            </div>
+            <div class="service-title">Buy a Home</div>
+            <div class="service-title-rule"></div>
+            <p class="service-desc">From first search to closing — handled with precision and local insight.</p>
+            <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
+          </div>
+          <div class="service-face back">
+            <img class="service-back-img" src="img/services/svc-buy.jpg" alt="Buy a Home in Sacramento" loading="lazy" decoding="async">
+            <div class="service-back-scrim"></div>
+            <div class="service-back-num">01</div>
+            <div class="service-back-foot">
+              <div class="service-back-textwrap">
+                <span class="service-back-rule"></span>
+                <div class="service-back-caption">Find the home that feels right.</div>
+              </div>
+              <span class="service-back-cta">Start →</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="service-card reveal rd1" href="services.html#sell">
+        <div class="service-card-inner">
+          <div class="service-face front">
+            <div class="service-num">02</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 3h3.2l2.1 12.3a1.5 1.5 0 0 0 1.48 1.25h8.4a1.5 1.5 0 0 0 1.48-1.2L21 7.5H7.2"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="18.5" cy="20.5" r="1.2"/></svg>
+            </div>
+            <div class="service-title">Sell My Home</div>
+            <div class="service-title-rule"></div>
+            <p class="service-desc">Strategic pricing and staging — engineered for above-asking results.</p>
+            <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
+          </div>
+          <div class="service-face back">
+            <img class="service-back-img" src="img/services/svc-sell.jpg" alt="Sell your Sacramento home" loading="lazy" decoding="async">
+            <div class="service-back-scrim"></div>
+            <div class="service-back-num">02</div>
+            <div class="service-back-foot">
+              <div class="service-back-textwrap">
+                <span class="service-back-rule"></span>
+                <div class="service-back-caption">Priced, staged, and sold for more.</div>
+              </div>
+              <span class="service-back-cta">Strategy →</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="service-card reveal rd2" href="services.html#value">
+        <div class="service-card-inner">
+          <div class="service-face front">
+            <div class="service-num">03</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 20V14"/><path d="M12 20V4"/><path d="M20 20v-9"/></svg>
+            </div>
+            <div class="service-title">Home Valuation</div>
+            <div class="service-title-rule"></div>
+            <p class="service-desc">A real market read — grounded in comps, not an algorithmic guess.</p>
+            <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
+          </div>
+          <div class="service-face back">
+            <img class="service-back-img" src="img/services/svc-value.jpg" alt="Sacramento home valuation" loading="lazy" decoding="async">
+            <div class="service-back-scrim"></div>
+            <div class="service-back-num">03</div>
+            <div class="service-back-foot">
+              <div class="service-back-textwrap">
+                <span class="service-back-rule"></span>
+                <div class="service-back-caption">Know what your home is truly worth.</div>
+              </div>
+              <span class="service-back-cta">Value →</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="service-card reveal rd1" href="services.html#relocate">
+        <div class="service-card-inner">
+          <div class="service-face front">
+            <div class="service-num">04</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            </div>
+            <div class="service-title">Relocating to Sacramento</div>
+            <div class="service-title-rule"></div>
+            <p class="service-desc">Land softly in your new Sacramento neighborhood — concierge from day one.</p>
+            <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
+          </div>
+          <div class="service-face back">
+            <img class="service-back-img" src="img/services/svc-relocate.jpg" alt="Relocating to Sacramento" loading="lazy" decoding="async">
+            <div class="service-back-scrim"></div>
+            <div class="service-back-num">04</div>
+            <div class="service-back-foot">
+              <div class="service-back-textwrap">
+                <span class="service-back-rule"></span>
+                <div class="service-back-caption">Land softly in your new city.</div>
+              </div>
+              <span class="service-back-cta">Plan →</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="service-card reveal rd2" href="services.html#invest">
+        <div class="service-card-inner">
+          <div class="service-face front">
+            <div class="service-num">05</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 17 9.5 10.5 13 14l7.5-8"/><path d="M15 6h5.5v5.5"/></svg>
+            </div>
+            <div class="service-title">Investment Property</div>
+            <div class="service-title-rule"></div>
+            <p class="service-desc">Income opportunities sourced and vetted across greater Sacramento.</p>
+            <div class="service-link">Explore <span class="service-link-arrow">→</span></div>
+          </div>
+          <div class="service-face back">
+            <img class="service-back-img" src="img/services/svc-invest.jpg" alt="Sacramento investment property" loading="lazy" decoding="async">
+            <div class="service-back-scrim"></div>
+            <div class="service-back-num">05</div>
+            <div class="service-back-foot">
+              <div class="service-back-textwrap">
+                <span class="service-back-rule"></span>
+                <div class="service-back-caption">Build real wealth through real estate.</div>
+              </div>
+              <span class="service-back-cta">Explore →</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a class="service-card reveal rd3" href="services.html#consult">
+        <div class="service-card-inner">
+          <div class="service-face front">
+            <div class="service-num">06</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 20v-1.5A4.5 4.5 0 0 1 8.5 14h4A4.5 4.5 0 0 1 17 18.5V20"/><circle cx="10.5" cy="8" r="3.5"/><path d="M18 14.2a3.8 3.8 0 0 0 0-7.4"/></svg>
+            </div>
+            <div class="service-title">Talk to an Agent</div>
+            <div class="service-title-rule"></div>
+            <p class="service-desc">Start with a zero-pressure conversation. Clear next steps — always.</p>
+            <div class="service-link">Schedule <span class="service-link-arrow">→</span></div>
+          </div>
+          <div class="service-face back">
+            <img class="service-back-img" src="img/services/svc-consult.jpg" alt="Talk to a Premier Realty agent" loading="lazy" decoding="async">
+            <div class="service-back-scrim"></div>
+            <div class="service-back-num">06</div>
+            <div class="service-back-foot">
+              <div class="service-back-textwrap">
+                <span class="service-back-rule"></span>
+                <div class="service-back-caption">A 15-minute call. Zero pressure.</div>
+              </div>
+              <span class="service-back-cta">Book →</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LISTINGS (HELEN'S ZILLOW) ═══ -->
 <section class="listings" id="listings">
   <div class="container">
     <div class="listings-head">
       <div>
-        <div class="section-eyebrow reveal">Featured Properties</div>
-        <h2 class="section-h2 reveal rd1">Handpicked<br><em>Listings</em></h2>
+        <div class="section-eyebrow reveal">Helen's Portfolio</div>
+        <h2 class="section-h2 reveal rd1">Active &amp; Sold<br><em>on Zillow</em></h2>
+        <p class="reveal rd2" style="margin-top:14px;font-size:14px;font-weight:300;color:var(--text-secondary);line-height:1.75;max-width:520px">Browse every listing Helen has sold or has available — reviews, photos, and full property details straight from her verified Zillow profile.</p>
       </div>
-      <a href="services.html" class="btn-ghost reveal">View All Listings →</a>
+      <a href="https://www.zillow.com/profile/hwong2" target="_blank" rel="noopener" class="btn-primary reveal" style="white-space:nowrap">View All on Zillow →</a>
     </div>
-    <div class="listings-grid">
-      <a class="listing-card reveal" href="contact.html?ref=listing1" aria-label="View listing at 3812 H Street East Sacramento">
-        <div class="listing-img-wrap">
-          <img class="listing-img" src="img/prop-1.png" alt="East Sacramento craftsman home" loading="lazy" onerror="this.style.background='#1A2B40';this.style.height='300px'">
-        </div>
-        <div class="listing-overlay"></div>
-        <div class="listing-badge">Active</div>
-        <div class="listing-info">
-          <div class="listing-price"><span>$</span>1,149,000</div>
-          <div class="listing-address">3812 H Street, East Sacramento</div>
-          <div class="listing-tags">
-            <span class="listing-tag">4 Bed</span>
-            <span class="listing-tag">3 Bath</span>
-            <span class="listing-tag">2,640 sqft</span>
-          </div>
-        </div>
-      </a>
-      <a class="listing-card reveal rd1" href="contact.html?ref=listing2" aria-label="View listing at 1729 33rd Street Land Park">
-        <div class="listing-img-wrap">
-          <img class="listing-img" src="img/prop-2.png" alt="Land Park Tudor home" loading="lazy" onerror="this.style.background='#1A2B40';this.style.height='300px'">
-        </div>
-        <div class="listing-overlay"></div>
-        <div class="listing-badge" style="background:var(--gold);color:var(--ink)">Just Sold</div>
-        <div class="listing-info">
-          <div class="listing-price"><span>$</span>985,000</div>
-          <div class="listing-address">1729 33rd Street, Land Park</div>
-          <div class="listing-tags">
-            <span class="listing-tag">3 Bed</span>
-            <span class="listing-tag">2 Bath</span>
-            <span class="listing-tag">2,180 sqft</span>
-          </div>
-        </div>
-      </a>
-      <a class="listing-card reveal rd2" href="contact.html?ref=listing3" aria-label="View listing in Natomas">
-        <div class="listing-img-wrap">
-          <img class="listing-img" src="img/prop-3.png" alt="Natomas contemporary home" loading="lazy" onerror="this.style.background='#1A2B40';this.style.height='300px'">
-        </div>
-        <div class="listing-overlay"></div>
-        <div class="listing-badge">Investment</div>
-        <div class="listing-info">
-          <div class="listing-price"><span>$</span>649,000</div>
-          <div class="listing-address">4410 Truxel Road, North Natomas</div>
-          <div class="listing-tags">
-            <span class="listing-tag">4 Bed</span>
-            <span class="listing-tag">3 Bath</span>
-            <span class="listing-tag">2,350 sqft</span>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
 
-<!-- ═══ BRIDGE PARALLAX ═══ -->
-<div class="bridge" id="bridge">
-  <video class="bridge-video" id="bridge-vid" autoplay muted loop playsinline>
-    <source src="img/8263308-uhd_3840_2160_24fps.mp4" type="video/mp4">
-  </video>
-  <div class="bridge-overlay"></div>
-  <div class="bridge-content">
-    <div class="bridge-eyebrow reveal">Premier Realty Sacramento</div>
-    <h2 class="bridge-h reveal rd1">Sacramento's Most<br><em>Trusted Agent</em></h2>
-    <p class="bridge-sub reveal rd2">Helen Wong has guided over 850 Sacramento families through life's most important transactions — with honesty, expertise, and results that speak for themselves.</p>
-    <div class="bridge-line reveal rd3"></div>
-  </div>
-</div>
+    <div class="zillow-embed reveal rd1">
+      <div class="zillow-embed-head">
+        <div class="zillow-logo-wrap">
+          <svg viewBox="0 0 140 44" class="zillow-logo" aria-hidden="true"><path fill="#006AFF" d="M18.4 7.4 6 16.8v2.9h3.1V30h6.5v-8.3h5.6V30h6.5V19.7h3.1v-2.9L18.4 7.4z"/><text x="38" y="26" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#006AFF" letter-spacing="-.3">zillow</text></svg>
+          <span class="zillow-badge">Verified Agent · Helen Wong</span>
+        </div>
+        <div class="zillow-meta">
+          <div class="zillow-meta-item"><strong>323</strong><span>Homes Sold</span></div>
+          <div class="zillow-meta-item"><strong>$178M+</strong><span>Sales Volume</span></div>
+          <div class="zillow-meta-item"><strong>5.0 ★</strong><span>Zillow Rating</span></div>
+        </div>
+      </div>
 
-<!-- ═══ SERVING SACRAMENTO ═══ -->
-<section class="serving" id="neighborhoods">
-  <div class="container">
-    <div class="serving-head">
-      <div class="section-eyebrow reveal" style="justify-content:center">Where We Work</div>
-      <h2 class="section-h2 reveal rd1" style="text-align:center">Serving <em>Sacramento</em><br>& Beyond</h2>
-      <p class="reveal rd2" style="margin-top:16px;font-size:15px;font-weight:300;color:rgba(245,240,232,.5);line-height:1.8;text-align:center">Deep knowledge of every pocket of greater Sacramento — from tree-lined streets in East Sacramento to the waterfront communities along the river.</p>
-    </div>
-    <div class="nbhd-grid">
-      <div class="nbhd-card core reveal">
-        <div class="nbhd-name">East Sacramento</div>
-        <div class="nbhd-tag">Core Area · Premier Market</div>
-        <div class="nbhd-desc">Craftsman bungalows, tree-canopied streets, and some of the city's most prestigious zip codes. Helen's specialty.</div>
+      <div class="zillow-preview">
+        <div class="zillow-preview-inner">
+          <div class="zillow-shimmer"></div>
+          <div class="zillow-preview-copy">
+            <div class="zillow-eyebrow">Live from Zillow</div>
+            <h3>See every home Helen has listed &amp; sold</h3>
+            <p>Photos, 3D tours, price history, and Helen's full sales record update automatically on her Zillow profile. Click through to explore the gallery.</p>
+            <div class="zillow-cta-row">
+              <a href="https://www.zillow.com/profile/hwong2" target="_blank" rel="noopener" class="btn-primary">Open Helen's Zillow Profile →</a>
+              <a href="https://www.zillow.com/profile/hwong2/#reviews" target="_blank" rel="noopener" class="btn-ghost">Read Reviews</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="nbhd-card core reveal rd1">
-        <div class="nbhd-name">Land Park</div>
-        <div class="nbhd-tag">Core Area · Family Favorite</div>
-        <div class="nbhd-desc">Historic Tudor homes, William Land Park, and top-rated schools. A perennial favorite for families and investors.</div>
+
+      <div class="zillow-gallery">
+        <a href="https://www.zillow.com/profile/hwong2" target="_blank" rel="noopener">
+          <span class="zg-status">Active</span>
+          <img src="img/zillow/z1.jpg" alt="Featured Helen Wong listing" loading="lazy" decoding="async">
+          <div class="zg-mask"></div>
+          <div class="zg-info">
+            <div>
+              <div class="zg-price">$1,285,000</div>
+              <div class="zg-loc">East Sacramento · 4 BD / 3 BA</div>
+            </div>
+            <div class="zg-arrow">↗</div>
+          </div>
+        </a>
+        <a href="https://www.zillow.com/profile/hwong2" target="_blank" rel="noopener">
+          <span class="zg-status">Active</span>
+          <img src="img/zillow/z2.jpg" alt="Featured Helen Wong listing" loading="lazy" decoding="async">
+          <div class="zg-mask"></div>
+          <div class="zg-info">
+            <div>
+              <div class="zg-price">$925,000</div>
+              <div class="zg-loc">Land Park · 3 BD / 2 BA</div>
+            </div>
+            <div class="zg-arrow">↗</div>
+          </div>
+        </a>
+        <a href="https://www.zillow.com/profile/hwong2" target="_blank" rel="noopener">
+          <span class="zg-status pending">Pending</span>
+          <img src="img/zillow/z3.jpg" alt="Featured Helen Wong listing" loading="lazy" decoding="async">
+          <div class="zg-mask"></div>
+          <div class="zg-info">
+            <div>
+              <div class="zg-price">$749,000</div>
+              <div class="zg-loc">Midtown · 3 BD / 2.5 BA</div>
+            </div>
+            <div class="zg-arrow">↗</div>
+          </div>
+        </a>
+        <a href="https://www.zillow.com/profile/hwong2/#sold" target="_blank" rel="noopener">
+          <span class="zg-status sold">Sold</span>
+          <img src="img/zillow/z4.jpg" alt="Recent Helen Wong sale" loading="lazy" decoding="async">
+          <div class="zg-mask"></div>
+          <div class="zg-info">
+            <div>
+              <div class="zg-price">$1,475,000</div>
+              <div class="zg-loc">Natomas · 5 BD / 4 BA</div>
+            </div>
+            <div class="zg-arrow">↗</div>
+          </div>
+        </a>
+        <a href="https://www.zillow.com/profile/hwong2/#sold" target="_blank" rel="noopener">
+          <span class="zg-status sold">Sold</span>
+          <img src="img/zillow/z5.jpg" alt="Recent Helen Wong sale" loading="lazy" decoding="async">
+          <div class="zg-mask"></div>
+          <div class="zg-info">
+            <div>
+              <div class="zg-price">$865,000</div>
+              <div class="zg-loc">Elk Grove · 4 BD / 3 BA</div>
+            </div>
+            <div class="zg-arrow">↗</div>
+          </div>
+        </a>
+        <a href="https://www.zillow.com/profile/hwong2/#sold" target="_blank" rel="noopener">
+          <span class="zg-status sold">Sold</span>
+          <img src="img/zillow/z6.jpg" alt="Recent Helen Wong sale" loading="lazy" decoding="async">
+          <div class="zg-mask"></div>
+          <div class="zg-info">
+            <div>
+              <div class="zg-price">$1,095,000</div>
+              <div class="zg-loc">Arden-Arcade · 4 BD / 3 BA</div>
+            </div>
+            <div class="zg-arrow">↗</div>
+          </div>
+        </a>
       </div>
-      <div class="nbhd-card core reveal rd2">
-        <div class="nbhd-name">Midtown</div>
-        <div class="nbhd-tag">Core Area · Urban Lifestyle</div>
-        <div class="nbhd-desc">Sacramento's cultural heartbeat — restaurants, galleries, and walkable energy that attracts professionals and creatives alike.</div>
+
+      <div class="zillow-tiles">
+        <a class="zillow-tile" href="https://www.zillow.com/profile/hwong2" target="_blank" rel="noopener">
+          <div class="zillow-tile-badge">Active Listings</div>
+          <div class="zillow-tile-h">Currently for Sale</div>
+          <div class="zillow-tile-arrow">→</div>
+        </a>
+        <a class="zillow-tile" href="https://www.zillow.com/profile/hwong2/#sold" target="_blank" rel="noopener">
+          <div class="zillow-tile-badge alt">Sold</div>
+          <div class="zillow-tile-h">Recent Sales History</div>
+          <div class="zillow-tile-arrow">→</div>
+        </a>
+        <a class="zillow-tile" href="https://www.zillow.com/profile/hwong2/#reviews" target="_blank" rel="noopener">
+          <div class="zillow-tile-badge alt2">Reviews</div>
+          <div class="zillow-tile-h">What Clients Say</div>
+          <div class="zillow-tile-arrow">→</div>
+        </a>
       </div>
-      <div class="nbhd-card core reveal rd3">
-        <div class="nbhd-name">Natomas</div>
-        <div class="nbhd-tag">Core Area · Growth Corridor</div>
-        <div class="nbhd-desc">Growing community near the Sacramento Kings arena. Excellent value and investment potential in the city's north.</div>
-      </div>
-      <div class="nbhd-card reveal">
-        <div class="nbhd-name">Elk Grove</div>
-        <div class="nbhd-tag">Extended Service Area</div>
-        <div class="nbhd-desc">Top-ranked schools, master-planned communities, and strong rental demand make Elk Grove a standout for families and investors.</div>
-      </div>
-      <div class="nbhd-card reveal rd1">
-        <div class="nbhd-name">Arden-Arcade</div>
-        <div class="nbhd-tag">Extended Service Area</div>
-        <div class="nbhd-desc">Mid-century homes, country club living, and convenient access to downtown. Highly walkable and community-driven.</div>
-      </div>
-      <div class="nbhd-card reveal rd2">
-        <div class="nbhd-name">Folsom</div>
-        <div class="nbhd-tag">Extended Service Area</div>
-        <div class="nbhd-desc">Luxury subdivisions, lake access, and tech-sector employers. Among Sacramento's most desirable suburban markets.</div>
-      </div>
-      <div class="nbhd-card reveal rd3">
-        <div class="nbhd-name">Rancho Cordova</div>
-        <div class="nbhd-tag">Extended Service Area</div>
-        <div class="nbhd-desc">Affordable entry points and strong rental yields. Ideal for first-time buyers and investment portfolio expansion.</div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:48px">
-      <p class="reveal" style="font-size:13px;color:rgba(245,240,232,.35);margin-bottom:20px">Also serving Roseville, Rocklin, West Sacramento, Curtis Park, Oak Park, Citrus Heights, and surrounding communities.</p>
-      <a href="services.html" class="btn-outline reveal rd1">Explore Our Services →</a>
+
+      <div class="zillow-disclaimer">Tap any tile to see photos, pricing history, and reviews on Helen's verified Zillow profile.</div>
     </div>
   </div>
 </section>
 
 <!-- ═══ EVERY DREAM STARTS WITH LAND ═══ -->
 <section class="land-section">
-  <video class="land-video" autoplay muted loop playsinline>
-    <source src="img/buy-land.mp4" type="video/mp4">
+  <video class="land-video" id="land-vid" muted playsinline preload="metadata">
+    <source src="img/lifestyle.mp4" type="video/mp4">
   </video>
   <div class="land-overlay"></div>
   <div class="land-content">
@@ -850,7 +1329,7 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
     <p class="land-sub reveal rd2">Whether it's your first home, a legacy investment, or a place for your family to grow — it all begins with finding the right piece of Sacramento.</p>
     <div class="land-cta reveal rd3">
       <a href="contact.html" class="btn-primary">Start Your Search →</a>
-      <a href="about.html" class="btn-outline">Meet Helen</a>
+      <a href="about.html" class="btn-outline-white">Meet Helen</a>
     </div>
   </div>
 </section>
@@ -858,35 +1337,184 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 <!-- ═══ PROCESS ═══ -->
 <section class="process">
   <div class="container">
-    <div class="process-head">
-      <div class="section-eyebrow reveal" style="justify-content:center">How It Works</div>
-      <h2 class="section-h2 reveal rd1" style="text-align:center">From Search<br>to <em>Signed Keys</em></h2>
+    <div class="process-head-row">
+      <div class="process-head">
+        <div class="section-eyebrow reveal">How It Works</div>
+        <h2 class="section-h2 reveal rd1">From Search<br>to <em>Signed Keys</em></h2>
+        <div class="process-head-rule reveal rd2"></div>
+        <p class="process-head-sub reveal rd2">A proven, personalized process — guided from our first conversation to the keys in your hand.</p>
+      </div>
+      <div class="process-illus reveal rd1" aria-hidden="true">
+        <div class="pil-backdrop"></div>
+        <svg viewBox="0 0 460 360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="pilHouseFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F8FAFC"/>
+              <stop offset="100%" stop-color="#E6EDF4"/>
+            </linearGradient>
+            <linearGradient id="pilRoofFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4A6378"/>
+              <stop offset="100%" stop-color="#384F62"/>
+            </linearGradient>
+            <linearGradient id="pilWindowFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#9CC4DE" stop-opacity=".75"/>
+              <stop offset="100%" stop-color="#6FA5C5" stop-opacity=".65"/>
+            </linearGradient>
+            <linearGradient id="pilGlow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FFE4A7" stop-opacity=".5"/>
+              <stop offset="100%" stop-color="#FFCC73" stop-opacity=".35"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Distant horizon line -->
+          <line x1="30" y1="296" x2="432" y2="296" stroke="#BFD5E4" stroke-width="1" opacity=".65"/>
+          <!-- Ground shadow -->
+          <ellipse cx="232" cy="300" rx="186" ry="5" fill="#A7BFD0" opacity=".28"/>
+
+          <!-- Left evergreen silhouette -->
+          <path d="M 62 208 L 50 238 L 60 238 L 47 272 L 60 272 L 52 298 L 72 298 L 64 272 L 77 272 L 64 238 L 74 238 Z" fill="#5B7A8F" opacity=".45"/>
+          <rect x="60" y="298" width="4" height="10" fill="#3F5566" opacity=".55"/>
+
+          <!-- Right oak silhouette -->
+          <ellipse cx="400" cy="220" rx="30" ry="40" fill="#5B7A8F" opacity=".38"/>
+          <ellipse cx="384" cy="234" rx="22" ry="28" fill="#5B7A8F" opacity=".34"/>
+          <ellipse cx="416" cy="232" rx="20" ry="26" fill="#5B7A8F" opacity=".36"/>
+          <rect x="397" y="260" width="6" height="38" fill="#3F5566" opacity=".5"/>
+
+          <!-- Main two-story house body -->
+          <rect x="158" y="180" width="162" height="118" fill="url(#pilHouseFill)" stroke="#3D5770" stroke-width="1.2"/>
+
+          <!-- Right garage wing -->
+          <rect x="316" y="222" width="74" height="76" fill="url(#pilHouseFill)" stroke="#3D5770" stroke-width="1.1"/>
+
+          <!-- Main gable roof -->
+          <path d="M 152 184 L 239 122 L 326 184 Z" fill="url(#pilRoofFill)" stroke="#2A3F55" stroke-width="1"/>
+
+          <!-- Front-facing gable (portico) -->
+          <rect x="200" y="216" width="76" height="82" fill="url(#pilHouseFill)" stroke="#3D5770" stroke-width="1"/>
+          <path d="M 195 218 L 238 178 L 281 218 Z" fill="url(#pilRoofFill)" stroke="#2A3F55" stroke-width="1"/>
+
+          <!-- Garage roof -->
+          <path d="M 312 224 L 353 196 L 394 224 Z" fill="url(#pilRoofFill)" stroke="#2A3F55" stroke-width="1"/>
+
+          <!-- Chimney -->
+          <rect x="252" y="112" width="11" height="24" fill="#4A6378" stroke="#2A3F55" stroke-width=".8"/>
+          <rect x="250" y="110" width="15" height="4" fill="#2A3F55"/>
+
+          <!-- Upper-level windows with warm light -->
+          <rect x="174" y="150" width="20" height="28" fill="url(#pilGlow)"/>
+          <rect x="174" y="150" width="20" height="28" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".8"/>
+          <line x1="184" y1="150" x2="184" y2="178" stroke="#2A3F55" stroke-width=".55"/>
+          <line x1="174" y1="164" x2="194" y2="164" stroke="#2A3F55" stroke-width=".55"/>
+
+          <rect x="229" y="140" width="18" height="24" fill="url(#pilGlow)"/>
+          <rect x="229" y="140" width="18" height="24" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".8"/>
+          <line x1="238" y1="140" x2="238" y2="164" stroke="#2A3F55" stroke-width=".5"/>
+
+          <rect x="282" y="150" width="20" height="28" fill="url(#pilGlow)"/>
+          <rect x="282" y="150" width="20" height="28" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".8"/>
+          <line x1="292" y1="150" x2="292" y2="178" stroke="#2A3F55" stroke-width=".55"/>
+          <line x1="282" y1="164" x2="302" y2="164" stroke="#2A3F55" stroke-width=".55"/>
+
+          <!-- Front gable window -->
+          <rect x="227" y="198" width="22" height="20" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".7"/>
+          <line x1="238" y1="198" x2="238" y2="218" stroke="#2A3F55" stroke-width=".5"/>
+
+          <!-- Entry door -->
+          <rect x="225" y="236" width="26" height="54" fill="#2E4257" stroke="#1E2E3F" stroke-width=".9"/>
+          <circle cx="246" cy="264" r="1.2" fill="#D4B375"/>
+          <!-- Door frame -->
+          <rect x="223" y="234" width="30" height="3" fill="#1E2E3F"/>
+
+          <!-- Sidelights beside door -->
+          <rect x="211" y="240" width="8" height="46" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".55"/>
+          <rect x="257" y="240" width="8" height="46" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".55"/>
+
+          <!-- Ground-floor left window -->
+          <rect x="170" y="230" width="30" height="50" fill="url(#pilGlow)"/>
+          <rect x="170" y="230" width="30" height="50" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".75"/>
+          <line x1="185" y1="230" x2="185" y2="280" stroke="#2A3F55" stroke-width=".5"/>
+          <line x1="170" y1="255" x2="200" y2="255" stroke="#2A3F55" stroke-width=".5"/>
+
+          <!-- Garage door (paneled) -->
+          <rect x="326" y="240" width="54" height="56" fill="#6D8A9E" stroke="#2A3F55" stroke-width=".9"/>
+          <line x1="326" y1="254" x2="380" y2="254" stroke="#2A3F55" stroke-width=".4" opacity=".7"/>
+          <line x1="326" y1="268" x2="380" y2="268" stroke="#2A3F55" stroke-width=".4" opacity=".7"/>
+          <line x1="326" y1="282" x2="380" y2="282" stroke="#2A3F55" stroke-width=".4" opacity=".7"/>
+          <line x1="353" y1="240" x2="353" y2="296" stroke="#2A3F55" stroke-width=".4" opacity=".7"/>
+
+          <!-- Walkway -->
+          <path d="M 238 298 L 230 334 L 246 334 Z" fill="#B7CEDF" opacity=".5"/>
+
+          <!-- Foreground foliage (subtle silhouettes) -->
+          <ellipse cx="138" cy="290" rx="18" ry="7" fill="#5B7A8F" opacity=".38"/>
+          <ellipse cx="208" cy="292" rx="9" ry="4.5" fill="#5B7A8F" opacity=".38"/>
+          <ellipse cx="308" cy="294" rx="9" ry="4.5" fill="#5B7A8F" opacity=".38"/>
+        </svg>
+      </div>
     </div>
-    <div class="process-steps">
-      <div class="step reveal">
-        <div class="step-num">01</div>
-        <div class="step-icon">🗓️</div>
-        <div class="step-title">Consultation</div>
-        <p class="step-desc">A deep-dive conversation about your goals, timeline, and ideal property. No pressure — just clarity and a solid plan.</p>
+
+    <div class="process-wrap">
+      <div class="process-wave" id="process-wave" aria-hidden="true">
+        <svg preserveAspectRatio="none" viewBox="0 0 1000 90">
+          <path class="pw-tail" d="M 20 58 Q 70 62 125 52"/>
+          <path class="pw-track" d="M 125 52 C 185 20, 270 20, 375 52 S 560 86, 625 52 S 810 20, 875 52"/>
+          <path class="pw-progress" d="M 125 52 C 185 20, 270 20, 375 52 S 560 86, 625 52 S 810 20, 875 52"/>
+          <path class="pw-tail" d="M 875 52 Q 930 44, 980 58"/>
+          <circle class="pw-node n1" cx="125" cy="52" r="4.5"/>
+          <circle class="pw-node n2" cx="375" cy="52" r="4.5"/>
+          <circle class="pw-node n3" cx="625" cy="52" r="4.5"/>
+          <circle class="pw-node n4" cx="875" cy="52" r="4.5"/>
+        </svg>
       </div>
-      <div class="step reveal rd1">
-        <div class="step-num">02</div>
-        <div class="step-icon">🔍</div>
-        <div class="step-title">Curated Search</div>
-        <p class="step-desc">Leveraging MLS access and our off-market network, we surface only properties that truly match your criteria.</p>
+
+      <div class="process-steps" id="process-steps">
+        <div class="step reveal" data-step="1">
+          <div class="step-num">01</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M4.5 6.5a3 3 0 0 1 3-3h7a5 5 0 0 1 5 5v3a5 5 0 0 1-5 5H11l-4 3v-3.2A3 3 0 0 1 4.5 13z"/><path d="M9 10h6"/><path d="M9 13h4"/></svg>
+          </div>
+          <div class="step-title">Consultation</div>
+          <p class="step-desc">A clear conversation about your goals, timeline, and the home you truly want.</p>
+          <div class="step-rule"></div>
+        </div>
+        <div class="step reveal rd1" data-step="2">
+          <div class="step-num">02</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m19.5 19.5-3.7-3.7"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+          </div>
+          <div class="step-title">Curated Search</div>
+          <p class="step-desc">MLS plus an off-market network — surfacing only the properties that fit.</p>
+          <div class="step-rule"></div>
+        </div>
+        <div class="step reveal rd2" data-step="3">
+          <div class="step-num">03</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M5.5 3.5H13L18 8.5V19a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V5a1.5 1.5 0 0 1 1.5-1.5z"/><path d="M13 3.5V9h5"/><path d="M8 13.5h6.5"/><path d="M8 16.5h4.5"/></svg>
+          </div>
+          <div class="step-title">Offer &amp; Negotiate</div>
+          <p class="step-desc">Sharp, informed negotiation built from sixteen years of Sacramento market.</p>
+          <div class="step-rule"></div>
+        </div>
+        <div class="step reveal rd3" data-step="4">
+          <div class="step-num">04</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><circle cx="8.5" cy="15" r="4"/><path d="M12 12 21 3"/><path d="m18 6 3 3"/><path d="m15 9 2 2"/></svg>
+          </div>
+          <div class="step-title">Close &amp; Move In</div>
+          <p class="step-desc">Inspections, escrow, and keys — coordinated quietly and completely.</p>
+          <div class="step-rule"></div>
+        </div>
       </div>
-      <div class="step reveal rd2">
-        <div class="step-num">03</div>
-        <div class="step-icon">🤝</div>
-        <div class="step-title">Offer & Negotiate</div>
-        <p class="step-desc">Expert negotiation built from 16 years of Sacramento market intelligence. We fight for every dollar on your behalf.</p>
-      </div>
-      <div class="step reveal rd3">
-        <div class="step-num">04</div>
-        <div class="step-icon">🗝️</div>
-        <div class="step-title">Close & Move In</div>
-        <p class="step-desc">Seamless closing coordination through inspections, escrow, and beyond — until the keys are in your hand.</p>
-      </div>
+    </div>
+
+    <div class="process-sig reveal rd2">
+      <span class="process-sig-line"></span>
+      <span class="process-sig-glyph" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M16 4 5 12v15h22V12Z"/><circle cx="16" cy="18" r="1.5"/><path d="M16 19.5V22"/></svg>
+      </span>
+      <span class="process-sig-text">Local Expertise · Trusted Guidance · Results That Move You</span>
+      <span class="process-sig-line right"></span>
     </div>
   </div>
 </section>
@@ -901,6 +1529,109 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
         <p class="calc-intro reveal rd2">Estimate your monthly payment before you start your search. Adjust loan amount, down payment, rate, and term to find a scenario that fits your budget.</p>
         <a href="contact.html" class="btn-primary reveal rd3">Talk to a Lending Specialist</a>
         <p class="calc-disclaimer reveal rd4">Estimates are for illustration only and do not constitute a loan offer. Actual rates and payments depend on your credit profile, lender, and property details. Contact Helen to connect with trusted Sacramento lenders.</p>
+        <div class="calc-illustration reveal rd4" aria-hidden="true">
+          <svg viewBox="0 0 640 440" xmlns="http://www.w3.org/2000/svg" class="calc-illus-svg">
+            <defs>
+              <radialGradient id="wash1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#BFE0F2" stop-opacity="0.55"/>
+                <stop offset="70%" stop-color="#BFE0F2" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#BFE0F2" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="wash2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#A8D4E8" stop-opacity="0.45"/>
+                <stop offset="70%" stop-color="#A8D4E8" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#A8D4E8" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="greenWash" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#A8C8A0" stop-opacity="0.45"/>
+                <stop offset="70%" stop-color="#A8C8A0" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="#A8C8A0" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="treeWash1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#8FB88A" stop-opacity="0.7"/>
+                <stop offset="70%" stop-color="#8FB88A" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#8FB88A" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="treeWash2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#B5CFA5" stop-opacity="0.65"/>
+                <stop offset="70%" stop-color="#B5CFA5" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#B5CFA5" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <!-- Sky watercolor washes -->
+            <ellipse cx="340" cy="150" rx="200" ry="110" fill="url(#wash1)"/>
+            <ellipse cx="250" cy="180" rx="150" ry="80" fill="url(#wash2)"/>
+            <ellipse cx="430" cy="160" rx="130" ry="70" fill="url(#wash1)"/>
+            <!-- Ground watercolor -->
+            <ellipse cx="320" cy="420" rx="310" ry="55" fill="url(#greenWash)"/>
+            <!-- Dotted path -->
+            <path d="M 300 180 Q 360 110 440 140" fill="none" stroke="#5CB8E6" stroke-width="2" stroke-dasharray="3,6" stroke-linecap="round" opacity="0.75"/>
+            <!-- Home icon circle (top right) -->
+            <circle cx="455" cy="138" r="26" fill="#FFFFFF" stroke="#5CB8E6" stroke-width="1.5"/>
+            <path d="M 443 142 L 455 130 L 467 142 L 467 152 L 459 152 L 459 146 L 451 146 L 451 152 L 443 152 Z" fill="none" stroke="#5CB8E6" stroke-width="1.8" stroke-linejoin="round"/>
+            <!-- Left tree (tall pine) -->
+            <circle cx="95" cy="280" r="55" fill="url(#treeWash1)"/>
+            <ellipse cx="90" cy="240" rx="30" ry="45" fill="url(#treeWash2)"/>
+            <path d="M 90 200 L 72 250 L 85 248 L 70 295 L 85 292 L 95 340 L 105 292 L 120 295 L 105 248 L 118 250 Z" fill="#7FA778" opacity="0.78"/>
+            <rect x="92" y="335" width="6" height="20" fill="#6B5842" opacity="0.8"/>
+            <!-- Mid left tree -->
+            <circle cx="175" cy="300" r="48" fill="url(#treeWash2)"/>
+            <ellipse cx="175" cy="278" rx="38" ry="48" fill="#8FB88A" opacity="0.55"/>
+            <ellipse cx="165" cy="285" rx="22" ry="32" fill="#7FA778" opacity="0.7"/>
+            <ellipse cx="185" cy="275" rx="20" ry="30" fill="#A4C48F" opacity="0.6"/>
+            <rect x="172" y="335" width="6" height="22" fill="#6B5842" opacity="0.8"/>
+            <!-- House body -->
+            <!-- Watercolor wash behind house -->
+            <ellipse cx="340" cy="320" rx="170" ry="70" fill="#F5F1EA" opacity="0.7"/>
+            <!-- Main house structure -->
+            <rect x="240" y="275" width="200" height="85" fill="#FAF6EF" stroke="#6B5842" stroke-width="1.2" opacity="0.95"/>
+            <!-- Main roof (steep gable) -->
+            <path d="M 230 278 L 340 210 L 450 278 Z" fill="#3D3530" opacity="0.92"/>
+            <path d="M 230 278 L 340 210 L 450 278 Z" fill="none" stroke="#2A2420" stroke-width="1.2"/>
+            <!-- Secondary gable (left) -->
+            <path d="M 220 320 L 270 270 L 320 320 Z" fill="#3D3530" opacity="0.88"/>
+            <path d="M 220 320 L 270 270 L 320 320 Z" fill="none" stroke="#2A2420" stroke-width="1"/>
+            <rect x="246" y="320" width="48" height="40" fill="#FAF6EF" stroke="#6B5842" stroke-width="1"/>
+            <!-- Large front window with muntins -->
+            <rect x="256" y="295" width="28" height="48" fill="#3D3530" opacity="0.85"/>
+            <line x1="270" y1="295" x2="270" y2="343" stroke="#FAF6EF" stroke-width="1"/>
+            <line x1="256" y1="319" x2="284" y2="319" stroke="#FAF6EF" stroke-width="1"/>
+            <!-- Upper windows -->
+            <polygon points="325,250 345,232 365,250 365,268 325,268" fill="#3D3530" opacity="0.85"/>
+            <line x1="345" y1="232" x2="345" y2="268" stroke="#FAF6EF" stroke-width="0.8"/>
+            <line x1="325" y1="250" x2="365" y2="250" stroke="#FAF6EF" stroke-width="0.8"/>
+            <!-- Right upper window -->
+            <rect x="378" y="240" width="24" height="32" fill="#3D3530" opacity="0.85"/>
+            <line x1="390" y1="240" x2="390" y2="272" stroke="#FAF6EF" stroke-width="0.8"/>
+            <!-- Front door -->
+            <rect x="312" y="305" width="20" height="55" fill="#3D3530" opacity="0.9"/>
+            <circle cx="328" cy="335" r="1" fill="#C9A96B"/>
+            <!-- Garage -->
+            <rect x="348" y="295" width="88" height="65" fill="#FAF6EF" stroke="#6B5842" stroke-width="1"/>
+            <rect x="354" y="305" width="76" height="55" fill="#3D3530" opacity="0.92"/>
+            <!-- Garage door panels -->
+            <line x1="354" y1="319" x2="430" y2="319" stroke="#5A4A3C" stroke-width="0.5" opacity="0.6"/>
+            <line x1="354" y1="333" x2="430" y2="333" stroke="#5A4A3C" stroke-width="0.5" opacity="0.6"/>
+            <line x1="354" y1="347" x2="430" y2="347" stroke="#5A4A3C" stroke-width="0.5" opacity="0.6"/>
+            <line x1="392" y1="305" x2="392" y2="360" stroke="#5A4A3C" stroke-width="0.5" opacity="0.6"/>
+            <!-- Right tree cluster -->
+            <circle cx="520" cy="300" r="58" fill="url(#treeWash1)"/>
+            <ellipse cx="520" cy="278" rx="40" ry="52" fill="#8FB88A" opacity="0.6"/>
+            <ellipse cx="508" cy="285" rx="22" ry="32" fill="#7FA778" opacity="0.7"/>
+            <ellipse cx="532" cy="278" rx="22" ry="34" fill="#A4C48F" opacity="0.65"/>
+            <rect x="517" y="335" width="6" height="25" fill="#6B5842" opacity="0.8"/>
+            <!-- Small right bush -->
+            <circle cx="580" cy="340" r="28" fill="url(#treeWash2)"/>
+            <ellipse cx="580" cy="335" rx="22" ry="20" fill="#8FB88A" opacity="0.7"/>
+            <!-- Small foreground bushes -->
+            <ellipse cx="225" cy="360" rx="22" ry="12" fill="#7FA778" opacity="0.75"/>
+            <ellipse cx="455" cy="360" rx="28" ry="14" fill="#7FA778" opacity="0.75"/>
+            <!-- Walkway/driveway hint -->
+            <path d="M 385 360 Q 400 385 420 405" fill="none" stroke="#C9BFB0" stroke-width="14" stroke-linecap="round" opacity="0.55"/>
+            <!-- Ground shadow -->
+            <ellipse cx="340" cy="370" rx="130" ry="8" fill="#000" opacity="0.06"/>
+          </svg>
+        </div>
       </div>
       <div class="calc-right reveal rd1">
         <div class="calc-title">Monthly Payment Estimate</div>
@@ -942,7 +1673,6 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
             </select>
           </div>
         </div>
-
         <div class="calc-result">
           <div class="calc-result-label">Estimated Monthly Payment</div>
           <div class="calc-result-payment" id="calc-monthly">$4,987</div>
@@ -1011,16 +1741,6 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
   </div>
 </section>
 
-<!-- ═══ CTA BAND ═══ -->
-<div class="cta-band">
-  <div class="container">
-    <div class="section-eyebrow">Ready to Begin?</div>
-    <h2>Let's Find Your<br><em>Perfect Home</em></h2>
-    <p>Whether you're buying or investing — Helen Wong delivers results. Schedule your complimentary consultation today.</p>
-    <button class="btn-primary" onclick="smoothScrollTo('hero-form')">Schedule a Free Consultation →</button>
-  </div>
-</div>
-
 <!-- ═══ CONTACT ═══ -->
 <section class="contact" id="contact">
   <div class="container">
@@ -1030,20 +1750,40 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
       <p class="contact-body reveal rd2">Every great property journey starts with a conversation. Reach out today — no obligation, just expert guidance tailored to your goals.</p>
       <div class="contact-details reveal rd3">
         <div class="contact-detail">
-          <div class="contact-detail-icon">📞</div>
-          <div class="contact-detail-text"><strong>Phone</strong><a href="tel:9162567073">(916) 256-7073</a></div>
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.87 19.79 19.79 0 01.04 1.27 2 2 0 012 .05h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <strong>Phone</strong>
+            <a href="tel:9162567073">(916) 256-7073</a>
+          </div>
         </div>
         <div class="contact-detail">
-          <div class="contact-detail-icon">✉️</div>
-          <div class="contact-detail-text"><strong>Email</strong><a href="mailto:helen@premierrealtysac.com">helen@premierrealtysac.com</a></div>
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <strong>Email</strong>
+            <a href="mailto:helen@premierrealtysac.com">helen@premierrealtysac.com</a>
+          </div>
         </div>
         <div class="contact-detail">
-          <div class="contact-detail-icon">📍</div>
-          <div class="contact-detail-text"><strong>Office</strong>Greater Sacramento Area, CA</div>
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <strong>Office</strong>
+            <span>Greater Sacramento Area, CA</span>
+          </div>
         </div>
         <div class="contact-detail">
-          <div class="contact-detail-icon">🕐</div>
-          <div class="contact-detail-text"><strong>Hours</strong>Mon–Sat 8am–7pm · Sun by appointment</div>
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <strong>Hours</strong>
+            <span>Mon–Sat 8am–7pm · Sun by appointment</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1060,6 +1800,7 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
         <label for="cf-svc">I'm Interested In</label>
         <select id="cf-svc">
           <option value="buy">Buying a Home</option>
+          <option value="sell">Selling My Home</option>
           <option value="value">Home Valuation</option>
           <option value="invest">Investment Property</option>
           <option value="relocate">Relocating to Sacramento</option>
@@ -1073,19 +1814,51 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
   </div>
 </section>
 
+<!-- ═══ CTA BAND ═══ -->
+<div class="cta-band">
+  <div class="container">
+    <div class="section-eyebrow">Ready to Begin?</div>
+    <h2>Let's Find Your<br><em>Perfect Home</em></h2>
+    <p>Whether you're buying, selling, or investing — Helen Wong delivers results. Schedule your complimentary consultation today.</p>
+    <button class="btn-white" onclick="smoothScrollTo('contact')">Schedule a Free Consultation →</button>
+  </div>
+  <div class="cta-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path opacity=".35" fill="#87D4EE">
+        <animate attributeName="d" dur="11s" repeatCount="indefinite"
+          values="M0,60 C360,140 720,-20 1080,80 C1260,130 1380,50 1440,70 L1440,0 L0,0 Z;
+                  M0,40 C360,120 720,10 1080,100 C1260,150 1380,30 1440,90 L1440,0 L0,0 Z;
+                  M0,60 C360,140 720,-20 1080,80 C1260,130 1380,50 1440,70 L1440,0 L0,0 Z"/>
+      </path>
+      <path opacity=".65" fill="#5CB8E6">
+        <animate attributeName="d" dur="9s" repeatCount="indefinite"
+          values="M0,80 C360,20 720,150 1080,60 C1260,20 1380,110 1440,90 L1440,0 L0,0 Z;
+                  M0,90 C360,160 720,30 1080,110 C1260,160 1380,50 1440,70 L1440,0 L0,0 Z;
+                  M0,80 C360,20 720,150 1080,60 C1260,20 1380,110 1440,90 L1440,0 L0,0 Z"/>
+      </path>
+      <path fill="#3FA3D5">
+        <animate attributeName="d" dur="13s" repeatCount="indefinite"
+          values="M0,120 C360,60 720,170 1080,100 C1260,50 1380,140 1440,120 L1440,0 L0,0 Z;
+                  M0,100 C360,170 720,40 1080,130 C1260,170 1380,60 1440,100 L1440,0 L0,0 Z;
+                  M0,120 C360,60 720,170 1080,100 C1260,50 1380,140 1440,120 L1440,0 L0,0 Z"/>
+      </path>
+    </svg>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">
-      <img src="img/premier-realty-logo.png" alt="Premier Realty" onerror="this.outerHTML='<span style=\'font-family:Cormorant Garamond,serif;font-size:16px;font-weight:300;color:#7A7468;letter-spacing:.08em\'>Premier Realty</span>'">
+      <img src="img/premier-realty-logo.png" alt="Premier Realty" onerror="this.outerHTML='<span style=\'font-family:Cormorant Garamond,serif;font-size:18px;font-weight:300;color:#6B7280;letter-spacing:.08em\'>Premier Realty</span>'">
     </div>
     <div class="footer-copy">
       © 2025 Premier Realty Sacramento · Helen Wong, Broker · DRE #01359322<br>
-      <a href="tel:9162567073" style="color:inherit;text-decoration:none">(916) 256-7073</a> · <a href="mailto:helen@premierrealtysac.com" style="color:inherit;text-decoration:none">helen@premierrealtysac.com</a><br>
-      All rights reserved. Equal Housing Opportunity. ⊕
+      <a href="tel:9162567073">(916) 256-7073</a> · <a href="mailto:helen@premierrealtysac.com">helen@premierrealtysac.com</a><br>
+      All rights reserved. Equal Housing Opportunity.
     </div>
     <div class="footer-links">
-      <a href="landing.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="about.html">About Helen</a>
       <a href="services.html">Services</a>
       <a href="contact.html">Contact</a>
@@ -1095,37 +1868,34 @@ footer{background:rgba(5,5,7,.98);border-top:1px solid rgba(245,240,232,.07);pad
 </footer>
 
 <script>
-// ── HERO VIDEO CROSSFADE ──
+// ── HERO SCENE SEQUENCER + WORD-SWAP SYNC ──
 (function(){
-  var v1=document.getElementById('hv1'),v2=document.getElementById('hv2');
-  if(!v1||!v2)return;
+  var scenes=[document.getElementById('hs1'),document.getElementById('hs2'),document.getElementById('hs3')];
+  var flash=document.getElementById('hero-flash');
+  var ws=document.getElementById('word-swap');
+  if(scenes.some(function(s){return !s}) || !ws) return;
+  var words=ws.querySelectorAll('.w-item');
   var active=0;
-  function crossfade(){
-    var curr=[v1,v2][active],next=[v1,v2][1-active];
-    next.currentTime=0;next.play();
-    next.style.opacity='1';curr.style.opacity='0';
-    setTimeout(function(){curr.pause();curr.currentTime=0;},1300);
-    active=1-active;
+  var DWELL=5000; // ms each scene dwells
+  function flashPulse(){
+    if(!flash) return;
+    flash.classList.add('on');
+    setTimeout(function(){flash.classList.remove('on');},110);
   }
-  v1.play();
-  v1.addEventListener('ended',crossfade);
-  v2.addEventListener('ended',crossfade);
-  // Fallback: if video ends detection fails, switch every 8s
-  setInterval(function(){if(v1.paused&&v2.paused)v1.play();},8000);
-})();
-
-// ── BRIDGE PARALLAX ──
-(function(){
-  var vid=document.getElementById('bridge-vid');
-  if(!vid)return;
-  function onScroll(){
-    var rect=vid.closest('.bridge').getBoundingClientRect();
-    var progress=(window.innerHeight/2-rect.top)/window.innerHeight;
-    var shift=progress*32;
-    vid.style.transform='translateY('+shift+'px) scale(1.12)';
+  function advance(){
+    var next=(active+1)%scenes.length;
+    flashPulse();
+    // swap scene + word in sync — tiny delay so flash peak masks the cut
+    setTimeout(function(){
+      scenes[active].classList.remove('active');
+      scenes[next].classList.add('active');
+      if(words[active]) words[active].classList.remove('on');
+      if(words[next])   words[next].classList.add('on');
+      active=next;
+    },70);
   }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  onScroll();
+  // start the cycle
+  setInterval(advance,DWELL);
 })();
 
 // ── LOADER ──
@@ -1153,7 +1923,7 @@ const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-r
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
 (function ac(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ac)})();
-document.querySelectorAll('a,button,.service-card,.listing-card,.testi-card').forEach(el=>{
+document.querySelectorAll('a,button,.service-card,.listing-card,.testi-card,.nbhd-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>ring.classList.add('hov'));
   el.addEventListener('mouseleave',()=>ring.classList.remove('hov'));
 });
@@ -1171,6 +1941,340 @@ function closeMob(){if(ham)ham.classList.remove('open');if(mob)mob.classList.rem
 function smoothScrollTo(id){
   const el=document.getElementById(id);
   if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── SERVING AERIAL FRAME ANIMATION ──
+(function(){
+  var canvas=document.getElementById('serving-canvas');
+  var poster=document.getElementById('serving-poster');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d',{alpha:false});
+  var isMobile=window.matchMedia('(max-width:768px)').matches;
+  var dir=isMobile?'mobile':'desktop';
+  var TOTAL=121, FPS=24;
+  var frames=new Array(TOTAL);
+  var loaded=new Array(TOTAL).fill(false);
+  var first=0, last=-1; // track contiguous loaded range
+  var idx=0, playing=false, lastT=0, rafId=null;
+
+  function pad(n){return String(n).padStart(4,'0');}
+  function frameUrl(i){return 'sac-aerial/frames/'+dir+'/frame-'+pad(i+1)+'.webp';}
+
+  function resize(){
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var r=canvas.parentElement.getBoundingClientRect();
+    canvas.width=Math.floor(r.width*dpr);
+    canvas.height=Math.floor(r.height*dpr);
+    canvas.style.width=r.width+'px';
+    canvas.style.height=r.height+'px';
+    draw();
+  }
+
+  function draw(){
+    var img=frames[idx]||frames[first];
+    if(!img||!img.complete||!img.naturalWidth)return;
+    var cw=canvas.width,ch=canvas.height;
+    var iw=img.naturalWidth,ih=img.naturalHeight;
+    var s=Math.max(cw/iw,ch/ih);
+    var w=iw*s,h=ih*s;
+    var x=(cw-w)/2,y=(ch-h)/2;
+    ctx.drawImage(img,x,y,w,h);
+  }
+
+  function tick(t){
+    if(!playing){rafId=null;return;}
+    if(t-lastT>=1000/FPS){
+      // only advance if next frame is loaded, else hold
+      var next=(idx+1)%TOTAL;
+      if(loaded[next]){idx=next;draw();}
+      lastT=t;
+    }
+    rafId=requestAnimationFrame(tick);
+  }
+
+  function preloadFrame(i){
+    return new Promise(function(res){
+      var img=new Image();
+      img.decoding='async';
+      img.src=frameUrl(i);
+      img.onload=function(){loaded[i]=true;frames[i]=img;res(img);};
+      img.onerror=function(){res(null);};
+      frames[i]=img;
+    });
+  }
+
+  // Load first frame immediately to paint instantly
+  preloadFrame(0).then(function(img){
+    if(img){
+      resize();
+      draw();
+      canvas.classList.add('ready');
+      if(poster)poster.style.opacity='0';
+    }
+    // then lazy-load the rest in the background
+    var i=1;
+    function loadNext(){
+      if(i>=TOTAL)return;
+      preloadFrame(i++).then(loadNext);
+    }
+    // kick off two parallel loaders for speed
+    loadNext();loadNext();
+  });
+
+  // Start/stop animation based on visibility
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        if(!playing){playing=true;lastT=0;rafId=requestAnimationFrame(tick);}
+      }else{
+        playing=false;
+      }
+    });
+  },{threshold:0.05});
+  io.observe(canvas.parentElement);
+
+  var rt;
+  window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(resize,150);});
+})();
+
+// ── SERVING: MOUSE-FOLLOW BLUE GLOW ──
+(function(){
+  var sec=document.getElementById('neighborhoods');
+  if(!sec)return;
+  var raf=null,pendingX=0,pendingY=0;
+  sec.addEventListener('pointermove',function(e){
+    var r=sec.getBoundingClientRect();
+    pendingX=((e.clientX-r.left)/r.width)*100;
+    pendingY=((e.clientY-r.top)/r.height)*100;
+    if(raf)return;
+    raf=requestAnimationFrame(function(){
+      sec.style.setProperty('--glow-x',pendingX+'%');
+      sec.style.setProperty('--glow-y',pendingY+'%');
+      raf=null;
+    });
+  });
+})();
+
+// ── SERVICES: MOBILE SCROLL-TRIGGERED FLIP + CONNECTING LINE ──
+(function(){
+  var grid=document.getElementById('services-grid');
+  var line=document.getElementById('services-mobile-line');
+  if(!grid||!line)return;
+  var fill=line.querySelector('.sml-fill');
+  var nodes=line.querySelectorAll('.sml-node');
+  var cards=grid.querySelectorAll('.service-card');
+  if(!cards.length)return;
+  var mq=window.matchMedia('(max-width:600px)');
+  var observer=null;
+  var maxAdvanced=-1;
+
+  function positionNodes(){
+    var gridRect=grid.getBoundingClientRect();
+    cards.forEach(function(card,i){
+      var t=card.querySelector('.service-title')||card;
+      var r=t.getBoundingClientRect();
+      var top=(r.top-gridRect.top)+r.height/2;
+      if(nodes[i])nodes[i].style.top=top+'px';
+    });
+  }
+
+  function updateFill(){
+    if(maxAdvanced<0){fill.style.height='0px';return;}
+    var node=nodes[maxAdvanced];
+    if(!node)return;
+    var top=parseFloat(node.style.top)||0;
+    fill.style.height=top+'px';
+  }
+
+  function advance(i){
+    if(i<=maxAdvanced)return;
+    for(var k=maxAdvanced+1;k<=i;k++){
+      if(cards[k])cards[k].classList.add('flipped');
+      if(nodes[k])nodes[k].classList.add('on');
+    }
+    maxAdvanced=i;
+    updateFill();
+  }
+
+  function resetAll(){
+    maxAdvanced=-1;
+    cards.forEach(function(c){c.classList.remove('flipped')});
+    nodes.forEach(function(n){n.classList.remove('on')});
+    if(fill)fill.style.height='0px';
+  }
+
+  function setupMobile(){
+    positionNodes();
+    if(observer)observer.disconnect();
+    // Trigger when a card's title is at the vertical midpoint of the viewport
+    observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var target=e.target;
+          for(var i=0;i<cards.length;i++){
+            if(cards[i].contains(target)){advance(i);break;}
+          }
+        }
+      });
+    },{rootMargin:'-50% 0px -50% 0px',threshold:0});
+    cards.forEach(function(c){
+      var t=c.querySelector('.service-title');
+      if(t)observer.observe(t);
+    });
+  }
+
+  function teardownMobile(){
+    if(observer){observer.disconnect();observer=null;}
+    resetAll();
+  }
+
+  function onChange(){
+    if(mq.matches){setupMobile();}
+    else{teardownMobile();}
+  }
+
+  onChange();
+  if(mq.addEventListener)mq.addEventListener('change',onChange);
+  else if(mq.addListener)mq.addListener(onChange);
+  var rtid;
+  window.addEventListener('resize',function(){
+    clearTimeout(rtid);
+    rtid=setTimeout(function(){
+      if(mq.matches){positionNodes();updateFill();}
+    },120);
+  },{passive:true});
+})();
+
+// ── PROCESS SECTION: WAVE ANIMATION + SEQUENTIAL NODE ILLUMINATION ──
+(function(){
+  var wave=document.getElementById('process-wave');
+  var steps=document.getElementById('process-steps');
+  if(!wave||!steps)return;
+  var progress=wave.querySelector('.pw-progress');
+  var nodes=wave.querySelectorAll('.pw-node');
+  var stepEls=steps.querySelectorAll('.step');
+  // measure actual path length so the dash animation is crisp
+  if(progress&&typeof progress.getTotalLength==='function'){
+    try{
+      var L=progress.getTotalLength();
+      wave.style.setProperty('--pw-len',L);
+    }catch(err){}
+  }
+  var ran=false;
+  function run(){
+    if(ran)return; ran=true;
+    wave.classList.add('run');
+    stepEls.forEach(function(s,i){
+      setTimeout(function(){
+        s.classList.add('lit');
+        if(nodes[i])nodes[i].classList.add('on');
+      }, 150 + i*560);
+    });
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) run(); });
+  },{threshold:.35});
+  io.observe(steps);
+})();
+
+// ── MOBILE: DUPLICATE NEIGHBORHOOD CARDS FOR SEAMLESS MARQUEE LOOP ──
+(function(){
+  var grid=document.getElementById('nbhd-grid');
+  if(!grid) return;
+  var isMobile=window.matchMedia('(max-width:767px)');
+  var duplicated=false;
+  function ensureDupes(){
+    if(!isMobile.matches||duplicated) return;
+    duplicated=true;
+    // clone each original card once so the -50% translate loops seamlessly
+    var originals=Array.prototype.slice.call(grid.children);
+    originals.forEach(function(c){
+      var clone=c.cloneNode(true);
+      clone.setAttribute('aria-hidden','true');
+      // strip reveal classes so clones don't re-animate in
+      clone.classList.remove('reveal','rd1','rd2','rd3','vis');
+      grid.appendChild(clone);
+    });
+  }
+  // Run on load + on resize into mobile breakpoint
+  ensureDupes();
+  isMobile.addEventListener?isMobile.addEventListener('change',ensureDupes):isMobile.addListener(ensureDupes);
+})();
+
+// (Mobile flip behaviour removed — service cards no longer use a back face)
+
+// ── LAND SECTION: PING-PONG VIDEO (play → pause 1.5s → reverse → stop) ──
+(function(){
+  var vid=document.getElementById('land-vid');
+  var sec=document.querySelector('.land-section');
+  if(!vid||!sec)return;
+
+  var PAUSE_MS=1500;
+  var REVERSE_SPEED=1.0; // seconds of video per real second
+  var state='idle'; // idle | forward | paused | reversing | done
+  var pauseStart=0,lastT=0,rafId=null;
+
+  // Start paused at frame 0
+  try{vid.pause();}catch(e){}
+  vid.currentTime=0;
+
+  function startCycle(){
+    if(state==='forward'||state==='paused'||state==='reversing')return;
+    state='forward';
+    vid.currentTime=0;
+    var p=vid.play();
+    if(p&&p.catch)p.catch(function(){});
+  }
+
+  vid.addEventListener('ended',function(){
+    try{vid.pause();}catch(e){}
+    state='paused';
+    pauseStart=performance.now();
+  });
+
+  function tick(t){
+    if(state==='paused'){
+      if(t-pauseStart>=PAUSE_MS){
+        state='reversing';
+        lastT=t;
+      }
+    }else if(state==='reversing'){
+      var dt=(t-lastT)/1000;
+      lastT=t;
+      var nt=vid.currentTime-dt*REVERSE_SPEED;
+      if(nt<=0){
+        vid.currentTime=0;
+        state='done';
+      }else{
+        vid.currentTime=nt;
+      }
+    }
+    rafId=requestAnimationFrame(tick);
+  }
+  rafId=requestAnimationFrame(tick);
+
+  // Trigger on entering view. Re-trigger when scrolled back in after completion.
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        if(state==='idle'||state==='done')startCycle();
+      }else{
+        // fully offscreen — reset so next scroll-in replays
+        if(state==='done'){state='idle';}
+      }
+    });
+  },{threshold:0.35});
+  io.observe(sec);
+})();
+
+// ── HERO SEARCH HANDLER ──
+function handleHeroSearch(e){
+  e.preventDefault();
+  const q=(document.getElementById('hero-search-input')||{}).value||'';
+  const trimmed=q.trim();
+  if(!trimmed){smoothScrollTo('neighborhoods');return;}
+  // Route search query to contact page so Helen can follow up
+  window.location.href='contact.html?area='+encodeURIComponent(trimmed);
 }
 
 // ── COUNTER ANIMATION ──
@@ -1199,6 +2303,7 @@ function smoothScrollTo(id){
 // ── SERVICE PIPELINE DETECTION ──
 const pipelines={
   buy:'→ Buyer Lead Pipeline',
+  sell:'→ Seller Consultation Pipeline',
   value:'→ Home Valuation Pipeline',
   relocate:'→ Relocation Pipeline',
   invest:'→ Investor Lead Pipeline',
@@ -1211,7 +2316,7 @@ function detectPipeline(val){
 }
 
 // ── SERVICE AREA CHECK ──
-const SERVICE_AREA=['sacramento','natomas','elk grove','arden','east sacramento','land park','midtown','downtown','curtis park','oak park','tahoe park','carmichael','rancho cordova','west sacramento','north sacramento','south sac'];
+const SERVICE_AREA=['sacramento','natomas','elk grove','arden','east sacramento','land park','midtown','downtown','curtis park','oak park','tahoe park','carmichael','rancho cordova','west sacramento','north sacramento','south sac','folsom','roseville','rocklin','citrus heights'];
 function isInServiceArea(area){
   if(!area||area.trim()==='')return true;
   const a=area.toLowerCase();
@@ -1221,7 +2326,6 @@ function isInServiceArea(area){
 // ── HERO FORM ──
 function handleHeroForm(e){
   e.preventDefault();
-  // Validate
   let valid=true;
   const fields=[
     {id:'hf-name',wrapper:'hf-name-field',check:v=>v.trim().length>1},
@@ -1232,9 +2336,9 @@ function handleHeroForm(e){
   fields.forEach(f=>{
     const el=document.getElementById(f.id);
     const wrap=document.getElementById(f.wrapper);
-    const ok=f.check(el.value);
-    if(!ok){el.classList.add('error');wrap.classList.add('has-error');valid=false}
-    else{el.classList.remove('error');wrap.classList.remove('has-error')}
+    const ok=el&&f.check(el.value);
+    if(!ok){el&&el.classList.add('error');wrap&&wrap.classList.add('has-error');valid=false}
+    else{el&&el.classList.remove('error');wrap&&wrap.classList.remove('has-error')}
   });
   if(!valid)return;
 
@@ -1250,9 +2354,11 @@ function handleHeroForm(e){
     name:document.getElementById('hf-name').value,
     email:document.getElementById('hf-email').value,
     phone:document.getElementById('hf-phone').value,
-    area,price:document.getElementById('hf-price').value,
+    area,
+    price:document.getElementById('hf-price').value,
     timeline:document.getElementById('hf-timeline').value,
-    service,pipeline:pipelines[service]||'general',
+    service,
+    pipeline:pipelines[service]||'general',
     inServiceArea:inArea,
     timestamp:new Date().toISOString()
   };
@@ -1263,6 +2369,7 @@ function handleHeroForm(e){
     if(inArea){
       const msgs={
         buy:'Helen will reach out within 24 hours to schedule your buyer consultation.',
+        sell:'Our seller specialist will contact you within 24 hours to discuss your home.',
         value:'Your free home valuation report will be ready within 48 hours.',
         relocate:'Helen will personally reach out to guide your Sacramento relocation.',
         invest:'Our investment specialist will contact you within 24 hours.',
@@ -1316,13 +2423,10 @@ function calcUpdate(){
   const downPct=parseFloat(document.getElementById('calc-down').value)||20;
   const rate=parseFloat(document.getElementById('calc-rate').value)||7.0;
   const term=parseInt(document.getElementById('calc-term').value)||30;
-
-  // Sync range slider
   const rng=document.getElementById('calc-price-range');
   rng.value=Math.min(Math.max(price,100000),3000000);
   const pct=((rng.value-100000)/(3000000-100000)*100).toFixed(1);
   rng.style.setProperty('--pct',pct+'%');
-
   const loan=price*(1-downPct/100);
   const monthlyRate=rate/100/12;
   const n=term*12;
@@ -1330,20 +2434,15 @@ function calcUpdate(){
   const tax=price*0.012/12;
   const ins=price*0.002/12;
   const total=pi+tax+ins;
-
   document.getElementById('calc-monthly').textContent=fmt(total);
   document.getElementById('calc-pi').textContent=fmt(pi);
   document.getElementById('calc-tax').textContent=fmt(tax);
   document.getElementById('calc-ins').textContent=fmt(ins);
   document.getElementById('calc-loan').textContent=fmt(loan);
 }
-// Initialize range and calc on load
 window.addEventListener('DOMContentLoaded',()=>{
   syncRange('calc-price','calc-price-range',100000,3000000);
   calcUpdate();
-});
-// Also sync price input when range moves
-document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('calc-price-range')?.addEventListener('input',function(){
     document.getElementById('calc-price').value=this.value;
     calcUpdate();

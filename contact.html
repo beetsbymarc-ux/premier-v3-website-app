@@ -95,14 +95,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:800;height:72px;display:flex;ali
 .faq-a{font-size:14px;font-weight:300;color:rgba(245,240,232,.5);line-height:1.8;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
 .faq-item.open .faq-a{max-height:300px;padding-bottom:18px}
 
-/* MAP / OFFICE -->
+/* MAP / OFFICE */
 .office{max-width:1240px;margin:0 auto;padding:clamp(80px,10vh,100px) clamp(20px,5vw,72px);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.office-map{background:linear-gradient(135deg,var(--navy) 0%,rgba(74,186,235,.08) 100%);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;border:1px solid rgba(74,186,235,.12);position:relative;overflow:hidden}
-.office-map::before{content:'📍';font-size:48px}
-.office-map-label{font-family:var(--serif);font-size:22px;font-weight:300;color:var(--warm);text-align:center}
-.office-map-sub{font-size:12px;color:var(--dim);text-align:center;letter-spacing:.08em}
-.office-map-btn{background:var(--blue);color:var(--ink);padding:11px 24px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);text-decoration:none;display:inline-block;margin-top:8px}
-.office-map-btn:hover{background:#5dc8f5}
+.office-map{position:relative;aspect-ratio:4/3;overflow:hidden;border:1px solid rgba(74,186,235,.18);box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(74,186,235,.08) inset;background:#0f1c2a;border-radius:2px}
+.office-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:contrast(1.05) saturate(.92) hue-rotate(-8deg);background:#0f1c2a}
+.office-map-frame{position:absolute;inset:0;z-index:1;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),inset 0 -80px 120px rgba(11,11,11,.55),inset 0 80px 120px rgba(11,11,11,.35)}
+.office-map-tag{position:absolute;left:18px;top:18px;z-index:3;display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(11,11,11,.82);backdrop-filter:blur(8px);border:1px solid rgba(74,186,235,.28);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);font-weight:500}
+.office-map-tag::before{content:'';width:8px;height:8px;background:var(--blue);border-radius:50%;box-shadow:0 0 0 3px rgba(74,186,235,.28);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 3px rgba(74,186,235,.28)}50%{box-shadow:0 0 0 7px rgba(74,186,235,.06)}}
+.office-map-card{position:absolute;left:18px;right:18px;bottom:18px;z-index:3;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;padding:14px 16px;background:rgba(11,11,11,.82);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.06)}
+.office-map-card-title{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--warm);line-height:1.15}
+.office-map-card-sub{font-size:11px;color:rgba(245,240,232,.55);letter-spacing:.04em;margin-top:3px}
+.office-map-btn{background:var(--blue);color:var(--ink);padding:10px 18px;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);text-decoration:none;white-space:nowrap;transition:background .3s,transform .2s}
+.office-map-btn:hover{background:#5dc8f5;transform:translateY(-1px)}
+.office-map-regions{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.office-map-chip{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.68);border:1px solid rgba(74,186,235,.2);padding:5px 10px;background:rgba(74,186,235,.06)}
+.office-map-chip.primary{color:var(--blue);border-color:rgba(74,186,235,.45);background:rgba(74,186,235,.1)}
 .office-info h3{font-family:var(--serif);font-size:clamp(32px,3.5vw,48px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:24px}
 .office-info h3 em{font-style:italic;color:var(--gold-light)}
 .office-detail{display:flex;flex-direction:column;gap:20px}
@@ -144,9 +152,9 @@ footer{background:rgba(0,0,0,.7);border-top:1px solid rgba(245,240,232,.06);padd
 
 <!-- NAV -->
 <nav>
-  <a href="landing.html" class="nav-logo"><img src="img/premier-realty-logo.png" alt="Premier Realty"></a>
+  <a href="index.html" class="nav-logo"><img src="img/premier-realty-logo.png" alt="Premier Realty"></a>
   <ul class="nav-center">
-    <li><a href="landing.html#about">About</a></li>
+    <li><a href="index.html#about">About</a></li>
     <li>
       <button class="nav-btn">Services <span class="caret">▾</span></button>
       <div class="nav-drop">
@@ -154,7 +162,7 @@ footer{background:rgba(0,0,0,.7);border-top:1px solid rgba(245,240,232,.06);padd
         <hr><a href="services.html#relocate">Relocating to Sacramento</a><a href="services.html#invest">Investment Property</a><a href="services.html#consult">Talk to an Agent</a>
       </div>
     </li>
-    <li><a href="landing.html#listings">Listings</a></li>
+    <li><a href="index.html#listings">Listings</a></li>
     <li><a href="about.html">Our Story</a></li>
     <li><a href="contact.html" style="color:var(--blue)">Contact</a></li>
   </ul>
@@ -162,7 +170,7 @@ footer{background:rgba(0,0,0,.7);border-top:1px solid rgba(245,240,232,.06);padd
   <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
 </nav>
 <div class="mob-menu" id="mob">
-  <a class="mob-link" href="landing.html">Home</a>
+  <a class="mob-link" href="index.html">Home</a>
   <span class="mob-link" style="color:var(--dim);font-size:10px;border:none;padding-bottom:4px">Services</span>
   <div class="mob-sub">
     <a href="services.html#buy">Buy a Home</a>
@@ -193,7 +201,7 @@ footer{background:rgba(0,0,0,.7);border-top:1px solid rgba(245,240,232,.06);padd
         </div>
         <div class="ci-item">
           <div class="ci-icon">📍</div>
-          <div class="ci-text"><strong>Office</strong>1801 L Street, Suite 400<br>Sacramento, CA 95811</div>
+          <div class="ci-text"><strong>Home Base</strong>North Natomas<br>Sacramento, CA 95835</div>
         </div>
         <div class="ci-item">
           <div class="ci-icon">🕐</div>
@@ -219,7 +227,7 @@ footer{background:rgba(0,0,0,.7);border-top:1px solid rgba(245,240,232,.06);padd
             <select id="cf-svc" required onchange="setPipeline(this.value)">
               <option value="">Select a service…</option>
               <option value="buy">Buy a Home</option>
-              
+              <option value="sell">Sell My Home</option>
               <option value="value">Get My Home Value</option>
               <option value="relocate">Relocating to Sacramento</option>
               <option value="invest">Investment Property</option>
@@ -262,21 +270,45 @@ footer{background:rgba(0,0,0,.7);border-top:1px solid rgba(245,240,232,.06);padd
 <!-- OFFICE + MAP -->
 <div style="background:var(--navy)">
   <div class="office">
-    <div class="office-map reveal">
-      <div style="position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;aspect-ratio:4/3;background:linear-gradient(135deg,rgba(26,43,64,.9),rgba(74,186,235,.06));border:1px solid rgba(74,186,235,.12)">
-        <div style="font-size:48px">📍</div>
-        <div class="office-map-label">Premier Realty Sacramento</div>
-        <div class="office-map-sub">1801 L Street, Suite 400<br>Sacramento, CA 95811</div>
-        <a class="office-map-btn" href="https://maps.google.com/?q=1801+L+Street+Sacramento+CA" target="_blank" rel="noopener">Get Directions ↗</a>
+    <div class="office-map reveal" aria-label="Map of Natomas, Sacramento showing Premier Realty's service area">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-121.6100%2C38.5800%2C-121.4200%2C38.7000&amp;layer=mapnik&amp;marker=38.6346%2C-121.5224"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Natomas, Sacramento Map"></iframe>
+      <div class="office-map-frame"></div>
+      <div class="office-map-tag">Natomas · Sacramento, CA</div>
+      <div class="office-map-card">
+        <div>
+          <div class="office-map-card-title">Premier Realty Sacramento</div>
+          <div class="office-map-card-sub">Based in Natomas · Serving the Greater Sacramento Region</div>
+        </div>
+        <a class="office-map-btn" href="https://maps.google.com/?q=Natomas+Sacramento+CA+95835" target="_blank" rel="noopener">Get Directions ↗</a>
       </div>
     </div>
     <div class="office-info reveal rd1">
-      <h3>Visit Our<br><em>Sacramento Office</em></h3>
+      <h3>Based in <em>Natomas,</em><br>Serving All of Sacramento</h3>
+      <p style="font-size:14px;font-weight:300;color:rgba(245,240,232,.55);line-height:1.8;margin-bottom:20px">Helen Wong is headquartered in North Natomas and represents clients across the greater Sacramento region — from East Sacramento and Land Park to Elk Grove, Folsom, and the communities along I-5 and I-80.</p>
       <div class="office-detail">
-        <div class="od-item"><div class="od-icon">📍</div><div><div class="od-label">Address</div><div class="od-value">1801 L Street, Suite 400<br>Sacramento, CA 95811</div></div></div>
-        <div class="od-item"><div class="od-icon">🕐</div><div><div class="od-label">Office Hours</div><div class="od-value">Mon–Fri: 8:00am – 7:00pm<br>Saturday: 9:00am – 5:00pm<br>Sunday: By appointment only</div></div></div>
-        <div class="od-item"><div class="od-icon">🚗</div><div><div class="od-label">Parking</div><div class="od-value">Free parking available in the building garage. Enter from 18th Street.</div></div></div>
-        <div class="od-item"><div class="od-icon">📞</div><div><div class="od-label">Response Time</div><div class="od-value">We respond to all calls and messages within 24 hours. Urgent matters — call directly.</div></div></div>
+        <div class="od-item"><div class="od-icon">📍</div><div><div class="od-label">Home Base</div><div class="od-value">North Natomas<br>Sacramento, CA 95835</div></div></div>
+        <div class="od-item"><div class="od-icon">🕐</div><div><div class="od-label">Office Hours</div><div class="od-value">Mon–Sat: 8:00am – 7:00pm<br>Sunday: By appointment only</div></div></div>
+        <div class="od-item"><div class="od-icon">🚗</div><div><div class="od-label">Meet in Person</div><div class="od-value">Helen travels throughout Sacramento County for listing consultations, buyer showings, and coffee introductions. Just pick a time.</div></div></div>
+        <div class="od-item"><div class="od-icon">📞</div><div><div class="od-label">Response Time</div><div class="od-value">Under 24 hours for all inquiries. For urgent matters, call or text directly — Helen personally monitors messages.</div></div></div>
+      </div>
+      <div class="od-label" style="margin-top:22px">Core Service Area</div>
+      <div class="office-map-regions">
+        <span class="office-map-chip primary">Natomas</span>
+        <span class="office-map-chip primary">East Sacramento</span>
+        <span class="office-map-chip primary">Land Park</span>
+        <span class="office-map-chip primary">Midtown</span>
+        <span class="office-map-chip">Arden-Arcade</span>
+        <span class="office-map-chip">Elk Grove</span>
+        <span class="office-map-chip">Carmichael</span>
+        <span class="office-map-chip">Citrus Heights</span>
+        <span class="office-map-chip">North Highlands</span>
+        <span class="office-map-chip">Folsom</span>
+        <span class="office-map-chip">Rancho Cordova</span>
+        <span class="office-map-chip">Roseville</span>
       </div>
     </div>
   </div>
@@ -324,7 +356,7 @@ footer{background:rgba(0,0,0,.7);border-top:1px solid rgba(245,240,232,.06);padd
   <div class="fi">
     <div><img src="img/premier-realty-logo.png" alt="Premier Realty"></div>
     <div class="fc">© 2025 Premier Realty Sacramento · Helen Wong, DRE #01359322<br>All rights reserved. Equal Housing Opportunity.</div>
-    <div class="fl"><a href="landing.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="#">Privacy</a></div>
+    <div class="fl"><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="#">Privacy</a></div>
   </div>
 </footer>
 
@@ -334,7 +366,7 @@ const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 // Pipeline tags
-const pipes={buy:'→ Buyer Lead Pipeline',value:'→ Home Valuation Pipeline',relocate:'→ Relocation Pipeline',invest:'→ Investor Lead Pipeline',consult:'→ General Consultation Pipeline'};
+const pipes={buy:'→ Buyer Lead Pipeline',sell:'→ Seller Consultation Pipeline',value:'→ Home Valuation Pipeline',relocate:'→ Relocation Pipeline',invest:'→ Investor Lead Pipeline',consult:'→ General Consultation Pipeline'};
 function setPipeline(v){const t=document.getElementById('ptag');if(v&&pipes[v]){t.textContent=pipes[v];t.style.display='block'}else t.style.display='none'}
 
 // Service area check
