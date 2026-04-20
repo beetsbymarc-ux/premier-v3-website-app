@@ -1323,8 +1323,9 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
 
 <!-- ═══ EVERY DREAM STARTS WITH LAND ═══ -->
 <section class="land-section">
-  <video class="land-video" id="land-vid" muted playsinline preload="metadata">
-    <source src="img/lifestyle.mp4" type="video/mp4">
+  <video class="land-video" id="land-vid" muted playsinline preload="metadata" autoplay loop>
+    <source media="(max-width:767px)" src="img/land-sequence-720.mp4" type="video/mp4">
+    <source src="img/land-sequence.mp4" type="video/mp4">
   </video>
   <div class="land-overlay"></div>
   <div class="land-content">
@@ -2092,85 +2093,49 @@ function smoothScrollTo(id){
   var grid=document.getElementById('nbhd-grid');
   if(!grid) return;
   var isMobile=window.matchMedia('(max-width:767px)');
+  var originalCount=grid.children.length;
   var duplicated=false;
-  function ensureDupes(){
-    if(!isMobile.matches||duplicated) return;
-    duplicated=true;
-    // clone each original card once so the -50% translate loops seamlessly
-    var originals=Array.prototype.slice.call(grid.children);
-    originals.forEach(function(c){
-      var clone=c.cloneNode(true);
-      clone.setAttribute('aria-hidden','true');
-      // strip reveal classes so clones don't re-animate in
-      clone.classList.remove('reveal','rd1','rd2','rd3','vis');
-      grid.appendChild(clone);
-    });
+  function applyDupes(){
+    if(isMobile.matches){
+      if(duplicated) return;
+      duplicated=true;
+      // clone each original card once so the -50% translate loops seamlessly
+      var originals=Array.prototype.slice.call(grid.children);
+      originals.forEach(function(c){
+        var clone=c.cloneNode(true);
+        clone.setAttribute('aria-hidden','true');
+        // strip reveal classes so clones don't re-animate in
+        clone.classList.remove('reveal','rd1','rd2','rd3','vis');
+        grid.appendChild(clone);
+      });
+    }else if(duplicated){
+      // Resized up to tablet/desktop — strip the mobile clones so we render
+      // exactly 6×2 (originalCount cards) instead of a double grid
+      while(grid.children.length>originalCount){
+        grid.removeChild(grid.lastElementChild);
+      }
+      duplicated=false;
+    }
   }
-  // Run on load + on resize into mobile breakpoint
-  ensureDupes();
-  isMobile.addEventListener?isMobile.addEventListener('change',ensureDupes):isMobile.addListener(ensureDupes);
+  // Run on load + on any viewport breakpoint change
+  applyDupes();
+  isMobile.addEventListener?isMobile.addEventListener('change',applyDupes):isMobile.addListener(applyDupes);
 })();
 
 // (Mobile flip behaviour removed — service cards no longer use a back face)
 
-// ── LAND SECTION: PING-PONG VIDEO (play → pause 1.5s → reverse → stop) ──
+// ── LAND SECTION: play land→construction sequence, restart on re-entry ──
 (function(){
   var vid=document.getElementById('land-vid');
   var sec=document.querySelector('.land-section');
   if(!vid||!sec)return;
-
-  var PAUSE_MS=1500;
-  var REVERSE_SPEED=1.0; // seconds of video per real second
-  var state='idle'; // idle | forward | paused | reversing | done
-  var pauseStart=0,lastT=0,rafId=null;
-
-  // Start paused at frame 0
-  try{vid.pause();}catch(e){}
-  vid.currentTime=0;
-
-  function startCycle(){
-    if(state==='forward'||state==='paused'||state==='reversing')return;
-    state='forward';
-    vid.currentTime=0;
-    var p=vid.play();
-    if(p&&p.catch)p.catch(function(){});
-  }
-
-  vid.addEventListener('ended',function(){
-    try{vid.pause();}catch(e){}
-    state='paused';
-    pauseStart=performance.now();
-  });
-
-  function tick(t){
-    if(state==='paused'){
-      if(t-pauseStart>=PAUSE_MS){
-        state='reversing';
-        lastT=t;
-      }
-    }else if(state==='reversing'){
-      var dt=(t-lastT)/1000;
-      lastT=t;
-      var nt=vid.currentTime-dt*REVERSE_SPEED;
-      if(nt<=0){
-        vid.currentTime=0;
-        state='done';
-      }else{
-        vid.currentTime=nt;
-      }
-    }
-    rafId=requestAnimationFrame(tick);
-  }
-  rafId=requestAnimationFrame(tick);
-
-  // Trigger on entering view. Re-trigger when scrolled back in after completion.
+  // kick off muted autoplay (browsers allow it); loop attribute handles repeat
+  try{ vid.play(); }catch(e){}
+  // restart from empty land each time the section re-enters the viewport for drama
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
-        if(state==='idle'||state==='done')startCycle();
-      }else{
-        // fully offscreen — reset so next scroll-in replays
-        if(state==='done'){state='idle';}
+        try{ vid.currentTime=0; vid.play(); }catch(_){}
       }
     });
   },{threshold:0.35});
