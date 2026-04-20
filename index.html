@@ -418,6 +418,16 @@ section{position:relative;z-index:2}
 .process-illus{position:relative;width:100%;max-width:440px;margin-left:auto;justify-self:end;aspect-ratio:5/4}
 .process-illus .pil-backdrop{position:absolute;inset:0;background:radial-gradient(62% 55% at 52% 50%, rgba(92,184,230,.09) 0%, rgba(92,184,230,0) 72%);pointer-events:none;border-radius:50%}
 .process-illus svg{position:relative;width:100%;height:100%;display:block}
+.process-house-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2rem;
+  box-shadow: 0 20px 50px -12px rgba(92, 184, 230, 0.25);
+  display: block;
+}
+
 
 /* Wavy connecting line — refined, thinner, subtler */
 .process-wrap{position:relative;isolation:isolate;padding-top:12px}
@@ -1341,114 +1351,10 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
         <div class="process-head-rule reveal rd2"></div>
         <p class="process-head-sub reveal rd2">A proven, personalized process — guided from our first conversation to the keys in your hand.</p>
       </div>
-      <div class="process-illus reveal rd1" aria-hidden="true">
-        <div class="pil-backdrop"></div>
-        <svg viewBox="0 0 460 360" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="pilHouseFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#F8FAFC"/>
-              <stop offset="100%" stop-color="#E6EDF4"/>
-            </linearGradient>
-            <linearGradient id="pilRoofFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#4A6378"/>
-              <stop offset="100%" stop-color="#384F62"/>
-            </linearGradient>
-            <linearGradient id="pilWindowFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#9CC4DE" stop-opacity=".75"/>
-              <stop offset="100%" stop-color="#6FA5C5" stop-opacity=".65"/>
-            </linearGradient>
-            <linearGradient id="pilGlow" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#FFE4A7" stop-opacity=".5"/>
-              <stop offset="100%" stop-color="#FFCC73" stop-opacity=".35"/>
-            </linearGradient>
-          </defs>
-
-          <!-- Distant horizon line -->
-          <line x1="30" y1="296" x2="432" y2="296" stroke="#BFD5E4" stroke-width="1" opacity=".65"/>
-          <!-- Ground shadow -->
-          <ellipse cx="232" cy="300" rx="186" ry="5" fill="#A7BFD0" opacity=".28"/>
-
-          <!-- Left evergreen silhouette -->
-          <path d="M 62 208 L 50 238 L 60 238 L 47 272 L 60 272 L 52 298 L 72 298 L 64 272 L 77 272 L 64 238 L 74 238 Z" fill="#5B7A8F" opacity=".45"/>
-          <rect x="60" y="298" width="4" height="10" fill="#3F5566" opacity=".55"/>
-
-          <!-- Right oak silhouette -->
-          <ellipse cx="400" cy="220" rx="30" ry="40" fill="#5B7A8F" opacity=".38"/>
-          <ellipse cx="384" cy="234" rx="22" ry="28" fill="#5B7A8F" opacity=".34"/>
-          <ellipse cx="416" cy="232" rx="20" ry="26" fill="#5B7A8F" opacity=".36"/>
-          <rect x="397" y="260" width="6" height="38" fill="#3F5566" opacity=".5"/>
-
-          <!-- Main two-story house body -->
-          <rect x="158" y="180" width="162" height="118" fill="url(#pilHouseFill)" stroke="#3D5770" stroke-width="1.2"/>
-
-          <!-- Right garage wing -->
-          <rect x="316" y="222" width="74" height="76" fill="url(#pilHouseFill)" stroke="#3D5770" stroke-width="1.1"/>
-
-          <!-- Main gable roof -->
-          <path d="M 152 184 L 239 122 L 326 184 Z" fill="url(#pilRoofFill)" stroke="#2A3F55" stroke-width="1"/>
-
-          <!-- Front-facing gable (portico) -->
-          <rect x="200" y="216" width="76" height="82" fill="url(#pilHouseFill)" stroke="#3D5770" stroke-width="1"/>
-          <path d="M 195 218 L 238 178 L 281 218 Z" fill="url(#pilRoofFill)" stroke="#2A3F55" stroke-width="1"/>
-
-          <!-- Garage roof -->
-          <path d="M 312 224 L 353 196 L 394 224 Z" fill="url(#pilRoofFill)" stroke="#2A3F55" stroke-width="1"/>
-
-          <!-- Chimney -->
-          <rect x="252" y="112" width="11" height="24" fill="#4A6378" stroke="#2A3F55" stroke-width=".8"/>
-          <rect x="250" y="110" width="15" height="4" fill="#2A3F55"/>
-
-          <!-- Upper-level windows with warm light -->
-          <rect x="174" y="150" width="20" height="28" fill="url(#pilGlow)"/>
-          <rect x="174" y="150" width="20" height="28" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".8"/>
-          <line x1="184" y1="150" x2="184" y2="178" stroke="#2A3F55" stroke-width=".55"/>
-          <line x1="174" y1="164" x2="194" y2="164" stroke="#2A3F55" stroke-width=".55"/>
-
-          <rect x="229" y="140" width="18" height="24" fill="url(#pilGlow)"/>
-          <rect x="229" y="140" width="18" height="24" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".8"/>
-          <line x1="238" y1="140" x2="238" y2="164" stroke="#2A3F55" stroke-width=".5"/>
-
-          <rect x="282" y="150" width="20" height="28" fill="url(#pilGlow)"/>
-          <rect x="282" y="150" width="20" height="28" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".8"/>
-          <line x1="292" y1="150" x2="292" y2="178" stroke="#2A3F55" stroke-width=".55"/>
-          <line x1="282" y1="164" x2="302" y2="164" stroke="#2A3F55" stroke-width=".55"/>
-
-          <!-- Front gable window -->
-          <rect x="227" y="198" width="22" height="20" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".7"/>
-          <line x1="238" y1="198" x2="238" y2="218" stroke="#2A3F55" stroke-width=".5"/>
-
-          <!-- Entry door -->
-          <rect x="225" y="236" width="26" height="54" fill="#2E4257" stroke="#1E2E3F" stroke-width=".9"/>
-          <circle cx="246" cy="264" r="1.2" fill="#D4B375"/>
-          <!-- Door frame -->
-          <rect x="223" y="234" width="30" height="3" fill="#1E2E3F"/>
-
-          <!-- Sidelights beside door -->
-          <rect x="211" y="240" width="8" height="46" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".55"/>
-          <rect x="257" y="240" width="8" height="46" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".55"/>
-
-          <!-- Ground-floor left window -->
-          <rect x="170" y="230" width="30" height="50" fill="url(#pilGlow)"/>
-          <rect x="170" y="230" width="30" height="50" fill="url(#pilWindowFill)" stroke="#2A3F55" stroke-width=".75"/>
-          <line x1="185" y1="230" x2="185" y2="280" stroke="#2A3F55" stroke-width=".5"/>
-          <line x1="170" y1="255" x2="200" y2="255" stroke="#2A3F55" stroke-width=".5"/>
-
-          <!-- Garage door (paneled) -->
-          <rect x="326" y="240" width="54" height="56" fill="#6D8A9E" stroke="#2A3F55" stroke-width=".9"/>
-          <line x1="326" y1="254" x2="380" y2="254" stroke="#2A3F55" stroke-width=".4" opacity=".7"/>
-          <line x1="326" y1="268" x2="380" y2="268" stroke="#2A3F55" stroke-width=".4" opacity=".7"/>
-          <line x1="326" y1="282" x2="380" y2="282" stroke="#2A3F55" stroke-width=".4" opacity=".7"/>
-          <line x1="353" y1="240" x2="353" y2="296" stroke="#2A3F55" stroke-width=".4" opacity=".7"/>
-
-          <!-- Walkway -->
-          <path d="M 238 298 L 230 334 L 246 334 Z" fill="#B7CEDF" opacity=".5"/>
-
-          <!-- Foreground foliage (subtle silhouettes) -->
-          <ellipse cx="138" cy="290" rx="18" ry="7" fill="#5B7A8F" opacity=".38"/>
-          <ellipse cx="208" cy="292" rx="9" ry="4.5" fill="#5B7A8F" opacity=".38"/>
-          <ellipse cx="308" cy="294" rx="9" ry="4.5" fill="#5B7A8F" opacity=".38"/>
-        </svg>
-      </div>
+    <div class="process-illus reveal rd1" aria-hidden="true">
+      <div class="pil-backdrop"></div>
+      <img src="img/watercolor-house.jpg" alt="A beautiful watercolor painting of a luxury home." class="process-house-img">
+    </div>
     </div>
 
     <div class="process-wrap">
