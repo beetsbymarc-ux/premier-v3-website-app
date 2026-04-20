@@ -270,12 +270,11 @@ footer{background:rgba(0,0,0,.7);border-top:1px solid rgba(245,240,232,.06);padd
 <!-- OFFICE + MAP -->
 <div style="background:var(--navy)">
   <div class="office">
-    <div class="office-map reveal" aria-label="Map of Natomas, Sacramento showing Premier Realty's service area">
-      <iframe
-        src="https://www.openstreetmap.org/export/embed.html?bbox=-121.6100%2C38.5800%2C-121.4200%2C38.7000&amp;layer=mapnik&amp;marker=38.6346%2C-121.5224"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Natomas, Sacramento Map"></iframe>
+    <div class="office-map reveal" aria-label="Images of Natomas, Sacramento showing Premier Realty's service area">
+      <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:4px;z-index:0">
+        <img src="img/natomas-1.jpg" alt="Natomas Sacramento Park" style="width:100%;height:100%;object-fit:cover;">
+        <img src="img/natomas-2.jpg" alt="Natomas Sacramento Clock Tower" style="width:100%;height:100%;object-fit:cover;">
+      </div>
       <div class="office-map-frame"></div>
       <div class="office-map-tag">Natomas · Sacramento, CA</div>
       <div class="office-map-card">
