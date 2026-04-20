@@ -122,9 +122,9 @@ nav.solid .hamburger span{background:rgba(17,24,39,.7)}
 
 /* ── HERO ── */
 .hero{position:relative;height:100svh;min-height:680px;display:flex;align-items:center;overflow:hidden;background:#0a1420}
-.hero-scenes{position:absolute;inset:0;z-index:0}
-.hero-scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease;filter:saturate(1.04) contrast(1.02);transform:scale(1.06);animation:kenburns 12s ease-in-out infinite alternate;will-change:transform,opacity}
-.hero-scene.active{opacity:1}
+.hero-scenes{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.8s cubic-bezier(.4,0,.2,1),filter 1.8s cubic-bezier(.4,0,.2,1);filter:saturate(1.04) contrast(1.02) blur(4px);transform:scale(1.08);animation:kenburns 14s ease-in-out infinite alternate;will-change:opacity,filter}
+.hero-scene.active{opacity:1;filter:saturate(1.04) contrast(1.02) blur(0)}
 @keyframes kenburns{
   0%  {transform:scale(1.06) translate(0,0)}
   100%{transform:scale(1.12) translate(-1.2%,-1%)}
@@ -132,8 +132,6 @@ nav.solid .hamburger span{background:rgba(17,24,39,.7)}
 .hero-vignette{position:absolute;inset:0;z-index:1;pointer-events:none;background:
   linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.18) 28%, rgba(0,0,0,.22) 64%, rgba(0,0,0,.55) 100%),
   radial-gradient(ellipse at 50% 55%, transparent 48%, rgba(0,0,0,.28) 100%)}
-.hero-flash{position:absolute;inset:0;z-index:3;pointer-events:none;background:#fff;opacity:0;transition:opacity .2s ease-out}
-.hero-flash.on{opacity:.55;transition:opacity .08s ease-in}
 .hero-content{
   position:relative;z-index:2;width:100%;max-width:960px;margin:0 auto;
   padding:0 clamp(20px,5vw,56px);display:flex;flex-direction:column;
@@ -800,7 +798,6 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
     <img id="hs3" class="hero-scene"        src="img/scenes/scene-aerial.jpg"    alt="" loading="eager"     decoding="async">
   </div>
   <div class="hero-vignette"></div>
-  <div class="hero-flash" id="hero-flash"></div>
 
   <div class="hero-content">
     <div class="hero-eyebrow">Sacramento's Premier Real Estate</div>
@@ -1868,33 +1865,27 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
 </footer>
 
 <script>
-// ── HERO SCENE SEQUENCER + WORD-SWAP SYNC ──
+// ── HERO SCENE SEQUENCER + WORD-SWAP SYNC (subtle crossfade, no flash) ──
 (function(){
   var scenes=[document.getElementById('hs1'),document.getElementById('hs2'),document.getElementById('hs3')];
-  var flash=document.getElementById('hero-flash');
   var ws=document.getElementById('word-swap');
   if(scenes.some(function(s){return !s}) || !ws) return;
   var words=ws.querySelectorAll('.w-item');
   var active=0;
-  var DWELL=5000; // ms each scene dwells
-  function flashPulse(){
-    if(!flash) return;
-    flash.classList.add('on');
-    setTimeout(function(){flash.classList.remove('on');},110);
-  }
+  var DWELL=6200; // ms each scene dwells — longer to breathe
   function advance(){
     var next=(active+1)%scenes.length;
-    flashPulse();
-    // swap scene + word in sync — tiny delay so flash peak masks the cut
+    // Smooth crossfade — both scenes are absolutely stacked, so adding .active
+    // to the next one fades it in while removing it from the current fades out.
+    // A tiny lead on the word swap lets the text settle while the image is still dissolving.
+    if(words[active]) words[active].classList.remove('on');
     setTimeout(function(){
       scenes[active].classList.remove('active');
       scenes[next].classList.add('active');
-      if(words[active]) words[active].classList.remove('on');
-      if(words[next])   words[next].classList.add('on');
+      if(words[next]) words[next].classList.add('on');
       active=next;
-    },70);
+    },120);
   }
-  // start the cycle
   setInterval(advance,DWELL);
 })();
 
