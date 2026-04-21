@@ -244,7 +244,10 @@ section{position:relative;z-index:2}
 .about-badge{position:absolute;bottom:-24px;right:-24px;width:118px;height:118px;background:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
 .about-badge-num{font-family:var(--serif);font-size:34px;font-weight:300;color:#fff;line-height:1}
 .about-badge-lbl{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.7)}
-.about-text .section-h2{margin-bottom:24px}
+.about-text .section-h2{margin-bottom:12px}
+.about-text .section-h2 .hw-last{color:var(--accent);font-style:normal}
+.about-licensed{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;font-weight:600;display:flex;align-items:center;gap:10px}
+.about-licensed::before{content:'';width:22px;height:1px;background:var(--accent)}
 .about-body{color:var(--text-secondary);font-size:15px;font-weight:300;line-height:1.85;margin-bottom:20px}
 .about-awards{display:flex;gap:10px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--border);margin-top:28px}
 .award{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);padding:7px 14px;border:1px solid var(--border)}
@@ -910,7 +913,8 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
     </div>
     <div class="about-text">
       <div class="section-eyebrow reveal">Meet Your Broker</div>
-      <h2 class="section-h2 reveal rd1">Helen Wong —<br><em>Your Trusted</em><br>Sacramento Expert</h2>
+      <h2 class="section-h2 reveal rd1">Helen <span class="hw-last">Wong</span> —<br><em>Your Trusted</em><br>Sacramento Expert</h2>
+      <div class="about-licensed reveal rd1">Licensed Realtor / Broker · DRE #01359322</div>
       <p class="about-body reveal rd2">With over 16 years navigating Sacramento's dynamic market, Helen Wong brings unparalleled local knowledge, market insight, and an unwavering commitment to her clients' long-term success.</p>
       <p class="about-body reveal rd2">Whether buying your first home, upgrading to luxury, or building an investment portfolio — Helen's track record speaks for itself: $178M+ in closed transactions and hundreds of satisfied Sacramento families.</p>
       <a href="about.html" class="btn-primary reveal rd3">Our Story →</a>
