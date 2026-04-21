@@ -206,6 +206,13 @@ nav.solid .hamburger span{background:rgba(17,24,39,.7)}
 .ticker-inner{display:flex;animation:tick 28s linear infinite;white-space:nowrap}
 .ticker-inner span{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:0 36px}
 .ticker-inner span::after{content:'◆';margin-left:36px;font-size:6px;opacity:.6}
+.ticker-mobile{display:none}
+@media(max-width:767px){
+  .ticker{padding:14px 16px}
+  .ticker-inner{display:none}
+  .ticker-mobile{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0 10px;text-align:center;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;line-height:1.5;color:#fff;white-space:normal}
+  .ticker-mobile .tm-dot{opacity:.55;font-size:6px}
+}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ── MOBILE: HELEN WONG INTRO ── */
@@ -477,14 +484,16 @@ section{position:relative;z-index:2}
   .process-sig-text{font-size:10px;letter-spacing:.28em;white-space:normal;text-align:center}
 }
 @media(max-width:700px){
-  .process{padding:88px 0 96px}
-  .process-steps{grid-template-columns:1fr;gap:clamp(44px,7vh,64px)}
-  .step{padding:0;max-width:340px;margin:0 auto}
-  .step-num{margin-bottom:22px;font-size:44px}
-  .step-icon{width:62px;height:62px;margin-bottom:22px}
-  .step-title{font-size:22px}
-  .step-rule{margin-top:20px}
-  .process-sig{gap:14px;flex-wrap:wrap;margin-top:72px}
+  .process{padding:88px 0 96px;overflow:hidden}
+  .process-steps{display:flex;grid-template-columns:unset;gap:0;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 20px 24px;margin:0 -20px;scrollbar-width:none}
+  .process-steps::-webkit-scrollbar{display:none}
+  .step{flex:0 0 78%;max-width:320px;margin:0;padding:0 8px;scroll-snap-align:center}
+  .step-num{margin-bottom:18px;font-size:42px}
+  .step-icon{width:58px;height:58px;margin-bottom:20px}
+  .step-title{font-size:21px}
+  .step-desc{font-size:13px}
+  .step-rule{margin-top:18px}
+  .process-sig{gap:14px;flex-wrap:wrap;margin-top:60px}
   .process-sig-line{display:none}
 }
 
@@ -556,11 +565,14 @@ section{position:relative;z-index:2}
 @media(max-width:900px){
   .calc-section{padding:64px 0 72px}
   .calc-wrap{grid-template-columns:1fr !important;gap:40px}
-  .calc-left{padding-top:0}
-  .calc-left .section-h2{font-size:clamp(38px,8vw,54px)}
-  .calc-left .btn-primary{max-width:none}
+  .calc-left{padding-top:0;display:flex;flex-direction:column}
+  .calc-left .section-eyebrow{order:2}
+  .calc-left .section-h2{order:3;font-size:clamp(38px,8vw,54px)}
+  .calc-left .calc-intro{order:4}
+  .calc-left .btn-primary{order:5;max-width:none}
+  .calc-left .calc-disclaimer{order:6}
+  .calc-left .calc-illustration{order:1;max-width:none;margin-top:0;margin-bottom:8px}
   .calc-intro,.calc-disclaimer{max-width:none}
-  .calc-illustration{max-width:none;margin-top:24px}
   .calc-illo{display:none}
   .calc-right{padding:26px 20px 24px}
   .calc-title{font-size:20px;margin-bottom:22px}
@@ -718,7 +730,6 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
 }
 @media(max-width:767px){
   .listings-grid,.services-grid,.testi-grid{grid-template-columns:1fr}
-  .process-steps{grid-template-columns:1fr 1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   .hero-h1{font-size:clamp(54px,13vw,80px);line-height:1.02;letter-spacing:-.02em}
   .hf-row{grid-template-columns:1fr}
@@ -735,7 +746,6 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
   @keyframes nbhd-marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 }
 @media(max-width:480px){
-  .process-steps{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   .cf-row,.hf-row{grid-template-columns:1fr}
   .nav-center{display:none}
@@ -830,7 +840,7 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
   <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
 </section>
 
-<!-- TICKER (desktop/tablet only) -->
+<!-- TICKER -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-inner">
     <span>Sacramento Luxury Real Estate</span>
@@ -847,6 +857,13 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
     <span>Buyer Representation</span>
     <span>Investment Properties</span>
     <span>Relocating to Sacramento?</span>
+  </div>
+  <div class="ticker-mobile">
+    <span>Sacramento Real Estate</span>
+    <span class="tm-dot">●</span>
+    <span>Helen Wong</span>
+    <span class="tm-dot">●</span>
+    <span>DRE #01359322</span>
   </div>
 </div>
 
@@ -1997,7 +2014,7 @@ function smoothScrollTo(id){
   function setupMobile(){
     positionNodes();
     if(observer)observer.disconnect();
-    // Trigger when a card's title is at the vertical midpoint of the viewport
+    // Trigger when a card's title reaches the top portion of the viewport
     observer=new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if(e.isIntersecting){
@@ -2007,7 +2024,7 @@ function smoothScrollTo(id){
           }
         }
       });
-    },{rootMargin:'-50% 0px -50% 0px',threshold:0});
+    },{rootMargin:'-15% 0px -75% 0px',threshold:0});
     cards.forEach(function(c){
       var t=c.querySelector('.service-title');
       if(t)observer.observe(t);
