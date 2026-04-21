@@ -208,11 +208,13 @@ nav.solid .hamburger span{background:rgba(17,24,39,.7)}
 .ticker-inner span::after{content:'◆';margin-left:36px;font-size:6px;opacity:.6}
 .ticker-mobile{display:none}
 @media(max-width:767px){
-  .ticker{padding:14px 16px}
+  .ticker{padding:13px 0;overflow:hidden}
   .ticker-inner{display:none}
-  .ticker-mobile{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0 10px;text-align:center;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;line-height:1.5;color:#fff;white-space:normal}
-  .ticker-mobile .tm-dot{opacity:.55;font-size:6px}
+  .ticker-mobile{display:flex;animation:tick-mobile 22s linear infinite;white-space:nowrap;align-items:center;color:#fff}
+  .ticker-mobile span{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:0 14px;flex-shrink:0}
+  .ticker-mobile .tm-dot{opacity:.55;font-size:6px;padding:0 4px}
 }
+@keyframes tick-mobile{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ── MOBILE: HELEN WONG INTRO ── */
@@ -860,10 +862,29 @@ footer{background:var(--bg-alt);border-top:1px solid var(--border);padding:clamp
   </div>
   <div class="ticker-mobile">
     <span>Sacramento Real Estate</span>
-    <span class="tm-dot">●</span>
+    <span class="tm-dot">◆</span>
     <span>Helen Wong</span>
-    <span class="tm-dot">●</span>
+    <span class="tm-dot">◆</span>
     <span>DRE #01359322</span>
+    <span class="tm-dot">◆</span>
+    <span>Sacramento Real Estate</span>
+    <span class="tm-dot">◆</span>
+    <span>Helen Wong</span>
+    <span class="tm-dot">◆</span>
+    <span>DRE #01359322</span>
+    <span class="tm-dot">◆</span>
+    <span>Sacramento Real Estate</span>
+    <span class="tm-dot">◆</span>
+    <span>Helen Wong</span>
+    <span class="tm-dot">◆</span>
+    <span>DRE #01359322</span>
+    <span class="tm-dot">◆</span>
+    <span>Sacramento Real Estate</span>
+    <span class="tm-dot">◆</span>
+    <span>Helen Wong</span>
+    <span class="tm-dot">◆</span>
+    <span>DRE #01359322</span>
+    <span class="tm-dot">◆</span>
   </div>
 </div>
 
