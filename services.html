@@ -4,246 +4,296 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Services | Premier Realty Sacramento — Helen Wong, DRE #01359322</title>
-<meta name="description" content="Premier Realty Sacramento services: buy a home, home valuation, investment property, relocation, and free consultations. Helen Wong, DRE #01359322.">
+<meta name="description" content="Premier Realty Sacramento services: buy, sell, home valuation, investment property, relocation, and free consultations. Helen Wong, Broker · DRE #01359322 · NMLS #281359 · (916) 256-7073.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-:root{--gold:#C8A96E;--gold-light:#E2C99A;--ink:#0B0B0B;--warm:#F5F0E8;--dim:#7A7468;--navy:#1A2B40;--blue:#4ABAEB;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
-html{overflow-x:hidden;max-width:100%;position:relative;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{font-family:var(--sans);background:var(--ink);color:var(--warm);overflow-x:hidden;overflow-x:clip;max-width:100vw;width:100%;position:relative;-webkit-font-smoothing:antialiased;overscroll-behavior-x:none}
-body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;opacity:.022}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:800;height:86px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,60px);background:rgba(11,11,11,.96);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(74,186,235,.12)}
-.nav-logo img{height:72px}.nav-logo{text-decoration:none}
-.nav-center{display:flex;align-items:center;gap:4px;list-style:none}
+:root{
+  --accent:#5CB8E6;
+  --accent-hover:#3FA3D5;
+  --accent-light:#E8F4FB;
+  --accent-soft:#87D4EE;
+  --bg:#FFFFFF;
+  --bg-alt:#F7F8FA;
+  --bg-dark:#0A0A0A;
+  --text:#111827;
+  --text-secondary:#6B7280;
+  --text-light:#9CA3AF;
+  --border:#E5E7EB;
+  --gold-light:#E6C98A;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+
+html{overflow-x:hidden;max-width:100%;position:relative;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;overflow-x:clip;max-width:100vw;width:100%;position:relative;-webkit-font-smoothing:antialiased;overscroll-behavior-x:none}
+
+.container{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:800;height:86px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3.5vw,56px);transition:background .4s,box-shadow .4s;gap:16px;background:rgba(255,255,255,.98);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 1px 0 var(--border)}
+.nav-logo{text-decoration:none;flex-shrink:0;display:flex;align-items:center}
+.nav-logo img{height:72px;display:block}
+.nav-center{display:flex;align-items:center;gap:0;list-style:none;flex:1;justify-content:center}
 .nav-center>li{position:relative}
-.nav-center>li>a,.nav-btn{font-size:12px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.75);background:none;border:none;font-family:var(--sans);padding:8px 14px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:color .3s;text-decoration:none}
-.nav-center>li>a:hover,.nav-btn:hover{color:var(--warm)}
-.caret{font-size:8px;opacity:.5;transition:transform .3s}
+.nav-center>li::after{content:'';position:absolute;bottom:-14px;left:0;right:0;height:14px}
+.nav-center>li>a,.nav-center>li>button.nav-btn{font-size:11px;font-weight:400;letter-spacing:.09em;text-transform:uppercase;color:rgba(17,24,39,.65);background:none;border:none;font-family:var(--sans);padding:6px 12px;cursor:pointer;display:flex;align-items:center;gap:4px;transition:color .25s;position:relative;text-decoration:none;white-space:nowrap;height:86px}
+.nav-center>li>a:hover,.nav-center>li>button.nav-btn:hover{color:var(--text)}
+.nav-center>li>a::after,.nav-center>li>button.nav-btn::after{content:'';position:absolute;bottom:14px;left:12px;right:12px;height:1px;background:var(--accent);transform:scaleX(0);transition:transform .25s;transform-origin:center}
+.nav-center>li>a:hover::after,.nav-center>li>button.nav-btn:hover::after{transform:scaleX(1)}
+.nav-center>li>a.active::after,.nav-center>li>button.nav-btn.active::after{transform:scaleX(1)}
+.caret{font-size:7px;opacity:.45;transition:transform .25s;margin-top:1px}
 .nav-center>li:hover .caret{transform:rotate(180deg)}
-.nav-drop{position:absolute;top:calc(100%+12px);left:50%;transform:translateX(-50%) translateY(-8px);background:rgba(13,13,13,.98);backdrop-filter:blur(24px);border:1px solid rgba(74,186,235,.15);min-width:230px;padding:8px 0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,transform .25s,visibility .25s}
+.nav-drop{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-6px);background:rgba(255,255,255,.99);backdrop-filter:blur(28px);border:1px solid var(--border);border-top:2px solid var(--accent);min-width:220px;padding:6px 0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s,visibility .2s;box-shadow:0 16px 48px rgba(0,0,0,.08)}
 .nav-center>li:hover .nav-drop{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0)}
-.nav-drop a{display:block;padding:11px 20px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,.65);transition:color .2s,background .2s;white-space:nowrap;text-decoration:none}
-.nav-drop a:hover{color:var(--blue);background:rgba(74,186,235,.05)}
-.nav-drop hr{border:none;border-top:1px solid rgba(245,240,232,.07);margin:6px 0}
-.nav-cta{background:var(--blue);color:var(--ink);padding:10px 22px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:background .25s,transform .2s;text-decoration:none;white-space:nowrap;display:inline-block}
-.nav-cta:hover{background:#62cef5;transform:translateY(-1px)}
+.nav-drop a{display:block;padding:10px 22px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(17,24,39,.75);transition:color .2s,background .2s;white-space:nowrap;text-decoration:none}
+.nav-drop a:hover{color:var(--accent);background:var(--accent-light)}
+.nav-drop-divider{height:1px;background:var(--border);margin:6px 0}
+.nav-cta{background:var(--accent);color:#fff;padding:12px 26px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:background .3s;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{background:var(--accent-hover)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
-.hamburger span{width:22px;height:1px;background:var(--warm);display:block;transition:all .3s}
+.hamburger span{width:22px;height:1px;background:var(--text);display:block;transition:all .3s}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
-.mob-menu{display:none;position:fixed;inset:72px 0 0;background:rgba(11,11,11,.99);z-index:799;overflow-y:auto;padding:32px 24px;flex-direction:column;gap:4px}
-.mob-menu.open{display:flex}
-.mob-link{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.75);padding:14px 0;border-bottom:1px solid rgba(245,240,232,.06);display:block;text-decoration:none}
-.mob-link:hover{color:var(--blue)}
-.mob-sub a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,.45);padding:10px 0 10px 16px;border-bottom:1px solid rgba(245,240,232,.03);display:block;text-decoration:none}
-.mob-sub a:hover{color:var(--blue)}
-.mob-cta{margin-top:24px;background:var(--blue);color:var(--ink);padding:16px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-align:center;cursor:pointer;border:none;font-family:var(--sans);width:100%;text-decoration:none;display:block;transition:background .25s}
-.mob-cta:hover{background:#62cef5}
+.mobile-menu{display:none;position:fixed;inset:86px 0 0;background:rgba(255,255,255,.99);backdrop-filter:blur(24px);z-index:799;overflow-y:auto;padding:32px 24px;flex-direction:column;gap:4px}
+.mobile-menu.open{display:flex}
+.mob-link{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,24,39,.8);padding:14px 0;border-bottom:1px solid var(--border);display:block;text-decoration:none;background:none;border:none;border-bottom:1px solid var(--border);font-family:var(--sans);width:100%;text-align:left;cursor:pointer}
+.mob-link:hover{color:var(--accent)}
+.mob-sub a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(17,24,39,.55);padding:10px 0 10px 16px;border-bottom:1px solid var(--border);display:block;text-decoration:none}
+.mob-sub a:hover{color:var(--accent)}
+.mob-cta{margin-top:24px;background:var(--accent);color:#fff;padding:16px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-align:center;cursor:pointer;border:none;font-family:var(--sans);width:100%;text-decoration:none;display:block}
+@media(max-width:960px){
+  .nav-center{display:none}
+  .hamburger{display:flex}
+}
 
-/* PAGE HERO */
-.pg-hero{padding:clamp(120px,18vh,180px) clamp(20px,5vw,72px) clamp(60px,8vh,90px);max-width:1240px;margin:0 auto}
-.pg-eye{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.pg-eye::before{content:'';width:22px;height:1px;background:var(--gold)}
-.pg-h1{font-family:var(--serif);font-size:clamp(50px,7vw,96px);font-weight:300;line-height:1.0;color:#fff}
-.pg-h1 em{font-style:italic;color:var(--gold-light)}
-.pg-sub{margin-top:18px;font-size:16px;color:rgba(245,240,232,.5);font-weight:300;line-height:1.75;max-width:540px}
-.pg-divider{width:100%;height:1px;background:linear-gradient(90deg,rgba(74,186,235,.35),transparent);margin-top:44px}
+/* ── REVEAL ANIMATION ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
+.reveal.rd1{transition-delay:.1s}
+.reveal.rd2{transition-delay:.2s}
+.reveal.rd3{transition-delay:.3s}
+.reveal.rd4{transition-delay:.4s}
+.reveal.vis{opacity:1;transform:translateY(0)}
 
-/* QUICK NAV */
-.qnav{background:rgba(26,43,64,.75);backdrop-filter:blur(14px);border-bottom:1px solid rgba(74,186,235,.12);position:sticky;top:72px;z-index:700;display:flex;justify-content:center;gap:0;overflow-x:auto}
-.qnav a{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.5);padding:14px 22px;white-space:nowrap;transition:color .3s,background .3s;border-bottom:2px solid transparent;text-decoration:none;flex-shrink:0}
-.qnav a:hover,.qnav a:focus{color:var(--blue);background:rgba(74,186,235,.05);border-color:var(--blue)}
-.qnav a.active{color:var(--blue);border-color:var(--blue)}
+/* ── SECTION PRIMITIVES ── */
+.section-eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:500;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.section-eyebrow::before{content:'';width:26px;height:1px;background:var(--accent)}
+.section-h2{font-family:var(--serif);font-size:clamp(40px,5.1vw,68px);font-weight:300;line-height:1.04;letter-spacing:-.015em;color:var(--text)}
+.section-h2 em{font-style:italic;color:var(--accent)}
+.btn-primary{display:inline-block;background:var(--accent);color:#fff;padding:18px 34px;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:all .3s;text-decoration:none;box-shadow:0 6px 22px rgba(92,184,230,.22)}
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px);box-shadow:0 10px 26px rgba(92,184,230,.3)}
+.btn-ghost{display:inline-block;background:transparent;color:var(--text);padding:16px 32px;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--border);cursor:pointer;font-family:var(--sans);transition:all .3s;text-decoration:none}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 
-/* SERVICE SECTIONS */
-.svc{max-width:1240px;margin:0 auto;padding:clamp(80px,12vh,120px) clamp(20px,5vw,72px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,100px);align-items:center}
+/* ── PAGE HERO ── */
+.pg-hero{position:relative;min-height:72vh;background:var(--bg-dark);overflow:hidden;padding-top:86px}
+.pg-hero-bg{position:absolute;inset:0;z-index:0}
+.pg-hero-bg img,.pg-hero-bg video{width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
+.pg-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.55) 0%,rgba(10,10,10,.3) 30%,rgba(10,10,10,.65) 78%,rgba(10,10,10,.9) 100%),linear-gradient(90deg,rgba(10,10,10,.55) 0%,rgba(10,10,10,.1) 60%,rgba(10,10,10,.0) 100%)}
+.pg-hero .container{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;min-height:calc(72vh - 86px);padding-bottom:clamp(56px,8vh,96px);padding-top:clamp(60px,8vh,120px)}
+.pg-hero-eye{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:20px;display:flex;align-items:center;gap:12px;font-weight:500}
+.pg-hero-eye::before{content:'';width:40px;height:1px;background:var(--accent)}
+.pg-hero h1{font-family:var(--serif);font-size:clamp(46px,6.2vw,94px);font-weight:300;color:#fff;line-height:1;letter-spacing:-.02em;max-width:820px;text-shadow:0 2px 34px rgba(0,0,0,.55)}
+.pg-hero h1 em{font-style:italic;font-weight:300;color:var(--accent-soft)}
+.pg-hero-sub{margin-top:24px;font-size:16px;font-weight:300;color:rgba(255,255,255,.82);line-height:1.8;max-width:540px;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+
+/* ── QUICK NAV ── */
+.qnav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:86px;z-index:700;display:flex;justify-content:center;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.qnav a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-secondary);padding:18px 26px;white-space:nowrap;transition:color .3s,background .3s,border-color .3s;border-bottom:2px solid transparent;text-decoration:none;flex-shrink:0;font-weight:500}
+.qnav a:hover{color:var(--accent);background:var(--accent-light)}
+.qnav a.active{color:var(--accent);border-color:var(--accent);background:var(--accent-light)}
+
+/* ── SERVICE SECTIONS ── */
+.svc-section{padding:clamp(80px,12vh,130px) 0;background:var(--bg)}
+.svc-section.alt{background:var(--bg-alt)}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,6vw,96px);align-items:center}
 .svc.flip{direction:rtl}
 .svc.flip>*{direction:ltr}
-.svc-bg-navy{background:var(--navy)}
 .svc-vis{position:relative}
-.svc-media{width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.82) saturate(.9);display:block}
-/* Buy section: crossfading video slideshow */
-.svc-slideshow{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden}
-.svc-slideshow .svc-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.82) saturate(.95);opacity:0;transition:opacity 1.4s cubic-bezier(.4,0,.2,1);will-change:opacity}
+.svc-media{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--border);box-shadow:0 22px 54px rgba(10,30,60,.08)}
+.svc-slideshow{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--border);box-shadow:0 22px 54px rgba(10,30,60,.08)}
+.svc-slideshow .svc-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s cubic-bezier(.4,0,.2,1);will-change:opacity}
 .svc-slideshow .svc-slide.on{opacity:1}
-.svc-ph{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,rgba(26,43,64,.9),rgba(74,186,235,.1));display:flex;align-items:center;justify-content:center;font-size:80px}
-.svc-chip{position:absolute;top:18px;left:18px;background:var(--blue);color:var(--ink);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;font-weight:600}
-.svc-stat{position:absolute;bottom:-18px;right:-18px;background:rgba(11,11,11,.92);border:1px solid rgba(74,186,235,.25);padding:14px 20px;backdrop-filter:blur(12px)}
-.svc-stat-n{font-family:var(--serif);font-size:30px;font-weight:300;color:var(--blue);line-height:1}
-.svc-stat-l{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:2px}
+.svc-ph{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,var(--accent-light) 0%,rgba(92,184,230,.18) 100%);display:flex;align-items:center;justify-content:center;color:var(--accent);border:1px solid var(--border)}
+.svc-ph svg{width:96px;height:96px;stroke:var(--accent);stroke-width:1.1;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.svc-chip{position:absolute;top:18px;left:18px;background:var(--accent);color:#fff;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:7px 14px;font-weight:600;z-index:3;box-shadow:0 4px 14px rgba(92,184,230,.3)}
+.svc-stat{position:absolute;bottom:-18px;right:-18px;background:#fff;border:1px solid var(--border);padding:18px 24px;box-shadow:0 16px 40px rgba(10,30,60,.1)}
+.svc-stat-n{font-family:var(--serif);font-size:34px;font-weight:300;color:var(--accent);line-height:1;letter-spacing:-.01em}
+.svc-stat-l{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);margin-top:4px;font-weight:500}
 
-/* Relocate visual — framed image w/ dashed path + home icon + gold pin */
+.svc-eye{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:12px;font-weight:500}
+.svc-eye::before{content:'';width:22px;height:1px;background:var(--accent)}
+.svc-h2{font-family:var(--serif);font-size:clamp(36px,4.4vw,58px);font-weight:300;line-height:1.04;color:var(--text);margin-bottom:22px;letter-spacing:-.015em}
+.svc-h2 em{font-style:italic;color:var(--accent)}
+.svc-body{font-size:15px;font-weight:300;color:var(--text-secondary);line-height:1.9;margin-bottom:16px}
+.svc-bullets{list-style:none;display:flex;flex-direction:column;gap:11px;margin:22px 0 32px}
+.svc-bullets li{display:flex;align-items:flex-start;gap:12px;font-size:14px;font-weight:300;color:var(--text);line-height:1.6}
+.svc-bullets li svg{width:16px;height:16px;stroke:var(--accent);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:3px}
+
+/* Relocate custom visual */
 .svc-vis-relocate{position:relative}
-.svc-relocate-frame{position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:#0A1420;box-shadow:0 30px 70px -30px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,255,255,.04)}
-.svc-relocate-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(1.05) contrast(1.05);display:block}
+.svc-relocate-frame{position:relative;aspect-ratio:4/3;overflow:hidden;background:#0A1420;box-shadow:0 22px 54px rgba(10,30,60,.12);border:1px solid var(--border)}
+.svc-relocate-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.65) saturate(1.05) contrast(1.05);display:block}
 .svc-relocate-overlay{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 100%, rgba(11,22,40,0) 20%, rgba(11,22,40,.7) 85%), linear-gradient(180deg, rgba(11,22,40,.35) 0%, rgba(11,22,40,.15) 40%, rgba(11,22,40,.85) 100%);pointer-events:none}
-.svc-relocate-path{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;animation:relocate-dash 22s linear infinite}
+.svc-relocate-path{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .svc-relocate-path path{stroke-dasharray:1.4 2;stroke-dashoffset:0;animation:relocate-path-draw 22s linear infinite}
 @keyframes relocate-path-draw{to{stroke-dashoffset:-180}}
-@keyframes relocate-dash{0%,100%{opacity:.75}50%{opacity:1}}
-.svc-relocate-home{position:absolute;top:14%;right:12%;width:54px;height:54px;border:1.5px solid #4ABAEB;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#4ABAEB;background:rgba(11,22,40,.45);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);box-shadow:0 0 0 6px rgba(74,186,235,.08), 0 8px 24px rgba(74,186,235,.3);animation:home-float 4s ease-in-out infinite}
+.svc-relocate-home{position:absolute;top:14%;right:12%;width:54px;height:54px;border:1.5px solid var(--accent-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent-soft);background:rgba(11,22,40,.45);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);box-shadow:0 0 0 6px rgba(135,212,238,.08), 0 8px 24px rgba(92,184,230,.3);animation:home-float 4s ease-in-out infinite}
 .svc-relocate-home svg{width:22px;height:22px}
 @keyframes home-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.svc-relocate-pin{position:absolute;bottom:22%;left:48%;transform:translateX(-50%);width:40px;height:55px;filter:drop-shadow(0 14px 18px rgba(0,0,0,.65)) drop-shadow(0 0 12px rgba(200,169,110,.35));animation:pin-bounce 3.6s ease-in-out infinite}
+.svc-relocate-pin{position:absolute;bottom:22%;left:48%;transform:translateX(-50%);width:40px;height:55px;filter:drop-shadow(0 14px 18px rgba(0,0,0,.65));animation:pin-bounce 3.6s ease-in-out infinite}
 .svc-relocate-pin svg{width:100%;height:100%}
 @keyframes pin-bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
-.svc-vis-relocate .svc-chip{top:18px;left:18px;z-index:3;border-radius:2px}
-@media(max-width:900px){
-  .svc-relocate-frame{aspect-ratio:4/3;border-radius:6px}
-  .svc-relocate-home{width:46px;height:46px;top:12%;right:10%}
-  .svc-relocate-home svg{width:19px;height:19px}
-  .svc-relocate-pin{width:34px;height:47px}
-}
-.eye{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.eye::before{content:'';width:20px;height:1px;background:var(--gold)}
-.h2{font-family:var(--serif);font-size:clamp(32px,3.8vw,52px);font-weight:300;line-height:1.1;color:#fff;margin-bottom:18px}
-.h2 em{font-style:italic;color:var(--gold-light)}
-.body{font-size:15px;font-weight:300;color:rgba(245,240,232,.55);line-height:1.85;margin-bottom:16px}
-.bullets{list-style:none;display:flex;flex-direction:column;gap:9px;margin:18px 0 26px}
-.bullets li{display:flex;align-items:flex-start;gap:12px;font-size:14px;font-weight:300;color:rgba(245,240,232,.65);line-height:1.6}
-.bullets li::before{content:'→';color:var(--blue);font-size:12px;margin-top:2px;flex-shrink:0}
-.btn{display:inline-block;text-decoration:none;background:var(--blue);color:var(--ink);padding:14px 32px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:background .25s,transform .2s}
-.btn:hover{background:#62cef5;transform:translateY(-1px)}
-.btn:active{transform:scale(.98)}
-.btn-o{background:transparent;color:var(--warm);border:1px solid rgba(245,240,232,.22);padding:14px 32px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:inline-block;text-decoration:none;transition:border-color .25s,transform .2s;cursor:pointer;font-family:var(--sans)}
-.btn-o:hover{border-color:var(--white);color:#fff;transform:translateY(-1px)}
 
-/* AREAS */
-.areas{background:rgba(26,43,64,.5);padding:clamp(80px,10vh,110px) clamp(20px,5vw,72px)}
-.areas-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:380px 1fr;gap:64px;align-items:start}
-.area-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-.area-card{background:rgba(255,255,255,.04);padding:22px 20px;border-top:2px solid transparent;transition:all .3s}
-.area-card.core{border-color:var(--blue)}
-.area-card:hover{background:rgba(74,186,235,.07);border-color:var(--blue)}
-.area-n{font-family:var(--serif);font-size:19px;font-weight:300;color:#fff;margin-bottom:4px}
-.area-t{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
-.area-d{font-size:12px;font-weight:300;color:var(--dim);line-height:1.65}
+/* ── AREAS ── */
+.areas{background:var(--bg-alt);padding:clamp(100px,14vh,160px) 0;border-top:1px solid var(--border)}
+.areas-inner{display:grid;grid-template-columns:380px 1fr;gap:clamp(40px,5vw,80px);align-items:start}
+.areas-txt .section-eyebrow{margin-bottom:18px}
+.areas-txt .section-h2{margin-bottom:22px}
+.areas-txt p{font-size:15px;font-weight:300;color:var(--text-secondary);line-height:1.85;margin-bottom:16px}
+.areas-txt .note{font-size:13px;color:var(--text-light);margin-top:4px}
+.areas-txt .note a{color:var(--accent);text-decoration:none;font-weight:500}
+.areas-txt .note a:hover{text-decoration:underline}
+.area-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.area-card{background:#fff;border:1px solid var(--border);padding:24px 22px;transition:all .35s ease;position:relative;overflow:hidden}
+.area-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .4s ease}
+.area-card.core::before{background:var(--accent);transform:scaleY(1)}
+.area-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 14px 30px rgba(10,30,60,.05)}
+.area-card:hover::before{transform:scaleY(1)}
+.area-n{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--text);margin-bottom:4px;letter-spacing:-.005em}
+.area-t{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-weight:600}
+.area-t.ext{color:var(--text-light)}
+.area-d{font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.7}
 
 /* ── CTA BAND ── */
-.cta-band{padding:clamp(100px,14vh,160px) 0 0;background:linear-gradient(180deg,#5CB8E6 0%,#3FA3D5 100%);text-align:center;position:relative;overflow:hidden}
+.cta-band{padding:clamp(100px,14vh,160px) 0 0;background:linear-gradient(180deg,var(--accent) 0%,var(--accent-hover) 100%);text-align:center;position:relative;overflow:hidden}
 .cta-band .container{display:flex;flex-direction:column;align-items:center;gap:24px;position:relative;z-index:10}
-.cta-band .section-eyebrow{justify-content:center;color:rgba(255,255,255,0.9);letter-spacing:0.3em;display:flex;align-items:center;gap:12px;text-transform:uppercase;font-size:10px}
-.cta-band .section-eyebrow::before{content:'';width:22px;height:1px;background:rgba(255,255,255,0.6)}
-.cta-band h2{font-family:var(--serif);font-size:clamp(44px,6vw,84px);font-weight:300;color:#fff;line-height:1;margin-top:8px;letter-spacing:-0.02em}
-.cta-band h2 em{font-style:italic;color:#fff;display:inline}
+.cta-band .section-eyebrow{justify-content:center;color:rgba(255,255,255,.9);letter-spacing:.3em;font-size:10px}
+.cta-band .section-eyebrow::before{background:rgba(255,255,255,.6)}
+.cta-band h2{font-family:var(--serif);font-size:clamp(44px,6vw,84px);font-weight:300;color:#fff;line-height:1;margin-top:8px;letter-spacing:-.02em}
+.cta-band h2 em{font-style:italic;color:#fff}
 .cta-band h2 .cta-home{color:var(--gold-light);font-style:italic;background:linear-gradient(180deg,#F1DAA8 0%,#D9B87E 55%,#B3965C 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 18px rgba(200,169,110,.18))}
-.cta-band p{font-size:16px;font-weight:300;color:rgba(255,255,255,0.9);line-height:1.7;max-width:540px;margin:0 auto 12px}
-.btn-white{display:inline-block;background:#fff;color:#3FA3D5;padding:18px 44px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:all .3s cubic-bezier(0.4, 0, 0.2, 1);text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
-.btn-white:hover{background:#f8fafc;transform:translateY(-2px);box-shadow:0 15px 35px rgba(0,0,0,0.15)}
-
-/* SMOOTH TWO-TONED CURVE */
+.cta-band p{font-size:16px;font-weight:300;color:rgba(255,255,255,.9);line-height:1.7;max-width:540px;margin:0 auto 12px}
+.btn-white{display:inline-block;background:#fff;color:var(--accent-hover);padding:18px 44px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--sans);transition:all .3s;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+.btn-white:hover{background:#f8fafc;transform:translateY(-2px);box-shadow:0 15px 35px rgba(0,0,0,.15)}
 .cta-waves{position:relative;width:100%;height:140px;margin-top:72px;line-height:0;z-index:5;pointer-events:none}
 .wave-layer{position:absolute;bottom:0;left:0;width:200%;height:100%;background-repeat:repeat-x;background-size:50% 100%;will-change:transform}
 .wave-layer-1{background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200' preserveAspectRatio='none'%3E%3Cpath fill='%23FFFFFF' fill-opacity='0.35' d='M0,100 C360,40 1080,160 1440,100 L1440,200 L0,200 Z'/%3E%3C/svg%3E");animation:wave-slide 28s linear infinite}
 .wave-layer-2{background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200' preserveAspectRatio='none'%3E%3Cpath fill='%23f8fafc' d='M0,130 C360,70 1080,190 1440,130 L1440,200 L0,200 Z'/%3E%3C/svg%3E");animation:wave-slide 22s linear infinite reverse}
-.wave-layer-3{display:none}
 @keyframes wave-slide{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 @media (prefers-reduced-motion: reduce){.wave-layer{animation:none}}
 
 /* ── FOOTER ── */
 footer{background:#f8fafc;padding:clamp(64px,10vh,100px) 0 40px;border-top:1px solid #e2e8f0;color:#1e293b}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr 1.8fr;gap:clamp(32px,4vw,64px);margin-bottom:64px}
-.foot-col h4{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#94a3b8;margin-bottom:24px;font-weight:600}
-.footer-logo img{height:42px;margin-bottom:24px;display:block}
-.footer-desc{font-size:14px;line-height:1.7;color:#64748b;margin-bottom:24px}
-.foot-socials{display:flex;gap:12px}
-.social-link{width:36px;height:36px;border-radius:50%;background:#3FA3D5;display:flex;align-items:center;justify-content:center;transition:all .3s}
-.social-link svg{width:16px;height:16px;fill:#fff}
-.social-link:hover{background:#2563eb;transform:translateY(-2px)}
-.foot-list{list-style:none;display:flex;flex-direction:column;gap:12px}
-.foot-list a{font-size:14px;color:#64748b;text-decoration:none;transition:all .2s;display:flex;align-items:center;justify-content:space-between}
-.foot-list a:hover{color:#3FA3D5;transform:translateX(4px)}
-.foot-list a::after{content:'›';font-size:16px;opacity:0;transition:opacity .2s;color:#3FA3D5}
-.foot-list a:hover::after{opacity:1}
-.foot-contact-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;font-size:13.5px;color:#64748b;line-height:1.5}
-.foot-contact-item svg{width:16px;height:16px;stroke:#3FA3D5;stroke-width:1.8;fill:none;flex-shrink:0;margin-top:2px}
-.news-desc{font-size:13px;color:#64748b;margin-bottom:18px;line-height:1.6}
-.news-form{display:flex;gap:8px;position:relative}
-.news-input{flex:1;background:#fff;border:1px solid #e2e8f0;padding:14px 16px;font-size:14px;font-family:var(--sans);outline:none;border-radius:4px}
-.news-btn{background:#3FA3D5;color:#fff;border:none;padding:12px 20px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:4px;transition:background .2s}
-.news-btn:hover{background:#2563eb}
-.footer-bottom{max-width:1240px;margin:32px auto 0;border-top:1px solid #e2e8f0;padding:32px clamp(20px,5vw,72px) 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#94a3b8}
-.foot-legal{display:flex;gap:20px}
-.foot-legal a{color:#94a3b8;text-decoration:none;transition:color .2s}
-.foot-legal a:hover{color:#3FA3D5}
-.main-container{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.reveal.vis{opacity:1;transform:none}
-.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
+.footer-inner{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:clamp(32px,5vw,80px);align-items:center}
+.footer-logo img{height:42px;display:block}
+.footer-copy{font-size:13px;line-height:1.7;color:#64748b;text-align:center}
+.footer-copy a{color:var(--accent-hover);text-decoration:none}
+.footer-copy a:hover{text-decoration:underline}
+.footer-links{display:flex;gap:24px;justify-content:flex-end;flex-wrap:wrap}
+.footer-links a{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#64748b;text-decoration:none;transition:color .2s;font-weight:500}
+.footer-links a:hover{color:var(--accent-hover)}
+@media(max-width:860px){
+  .footer-inner{grid-template-columns:1fr;text-align:center;gap:32px}
+  .footer-logo{display:flex;justify-content:center}
+  .footer-links{justify-content:center}
+}
 
-@media(max-width:900px){.svc{grid-template-columns:1fr}.svc.flip{direction:ltr}.areas-inner{grid-template-columns:1fr}.nav-center,.nav-cta{display:none}.hamburger{display:flex}.fi{grid-template-columns:1fr;text-align:center}.fl{justify-content:center}}
-@media(max-width:580px){.area-grid{grid-template-columns:1fr}.svc-stat{display:none}.qnav{justify-content:flex-start}}
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .svc{grid-template-columns:1fr;gap:48px}
+  .svc.flip{direction:ltr}
+  .areas-inner{grid-template-columns:1fr;gap:40px}
+  .svc-stat{bottom:-12px;right:-8px;padding:14px 18px}
+  .svc-stat-n{font-size:28px}
+}
+@media(max-width:700px){
+  .pg-hero{min-height:60vh}
+  .pg-hero h1{font-size:clamp(40px,10vw,58px)}
+  .qnav{justify-content:flex-start;padding:0 12px}
+  .qnav a{padding:14px 18px;font-size:10.5px}
+  .area-grid{grid-template-columns:1fr}
+  .svc-stat{display:none}
+}
 </style>
-
 </head>
 <body>
 
-
 <!-- NAV -->
-<nav>
-  <a href="index.html" class="nav-logo"><img src="img/premier-realty-logo.png" alt="Premier Realty" onerror="this.outerHTML='<span style=\'font-family:Cormorant Garamond,serif;font-size:18px;font-weight:300;color:#F5F0E8\'>Premier Realty</span>'"></a>
+<nav id="nav">
+  <a href="index.html" class="nav-logo" aria-label="Premier Realty Home">
+    <img src="img/premier-realty-logo.png" alt="Premier Realty">
+  </a>
   <ul class="nav-center">
     <li><a href="about.html">About</a></li>
     <li>
-      <button class="nav-btn">Services <span class="caret">▾</span></button>
+      <button class="nav-btn active">Services <span class="caret">▾</span></button>
       <div class="nav-drop">
         <a href="#buy">Buy a Home</a>
-        <a href="#value">Get Home Value</a>
-        <hr>
+        <a href="#sell">Sell My Home</a>
+        <a href="#value">Home Valuation</a>
+        <div class="nav-drop-divider"></div>
         <a href="#relocate">Relocating to Sacramento</a>
         <a href="#invest">Investment Property</a>
         <a href="#consult">Talk to an Agent</a>
       </div>
     </li>
     <li><a href="index.html#listings">Listings</a></li>
-    <li><a href="about.html">Our Story</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="contact.html" class="nav-cta">Get Started</a>
-  <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+  <a href="contact.html" class="nav-cta">Book Consultation</a>
+  <button class="hamburger" id="ham" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
-<div class="mob-menu" id="mob">
-  <a class="mob-link" href="index.html">Home</a>
-  <span class="mob-link" style="color:var(--dim);font-size:10px;border:none;padding-bottom:4px">Services</span>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mob-menu">
+  <a class="mob-link" href="about.html">About</a>
+  <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-light);padding:12px 0 4px;display:block">Services</span>
   <div class="mob-sub">
     <a href="#buy" onclick="closeMob()">Buy a Home</a>
+    <a href="#sell" onclick="closeMob()">Sell My Home</a>
     <a href="#value" onclick="closeMob()">Get Home Value</a>
-    <a href="#relocate" onclick="closeMob()">Relocating</a>
+    <a href="#relocate" onclick="closeMob()">Relocating to Sacramento</a>
     <a href="#invest" onclick="closeMob()">Investment Property</a>
-    <a href="#consult" onclick="closeMob()">Talk to Agent</a>
+    <a href="#consult" onclick="closeMob()">Talk to an Agent</a>
   </div>
-  <a class="mob-link" href="about.html">Our Story</a>
+  <a class="mob-link" href="index.html#listings">Listings</a>
   <a class="mob-link" href="contact.html">Contact</a>
-  <a class="mob-cta" href="contact.html">Get Started</a>
+  <a class="mob-cta" href="contact.html">Get Started →</a>
 </div>
 
 <!-- PAGE HERO -->
-<div style="background:linear-gradient(180deg,rgba(26,43,64,.5) 0%,transparent 100%)">
-  <div class="pg-hero reveal">
-    <div class="pg-eye">What We Offer</div>
-    <h1 class="pg-h1">Our Real Estate<br><em>Services</em></h1>
-    <p class="pg-sub">Expert guidance for buyers and investors across greater Sacramento. Every service is personally delivered by Helen Wong and her team.</p>
-    <div class="pg-divider"></div>
+<section class="pg-hero">
+  <div class="pg-hero-bg">
+    <img src="img/scenes/scene-aerial.jpg" alt="" onerror="this.src='img/sac_bg.png'">
   </div>
-</div>
+  <div class="container">
+    <div class="pg-hero-eye">What We Offer</div>
+    <h1>Our Real Estate<br><em>Services</em></h1>
+    <p class="pg-hero-sub">Expert guidance for buyers, sellers, and investors across greater Sacramento. Every service is personally delivered by Helen Wong, Premier Realty Broker · DRE #01359322.</p>
+  </div>
+</section>
 
 <!-- QUICK NAV -->
 <nav class="qnav" aria-label="Service sections">
   <a href="#buy">Buy a Home</a>
+  <a href="#sell">Sell My Home</a>
   <a href="#value">Home Value</a>
   <a href="#relocate">Relocating</a>
   <a href="#invest">Invest</a>
-  <a href="#consult">Talk to Agent</a>
+  <a href="#consult">Talk to an Agent</a>
 </nav>
 
 <!-- BUY -->
-<div id="buy" style="background:var(--ink)">
+<section id="buy" class="svc-section">
+<div class="container">
 <div class="svc">
   <div class="svc-vis reveal">
     <div class="svc-slideshow" id="svc-buy-slideshow" aria-hidden="true">
@@ -254,54 +304,84 @@ footer{background:#f8fafc;padding:clamp(64px,10vh,100px) 0 40px;border-top:1px s
     <div class="svc-stat"><div class="svc-stat-n">850+</div><div class="svc-stat-l">Homes Closed</div></div>
   </div>
   <div class="reveal rd1">
-    <div class="eye">For Buyers</div>
-    <h2 class="h2">Buy a Home<br><em>in Sacramento</em></h2>
-    <p class="body">Finding the right home in Sacramento's competitive market requires more than browsing Zillow. Helen's deep neighborhood knowledge and exclusive off-market network gives buyers a decisive edge.</p>
-    <p class="body">From initial consultation through closing day, we handle every detail — pre-approval guidance, offer strategy, negotiation, and inspection coordination.</p>
-    <ul class="bullets">
-      <li>Access to off-market and pre-MLS listings before they go public</li>
-      <li>Expert offer strategy and negotiation in any market condition</li>
-      <li>Neighborhood-level expertise across all Sacramento communities</li>
-      <li>Full transaction management from first showing to keys in hand</li>
+    <div class="svc-eye">For Buyers</div>
+    <h2 class="svc-h2">Buy a Home<br><em>in Sacramento</em></h2>
+    <p class="svc-body">Finding the right home in Sacramento's competitive market requires more than browsing Zillow. Helen's deep neighborhood knowledge and exclusive off-market network gives buyers a decisive edge.</p>
+    <p class="svc-body">From initial consultation through closing day, we handle every detail — pre-approval guidance, offer strategy, negotiation, and inspection coordination.</p>
+    <ul class="svc-bullets">
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Access to off-market and pre-MLS listings before they go public</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Expert offer strategy and negotiation in any market condition</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Neighborhood-level expertise across all Sacramento communities</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full transaction management from first showing to keys in hand</li>
     </ul>
-    <a href="contact.html?service=buy" class="btn">Start Your Home Search</a>
+    <a href="contact.html?service=buy" class="btn-primary">Start Your Home Search</a>
   </div>
 </div>
 </div>
+</section>
+
+<!-- SELL -->
+<section id="sell" class="svc-section alt">
+<div class="container">
+<div class="svc flip">
+  <div class="svc-vis reveal">
+    <img class="svc-media" src="img/helen-new-home.jpg" alt="Sell your Sacramento home" loading="lazy" onerror="this.src='img/home-bg.jpeg'">
+    <div class="svc-chip">Listing Representation</div>
+    <div class="svc-stat"><div class="svc-stat-n">$178M+</div><div class="svc-stat-l">In Sales Volume</div></div>
+  </div>
+  <div class="reveal rd1">
+    <div class="svc-eye">For Sellers</div>
+    <h2 class="svc-h2">Sell Your<br><em>Sacramento Home</em></h2>
+    <p class="svc-body">Selling a home in Sacramento is part strategy, part staging, and part timing. Helen pairs premium marketing — professional photography, drone video, staging consultation — with quiet, human-scale buyer outreach to her personal network.</p>
+    <p class="svc-body">The result: homes that sell faster, for more, and with fewer surprises. Most of Helen's listings are under contract before the first open house.</p>
+    <ul class="svc-bullets">
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Professional photography, drone video, and 3D Matterport tours</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Pre-list staging consultation and strategic pricing analysis</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Targeted marketing across MLS, Zillow, Realtor.com, and social</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Negotiation and offer management — Helen handles every detail</li>
+    </ul>
+    <a href="contact.html?service=sell" class="btn-primary">Get a Listing Consultation</a>
+  </div>
+</div>
+</div>
+</section>
 
 <!-- VALUE -->
-<div id="value" class="svc-bg-navy">
-<div class="svc flip">
+<section id="value" class="svc-section">
+<div class="container">
+<div class="svc">
   <div class="svc-vis reveal">
     <video class="svc-media" autoplay muted loop playsinline><source src="img/drone-footage.mp4" type="video/mp4"></video>
     <div class="svc-chip">Free CMA Report</div>
     <div class="svc-stat"><div class="svc-stat-n">48hr</div><div class="svc-stat-l">Report Delivery</div></div>
   </div>
   <div class="reveal rd1">
-    <div class="eye">Know Your Worth</div>
-    <h2 class="h2">Get Your<br><em>Home Value</em></h2>
-    <p class="body">Wondering what your Sacramento home is worth in today's market? Get a free, detailed Comparative Market Analysis — backed by real data, not Zestimate guesses.</p>
-    <p class="body">Helen personally reviews every CMA, factoring in recent sales, active competition, neighborhood trends, and your home's unique features. Delivered within 48 hours, no obligation.</p>
-    <ul class="bullets">
-      <li>Detailed CMA with 5+ recent comparable sales</li>
-      <li>Neighborhood price trend and appreciation analysis</li>
-      <li>Estimated net proceeds after all costs</li>
-      <li>No obligation — free and confidential</li>
+    <div class="svc-eye">Know Your Worth</div>
+    <h2 class="svc-h2">Get Your<br><em>Home Value</em></h2>
+    <p class="svc-body">Wondering what your Sacramento home is worth in today's market? Get a free, detailed Comparative Market Analysis — backed by real data, not Zestimate guesses.</p>
+    <p class="svc-body">Helen personally reviews every CMA, factoring in recent sales, active competition, neighborhood trends, and your home's unique features. Delivered within 48 hours, no obligation.</p>
+    <ul class="svc-bullets">
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Detailed CMA with 5+ recent comparable sales</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Neighborhood price trend and appreciation analysis</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Estimated net proceeds after all costs</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>No obligation — free and confidential</li>
     </ul>
-    <a href="contact.html?service=value" class="btn">Request Your Free CMA</a>
+    <a href="contact.html?service=value" class="btn-primary">Request Your Free CMA</a>
   </div>
 </div>
 </div>
+</section>
 
 <!-- RELOCATE -->
-<div id="relocate" style="background:var(--ink)">
-<div class="svc">
+<section id="relocate" class="svc-section alt">
+<div class="container">
+<div class="svc flip">
   <div class="svc-vis svc-vis-relocate reveal">
     <div class="svc-relocate-frame">
-      <img class="svc-relocate-img" src="img/services/svc-relocate.jpg" alt="Relocating to Sacramento — skyline and Tower Bridge" loading="lazy" decoding="async">
+      <img class="svc-relocate-img" src="img/services/svc-relocate.jpg" alt="Relocating to Sacramento — skyline and Tower Bridge" loading="lazy" decoding="async" onerror="this.src='img/sac_bg.png'">
       <div class="svc-relocate-overlay"></div>
       <svg class="svc-relocate-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M 30 72 Q 38 55 58 42 Q 74 32 82 15" fill="none" stroke="#4ABAEB" stroke-width=".6" stroke-dasharray="1.4 2" stroke-linecap="round"/>
+        <path d="M 30 72 Q 38 55 58 42 Q 74 32 82 15" fill="none" stroke="#87D4EE" stroke-width=".6" stroke-dasharray="1.4 2" stroke-linecap="round"/>
       </svg>
       <div class="svc-relocate-home" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -310,12 +390,12 @@ footer{background:#f8fafc;padding:clamp(64px,10vh,100px) 0 40px;border-top:1px s
       </div>
       <div class="svc-relocate-pin" aria-hidden="true">
         <svg viewBox="0 0 32 44" fill="none">
-          <path d="M16 2 C7.7 2 2 8.1 2 15.6 C2 25 16 42 16 42 C16 42 30 25 30 15.6 C30 8.1 24.3 2 16 2 Z" fill="url(#pinGrad)" stroke="#B88B3D" stroke-width="1"/>
-          <circle cx="16" cy="16" r="5.5" fill="#0B0B0B"/>
+          <path d="M16 2 C7.7 2 2 8.1 2 15.6 C2 25 16 42 16 42 C16 42 30 25 30 15.6 C30 8.1 24.3 2 16 2 Z" fill="url(#pinGrad)" stroke="#3FA3D5" stroke-width="1"/>
+          <circle cx="16" cy="16" r="5.5" fill="#0A0A0A"/>
           <defs>
             <linearGradient id="pinGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#F1CE80"/>
-              <stop offset="100%" stop-color="#C8A96E"/>
+              <stop offset="0%" stop-color="#87D4EE"/>
+              <stop offset="100%" stop-color="#5CB8E6"/>
             </linearGradient>
           </defs>
         </svg>
@@ -324,93 +404,102 @@ footer{background:#f8fafc;padding:clamp(64px,10vh,100px) 0 40px;border-top:1px s
     <div class="svc-chip">Relocation Services</div>
   </div>
   <div class="reveal rd1">
-    <div class="eye">Moving to Sacramento</div>
-    <h2 class="h2">Relocating to<br><em>Sacramento</em></h2>
-    <p class="body">Moving to a new city is stressful enough. Helen's relocation program makes the real estate part seamless — from virtual tours and neighborhood guides to school district overviews and commute analysis.</p>
-    <p class="body">Many of our relocation clients find their ideal home before ever setting foot in Sacramento, thanks to Helen's concierge approach to out-of-area buyers.</p>
-    <ul class="bullets">
-      <li>Virtual tours and remote consultations available anytime</li>
-      <li>Neighborhood match based on your lifestyle and priorities</li>
-      <li>School district, commute time, and lifestyle area guides</li>
-      <li>Trusted network of movers, contractors, and local vendors</li>
+    <div class="svc-eye">Moving to Sacramento</div>
+    <h2 class="svc-h2">Relocating to<br><em>Sacramento</em></h2>
+    <p class="svc-body">Moving to a new city is stressful enough. Helen's relocation program makes the real estate part seamless — from virtual tours and neighborhood guides to school district overviews and commute analysis.</p>
+    <p class="svc-body">Many of our relocation clients find their ideal home before ever setting foot in Sacramento, thanks to Helen's concierge approach to out-of-area buyers.</p>
+    <ul class="svc-bullets">
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Virtual tours and remote consultations available anytime</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Neighborhood match based on your lifestyle and priorities</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>School district, commute time, and lifestyle area guides</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Trusted network of movers, contractors, and local vendors</li>
     </ul>
-    <a href="contact.html?service=relocate" class="btn">Start Your Relocation</a>
+    <a href="contact.html?service=relocate" class="btn-primary">Start Your Relocation</a>
   </div>
 </div>
 </div>
+</section>
 
 <!-- INVEST -->
-<div id="invest" class="svc-bg-navy">
-<div class="svc flip">
+<section id="invest" class="svc-section">
+<div class="container">
+<div class="svc">
   <div class="svc-vis reveal">
     <video class="svc-media" autoplay muted loop playsinline><source src="img/lifestyle.mp4" type="video/mp4"></video>
     <div class="svc-chip">Investment Properties</div>
     <div class="svc-stat"><div class="svc-stat-n">$2.4B</div><div class="svc-stat-l">Portfolio Volume</div></div>
   </div>
   <div class="reveal rd1">
-    <div class="eye">For Investors</div>
-    <h2 class="h2">Investment<br><em>Properties</em></h2>
-    <p class="body">Sacramento's evolving neighborhoods offer exceptional investment opportunity — from established single-family rentals in Land Park to multi-unit developments and land acquisitions in high-growth corridors.</p>
-    <p class="body">Helen's investment clients benefit from her deep understanding of rental yields, appreciation patterns, and Sacramento's development pipeline.</p>
-    <ul class="bullets">
-      <li>Off-market deals and distressed property sourcing</li>
-      <li>Rental income analysis and cap rate projections</li>
-      <li>1031 exchange coordination and timing strategy</li>
-      <li>Multi-unit and land acquisition expertise</li>
+    <div class="svc-eye">For Investors</div>
+    <h2 class="svc-h2">Investment<br><em>Properties</em></h2>
+    <p class="svc-body">Sacramento's evolving neighborhoods offer exceptional investment opportunity — from established single-family rentals in Land Park to multi-unit developments and land acquisitions in high-growth corridors.</p>
+    <p class="svc-body">Helen's investment clients benefit from her deep understanding of rental yields, appreciation patterns, and Sacramento's development pipeline.</p>
+    <ul class="svc-bullets">
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Off-market deals and distressed property sourcing</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Rental income analysis and cap rate projections</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>1031 exchange coordination and timing strategy</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Multi-unit and land acquisition expertise</li>
     </ul>
-    <a href="contact.html?service=invest" class="btn">Explore Investment Options</a>
+    <a href="contact.html?service=invest" class="btn-primary">Explore Investment Options</a>
   </div>
 </div>
 </div>
+</section>
 
 <!-- CONSULT -->
-<div id="consult" style="background:var(--ink)">
-<div class="svc">
+<section id="consult" class="svc-section alt">
+<div class="container">
+<div class="svc flip">
   <div class="svc-vis reveal">
-    <div class="svc-ph">🤝</div>
+    <div class="svc-ph">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11h-6"/><path d="M19 8v6"/></svg>
+    </div>
     <div class="svc-chip">Free Consultation</div>
   </div>
   <div class="reveal rd1">
-    <div class="eye">Not Sure Where to Start?</div>
-    <h2 class="h2">Talk to<br><em>an Agent</em></h2>
-    <p class="body">Real estate decisions are some of the biggest you'll make. Helen offers a free, no-pressure consultation to answer your questions, explain the current market, and map a strategy tailored to your goals.</p>
-    <p class="body">No obligation, no sales pitch — just expert, honest guidance from one of Sacramento's most trusted brokers.</p>
-    <ul class="bullets">
-      <li>Free 30-minute strategy session — in person or via video</li>
-      <li>Current market overview and conditions analysis</li>
-      <li>Custom plan based on your unique timeline and goals</li>
-      <li>Available evenings and weekends for your convenience</li>
+    <div class="svc-eye">Not Sure Where to Start?</div>
+    <h2 class="svc-h2">Talk to<br><em>an Agent</em></h2>
+    <p class="svc-body">Real estate decisions are some of the biggest you'll make. Helen offers a free, no-pressure consultation to answer your questions, explain the current market, and map a strategy tailored to your goals.</p>
+    <p class="svc-body">No obligation, no sales pitch — just expert, honest guidance from one of Sacramento's most trusted brokers.</p>
+    <ul class="svc-bullets">
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Free 30-minute strategy session — in person or via video</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Current market overview and conditions analysis</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Custom plan based on your unique timeline and goals</li>
+      <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Available evenings and weekends for your convenience</li>
     </ul>
-    <a href="contact.html?service=consult" class="btn">Book a Free Consultation</a>
+    <a href="contact.html?service=consult" class="btn-primary">Book a Free Consultation</a>
   </div>
 </div>
 </div>
+</section>
 
 <!-- SERVICE AREAS -->
-<div class="areas">
-  <div class="areas-inner">
-    <div>
-      <div class="eye reveal">Where We Serve</div>
-      <h2 class="h2 reveal rd1">Our Core<br><em>Service Areas</em></h2>
-      <p class="body reveal rd2">Premier Realty is deeply rooted across greater Sacramento. Our core areas include the city's most sought-after neighborhoods — with extended coverage beyond.</p>
-      <p class="reveal rd2" style="font-size:13px;color:rgba(245,240,232,.35);line-height:1.7">Area not listed? <a href="contact.html" style="color:var(--blue);text-decoration:none">Reach out</a> — we may still be able to help.</p>
-    </div>
-    <div class="area-grid reveal rd2">
-      <div class="area-card core"><div class="area-n">East Sacramento</div><div class="area-t">Core Area</div><div class="area-d">Tree-lined streets, historic Craftsman homes, walkable to top restaurants and parks.</div></div>
-      <div class="area-card core"><div class="area-n">Land Park</div><div class="area-t">Core Area</div><div class="area-d">Charming bungalows near the Sacramento Zoo, river trails, and great schools.</div></div>
-      <div class="area-card core"><div class="area-n">Midtown</div><div class="area-t">Core Area</div><div class="area-d">Urban living, vibrant arts and dining scene, highly walkable and trendy.</div></div>
-      <div class="area-card core"><div class="area-n">Natomas</div><div class="area-t">Core Area</div><div class="area-d">New construction, Kings arena proximity, strong rental demand and appreciation.</div></div>
-      <div class="area-card core"><div class="area-n">Elk Grove</div><div class="area-t">Core Area</div><div class="area-d">Top-rated schools, master-planned communities, excellent family environment.</div></div>
-      <div class="area-card core"><div class="area-n">Arden-Arcade</div><div class="area-t">Core Area</div><div class="area-d">Established neighborhood with great value, mid-century character, and convenience.</div></div>
-      <div class="area-card"><div class="area-n">Folsom</div><div class="area-t">Extended Area</div><div class="area-d">Top schools, American River trails, and proximity to the tech job corridor.</div></div>
-      <div class="area-card"><div class="area-n">Roseville</div><div class="area-t">Extended Area</div><div class="area-d">Growing suburb with excellent infrastructure, new builds, and good value.</div></div>
+<section class="areas">
+  <div class="container">
+    <div class="areas-inner">
+      <div class="areas-txt">
+        <div class="section-eyebrow reveal">Where We Serve</div>
+        <h2 class="section-h2 reveal rd1">Our Core<br><em>Service Areas</em></h2>
+        <p class="reveal rd2">Premier Realty is deeply rooted across greater Sacramento. Our core areas include the city's most sought-after neighborhoods — with extended coverage beyond.</p>
+        <p class="note reveal rd2">Area not listed? <a href="contact.html">Reach out</a> — we may still be able to help.</p>
+      </div>
+      <div class="area-grid reveal rd2">
+        <div class="area-card core"><div class="area-n">East Sacramento</div><div class="area-t">Core Area</div><div class="area-d">Tree-lined streets, historic Craftsman homes, walkable to top restaurants and parks.</div></div>
+        <div class="area-card core"><div class="area-n">Land Park</div><div class="area-t">Core Area</div><div class="area-d">Charming bungalows near the Sacramento Zoo, river trails, and great schools.</div></div>
+        <div class="area-card core"><div class="area-n">Midtown</div><div class="area-t">Core Area</div><div class="area-d">Urban living, vibrant arts and dining scene, highly walkable and trendy.</div></div>
+        <div class="area-card core"><div class="area-n">Natomas</div><div class="area-t">Core Area</div><div class="area-d">New construction, Kings arena proximity, strong rental demand and appreciation.</div></div>
+        <div class="area-card core"><div class="area-n">Elk Grove</div><div class="area-t">Core Area</div><div class="area-d">Top-rated schools, master-planned communities, excellent family environment.</div></div>
+        <div class="area-card core"><div class="area-n">Arden-Arcade</div><div class="area-t">Core Area</div><div class="area-d">Established neighborhood with great value, mid-century character, and convenience.</div></div>
+        <div class="area-card"><div class="area-n">Folsom</div><div class="area-t ext">Extended Area</div><div class="area-d">Top schools, American River trails, and proximity to the tech job corridor.</div></div>
+        <div class="area-card"><div class="area-n">Roseville</div><div class="area-t ext">Extended Area</div><div class="area-d">Growing suburb with excellent infrastructure, new builds, and good value.</div></div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- CTA BAND -->
 <div class="cta-band">
-  <div class="main-container">
+  <div class="container">
     <div class="section-eyebrow">Ready to Begin?</div>
     <h2>Let's Find Your<br><em>Perfect <span class="cta-home">Home</span></em></h2>
     <p>Whether you're buying, selling, or investing — Helen Wong delivers results. Schedule your complimentary consultation today.</p>
@@ -419,141 +508,107 @@ footer{background:#f8fafc;padding:clamp(64px,10vh,100px) 0 40px;border-top:1px s
   <div class="cta-waves" aria-hidden="true">
     <div class="wave-layer wave-layer-1"></div>
     <div class="wave-layer wave-layer-2"></div>
-    <div class="wave-layer wave-layer-3"></div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="main-container">
-    <div class="footer-grid">
-      <!-- Col 1: Brand -->
-      <div class="foot-col">
-        <div class="footer-logo">
-          <img src="img/premier-realty-logo.png" alt="Premier Realty">
-        </div>
-        <p class="footer-desc">Delivering exceptional real estate experiences with integrity, expertise, and personalized service across Sacramento and beyond.</p>
-        <div class="foot-socials">
-          <a href="#" class="social-link" aria-label="Facebook">
-            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a href="#" class="social-link" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="#" class="social-link" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="#" class="social-link" aria-label="YouTube">
-            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.11 1 12 1 12s0 3.89.42 5.58a2.78 2.78 0 0 0 1.94 2c1.71.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.89 23 12 23 12s0-3.89-.42-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Col 2: Quick Links -->
-      <div class="foot-col">
-        <h4>Quick Links</h4>
-        <ul class="foot-list">
-          <li><a href="index.html">Buy a Home</a></li>
-          <li><a href="contact.html">Sell Your Home</a></li>
-          <li><a href="services.html">Investments</a></li>
-          <li><a href="index.html#listings">Market Insights</a></li>
-          <li><a href="about.html">About Helen</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 3: Services -->
-      <div class="foot-col">
-        <h4>Services</h4>
-        <ul class="foot-list">
-          <li><a href="services.html">Home Valuation</a></li>
-          <li><a href="services.html">Buyer Representation</a></li>
-          <li><a href="services.html">Listing Services</a></li>
-          <li><a href="services.html">Investment Properties</a></li>
-          <li><a href="services.html">Relocation Services</a></li>
-          <li><a href="contact.html">Consultation</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 4: Contact -->
-      <div class="foot-col">
-        <h4>Contact</h4>
-        <div class="foot-contact-item">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span>(916) 256-7073</span>
-        </div>
-        <div class="foot-contact-item">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <span>helen@premierrealtysac.com</span>
-        </div>
-        <div class="foot-contact-item">
-          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Sacramento, CA</span>
-        </div>
-        <div class="foot-contact-item">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>Mon – Fri: 9AM – 6PM<br>Sat – Sun: By Appointment</span>
-        </div>
-      </div>
-
-      <!-- Col 5: Newsletter -->
-      <div class="foot-col">
-        <h4>Newsletter</h4>
-        <p class="news-desc">Get the latest market updates and real estate insights delivered to your inbox.</p>
-        <form class="news-form" onsubmit="event.preventDefault()">
-          <input type="email" class="news-input" placeholder="Your email address" required>
-          <button type="submit" class="news-btn">Subscribe</button>
-        </form>
-      </div>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="img/premier-realty-logo.png" alt="Premier Realty" onerror="this.outerHTML='<span style=\'font-family:Cormorant Garamond,serif;font-size:18px;font-weight:300;color:#6B7280;letter-spacing:.08em\'>Premier Realty</span>'">
     </div>
-
-    <div class="footer-bottom">
-      <div class="copy">© 2024 Helen Wong Real Estate. All rights reserved.</div>
-      <div class="foot-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="https://www.zillow.com/profile/hwong2" target="_blank">MLS® Disclaimer</a>
-      </div>
+    <div class="footer-copy">
+      © 2025 Premier Realty Sacramento · Helen Wong, Broker · DRE #01359322<br>
+      <a href="tel:9162567073">(916) 256-7073</a> · <a href="mailto:helen@premierrealtysac.com">helen@premierrealtysac.com</a><br>
+      All rights reserved. Equal Housing Opportunity.
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Helen</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.zillow.com/profile/hwong2" target="_blank" rel="noopener">Zillow Profile</a>
     </div>
   </div>
 </footer>
 
 <script>
-document.getElementById('ham').addEventListener('click',function(){this.classList.toggle('open');document.getElementById('mob').classList.toggle('open')});
-function closeMob(){document.getElementById('ham').classList.remove('open');document.getElementById('mob').classList.remove('open')}
-const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-if(location.hash)setTimeout(()=>document.querySelector(location.hash)?.scrollIntoView({behavior:'smooth'}),400);
+// Hamburger menu
+document.getElementById('ham').addEventListener('click',function(){
+  this.classList.toggle('open');
+  document.getElementById('mob-menu').classList.toggle('open');
+});
+function closeMob(){
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('mob-menu').classList.remove('open');
+}
 
-// Buy-a-Home video slideshow crossfade (luxury home ↔ Sacramento skyline)
+// Reveal animation
+const io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis');});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+// Hash scroll on load
+if(location.hash){
+  setTimeout(function(){
+    var el=document.querySelector(location.hash);
+    if(el){
+      var offset=el.getBoundingClientRect().top+window.pageYOffset-130;
+      window.scrollTo({top:offset,behavior:'smooth'});
+    }
+  },400);
+}
+
+// Buy-a-Home video slideshow crossfade
 (function(){
-  var show = document.getElementById('svc-buy-slideshow');
-  if(!show) return;
-  var slides = show.querySelectorAll('.svc-slide');
-  if(slides.length < 2) return;
-  var idx = 0;
-  // Try to play each video (browsers may block without user interaction — muted autoplay should pass)
-  slides.forEach(function(v){ var p = v.play && v.play(); if(p && p.catch) p.catch(function(){}); });
+  var show=document.getElementById('svc-buy-slideshow');
+  if(!show)return;
+  var slides=show.querySelectorAll('.svc-slide');
+  if(slides.length<2)return;
+  var idx=0;
+  slides.forEach(function(v){var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){});});
   function next(){
-    var nextIdx = (idx + 1) % slides.length;
+    var nextIdx=(idx+1)%slides.length;
     slides[idx].classList.remove('on');
     slides[nextIdx].classList.add('on');
-    // restart the incoming slide so it's not midway through
-    try{ slides[nextIdx].currentTime = 0; slides[nextIdx].play(); }catch(e){}
-    idx = nextIdx;
+    try{slides[nextIdx].currentTime=0;slides[nextIdx].play();}catch(e){}
+    idx=nextIdx;
   }
-  // Each slide dwells ~7s before crossfading to the next (1.4s transition)
-  setInterval(next, 7000);
+  setInterval(next,7000);
 })();
 
 // Highlight active qnav item on scroll
-const sections=['buy','value','relocate','invest','consult'];
-const qLinks=document.querySelectorAll('.qnav a');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  sections.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<200)cur=id});
-  qLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur)});
-},{passive:true});
+(function(){
+  var sections=['buy','sell','value','relocate','invest','consult'];
+  var qLinks=document.querySelectorAll('.qnav a');
+  function updateActive(){
+    var cur='';
+    sections.forEach(function(id){
+      var el=document.getElementById(id);
+      if(el&&el.getBoundingClientRect().top<220)cur=id;
+    });
+    qLinks.forEach(function(a){
+      a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+    });
+  }
+  window.addEventListener('scroll',updateActive,{passive:true});
+  updateActive();
+})();
+
+// Smooth scroll offset for qnav anchors
+document.querySelectorAll('.qnav a').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var id=this.getAttribute('href');
+    var el=document.querySelector(id);
+    if(el){
+      e.preventDefault();
+      var offset=el.getBoundingClientRect().top+window.pageYOffset-130;
+      window.scrollTo({top:offset,behavior:'smooth'});
+      history.replaceState(null,'',id);
+    }
+  });
+});
 </script>
 </body>
 </html>
