@@ -489,17 +489,37 @@ section{position:relative;z-index:2}
   .process-sig-text{font-size:10px;letter-spacing:.28em;white-space:normal;text-align:center}
 }
 @media(max-width:700px){
-  .process{padding:88px 0 96px;overflow:hidden}
-  .process-steps{display:flex;grid-template-columns:unset;gap:0;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 20px 24px;margin:0 -20px;scrollbar-width:none}
-  .process-steps::-webkit-scrollbar{display:none}
-  .step{flex:0 0 78%;max-width:320px;margin:0;padding:0 8px;scroll-snap-align:center}
-  .step-num{margin-bottom:18px;font-size:42px}
-  .step-icon{width:58px;height:58px;margin-bottom:20px}
-  .step-title{font-size:21px}
-  .step-desc{font-size:13px}
-  .step-rule{margin-top:18px}
-  .process-sig{gap:14px;flex-wrap:wrap;margin-top:60px}
+  .process{padding:88px 0 96px}
+  .process-steps{display:grid;grid-template-columns:1fr;gap:clamp(48px,7vh,72px);position:relative}
+  /* Vertical connecting line behind all steps */
+  .process-steps::before{content:'';position:absolute;left:50%;top:28px;bottom:28px;width:1px;background:linear-gradient(180deg,transparent 0%,rgba(92,184,230,.25) 8%,rgba(92,184,230,.35) 50%,rgba(92,184,230,.25) 92%,transparent 100%);transform:translateX(-.5px);pointer-events:none;z-index:0}
+  .step{padding:0;max-width:340px;margin:0 auto;position:relative;z-index:1;opacity:0;transform:translateY(24px) scale(.98);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+  .step.mob-in{opacity:1;transform:translateY(0) scale(1)}
+  .step-num{margin-bottom:20px;font-size:44px;transition:opacity .7s ease,letter-spacing .7s ease}
+  .step.mob-in .step-num{opacity:.95;letter-spacing:.04em}
+  .step-icon{width:62px;height:62px;margin-bottom:22px;transition:transform .9s cubic-bezier(.22,.61,.36,1),box-shadow .9s ease}
+  .step.mob-in .step-icon{animation:step-icon-pop .9s cubic-bezier(.22,.61,.36,1)}
+  .step.mob-in .step-icon svg{animation:step-svg-draw .9s cubic-bezier(.22,.61,.36,1)}
+  .step-title{font-size:22px}
+  .step-desc{font-size:13.5px}
+  .step-rule{margin-top:22px;width:0;transition:width .9s cubic-bezier(.22,.61,.36,1) .25s,opacity .9s ease .25s}
+  .step.mob-in .step-rule{width:38px;opacity:.75}
+  .process-sig{gap:14px;flex-wrap:wrap;margin-top:72px}
   .process-sig-line{display:none}
+}
+@keyframes step-icon-pop{
+  0%{transform:translateY(10px) scale(.85);box-shadow:0 0 0 rgba(92,184,230,0),0 0 0 0 rgba(92,184,230,.35)}
+  55%{transform:translateY(-4px) scale(1.06);box-shadow:0 14px 34px rgba(92,184,230,.28),0 0 0 10px rgba(92,184,230,.08)}
+  100%{transform:translateY(0) scale(1);box-shadow:0 10px 26px rgba(92,184,230,.14),0 0 0 1px rgba(198,223,240,.55)}
+}
+@keyframes step-svg-draw{
+  0%{transform:scale(.7) rotate(-8deg);opacity:0}
+  55%{transform:scale(1.08) rotate(2deg);opacity:1}
+  100%{transform:scale(1) rotate(0);opacity:1}
+}
+@media (prefers-reduced-motion: reduce){
+  .step,.step-icon,.step-rule,.step-num{transition:none !important;animation:none !important}
+  .step{opacity:1;transform:none}
 }
 
 /* ── MORTGAGE CALCULATOR (reference-inspired) ── */
@@ -2108,6 +2128,37 @@ function smoothScrollTo(id){
     entries.forEach(function(e){ if(e.isIntersecting) run(); });
   },{threshold:.35});
   io.observe(steps);
+
+  // Mobile: per-step staggered entrance as each step scrolls into view
+  var mqProc=window.matchMedia('(max-width:700px)');
+  var stepIO=null;
+  function setupMobileStepAnim(){
+    if(stepIO)stepIO.disconnect();
+    stepEls.forEach(function(s){s.classList.remove('mob-in')});
+    stepIO=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var el=e.target;
+          var idx=Array.prototype.indexOf.call(stepEls,el);
+          // tiny stagger for nicer cadence if several come in together
+          setTimeout(function(){ el.classList.add('mob-in'); },Math.max(0,idx%2)*90);
+          stepIO.unobserve(el);
+        }
+      });
+    },{rootMargin:'0px 0px -12% 0px',threshold:.25});
+    stepEls.forEach(function(s){stepIO.observe(s)});
+  }
+  function teardownMobileStepAnim(){
+    if(stepIO){stepIO.disconnect();stepIO=null;}
+    stepEls.forEach(function(s){s.classList.add('mob-in')});
+  }
+  function onProcChange(){
+    if(mqProc.matches){setupMobileStepAnim();}
+    else{teardownMobileStepAnim();}
+  }
+  onProcChange();
+  if(mqProc.addEventListener)mqProc.addEventListener('change',onProcChange);
+  else if(mqProc.addListener)mqProc.addListener(onProcChange);
 })();
 
 // ── MOBILE: DUPLICATE NEIGHBORHOOD CARDS FOR SEAMLESS MARQUEE LOOP ──
