@@ -143,9 +143,15 @@ nav.solid .hamburger span{background:rgba(17,24,39,.7)}
 .hero-h1{font-family:var(--serif);font-size:clamp(56px,9vw,120px);font-weight:400;line-height:1.02;letter-spacing:-.015em;color:#fff;text-align:center;text-shadow:0 2px 22px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.3)}
 .hero-h1 em{font-style:italic;color:#87D4EE}
 .hero-sub{font-size:15px;color:rgba(255,255,255,.92);font-weight:300;line-height:1.8;max-width:560px;text-align:center;text-shadow:0 1px 10px rgba(0,0,0,.55)}
-.hero-badges{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.hero-badge{font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:10px 22px;border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.92);border-radius:2px;background:rgba(10,20,32,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);text-shadow:0 1px 6px rgba(0,0,0,.4)}
-.hero-badge.hl{border-color:rgba(135,212,238,.7);color:#87D4EE;background:rgba(10,20,32,.55)}
+.hero-badges{display:flex;gap:0;flex-wrap:wrap;justify-content:center;align-items:center}
+.hero-badge{font-size:10px;letter-spacing:.22em;text-transform:uppercase;padding:6px 22px;border:none;background:transparent;color:rgba(255,255,255,.78);text-shadow:0 1px 6px rgba(0,0,0,.4);position:relative;font-weight:300}
+.hero-badge + .hero-badge::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:10px;background:rgba(255,255,255,.22)}
+.hero-badge.hl{color:#87D4EE}
+@media(max-width:520px){
+  .hero-badges{gap:4px 0}
+  .hero-badge{padding:4px 14px;font-size:9px;letter-spacing:.18em}
+  .hero-badge + .hero-badge::before{height:8px}
+}
 
 /* ── ROTATING WORD SWAP (GOLD, SYNCED TO SCENES) ── */
 .word-swap{display:inline-grid;grid-template-columns:1fr;vertical-align:baseline;color:#E6C98A;line-height:1.02;font-style:italic;
@@ -2195,14 +2201,39 @@ function smoothScrollTo(id){
   io.observe(sec);
 })();
 
-// ── HERO SEARCH HANDLER ──
+// ── HERO SEARCH HANDLER → Helen's MetroList ──
 function handleHeroSearch(e){
   e.preventDefault();
   const q=(document.getElementById('hero-search-input')||{}).value||'';
   const trimmed=q.trim();
-  if(!trimmed){smoothScrollTo('neighborhoods');return;}
-  // Route search query to contact page so Helen can follow up
-  window.location.href='contact.html?area='+encodeURIComponent(trimmed);
+  const base='https://helenwong.metrolist.com';
+
+  // No query → open MetroList Sacramento County search
+  if(!trimmed){
+    window.location.href=base+'/search/For_Sale/Sacramento%20County_4_CA';
+    return;
+  }
+
+  // 5-digit ZIP → ZIP search
+  if(/^\d{5}$/.test(trimmed)){
+    const j=JSON.stringify({SavedSearchId:0,SearchTypes:[0,1],TransactionTypes:[0]});
+    window.location.href=base+'/search/'+trimmed+'?q='+encodeURIComponent(j);
+    return;
+  }
+
+  // Known city/neighborhood → city search URL
+  const cities=['Sacramento','Elk Grove','Carmichael','Rancho Cordova','Mather','McClellan','Folsom','Roseville','Citrus Heights','North Highlands','Rio Linda','Natomas','Davis','West Sacramento','Galt','Lincoln','Rocklin','Granite Bay','Loomis','El Dorado Hills'];
+  const lc=trimmed.toLowerCase();
+  const city=cities.find(c=>lc===c.toLowerCase()||lc.includes(c.toLowerCase()));
+  if(city){
+    const j=JSON.stringify({SavedSearchId:0,SearchTypes:[0,1],TransactionTypes:[0]});
+    window.location.href=base+'/search/CA/'+encodeURIComponent(city)+'_City?q='+encodeURIComponent(j);
+    return;
+  }
+
+  // Otherwise → keyword search across Sacramento County
+  const j=JSON.stringify({SavedSearchId:0,SearchTypes:[0,1],TransactionTypes:[0],Keywords:[trimmed]});
+  window.location.href=base+'/Search/CA/Sacramento%20County_County?q='+encodeURIComponent(j);
 }
 
 // ── COUNTER ANIMATION ──
